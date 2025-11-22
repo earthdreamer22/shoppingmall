@@ -23,12 +23,19 @@ const allowedOrigins = process.env.CLIENT_ORIGIN
 
 app.use(cors({
   origin: (origin, callback) => {
-    // 개발환경 또는 허용된 origin
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'));
+    // 개발환경 (origin 없음)
+    if (!origin) {
+      return callback(null, true);
     }
+    // 명시적으로 허용된 origin
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    // Vercel 프리뷰 도메인 자동 허용 (earth-shins-projects.vercel.app)
+    if (origin.endsWith('-earth-shins-projects.vercel.app')) {
+      return callback(null, true);
+    }
+    callback(new Error('CORS not allowed'));
   },
   credentials: true
 }));
