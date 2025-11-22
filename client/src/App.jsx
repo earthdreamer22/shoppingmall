@@ -6,7 +6,10 @@ import Admin from './pages/Admin.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
 import Checkout from './pages/Checkout.jsx';
 import OrderComplete from './pages/OrderComplete.jsx';
+import Terms from './pages/Terms.jsx';
+import Privacy from './pages/Privacy.jsx';
 import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
@@ -22,7 +25,10 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders/complete" element={<OrderComplete />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );

@@ -1,0 +1,153 @@
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.legal-page h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.legal-page .updated-date {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.legal-page .intro {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.legal-page section {
+  margin-bottom: 2rem;
+}
+
+.legal-page h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.legal-page h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #444;
+}
+
+.legal-page p {
+  margin-bottom: 1rem;
+}
+
+.legal-page ol,
+.legal-page ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.legal-page li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-page ul ul,
+.legal-page ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-page .info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.legal-page .info-table th,
+.legal-page .info-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.legal-page .info-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.legal-page .info-table td {
+  background-color: #fff;
+}
+
+.legal-page .responsibility-box {
+  background-color: #f0f7ff;
+  border: 1px solid #cce5ff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.legal-page .responsibility-box p {
+  margin-bottom: 0.5rem;
+}
+
+.legal-page .responsibility-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.legal-page .responsibility-box li {
+  margin-bottom: 0.25rem;
+}
+
+.legal-page .company-info {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+.legal-page .company-info h3 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.legal-page .company-info p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .legal-page {
+    padding: 1rem;
+  }
+
+  .legal-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .legal-page h2 {
+    font-size: 1.1rem;
+  }
+
+  .legal-page .info-table {
+    font-size: 0.8rem;
+  }
+
+  .legal-page .info-table th,
+  .legal-page .info-table td {
+    padding: 0.5rem;
+  }
+}
