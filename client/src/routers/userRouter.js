@@ -1,4 +1,4 @@
-import { apiRequest } from '../src/lib/apiClient.js';
+import { apiRequest } from '../lib/apiClient.js';
 
 export function listUsers() {
   return apiRequest('/users');
