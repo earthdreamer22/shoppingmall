@@ -17,9 +17,21 @@ const { rateLimiter } = require('./middleware/rateLimitMiddleware');
 
 const app = express();
 
-const clientOrigin = process.env.CLIENT_ORIGIN ?? '*';
+const allowedOrigins = process.env.CLIENT_ORIGIN
+  ? process.env.CLIENT_ORIGIN.split(',').map(o => o.trim())
+  : [];
 
-app.use(cors({ origin: clientOrigin, credentials: true }));
+app.use(cors({
+  origin: (origin, callback) => {
+    // 개발환경 또는 허용된 origin
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
