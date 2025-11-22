@@ -167,7 +167,6 @@ function Home() {
       <header>
         <h1>종이책 연구소</h1>
         <p>종이책 연구소의 온라인 쇼핑몰입니다.</p>
-        <small>API 주소: {API_BASE_URL}</small>
       </header>
 
       {statusMessage && <div className="status">{statusMessage}</div>}
