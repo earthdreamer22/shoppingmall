@@ -1,0 +1,3116 @@
+> 쇼핑몰 프로젝트 한눈에 보기 – 목차 초안
+
+  1. 시작해 볼까?
+      - 우리 프로젝트가 목표로 하는 것
+      - 필요한 프로그램과 계정 정리
+      - 폴더 구조 살펴보기
+  2. 개발 환경 준비하기
+      - Node.js와 VS Code 설치
+
+  - Vite로 React 앱 만들기
+  - Express로 백엔드 기본 골격 세우기
+
+  3. 데이터베이스와 친구 되기
+      - MongoDB 연결하고 테스트하기
+      - Mongoose로 상품·회원·장바구니·주문 스키마 만들기
+      - 샘플 데이터 넣어 보기
+  4. 백엔드 기능 차근차근
+      - 상품 목록 불러오기와 상세 조회
+      - 회원 가입·정보 수정·삭제
+      - 장바구니 담기와 주문 만들기
+  5. JWT 로그인 이해하기
+      - 토큰이 왜 필요한가?
+      - 로그인·로그아웃 API 만들기
+      - 쿠키로 토큰 안전하게 다루기
+  6. 관리자 전용 상품 대시보드
+      - 관리자 권한 체크하기
+      - SKU·카테고리·대표 이미지로 상품 관리
+      - Cloudinary 위젯으로 사진 업로드
+  7. 프런트엔드 다듬기
+      - React Router로 화면 구분하기
+      - 전역 인증 컨텍스트 만들기
+      - 네비게이션과 장바구니 배지 디자인
+  8. 상세 페이지와 추천 상품
+      - 큰 이미지·썸네일 갤러리 구성
+      - 비슷한 상품 묶어 보여주기
+      - 배송지·결제수단 입력 폼 만들기
+      - 주문 요약과 완료 화면 디자인
+      - 주문 정보를 서버에 저장하고 장바구니 비우기
+ 9. “체크아웃과 주문 완료 페이지”
+  - 사용자가 장바구니에서 “주문하기” 버튼을 눌렀을 때 이동하는 체크아웃 페이지 UI
+  - 배송지 입력 폼, 결제 수단 선택, 주문 요약 카드 등 레이아웃 구성
+  - 주문을 완료한 뒤 보여 줄 “주문 완료” 페이지에서 결제 금액·배송지·주문 상품을 요약해서 보여 주는 방법
+  - 서버와 연결하여 주문 데이터를 저장하고 장바구니를 초기화하는 흐름
+ 10. 결제 모듈(PortOne + KG이니시스) 연결
+      - 테스트 키와 환경 변수 정리
+      - IMP.request_pay로 결제창 띄우기
+      - 백엔드에서 결제 결과 검증하기
+  11. 마무리 점검과 다음 단계
+      - 자주 하는 실수와 해결법
+      - 배포 준비 체크리스트
+      - 더 확장하고 싶을 때 참고할 아이디어
+
+  부록 A. 용어 사전 (중학생 눈높이 버전)
+  부록 B. 에러 로그 읽는 법과 디버깅 기본기
+  부록 C. 샘플 .env 템플릿 및 테스트 카드 정보
+
+▌ 1장의 내용 개요 한번써봐
+
+> 1장. 시작해 볼까? – 내용 개요
+
+  이 장에서는 “왜 우리가 쇼핑몰을 만들려고 하는지”부터 하나씩 짚어 봅니다. 먼저, 최종 목표를 그림으로 그려 봅니다. 예를 들어, 사용자는 상품
+  을 보고 장바구니에 담고 주문하며, 관리자는 상품과 주문을 관리하게 됩니다. 이런 큰 그림을 같이 상상하면, 앞으로 배울 내용이 더 잘 머릿속에
+  들어옵니다.
+
+  다음으로는 필요한 도구를 준비합니다. 컴퓨터에 설치해야 할 프로그램(예: Node.js, Visual Studio Code), 가입해야 할 서비스(예: MongoDB Atlas,
+  PortOne, Cloudinary)를 목록으로 정리하고, 각각을 왜 쓰는지도 간단히 설명합니다. “이 도구가 무슨 역할을 하는지”를 알면 설치 과정이 덜 지루
+  하지요.
+
+  도구를 다 준비했다면, 프로젝트 폴더를 어떻게 나눌지 미리 계획합니다. 예를 들어 client는 화면을 만드는 프런트엔드, server는 API를 담당하
+  는 백엔드로 구분하고, src, models, routes 같은 디렉터리가 어떤 역할을 하는지 쉬운 예를 들어 설명합니다. 마지막으로 Git 저장소 초기화, 기본
+  README 작성 같은 첫 세팅 방법을 짚어 주어 책의 나머지 장을 따라가면서 헷갈리지 않도록 길잡이를 세워 줍니다.
+
+▌ 개요를 바탕으로 본문내용 써봐
+
+> ———
+
+  ### 1장  시작해 볼까?
+
+  쇼핑몰을 만든다고 하면 살짝 긴장될 수 있어요. 하지만 겁먹을 필요는 없습니다. 우리가 만들려고 하는 건 거대한 포털이 아니라, “상품을 보고,
+  장바구니에 담고, 주문까지 해 보는” 작고 알찬 웹서비스입니다. 이 장에서는 앞으로 갈 길을 한 번 쭉 살펴보고, 그 길을 걷기 위해 준비해야 할
+  것들을 모아 보겠습니다.
+
+  #### 1. 우리 목표를 먼저 상상하기
+
+  웹 브라우저를 켜서 이런 화면을 떠올려 볼까요?
+
+  - 메인 화면에서 상품 목록이 보이고,
+  - 마음에 드는 상품을 누르면 이미지와 설명이 자세히 나와요.
+  - 장바구니 버튼을 누르면 장바구니 페이지로 이동해 담긴 목록을 확인할 수 있어요.
+  - “주문하기” 버튼을 누르면 배송 정보와 결제 정보를 입력할 수 있는 페이지가 나오고,
+  - 주문을 마치면 “주문 완료!” 메시지가 뜹니다.
+  - 관리자는 별도의 페이지에서 상품을 등록하거나 수정할 수 있어요.
+
+  이런 흐름을 머릿속에 그려 두면, 앞으로 코드를 작성할 때 “지금 내가 만드는 게 전체 퍼즐의 어느 조각인지” 이해하기 쉬워집니다. 책의 나머지
+  장에서는 바로 이 퍼즐을 하나씩 맞춰 가는 과정을 따라가게 될 거예요.
+
+  #### 2. 준비물 체크리스트
+
+  아래 항목은 앞으로 프로젝트를 진행하면서 꼭 필요한 도구들입니다. 설치하면서 “이건 왜 필요하지?” 싶은 것들도 있을 텐데, 그런 궁금증을 해소
+  하려고 간단한 설명을 함께 적었습니다.
+
+  | 구분 | 이름 | 하는 일 |
+  | --- | --- | --- |
+  | 필수 프로그램 | Node.js | 자바스크립트로 서버를 만들 수 있게 해 주는 실행 환경. 프런트엔드 빌더도 Node.js를 이용해 작동합니다. |
+  |  | Visual Studio Code | 코드를 편하게 작성할 수 있는 무료 편집기. 다양한 확장 프로그램도 쓸 수 있어요. |
+  | 온라인 서비스 | MongoDB Atlas 계정 | 우리 쇼핑몰의 상품, 회원, 주문 정보를 저장할 데이터베이스. |
+  |  | PortOne(아임포트) 계정 | 결제창을 쉽게 띄우고 결제 내역을 확인할 수 있게 해 주는 결제 플랫폼. 우리는 KG이니시스와 연결해서 쓸 거예
+  요. |
+  |  | Cloudinary 계정 | 상품 사진을 업로드하고 보관해 주는 이미지 저장소. |
+  | 선택 도구 | Git & GitHub | 소스 코드를 버전별로 관리하고, 작업 이력을 남길 수 있는 필수 도구. |
+
+  ※ 계정이 필요한 서비스는 모두 무료 요금제에서 시작해도 충분합니다. 책 뒤쪽에서 가입 방법을 사진과 함께 소개해 드릴 예정이에요.
+
+  #### 3. 프로젝트 폴더 미리 구경하기
+
+  프로젝트 폴더를 다음과 같이 나눌 겁니다. 지금은 헷갈려도 괜찮습니다. 뒤 장으로 갈수록 익숙해질 거예요.
+
+  shoppingmall_exam/
+  ├── client/          # React로 만든 프런트엔드
+  │   ├── src/
+  │   │   ├── pages/   # Home, Signup, Checkout 같은 화면들
+  │   │   ├── components/ # Navbar 같은 공통 UI
+  │   │   └── context/ # 전역 상태 (예: 로그인 정보)
+  │   └── public/      # 정적 파일, 아이콘 등
+  ├── server/          # Express로 만든 백엔드
+  │   ├── src/
+  │   │   ├── models/      # MongoDB 스키마 (Product, User, Order…)
+  │   │   ├── services/    # 외부 API 통신 (예: PortOne)
+  │   │   └── utils/       # 공용 함수들
+  └── README.md        # 전체 프로젝트 설명
+
+  - client 폴더는 브라우저에 보이는 화면을 담당합니다. React와 Vite를 이용해 구성합니다.
+  - server 폴더는 API 서버입니다. Express와 MongoDB를 활용해 데이터를 읽고 쓰는 일을 맡습니다.
+  - 공통 환경 설정은 .env 파일로 분리해서 관리합니다. 실수로 공개 저장소에 올리면 안 되므로 .gitignore에 등록해 두는 것도 잊지 마세요.
+
+  #### 4. Git으로 첫 발자국 남기기
+
+  프로젝트를 새로 만들 때 Git 저장소를 만들어 두면, 나중에 잘못됐을 때 되돌리기도 쉽고, 작업 이력이 자동으로 저장돼서 편리합니다.
+
+  1. 원하는 폴더에서 터미널을 열고 git init을 입력합니다.
+  2. README.md 파일을 만들어 제목과 간단한 설명을 적습니다.
+  3. git add . → git commit -m "Initialize project" 명령으로 첫 커밋을 남깁니다.
+  4. GitHub나 GitLab 같은 원격 저장소에 연결할 계획이라면 git remote add origin ... 명령을 추가로 실행합니다.
+
+  이렇게 하면 프로젝트가 빈 상태더라도 “버전 0”이 만들어집니다. 이후로는 기능을 완성할 때마다 커밋을 남겨 주면 됩니다.
+
+  #### 5. 앞으로 다룰 내용 미리 보기
+
+  1장에서는 준비물과 전체 구조를 살펴봤습니다. 다음 장부터는 실제로 개발 환경을 설치하고, client와 server 폴더를 채워 나가면서 진짜 쇼핑몰을
+  만들어 볼 거예요. 순서는 다음과 같습니다.
+
+  1. 2장에서 개발 도구를 설치하고 Vite + React, Express 서버 골격을 세웁니다.
+  2. 3장에서는 MongoDB와 연결하고, 데이터 모델(Product, User 등)을 정의합니다.
+  3. 4~9장에서는 기능별로 API와 화면을 하나씩 완성합니다.
+  4. 10장에서는 드디어 결제 모듈(PortOne + KG이니시스)을 붙입니다.
+  5. 11장에서는 마무리 점검과 배포 팁을 공유합니다.
+
+  이제 손을 풀었으니, 2장으로 넘어가 본격적으로 환경을 설정해 봅시다!
+
+▌ 2장개요 작성하고 이어서 본문도 작성해봐
+
+> ———
+
+  ### 2장  개발 환경 준비하기 – 내용 개요
+
+  본격적으로 코드를 쓰기 전에, 우리 컴퓨터를 “개발용 공장”으로 꾸며야 합니다. 이 장에서는 세 가지를 목표로 합니다.
+
+  1. Node.js와 Visual Studio Code 같은 기본 도구를 설치해 코드를 실행하고 편집할 준비를 합니다.
+  2. 프런트엔드(React)와 백엔드(Express)를 각각 초기화하여 client, server 폴더가 살아 숨 쉬게 만듭니다.
+  3. 설치가 제대로 되었는지 npm --version, node --version, npm run dev 같은 간단한 명령으로 점검합니다.
+
+  준비가 끝나면, 앞으로 나올 장에서 코드를 마음껏 달릴 수 있습니다.
+
+  ———
+
+  ### 2장  개발 환경 준비하기
+
+  #### 1. Node.js 설치하기
+
+  Node.js는 자바스크립트를 브라우저 밖에서도 실행할 수 있게 도와주는 프로그램입니다. React 개발 서버도, Express API 서버도 Node.js 위에서 돌
+  아갑니다.
+
+  1. nodejs.org (https://nodejs.org/)에 접속합니다.
+  2. “LTS”라고 써 있는 안정 버전을 다운로드합니다. (2024년 기준으로 20.x 버전)
+  3. 설치 프로그램을 실행하고 “Next” 버튼을 눌러 끝까지 진행합니다.
+  4. 설치가 끝나면 터미널(Windows: PowerShell, macOS: 터미널)을 열고 아래 명령을 입력합니다.
+
+  node --version
+  npm --version
+
+  두 줄 모두 버전 숫자가 나온다면 성공입니다. 만약 command not found 같은 오류가 뜬다면 PC를 다시 켜거나 설치 경로를 확인해야 합니다.
+
+  #### 2. Visual Studio Code 설치하기
+
+  Visual Studio Code(VS Code)는 코드 편집기입니다. 색깔이 예쁘고, 자동 완성 기능이 많아서 사용하기 쉽습니다.
+
+  1. code.visualstudio.com (https://code.visualstudio.com/)에서 설치 파일을 내려받습니다.
+  2. 설치를 하면서 “PATH에 추가” 옵션이 있다면 꼭 체크합니다. 그러면 터미널에서 code . 명령으로 해당 폴더를 바로 열 수 있습니다.
+  3. 설치가 끝나면 실행해서 한글 인터페이스가 필요하면 “설정 → 언어”에서 변경할 수 있습니다.
+
+  추천 확장 기능:
+
+  - ESLint: 코드 스타일을 자동으로 잡아 줍니다.
+  - Prettier: 코드 정렬을 깔끔하게 해 줍니다.
+  - Material Icon Theme: 폴더 아이콘이 더 보기 쉬워집니다.
+
+  #### 3. 프로젝트 뼈대 만들기
+
+  이제 실제 프로젝트 폴더를 만들어 보겠습니다.
+
+  mkdir shoppingmall_exam
+  cd shoppingmall_exam
+
+  이 폴더 안에 client, server 두 가지 작업장을 만들 겁니다.
+
+  ##### 3-1. React + Vite 초기화 (client 폴더)
+
+  1. 터미널에서 다음을 입력합니다.
+
+  cd shoppingmall_exam
+  mkdir client
+  cd client
+  npm create vite@latest . -- --template react
+  npm install
+
+  2. 설치가 끝나면 개발 서버를 테스트해 봅니다.
+
+  npm run dev
+
+  터미널에 http://localhost:5173/ 주소가 보이면 성공입니다. 브라우저에서 주소를 열면 “Vite + React” 첫 화면이 나타납니다. 나중에 이걸 쇼핑몰
+  화면으로 완전히 바꿀 예정입니다.
+
+  3. 개발 서버는 Ctrl + C로 종료할 수 있습니다. 아직 다른 설정을 해야 하니 일단 종료해 둡니다.
+
+  ##### 3-2. Express 초기화 (server 폴더)
+
+  1. 새 터미널(또는 기존 터미널에서 폴더 이동)을 열고 아래 명령을 입력합니다.
+
+  cd shoppingmall_exam
+  mkdir server
+  cd server
+  npm init -y
+  npm install express mongoose cors dotenv morgan bcrypt jsonwebtoken cookie-parser axios
+  npm install --save-dev nodemon
+
+  - express: 웹 서버
+  - mongoose: MongoDB와 연결
+  - cors: 다른 도메인에서도 API를 사용할 수 있게 허용
+  - dotenv: 환경 변수(.env)를 쉽게 다루기
+  - morgan: 요청 로그를 보기 쉽게
+  - bcrypt, jsonwebtoken, cookie-parser: 로그인과 JWT 인증을 위해 필요
+  - axios: 외부 API(여기서는 PortOne)를 호출하는 데 사용
+  - nodemon: 파일이 변경되면 서버를 자동으로 재시작해 줍니다.
+
+  2. server/package.json의 scripts 부분을 아래처럼 고칩니다.
+
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  }
+
+  3. src 폴더를 만들고 기본 파일을 준비합니다.
+
+  mkdir -p src
+
+  src/index.js:
+
+  require('dotenv').config();
+  const http = require('http');
+  const app = require('./app');
+  const { connectDatabase } = require('./config/database');
+
+  const PORT = Number(process.env.PORT) || 5000;
+  const MONGODB_URI = process.env.MONGODB_URI;
+
+  async function bootstrap() {
+    try {
+      await connectDatabase(MONGODB_URI);
+
+      const server = http.createServer(app);
+      server.listen(PORT, () => {
+        console.log(`🚀 서버가 포트 ${PORT}에서 실행 중입니다.`);
+      });
+    } catch (error) {
+      console.error('서버 시작에 실패했습니다.', error.message);
+      process.exit(1);
+    }
+  }
+
+  bootstrap();
+
+  src/app.js:
+
+  const express = require('express');
+  const cors = require('cors');
+  const morgan = require('morgan');
+
+  const app = express();
+
+  const clientOrigin = process.env.CLIENT_ORIGIN ?? '*';
+
+  app.use(cors({ origin: clientOrigin, credentials: true }));
+  app.use(express.json());
+  app.use(morgan('dev'));
+
+  app.get('/api/health', (_req, res) => {
+    res.json({ status: 'ok' });
+  });
+
+  app.use((req, res) => {
+    res.status(404).json({ message: `${req.originalUrl} 경로를 찾을 수 없습니다.` });
+  });
+
+  app.use((error, _req, res, _next) => {
+    console.error('[error]', error);
+    res.status(500).json({ message: '서버 오류가 발생했습니다.' });
+  });
+
+  module.exports = app;
+
+  src/config/database.js:
+
+  const mongoose = require('mongoose');
+
+  async function connectDatabase(uri) {
+    if (!uri) {
+      throw new Error('MONGODB_URI가 설정되어 있지 않습니다.');
+    }
+
+    await mongoose.connect(uri);
+    console.log('[database] MongoDB 연결 성공');
+  }
+
+  module.exports = { connectDatabase };
+
+  4. 가장 간단한 .env 파일을 만들어 봅니다. (실제 값은 나중에 채울 거예요)
+
+  PORT=5000
+  MONGODB_URI=mongodb://localhost:27017/shoppingmall
+  CLIENT_ORIGIN=http://localhost:5173
+
+  5. 서버를 실행해 봅니다.
+
+  npm run dev
+
+  터미널에 [database] MongoDB 연결 성공 메시지 또는 연결 실패 메시지가 뜰 겁니다. 아직 MongoDB 세팅을 하지 않았다면 실패해도 괜찮습니다. 3장
+  에서 연결하는 방법을 자세히 배울 거예요.
+
+  #### 4. 설치가 제대로 되었는지 점검하기
+
+  - npm run dev로 React 개발 서버가 뜬다면 프런트엔드 준비 OK
+  - Express 서버에서 /api/health를 호출했을 때 { status: "ok" }가 나오면 백엔드 기본 구성 OK
+  - 설치한 Node 버전과 NPM 버전을 확인하고, Git 커밋을 남겨 두면 좋습니다.
+
+  #### 5. 오늘의 정리
+
+  - Node.js와 VS Code를 설치해 개발 준비를 마쳤습니다.
+  - client와 server 폴더를 각각 초기화해 React + Express 기반의 뼈대를 세웠습니다.
+  - 테스트 서버를 실행하며 각 도구가 정상 작동하는지 확인했습니다.
+
+  다음 장에서는 MongoDB와 본격적으로 연결해 데이터를 저장하고 읽는 방법을 배워 볼 예정입니다. 이제 여러분의 컴퓨터는 작은 쇼핑몰을 제작할 준
+  비를 갖추었습니다!
+
+▌ 3장 개요쓰고 본문도 작성해봐
+
+> ———
+
+  ### 3장  데이터베이스와 친구 되기 – 내용 개요
+
+  이 장에서는 쇼핑몰의 “창고” 역할을 하는 MongoDB를 제대로 연결합니다. 먼저 Atlas(클라우드)나 로컬 MongoDB를 준비하고, Mongoose를 통해
+  Node.js와 연결하는 방법을 배웁니다. 연결이 끝나면 우리가 다루게 될 핵심 데이터(상품, 회원, 장바구니, 주문)를 스키마로 정의합니다. 마지막으
+  로 간단한 샘플 데이터를 넣고 API로 불러 보면서 저장이 잘 되는지 확인합니다.
+
+  ———
+
+  ### 3장  데이터베이스와 친구 되기
+
+  #### 1. MongoDB 연결 준비
+
+  MongoDB는 문서(document) 형태로 데이터를 저장합니다. 쇼핑몰에서는 상품 정보, 회원 정보, 장바구니, 주문 등이 모두 문서가 됩니다.
+
+  Atlas(클라우드) 사용하는 방법
+
+  1. MongoDB Atlas (https://www.mongodb.com/atlas/database)에서 무료 계정을 만들고 로그인합니다.
+  2. “Deploy a Database” 버튼을 눌러 무료(FREE) 티어를 선택합니다.
+  3. 비밀번호를 설정하고, “Create Cluster”를 클릭합니다. 몇 분 기다리면 클러스터가 준비됩니다.
+  4. Network Access 메뉴에서 접속 허용 IP를 0.0.0.0/0으로 설정하되, 개인 용도라면 자신의 IP만 허용하는 것이 안전합니다.
+  5. Database > Connect > Drivers를 선택하면 MongoDB URI가 생성됩니다. 예:
+     mongodb+srv://<username>:<password>@cluster0.xxxxxx.mongodb.net/shoppingmall?retryWrites=true&w=majority
+
+  로컬 MongoDB 사용하는 방법
+
+  - MongoDB Community Edition을 설치하고 mongod를 실행하면 mongodb://localhost:27017 주소로 접속できます.
+
+  .env 파일의 MONGODB_URI 값을 위에서 얻은 URI로 변경하면 준비 끝입니다.
+
+  #### 2. Mongoose로 연결하기
+
+  앞에서 만든 server/src/config/database.js가 실제로 동작하도록 조금 더 자세히 살펴봅시다.
+
+  const mongoose = require('mongoose');
+
+  async function connectDatabase(uri) {
+    if (!uri) {
+      throw new Error('MONGODB_URI가 설정되어 있지 않습니다.');
+    }
+
+    await mongoose.connect(uri, {
+      retryWrites: true,
+      w: 'majority',
+    });
+
+    console.log('[database] MongoDB 연결 성공');
+  }
+
+  module.exports = { connectDatabase };
+
+  서버를 다시 실행해 npm run dev를 입력하면 연결에 성공했다는 메시지가 뜰 겁니다. 실패하면 터미널에 뜨는 메시지를 잘 읽어 보고 URI, 아이디,
+  비밀번호가 맞는지 확인하세요.
+
+  #### 3. 스키마 설계하기
+
+  이제 쇼핑몰에서 사용할 주요 데이터 구조를 Mongoose 스키마로 정의합니다. 스키마는 일종의 설계도입니다. “상품 문서는 이런 필드를 가지고 있어
+  야 해!”라고 알려 주는 역할을 하지요.
+
+  ##### 3-1. 상품(Product) 스키마
+
+  server/src/models/Product.js
+
+  const { Schema, model } = require('mongoose');
+
+  const imageSchema = new Schema(
+    {
+      publicId: { type: String, required: true },
+      url: { type: String, required: true },
+      isPrimary: { type: Boolean, default: false },
+    },
+    { _id: false },
+  );
+
+  const CATEGORIES = ['상의', '하의', '악세서리'];
+
+  const productSchema = new Schema(
+    {
+      sku: { type: String, required: true, trim: true, unique: true },
+      name: { type: String, required: true, trim: true },
+      price: { type: Number, required: true, min: 0 },
+      category: { type: String, required: true, enum: CATEGORIES },
+      description: { type: String, default: '' },
+      images: {
+        type: [imageSchema],
+        validate: {
+          validator: (images) => Array.isArray(images) && images.length > 0,
+          message: '최소 한 장 이상의 이미지를 등록해야 합니다.',
+        },
+      },
+    },
+    {
+      timestamps: true,
+      toJSON: {
+        virtuals: true,
+        transform: (_, ret) => {
+          const { _id, __v, ...rest } = ret;
+          const primaryImage =
+            rest.images?.find((image) => image.isPrimary) ?? rest.images?.[0] ?? null;
+          return { id: _id.toString(), ...rest, primaryImage };
+        },
+      },
+    },
+  );
+
+  productSchema.index({ sku: 1 }, { unique: true });
+  productSchema.statics.CATEGORIES = CATEGORIES;
+
+  module.exports = model('Product', productSchema);
+
+  여기서 images 배열은 Cloudinary에 저장한 여러 이미지를 다룰 때 사용합니다. isPrimary가 대표 이미지로 선택된 사진입니다.
+
+  ##### 3-2. 사용자(User) 스키마
+
+  server/src/models/User.js
+
+  const { Schema, model } = require('mongoose');
+
+  const userSchema = new Schema(
+    {
+      name: { type: String, required: true, trim: true },
+      email: { type: String, required: true, trim: true, unique: true },
+      password: { type: String, required: true },
+      phone: { type: String, default: '' },
+      address: { type: String, default: '' },
+      role: { type: String, enum: ['admin', 'user'], default: 'user' },
+      consentPrivacy: { type: Boolean, default: false },
+      consentTerms: { type: Boolean, default: false },
+    },
+    {
+      timestamps: true,
+      toJSON: {
+        virtuals: true,
+        transform: (_, ret) => {
+          const { _id, __v, password, ...rest } = ret;
+          return { id: _id.toString(), ...rest };
+        },
+      },
+    },
+  );
+
+  module.exports = model('User', userSchema);
+
+  비밀번호는 나중에 bcrypt로 암호화할 예정입니다.
+
+  ##### 3-3. 장바구니(Cart) 스키마
+
+  server/src/models/Cart.js
+
+  const { Schema, model } = require('mongoose');
+
+  const cartItemSchema = new Schema(
+    {
+      product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+      quantity: { type: Number, required: true, min: 1 },
+    },
+    { _id: true },
+  );
+
+  const cartSchema = new Schema(
+    {
+      user: { type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
+      items: { type: [cartItemSchema], default: [] },
+    },
+    { timestamps: true },
+  );
+
+  module.exports = model('Cart', cartSchema);
+
+  장바구니는 “사용자와 상품” 사이의 다리 역할을 합니다. 한 사용자가 여러 상품을 담을 수 있으니 1:N 구조입니다.
+
+  ##### 3-4. 주문(Order) 스키마
+
+  server/src/models/Order.js
+
+  const { Schema, model } = require('mongoose');
+
+  const orderItemSchema = new Schema(
+    {
+      product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+      name: { type: String, required: true },
+      sku: { type: String, required: true },
+      price: { type: Number, required: true, min: 0 },
+      quantity: { type: Number, required: true, min: 1 },
+      imageUrl: { type: String, default: '' },
+      imagePublicId: { type: String, default: '' },
+    },
+    {
+      _id: true,
+      toJSON: {
+        transform: (_, ret) => {
+          const { _id, ...rest } = ret;
+          return { id: _id.toString(), ...rest };
+        },
+      },
+    },
+  );
+
+  const orderSchema = new Schema(
+    {
+      user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+      status: {
+        type: String,
+        enum: ['pending', 'paid', 'shipped', 'delivered', 'cancelled'],
+        default: 'pending',
+      },
+      items: {
+        type: [orderItemSchema],
+        validate: {
+          validator: (value) => Array.isArray(value) && value.length > 0,
+          message: '주문 상품이 최소 1개 이상이어야 합니다.',
+        },
+      },
+      pricing: {
+        subtotal: { type: Number, required: true, min: 0 },
+        discount: { type: Number, required: true, min: 0, default: 0 },
+        shippingFee: { type: Number, required: true, min: 0, default: 0 },
+        total: { type: Number, required: true, min: 0 },
+        currency: { type: String, default: 'KRW' },
+      },
+      shipping: {
+        recipientName: { type: String, required: true },
+        phone: { type: String, required: true },
+        addressLine1: { type: String, required: true },
+        addressLine2: { type: String, default: '' },
+        postalCode: { type: String, required: true },
+        requestMessage: { type: String, default: '' },
+        carrier: { type: String, default: '' },
+        trackingNumber: { type: String, default: '' },
+        shippedAt: { type: Date },
+        deliveredAt: { type: Date },
+      },
+      payment: {
+        method: { type: String, default: 'pending' },
+        status: {
+          type: String,
+          enum: ['pending', 'paid', 'failed', 'refunded'],
+          default: 'pending',
+        },
+        transactionId: { type: String, default: '' },
+        paidAt: { type: Date },
+        merchantUid: { type: String, default: '' },
+        impUid: { type: String, default: '' },
+        pgProvider: { type: String, default: '' },
+        cardName: { type: String, default: '' },
+        applyNum: { type: String, default: '' },
+      },
+      history: [
+        {
+          status: String,
+          note: { type: String, default: '' },
+          occurredAt: { type: Date, default: Date.now },
+          operator: { type: Schema.Types.ObjectId, ref: 'User' },
+        },
+      ],
+      metadata: {
+        couponCode: { type: String, default: '' },
+        cartSnapshotId: { type: Schema.Types.ObjectId },
+      },
+    },
+    {
+      timestamps: true,
+      toJSON: {
+        virtuals: true,
+        transform: (_, ret) => {
+          const { _id, __v, ...rest } = ret;
+          return { id: _id.toString(), ...rest };
+        },
+      },
+    },
+  );
+
+  module.exports = model('Order', orderSchema);
+
+  이 스키마는 체크아웃 페이지에서 입력받는 정보와 결제 모듈에서 넘어오는 정보를 모두 저장할 수 있도록 구성했습니다.
+
+  #### 4. 샘플 데이터 넣어 보기
+
+  MongoDB 연결과 스키마가 잘 작동하는지 테스트하려면 간단한 시드(seed) 스크립트를 만들어 볼 수 있습니다. server/src/scripts/seedProducts.js
+  같은 파일을 만들고 아래 내용을 넣어 실행해 봅니다.
+
+  require('dotenv').config();
+  const mongoose = require('mongoose');
+  const Product = require('../models/Product');
+
+  async function seed() {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('MongoDB 연결 성공');
+
+    await Product.deleteMany({});
+    console.log('상품 목록 비우기 완료');
+
+    const items = [
+      {
+        sku: 'TOP-001',
+        name: '기본 티셔츠',
+        price: 19900,
+        category: '상의',
+        description: '부드러운 면 소재의 기본 티셔츠입니다.',
+        images: [
+          {
+            publicId: 'sample/top001',
+            url: 'https://via.placeholder.com/400x400?text=TOP+001',
+            isPrimary: true,
+          },
+        ],
+      },
+      {
+        sku: 'PANTS-001',
+        name: '슬림핏 청바지',
+        price: 39900,
+        category: '하의',
+        description: '신축성이 좋은 슬림핏 청바지입니다.',
+        images: [
+          {
+            publicId: 'sample/pants001',
+            url: 'https://via.placeholder.com/400x400?text=PANTS+001',
+            isPrimary: true,
+          },
+        ],
+      },
+    ];
+
+    await Product.insertMany(items);
+    console.log('샘플 상품 2개 추가 완료');
+
+    await mongoose.disconnect();
+    console.log('작업 종료');
+  }
+
+  seed().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+
+  실행 방법:
+
+  cd server
+  node src/scripts/seedProducts.js
+
+  정상적으로 실행되면 콘솔에 “샘플 상품 2개 추가 완료”가 뜹니다. Atlas 웹 콘솔이나 Compass로 실제 데이터가 들어갔는지 확인해 봅시다.
+
+  #### 5. API로 데이터 확인하기
+
+  메뉴 항목이 제대로 저장되었는지 확인하려면 간단한 라우트를 추가합니다. server/src/routes/productRoutes.js 같은 파일에서 GET /api/products
+  라우트를 만들고 Product.find() 로 데이터를 응답하면 됩니다. 서버를 켠 상태에서 브라우저나 Postman으로 http://localhost:5000/api/products에
+  요청해 데이터를 확인해 보세요.
+
+  #### 6. 요약하기
+
+  - MongoDB Atlas 또는 로컬 MongoDB를 연결해 데이터를 저장할 기반을 마련했습니다.
+  - 상품, 사용자, 장바구니, 주문 스키마를 만들어 쇼핑몰 데이터의 구조를 확정했습니다.
+  - 샘플 데이터를 넣고 API로 조회하면서 연결이 제대로 되었는지 테스트했습니다.
+
+  다음 장에서는 이 데이터를 다루는 백엔드 API를 하나씩 만들어 볼 겁니다. 이제 데이터베이스와 충분히 친해졌으니, 실제 기능을 붙일 시간입니다!
+
+
+### 4장  백엔드 기능 차근차근 – 내용 개요
+
+  이번 장에서는 서버가 “실제로 일하도록” 만드는 단계입니다. 3장에서 만든 스키마를 토대로 다음 네 가지 기능을 완성합니다.
+
+  1. 상품 API – 목록, 상세, 등록, 수정, 삭제를 다룹니다. 관리자 전용과 공개용을 구분합니다.
+  2. 회원 API – 회원 가입/조회/수정/삭제, 그리고 비밀번호 암호화와 권한(관리자/일반 사용자)을 처리합니다.
+  3. 장바구니 API – JWT로 로그인한 사용자가 상품을 담고 빼며, 장바구니 상태를 조회할 수 있도록 만듭니다.
+  4. 주문 API – 장바구니를 주문으로 변환하고, 주문 내역을 확인하고, 주문을 취소할 수 있게 합니다. 결제 검증과 연동되는 부분도 미리 다룹니다.
+
+  모든 기능은 Express 라우터와 컨트롤러 조합으로 구현하며, 미들웨어를 이용해 공통 작업(에러 처리, 인증 등)도 함께 정리합니다.
+
+  ———
+
+  ### 4장  백엔드 기능 차근차근
+
+  #### 1. 비동기 에러 처리 도우미
+
+  Express에서 async/await를 쓰면 try-catch를 계속 써야 하는데, 귀찮고 실수도 쉽게 나옵니다. 이를 줄이기 위해 asyncHandler라는 유틸을 만들어
+  두면 좋습니다.
+
+  server/src/utils/asyncHandler.js
+
+  function asyncHandler(handler) {
+    return (req, res, next) => {
+      Promise.resolve(handler(req, res, next)).catch(next);
+    };
+  }
+
+  module.exports = { asyncHandler };
+
+  모든 컨트롤러 함수에 asyncHandler를 감싸서 사용하면 에러가 자동으로 Express 에러 처리기로 넘어갑니다.
+
+  #### 2. 상품(Product) API
+
+  상품 API는 공개용과 관리자용을 분리하는 게 안전합니다. 예를 들어 /api/products는 누구나 볼 수 있지만, /api/admin/products는 관리자만 접근
+  하게 합니다.
+
+  server/src/controllers/productController.js
+
+  const Product = require('../models/Product');
+  const { asyncHandler } = require('../utils/asyncHandler');
+  const cloudinary = require('../config/cloudinary');
+
+  function resolvePrimaryImage(product) {
+    if (!product?.images?.length) return null;
+    return product.images.find((image) => image.isPrimary) ?? product.images[0];
+  }
+
+  const listProducts = asyncHandler(async (_req, res) => {
+    const products = await Product.find().sort({ createdAt: -1 });
+    res.json(products);
+  });
+
+  const getProduct = asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.productId);
+    if (!product) {
+      return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+    }
+    res.json(product);
+  });
+
+  const createProduct = asyncHandler(async (req, res) => {
+    const {
+      sku,
+      name,
+      price,
+      category,
+      description = '',
+      images,
+      primaryImagePublicId,
+    } = req.body;
+
+    if (!sku || !name || !category) {
+      return res.status(400).json({ message: 'SKU, 이름, 카테고리는 필수입니다.' });
+    }
+
+    const normalizedImages = normalizeImages(images, primaryImagePublicId);
+
+    try {
+      const product = await Product.create({
+        sku: sku.trim(),
+        name: name.trim(),
+        price: Number(price),
+        category,
+        description,
+        images: normalizedImages,
+      });
+      res.status(201).json(product);
+    } catch (error) {
+      if (error.code === 11000) {
+        return res.status(409).json({ message: '이미 사용 중인 SKU입니다.' });
+      }
+      throw error;
+    }
+  });
+
+  여기서 normalizeImages는 대표 이미지를 1개만 선택하도록 검증해 주는 함수입니다. 관리자용 라우터에서 새 상품을 등록하거나 수정할 때 사용합
+  니다. 삭제 시에는 Cloudinary에서 이미지도 지워 주면 좋습니다.
+
+  server/src/routes/productRoutes.js (공개):
+
+  const express = require('express');
+  const { listProducts, getProduct } = require('../controllers/productController');
+
+  const router = express.Router();
+
+  router.get('/', listProducts);
+  router.get('/:productId', getProduct);
+
+  module.exports = router;
+
+  server/src/routes/adminProductRoutes.js (관리자):
+
+  const express = require('express');
+  const {
+    listProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+  } = require('../controllers/productController');
+  const { authenticate, authorize } = require('../middleware/authMiddleware');
+
+  const router = express.Router();
+
+  router.use(authenticate, authorize('admin'));
+
+  router.get('/', listProducts);
+  router.get('/:productId', getProduct);
+  router.post('/', createProduct);
+  router.put('/:productId', updateProduct);
+  router.delete('/:productId', deleteProduct);
+
+  module.exports = router;
+
+  #### 3. 사용자(User) API와 인증
+
+  ##### 3-1. 비밀번호 암호화와 회원 가입
+
+  bcrypt로 비밀번호를 암호화하고, 이메일 중복을 확인한 다음 사용자 문서를 생성합니다.
+
+  server/src/controllers/userController.js
+
+  const bcrypt = require('bcrypt');
+  const User = require('../models/User');
+  const { asyncHandler } = require('../utils/asyncHandler');
+
+  const SALT_ROUNDS = 10;
+
+  const createUser = asyncHandler(async (req, res) => {
+    const {
+      name,
+      email,
+      password,
+      phone = '',
+      address = '',
+      role = 'user',
+    } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: '이름, 이메일, 비밀번호는 필수입니다.' });
+    }
+
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const existing = await User.findOne({ email: normalizedEmail });
+    if (existing) {
+      return res.status(409).json({ message: '이미 가입된 이메일입니다.' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    const normalizedRole = ['admin', 'user'].includes(role) ? role : 'user';
+
+    const user = await User.create({
+      name: name.trim(),
+      email: normalizedEmail,
+      password: hashedPassword,
+      phone,
+      address,
+      role: normalizedRole,
+      consentPrivacy: Boolean(req.body.consentPrivacy),
+      consentTerms: Boolean(req.body.consentTerms),
+    });
+
+    res.status(201).json(user);
+  });
+
+  ##### 3-2. JWT 로그인
+
+  server/src/controllers/authController.js에서는 로그인 시 JWT를 발급하고, 쿠키에 저장합니다. 로그아웃할 때는 토큰을 InvalidToken 컬렉션에
+  넣어서 더 이상 사용하지 못하게 합니다.
+
+  const jwt = require('jsonwebtoken');
+  const bcrypt = require('bcrypt');
+  const User = require('../models/User');
+  const InvalidToken = require('../models/InvalidToken');
+  const { asyncHandler } = require('../utils/asyncHandler');
+  const { extractToken } = require('../middleware/authMiddleware');
+
+  const login = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+      return res.status(401).json({ message: '이메일 또는 비밀번호가 올바르지 않습니다.' });
+    }
+
+    const isValidPassword = await bcrypt.compare(String(password), user.password);
+    if (!isValidPassword) {
+      return res.status(401).json({ message: '이메일 또는 비밀번호가 올바르지 않습니다.' });
+    }
+
+    const token = issueToken(user); // JWT_SECRET 기반
+    res.cookie('accessToken', token, buildCookieOptions());
+    res.json({ user: user.toJSON() });
+  });
+
+  const logout = asyncHandler(async (req, res) => {
+    const token = extractToken(req);
+    if (token) {
+      const payload = jwt.decode(token);
+      if (payload?.exp) {
+        await InvalidToken.findOneAndUpdate(
+          { token },
+          { token, expiresAt: new Date(payload.exp * 1000) },
+          { upsert: true },
+        );
+      }
+    }
+
+    res.clearCookie('accessToken', { httpOnly: true });
+    res.status(204).send();
+  });
+
+  authenticate 미들웨어는 요청 헤더 또는 쿠키에서 JWT를 꺼내 검증하고, 실패하면 401 상태를 반환합니다.
+
+  ##### 3-3. 사용자 라우터
+
+  server/src/routes/userRoutes.js
+
+  const express = require('express');
+  const {
+    listUsers,
+    getUser,
+    createUser,
+    updateUser,
+    deleteUser,
+  } = require('../controllers/userController');
+  const { authenticate, authorize } = require('../middleware/authMiddleware');
+
+  const router = express.Router();
+
+  router.get('/', authenticate, authorize('admin'), listUsers);
+  router.get('/:userId', authenticate, getUser);
+  router.post('/', createUser);
+  router.put('/:userId', authenticate, updateUser);
+  router.delete('/:userId', authenticate, authorize('admin'), deleteUser);
+
+  module.exports = router;
+
+  #### 4. 장바구니(Cart) API
+
+  장바구니는 로그인한 사용자만 접근할 수 있게 authenticate 미들웨어를 붙입니다. resolveUserId 유틸은 JWT에서 사용자 ID를 얻거나, 테스트용 데
+  모 사용자를 자동으로 만들어 줍니다.
+
+  server/src/controllers/cartController.js
+
+  const Cart = require('../models/Cart');
+  const Product = require('../models/Product');
+  const { asyncHandler } = require('../utils/asyncHandler');
+  const { resolveUserId } = require('../utils/userContext');
+
+  function resolvePrimaryImage(product) {
+    if (!product?.images?.length) return null;
+    return product.images.find((image) => image.isPrimary) ?? product.images[0];
+  }
+
+  const formatCart = (cartDoc) => ({
+    id: cartDoc._id.toString(),
+    items: cartDoc.items.map((item) => {
+      const product = item.product && item.product._id ? item.product : null;
+      const primaryImage = resolvePrimaryImage(product);
+      return {
+        id: item._id.toString(),
+        productId: product ? product._id.toString() : null,
+        name: product ? product.name : '삭제된 상품',
+        price: product ? product.price : 0,
+        quantity: item.quantity,
+        primaryImage,
+      };
+    }),
+  });
+
+  const getCart = asyncHandler(async (req, res) => {
+    const userId = await resolveUserId(req);
+    const cart = await Cart.findOne({ user: userId }).populate('items.product');
+    if (!cart) {
+      return res.json({ id: null, items: [] });
+    }
+    res.json(formatCart(cart));
+  });
+
+  const addToCart = asyncHandler(async (req, res) => {
+    const userId = await resolveUserId(req);
+    const { productId, quantity = 1 } = req.body;
+
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+    }
+
+    let cart = await Cart.findOne({ user: userId });
+    if (!cart) {
+      cart = await Cart.create({ user: userId, items: [] });
+    }
+
+    const numericQuantity = Number(quantity) || 1;
+    const existingItem = cart.items.find((item) => item.product.toString() === productId);
+    if (existingItem) {
+      existingItem.quantity += numericQuantity;
+    } else {
+      cart.items.push({ product: productId, quantity: numericQuantity });
+    }
+
+    await cart.save();
+    await cart.populate('items.product');
+    res.status(201).json(formatCart(cart));
+  });
+
+  const removeFromCart = asyncHandler(async (req, res) => {
+    const userId = await resolveUserId(req);
+    const { itemId } = req.params;
+
+    const cart = await Cart.findOne({ user: userId });
+    if (!cart) {
+      return res.status(404).json({ message: '장바구니가 비어 있습니다.' });
+    }
+
+    const exists = cart.items.id(itemId);
+    if (!exists) {
+      return res.status(404).json({ message: '해당 상품이 장바구니에 없습니다.' });
+    }
+
+    cart.items = cart.items.filter((item) => item._id.toString() !== itemId);
+    await cart.save();
+    await cart.populate('items.product');
+
+    res.json(formatCart(cart));
+  });
+
+  라우터:
+
+  server/src/routes/cartRoutes.js
+
+  const express = require('express');
+  const { getCart, addToCart, removeFromCart } = require('../controllers/cartController');
+  const { authenticate } = require('../middleware/authMiddleware');
+
+  const router = express.Router();
+
+  router.get('/', authenticate, getCart);
+  router.post('/', authenticate, addToCart);
+  router.delete('/:itemId', authenticate, removeFromCart);
+
+  module.exports = router;
+
+  #### 5. 주문(Order) API
+
+  주문 API는 두 가지 중요한 역할을 합니다.
+
+  1. 장바구니 내용을 주문으로 저장
+  2. 결제 결과(imp_uid 등)를 검증하고 상태를 업데이트
+
+  server/src/controllers/orderController.js (핵심 부분)
+
+  const Cart = require('../models/Cart');
+  const Order = require('../models/Order');
+  const { asyncHandler } = require('../utils/asyncHandler');
+  const { resolveUserId } = require('../utils/userContext');
+  const { getPaymentByImpUid } = require('../services/portoneService');
+
+  const createOrder = asyncHandler(async (req, res) => {
+    const userId = await resolveUserId(req);
+    const cart = await Cart.findOne({ user: userId }).populate('items.product');
+
+    if (!cart || cart.items.length === 0) {
+      return res.status(400).json({ message: '장바구니가 비어 있습니다.' });
+    }
+
+    const { shipping = {}, pricing = {}, payment = {}, metadata = {} } = req.body ?? {};
+
+    if (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode) {
+      return res.status(400).json({ message: '배송지 정보를 모두 입력해주세요.' });
+    }
+
+    const { impUid, merchantUid } = payment ?? {};
+    if (!impUid || !merchantUid) {
+      return res.status(400).json({ message: '결제 정보가 유효하지 않습니다.' });
+    }
+
+    const orderItems = cart.items.map((item) => {
+      const product = item.product;
+      const primaryImage = resolvePrimaryImage(product);
+      return {
+        product: product._id,
+        name: product.name,
+        sku: product.sku,
+        price: product.price,
+        quantity: item.quantity,
+        imageUrl: primaryImage?.url ?? '',
+        imagePublicId: primaryImage?.publicId ?? '',
+      };
+    });
+
+    const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const discount = Math.max(0, Number(pricing.discount) || 0);
+    const shippingFee = Math.max(0, Number(pricing.shippingFee) || 0);
+    const total = subtotal - discount + shippingFee;
+
+    const pgPayment = await getPaymentByImpUid(impUid);
+
+    if (pgPayment.merchant_uid !== merchantUid) {
+      return res.status(400).json({ message: '결제 정보가 주문 정보와 일치하지 않습니다.' });
+    }
+
+    if (!['paid', 'ready'].includes(pgPayment.status)) {
+      return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
+    }
+
+    if (Number(pgPayment.amount) !== Math.max(0, total)) {
+      return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
+    }
+
+    const orderStatus = pgPayment.status === 'paid' ? 'paid' : 'pending';
+
+    const order = await Order.create({
+      user: userId,
+      status: orderStatus,
+      items: orderItems,
+      pricing: {
+        subtotal,
+        discount,
+        shippingFee,
+        total,
+        currency: pricing.currency ?? 'KRW',
+      },
+      shipping: {
+        recipientName: shipping.recipientName,
+        phone: shipping.phone,
+        addressLine1: shipping.addressLine1,
+        addressLine2: shipping.addressLine2 ?? '',
+        postalCode: shipping.postalCode,
+        requestMessage: shipping.requestMessage ?? '',
+      },
+      payment: {
+        method: payment.method ?? pgPayment.pay_method ?? 'card',
+        status: orderStatus === 'paid' ? 'paid' : 'pending',
+        transactionId: pgPayment.pg_tid ?? '',
+        paidAt: pgPayment.paid_at ? new Date(pgPayment.paid_at * 1000) : undefined,
+        merchantUid,
+        impUid,
+        pgProvider: payment.pgProvider ?? pgPayment.pg_provider ?? '',
+        cardName: payment.cardName ?? pgPayment.card_name ?? '',
+        applyNum: payment.applyNum ?? pgPayment.apply_num ?? '',
+      },
+      metadata,
+      history: [
+        {
+          status: orderStatus,
+          note: orderStatus === 'paid' ? '결제가 완료되었습니다.' : '결제 대기 중입니다.',
+        },
+      ],
+    });
+
+    cart.items = [];
+    await cart.save();
+
+    res.status(201).json(order);
+  });
+
+  - 결제 정보를 먼저 검증하고 금액이 맞아야 주문이 생성됩니다.
+  - 주문이 저장되면 장바구니는 비워집니다.
+  - 주문 취소 API는 상태를 cancelled로 바꾸고, 이미 결제된 경우에는 환불 처리를 진행해야 합니다(후속 장에서 다룹니다).
+
+  라우터:
+
+  server/src/routes/orderRoutes.js
+
+  const express = require('express');
+  const { listOrders, createOrder, cancelOrder } = require('../controllers/orderController');
+  const { authenticate } = require('../middleware/authMiddleware');
+
+  const router = express.Router();
+
+  router.get('/', authenticate, listOrders);
+  router.post('/', authenticate, createOrder);
+  router.delete('/:orderId', authenticate, cancelOrder);
+
+  module.exports = router;
+
+  모든 라우터를 server/src/app.js에 등록합니다.
+
+  const productRoutes = require('./routes/productRoutes');
+  const adminProductRoutes = require('./routes/adminProductRoutes');
+  const userRoutes = require('./routes/userRoutes');
+  const cartRoutes = require('./routes/cartRoutes');
+  const orderRoutes = require('./routes/orderRoutes');
+  const authRoutes = require('./routes/authRoutes');
+
+  app.use('/api/products', productRoutes);
+  app.use('/api/admin/products', adminProductRoutes);
+  app.use('/api/users', userRoutes);
+  app.use('/api/cart', cartRoutes);
+  app.use('/api/orders', orderRoutes);
+  app.use('/api/auth', authRoutes);
+
+  #### 7. 테스트로 확인하기
+
+  - Postman 혹은 브라우저로 GET /api/products를 호출해 상품 목록이 잘 나오는지 확인합니다.
+  - POST /api/auth/login으로 로그인하고, 응답 쿠키를 이용해 보호된 라우트(GET /api/cart, POST /api/orders)를 호출해 봅니다.
+  - 성공적인 주문 후 GET /api/orders에서 status가 paid인지 확인합니다.
+
+  #### 8. 요약 정리
+
+  - Express 라우터와 컨트롤러를 사용해 상품/회원/장바구니/주문 API를 구성했습니다.
+  - JWT 인증과 관리자 권한을 처리할 미들웨어를 붙였습니다.
+  - PortOne 결제 검증까지 염두에 둔 주문 생성 흐름을 구현했습니다.
+
+  이제 백엔드의 핵심 기능이 갖춰졌습니다. 다음 장에서는 프런트엔드와 이 API를 연결해 실제 화면에 데이터를 보여 주는 작업을 진행합니다.
+
+▌ 5장 WT 로그인 이해하기 의 개요를 작성하고 이어서 본문을 작성해라.
+
+■ Conversation interrupted - tell the model what to do differently
+
+▌ 5장JWT 로그인 이해하기 의 개요를 작성하고 이어서 본문을 작성해라
+
+> ———
+
+  ### 5장  JWT 로그인 이해하기 – 내용 개요
+
+  이 장에서는 “누가 접속했는지”를 알아내고, 그 정보를 안전하게 유지하는 방법을 배웁니다. 세션 대신 JWT(Json Web Token)를 사용하는 이유
+  를 간단한 그림으로 설명하고, 우리가 작성한 로그인/로그아웃 API가 어떻게 동작하는지 단계별로 살펴봅니다. 또한 토큰을 httpOnly 쿠키에 담
+  아두는 이유, 미들웨어가 토큰을 검사하는 과정, 로그아웃 시 토큰을 블랙리스트에 넣어 무효화하는 방법까지 정리합니다. 마지막으로 프런트엔드
+  (AuthContext와 Navbar)가 이 토큰을 어떻게 이용하는지 연결해 봅니다.
+
+  ———
+
+  ### 5장  JWT 로그인 이해하기
+
+  #### 1. 로그인은 왜 중요할까?
+
+  쇼핑몰에는 두 종류의 사용자가 있습니다.
+
+  - 일반 사용자: 상품을 보고 장바구니와 주문을 이용합니다.
+  - 관리자: 상품을 등록하고 수정합니다.
+
+  둘을 구분하지 못하면 관리자가 아니어도 상품을 삭제할 수 있겠죠. 그래서 사용자가 “누구인지” 알아내는 작업이 필요한데, 그 핵심이 바로 로그인
+  입니다.
+
+  #### 2. JWT가 뭔가요?
+
+  JWT(Json Web Token)는 서버가 “이 친구는 인증되었어!”라고 확인해 주는 짧은 문자열입니다. JWT는 세 부분으로 이루어져 있고, 점(.)으로 이어집
+  니다.
+
+  header.payload.signature
+
+  - Header: 어떤 알고리즘으로 서명했는지 등의 정보를 담습니다.
+  - Payload: 사용자 ID, 이메일, 권한 같은 내용을 JSON으로 저장합니다.
+  - Signature: 위 두 정보를 비밀키(JWT_SECRET)로 암호화한 값입니다.
+
+  서버는 로그인 시 JWT를 만들어 쿠키에 담아 주는데, 나중에 사용자가 요청을 보낼 때 그 쿠키를 같이 보내면 서버가 “Signature가 맞는지” 검증하
+  면서 사용자 정보를 꺼내 볼 수 있습니다. 이때 비밀키가 유출되면 누구나 토큰을 만들 수 있으니 절대 외부에 공개하면 안 됩니다.
+
+  #### 3. 로그인 API 흐름
+
+  POST /api/auth/login 엔드포인트는 다음 순서로 동작합니다.
+
+  1. 사용자가 이메일과 비밀번호를 보냅니다.
+  2. 서버는 이메일로 사용자를 찾아 비밀번호를 bcrypt로 비교합니다.
+  3. 일치하면 issueToken 함수로 JWT를 생성합니다.
+  4. 토큰을 httpOnly 쿠키 accessToken에 저장하고, 사용자 정보를 반환합니다.
+
+  핵심 코드 (server/src/controllers/authController.js):
+
+  const login = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+      return res.status(401).json({ message: '이메일 또는 비밀번호가 올바르지 않습니다.' });
+    }
+
+    const isValidPassword = await bcrypt.compare(String(password), user.password);
+    if (!isValidPassword) {
+      return res.status(401).json({ message: '이메일 또는 비밀번호가 올바르지 않습니다.' });
+    }
+
+    const token = issueToken(user); // JWT 발급
+    res.cookie('accessToken', token, buildCookieOptions());
+    res.json({ user: user.toJSON() });
+  });
+
+  buildCookieOptions()는 httpOnly, sameSite, secure 등 옵션을 설정해 브라우저 스크립트가 토큰을 직접 읽지 못하도록 막습니다.
+
+  #### 4. httpOnly 쿠키를 쓰는 이유
+
+  JWT를 localStorage에 저장하면 XSS 공격에 쉽게 노출됩니다. 우리는 토큰을 httpOnly 쿠키에 넣었습니다. 이 쿠키는 자바스크립트에서 직접 읽을
+  수 없고, HTTP 요청마다 자동으로 전송됩니다. 덕분에 프런트엔드에서 보안을 관리하기가 훨씬 쉬워집니다.
+
+  #### 5. 인증 미들웨어가 하는 일
+
+  authenticate 미들웨어는 요청이 들어올 때마다 토큰을 확인합니다.
+
+  1. 헤더 또는 쿠키에서 accessToken을 꺼냅니다.
+  2. 토큰이 없거나, InvalidToken 컬렉션에 존재하면 거절합니다.
+  3. JWT_SECRET으로 서명을 검증한 뒤, 사용자 정보를 req.user에 저장합니다.
+  4. 라우트 핸들러는 req.user를 읽어 권한을 검사하거나 사용자 ID를 이용할 수 있습니다.
+
+  const authenticate = asyncHandler(async (req, res, next) => {
+    const token = extractToken(req);
+
+    if (!token) {
+      return res.status(401).json({ message: '인증 정보가 필요합니다.' });
+    }
+
+    const secret = process.env.JWT_SECRET;
+    const invalidToken = await InvalidToken.findOne({ token }).lean();
+    if (invalidToken) {
+      return res.status(401).json({ message: '만료된 인증 토큰입니다.' });
+    }
+
+    try {
+      const payload = jwt.verify(token, secret);
+      req.authToken = token;
+      req.user = {
+        id: payload.sub,
+        email: payload.email,
+        name: payload.name,
+        role: payload.role,
+      };
+      next();
+    } catch (error) {
+      return res.status(401).json({ message: '유효하지 않은 인증 토큰입니다.' });
+    }
+  });
+
+  관리자 기능은 authorize('admin') 미들웨어를 이용해 req.user.role이 admin인지 확인합니다.
+
+  #### 6. 로그아웃은 어떻게 동작할까?
+
+  JWT는 기본적으로 한 번 발급하면 서버가 따로 기억하지 않습니다. 그래서 로그아웃 시 InvalidToken 컬렉션에 토큰을 저장해 “이 토큰은 더 이상
+  사용하면 안 된다”는 정보를 기록합니다. 몽고DB TTL 인덱스를 이용해 토큰 만료 시간에 따라 자동으로 삭제되도록 했습니다.
+
+  const logout = asyncHandler(async (req, res) => {
+    const token = extractToken(req);
+    if (token) {
+      const payload = jwt.decode(token);
+      if (payload?.exp) {
+        await InvalidToken.findOneAndUpdate(
+          { token },
+          { token, expiresAt: new Date(payload.exp * 1000) },
+          { upsert: true, new: true },
+        );
+      }
+    }
+
+    res.clearCookie('accessToken', buildCookieOptions());
+    res.status(204).send();
+  });
+
+  #### 7. 프런트엔드와 로그인 연동
+
+  프런트에서는 React Context를 만들어 전역 상태를 관리합니다.
+
+  - client/src/context/AuthContext.jsx에서 user, loading, login, logout, cartCount 등을 담은 컨텍스트를 제공합니다.
+  - 앱이 시작되면 /api/auth/me를 호출해 현재 로그인 상태를 확인하고, 미로그인이라면 null로 초기화합니다.
+  - 네비게이션 바(client/src/components/Navbar.jsx)는 이 컨텍스트를 이용해 “OOO님 반갑습니다.”와 장바구니 수량 배지를 보여 줍니다.
+  - 로그아웃 버튼을 누르면 /api/auth/logout을 호출하고 상태를 초기화합니다.
+
+  이 구조 덕분에 어떤 페이지에서도 useAuth() 훅을 호출해 현재 사용자 정보를 쉽게 사용할 수 있습니다. 주문하기, 관리자 페이지 접근 같은 조건
+  부 로직도 여기서 처리합니다.
+
+  #### 8. 요약
+
+  - JWT는 “로그인한 사용자”를 증명하는 짧은 문자열입니다. Header, Payload, Signature 세 부분으로 이루어져 있고, 비밀키로 서명됩니다.
+  - 로그인 시 JWT를 발급해 httpOnly 쿠키에 저장하고, 미들웨어에서 매 요청마다 검증합니다.
+  - 로그아웃할 때는 토큰을 블랙리스트에 담아 더 이상 사용하지 못하게 합니다.
+  - 프런트엔드는 AuthContext로 로그인 상태를 관리하며, 네비게이션, 장바구니, 관리자 페이지 등에서 이를 활용합니다.
+
+  이제 누가 로그인했고, 어떤 권한을 갖고 있는지 정확히 알 수 있게 됐습니다. 다음 장에서는 관리자 전용 상품 대시보드와 이미지 업로드를 구현해
+  백오피스 기능을 완성해 봅시다.
+
+▌ 6. 관리자 전용 상품 대시보드의 개요를 작성하고 이어서 본문을 작성하라.
+
+> ———
+
+  ### 6장  관리자 전용 상품 대시보드 – 내용 개요
+
+  이 장에서는 “관리자만 사용할 수 있는 상품 관리 페이지”를 완성합니다. 크게 네 단계로 나뉩니다.
+
+  1. 권한 확인 – 로그인한 사용자가 관리자(role: 'admin')인지 체크하고, 아니라면 접근을 막습니다.
+  2. 상품 목록 보기 – 서버에서 /api/admin/products를 불러와 SKU, 카테고리, 대표 이미지가 보이도록 카드 형태로 보여줍니다.
+  3. 상품 등록·수정·삭제 – Cloudinary 업로드 위젯으로 사진을 올리고, SKU‧카테고리‧가격‧설명을 입력해 새 상품을 만들거나 기존 상품을 수정·삭
+  제합니다.
+  4. UX 다듬기 – 업로드한 이미지 중 대표 이미지를 고르는 버튼, 폼 초기화, 로딩·오류 메시지 등 사용성을 높여 줍니다.
+
+  ———
+
+  ### 6장  관리자 전용 상품 대시보드
+
+  #### 1. 관리자만 들어올 수 있게 만들기
+
+  관리자 페이지는 일반 사용자에게 보여주면 안 됩니다. client/src/pages/Admin.jsx의 첫 부분에서 AuthContext를 이용해 로그인 정보와 권한을 확
+  인합니다.
+
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && (!user || user.role !== 'admin')) {
+      navigate('/'); // 관리자가 아니면 홈으로 돌려보냄
+    }
+  }, [loading, user, navigate]);
+
+  이렇게 하면 페이지가 로드될 때 관리자 권한이 아닌 경우 자동으로 홈으로 이동합니다. 서버 쪽에서는 /api/admin/products 라우터에
+  authorize('admin') 미들웨어가 있으니 이중으로 안전합니다.
+
+  #### 2. 상품 목록 가져와서 보여주기
+
+  관리자 화면을 열면 현재 상품들을 확인할 수 있어야 합니다.
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      const data = await apiRequest('/admin/products');
+      setProducts(data);
+    } catch (error) {
+      setStatus(error.message);
+    }
+  }, []);
+
+  useEffect에서 fetchProducts()를 호출하면 목록이 채워집니다. JSX에서는 카드 형태로 보여줍니다.
+
+  <div className="product-grid">
+    {products.map((product) => (
+      <article key={product.id} className="product-card">
+        <div className="product-thumb">
+          {product.primaryImage?.url ? (
+            <img src={product.primaryImage.url} alt={product.name} />
+          ) : (
+            <span className="placeholder">이미지 없음</span>
+          )}
+        </div>
+        <div className="product-body">
+          <h3>{product.name}</h3>
+          <div className="product-meta">
+            <span className="badge badge--muted">SKU {product.sku}</span>
+            <span className="badge">{product.category}</span>
+            <span className="badge badge--muted">이미지 {product.images?.length ?? 0}장</span>
+          </div>
+          <p className="price">₩ {product.price?.toLocaleString?.() ?? product.price}</p>
+        </div>
+        <div className="product-actions">
+          <button type="button" onClick={() => handleEdit(product)}>수정</button>
+          <button type="button" className="danger" onClick={() => handleDelete(product.id)}>삭제</button>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  #### 3. 상품 등록 폼 만들기
+
+  관리자 페이지 상단에는 새 상품을 등록하는 폼이 있습니다. 우리가 만들 폼은 다음 필드를 가집니다.
+
+  - SKU: 고유한 상품 번호, 예) TOP-001
+  - 상품 이름
+  - 가격
+  - 카테고리: 상의/하의/악세서리
+  - 설명
+  - 상품 이미지 리스트: 최소 1장, Cloudinary 업로드 위젯으로 추가
+  - 대표 이미지: 업로드한 사진 중 하나를 대표 이미지로 설정
+
+  폼 상태는 useState로 관리합니다.
+
+  const [form, setForm] = useState({
+    sku: '',
+    name: '',
+    price: '',
+    category: CATEGORY_OPTIONS[0],
+    description: '',
+    images: [],
+  });
+
+  #### 4. Cloudinary 업로드 위젯 붙이기
+
+  이미지를 직접 서버에 업로드하지 않고, Cloudinary 위젯을 사용하면 쉽고 빠르게 파일을 올릴 수 있습니다. index.html에 스크립트를 포함했으므로
+  Admin.jsx에서 위젯을 초기화합니다.
+
+  const widgetRef = useRef(null);
+
+  useEffect(() => {
+    if (!cloudName || !uploadPreset) {
+      setWidgetMessage('Cloudinary 환경 변수를 확인해주세요.');
+      return;
+    }
+
+    if (window.cloudinary?.createUploadWidget && !widgetRef.current) {
+      widgetRef.current = window.cloudinary.createUploadWidget(
+        {
+          cloudName,
+          uploadPreset,
+          multiple: true,
+          maxFiles: 10,
+          folder: 'shoppingmall/products',
+        },
+        handleWidgetResult,
+      );
+      setWidgetReady(true);
+    }
+  }, [handleWidgetResult]);
+
+  handleWidgetResult 함수는 업로드 성공 시 form.images에 새 이미지를 추가합니다.
+
+  const handleWidgetResult = useCallback((error, result) => {
+    if (error || result.event !== 'success') return;
+
+    const info = result.info;
+    setForm((prev) => {
+      const hasPrimary = prev.images.some((image) => image.isPrimary);
+      return {
+        ...prev,
+        images: [
+          ...prev.images,
+          {
+            publicId: info.public_id,
+            url: info.secure_url,
+            isPrimary: hasPrimary ? false : true,
+            deleteToken: info.delete_token ?? null,
+          },
+        ],
+      };
+    });
+  }, []);
+
+  대표 이미지를 고르게 하려면, 이미지 카드에 “대표로 지정” 버튼을 넣고 isPrimary 값을 업데이트합니다.
+
+  const handleSetPrimaryImage = (publicId) => {
+    setForm((prev) => ({
+      ...prev,
+      images: prev.images.map((image) => ({
+        ...image,
+        isPrimary: image.publicId === publicId,
+      })),
+    }));
+  };
+
+  이미지를 삭제할 때는 Cloudinary에서 제공하는 delete_token을 이용하면 서버 없이도 삭제할 수 있습니다.
+
+  const deleteImageByToken = async (token) => {
+    if (!token) return;
+    const formData = new FormData();
+    formData.append('token', token);
+    await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/delete_by_token`, {
+      method: 'POST',
+      body: formData,
+    });
+  };
+
+  #### 5. 상품 등록/수정/삭제 API 호출
+
+  폼을 제출하면 관리자 전용 API를 호출합니다.
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('');
+    if (!form.images.length) {
+      setStatus('대표 이미지를 포함해 최소 한 장의 이미지를 등록해주세요.');
+      return;
+    }
+
+    const primaryImage = form.images.find((image) => image.isPrimary);
+    const payload = {
+      ...form,
+      price: Number(form.price) || 0,
+      images: form.images.map(({ publicId, url, isPrimary }) => ({ publicId, url, isPrimary })),
+      primaryImagePublicId: primaryImage.publicId,
+      removedImagePublicIds: removedImages,
+    };
+
+    if (editingProductId) {
+      await apiRequest(`/admin/products/${editingProductId}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+      });
+      setStatus('상품이 수정되었습니다.');
+    } else {
+      await apiRequest('/admin/products', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      setStatus('상품이 등록되었습니다.');
+    }
+
+    resetForm();
+    await fetchProducts();
+  };
+
+  삭제 버튼은 DELETE /admin/products/:id를 호출합니다. 삭제 후에는 목록을 다시 불러오고 폼을 초기화합니다.
+
+  #### 6. UI 다듬기: 상태 메시지와 버튼
+
+  - 업로드 위젯이 프리셋을 불러오지 못할 때는 안내 메시지를 보여 줍니다.
+  - 대표 이미지로 선택된 카드에는 파란 테두리와 “대표” 배지를 표시합니다.
+  - 수정 중에는 “새 상품 등록” 버튼을 눌러 폼을 초기화할 수 있게 합니다.
+  - 성공/오류 메시지를 페이지 상단에 띄워 사용자에게 알려 줍니다.
+
+  client/src/App.css에 필요한 클래스가 이미 정의되어 있으므로, 관리자 페이지에 맞춰 스타일이 적용됩니다.
+
+  #### 7. 테스트 해 보기
+
+  1. 관리자 계정으로 로그인합니다. (예: admin@..., 비밀번호 등 준비)
+  2. 관리자 페이지 /admin으로 이동합니다.
+  3. 새 상품을 등록해 보고 목록에 잘 뜨는지 확인합니다.
+  4. 수정 버튼을 눌러 가격이나 설명을 바꾼 뒤 저장합니다.
+  5. 삭제 버튼으로 상품을 삭제하고 실제 목록에서 사라졌는지 확인합니다.
+  6. 일반 사용자 계정으로 로그인하면 /admin 접근이 막히는지도 확인하세요.
+
+  #### 8. 요약
+
+  - AuthContext와 미들웨어를 이용해 관리자만 접근할 수 있는 대시보드를 만들었습니다.
+  - Cloudinary 업로드 위젯으로 상품 이미지를 쉽게 추가하고 대표 이미지를 선택할 수 있습니다.
+  - SKU, 카테고리, 가격 등 상품 정보를 등록·수정·삭제하는 전체 흐름이 완성되었습니다.
+  - 사용자 경험을 고려한 메시지, 폼 초기화, 버튼 비활성화 등을 적용해 사용성이 향상되었습니다.
+
+  이제 관리자는 새 상품을 올리고 기존 상품을 손쉽게 관리할 수 있습니다. 다음 장에서는 프런트엔드 전체 화면을 다듬고, 네비게이션과 장바구니
+  연동을 개선해 쇼핑몰 사용자 경험을 높여 봅시다.
+
+### 7장  프런트엔드 다듬기 – 내용 개요
+
+  이 장에서는 사용자가 실제로 보는 화면을 정리합니다. 핵심 주제는 세 가지입니다.
+
+  1. React Router로 화면 나누기 – 홈, 회원가입, 로그인, 상품 상세, 관리자, 체크아웃 등 페이지를 분리하고 주소(URL)에 따라 알맞은 컴포넌트를
+  보여 줍니다.
+  2. AuthContext로 로그인 상태 공유하기 – 로그인한 사용자 정보, 장바구니 수량 등을 전역으로 관리해 네비게이션과 다른 페이지에서 쉽게 사용할
+  수 있게 합니다.
+  3. UI 구성 요소 정리하기 – Navbar에 “OOO님 반갑습니다”와 장바구니 배지를 추가하고, 로그인/로그아웃 버튼, 관리자 메뉴 등 필요한 항목을 꾸밉
+  니다. 또한 Home 화면의 카드, 상태 메시지, 로딩 처리 등 사용자 경험을 다듬습니다.
+
+  ———
+
+  ### 7장  프런트엔드 다듬기
+
+  #### 1. React Router로 페이지 나누기
+
+  Vite + React 환경에서는 react-router-dom 라이브러리를 사용해 페이지 전환을 구현합니다. client/src/main.jsx에서 <App />를 <BrowserRouter>
+  안에 넣고, client/src/App.jsx에서 실제 라우트를 정의합니다.
+
+  import { BrowserRouter, Routes, Route } from 'react-router-dom';
+  import Home from './pages/Home.jsx';
+  import Signup from './pages/Signup.jsx';
+  import Login from './pages/Login.jsx';
+  import Admin from './pages/Admin.jsx';
+  import ProductDetail from './pages/ProductDetail.jsx';
+  import Checkout from './pages/Checkout.jsx';
+  import OrderComplete from './pages/OrderComplete.jsx';
+  import Navbar from './components/Navbar.jsx';
+  import { AuthProvider } from './context/AuthContext.jsx';
+
+  function App() {
+    return (
+      <AuthProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/products/:productId" element={<ProductDetail />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/orders/complete" element={<OrderComplete />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    );
+  }
+
+  export default App;
+
+  이제 주소창에 /login, /products/상품ID 등을 입력하면 해당 페이지가 렌더링됩니다. 또한 <AuthProvider>가 모든 페이지를 감싸고 있으므로 로그
+  인 정보도 함께 전달됩니다.
+
+  #### 2. 전역 로그인 상태: AuthContext
+
+  로그인 여부를 여러 컴포넌트에서 공유해야 할 때는 Context가 편리합니다. client/src/context/AuthContext.jsx에서 AuthProvider를 만들고, 여기
+  서 사용자 정보와 로그인/로그아웃 함수를 제공합니다.
+
+  import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+  import { apiRequest } from '../lib/apiClient.js';
+
+  const AuthContext = createContext({
+    user: null,
+    loading: true,
+    cartCount: 0,
+    setCartCount: () => {},
+    login: async () => {},
+    logout: async () => {},
+  });
+
+  export function AuthProvider({ children }) {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [cartCount, setCartCount] = useState(0);
+
+    const fetchCurrentUser = useCallback(async () => {
+      try {
+        const data = await apiRequest('/auth/me');
+        setUser(data.user);
+        setCartCount(0);
+      } catch (_error) {
+        setUser(null);
+        setCartCount(0);
+      } finally {
+        setLoading(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      fetchCurrentUser();
+    }, [fetchCurrentUser]);
+
+  - 앱이 로드되면 /auth/me API를 호출해 로그인 상태를 확인합니다.
+  - 로그인 성공 시 cartCount를 0으로 초기화하고, 로그아웃 시에도 0으로 돌립니다.
+  - useAuth() 훅을 통해 다른 컴포넌트가 user, cartCount, login(), logout() 등을 사용할 수 있습니다.
+
+  #### 3. Navbar 꾸미기
+
+  상단 네비게이션은 로그인 상태에 따라 버튼이 달라집니다. client/src/components/Navbar.jsx를 살펴보면 다음과 같이 구성됩니다.
+
+  function Navbar() {
+    const navigate = useNavigate();
+    const { user, loading, logout, cartCount } = useAuth();
+
+    const handleLogout = async () => {
+      try {
+        await logout();
+        navigate('/');
+      } catch (error) {
+        console.error('Failed to logout', error);
+      }
+    };
+
+    const handleCartClick = () => {
+      navigate('/', { state: { focus: 'cart' } });
+    };
+
+    const displayName = user?.name || user?.email || '사용자';
+
+    return (
+      <nav className="navbar">
+        <Link to="/" className="navbar__brand">
+          쇼핑몰 데모
+        </Link>
+
+        <div className="navbar__links">
+          {user?.role === 'admin' && (
+            <Link to="/admin" className="navbar__link">
+              관리자 대시보드
+            </Link>
+          )}
+        </div>
+
+        <div className="navbar__actions">
+          {loading ? (
+            <span className="navbar__status">로딩 중...</span>
+          ) : user ? (
+            <>
+              <span className="navbar__greeting">{displayName}님 반갑습니다.</span>
+              <button type="button" onClick={handleCartClick} className="navbar__button navbar__button--cart">
+                장바구니
+                {cartCount > 0 && <span className="navbar__cart-badge">{cartCount}</span>}
+              </button>
+              <button type="button" onClick={handleLogout} className="navbar__button">
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="navbar__button">
+                log in
+              </Link>
+              <Link to="/signup" className="navbar__button navbar__button--primary">
+                sign up
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+    );
+  }
+
+  - 로그인했을 때만 장바구니 버튼과 로그아웃 버튼이 보입니다.
+  - cartCount가 0보다 크면 배지에 숫자가 표시됩니다.
+  - 관리자인 경우 /admin 링크가 나타납니다.
+  - CSS(App.css)에는 .navbar__cart-badge, .navbar__button--cart 등 스타일이 정의되어 있습니다.
+
+  #### 4. Home 화면 다듬기
+
+  Home 페이지는 상품 목록, 장바구니, 주문 내역을 모두 보여줍니다. 로그인 여부에 따라 버튼을 비활성화하거나 메시지를 표시합니다.
+
+  - 상품 카드: “상세 보기” 버튼을 누르면 /products/:id로 이동하고, “장바구니” 버튼은 로그인한 사용자만 클릭할 수 있게 합니다.
+  - 장바구니: 로그인하지 않으면 “로그인해주세요” 메시지를 보여주고, 로그인을 하면 목록과 “주문하기” 버튼이 나타납니다.
+  - 주문 내역: /api/orders에서 받아온 데이터로 리스트를 표시하고, 주문 취소 버튼을 제공합니다.
+
+  장바구니 합계는 useMemo로 계산합니다.
+
+  const totalPrice = useMemo(
+    () => cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cart],
+  );
+
+  useLocation으로 넘어온 state를 이용해 “장바구니 보기” 버튼을 눌렀을 때 자동으로 해당 섹션으로 스크롤하는 기능도 구현했습니다.
+
+  #### 5. 로그인/회원가입 페이지
+
+  client/src/pages/Login.jsx에서는 useAuth().login()을 사용해 로그인 API를 호출합니다. 성공하면 user.role에 따라 관리자 페이지(관리자) 또는
+  홈으로 이동합니다.
+
+  회원가입 페이지(Signup.jsx)는 이메일, 비밀번호, 주소, 사용자 분류 등을 입력받고 registerUser() 함수로 서버에 전송합니다. 약관 체크박스가
+  모두 선택되어야만 가입 버튼이 활성화됩니다.
+
+  #### 6. ProductDetail 페이지
+
+  상세 페이지는 큰 이미지, 썸네일, 가격, 카테고리, 추천 상품을 보여줍니다. 로그인하지 않아도 접근할 수 있으며, 장바구니 버튼을 눌렀을 때는
+  로그인 상태를 확인합니다.
+
+  const requireLogin = () => {
+    if (!user) {
+      setStatus('로그인 후 이용해주세요.');
+      navigate('/login', { state: { from: location.pathname } });
+      return true;
+    }
+    return false;
+  };
+
+  추천 상품은 같은 카테고리에 속한 다른 상품을 가져와 보여 줍니다.
+
+  #### 7. Checkout과 OrderComplete
+
+  체크아웃 페이지는 9장에서 자세히 설명하지만, 프런트엔드 레이아웃 측면만 잠깐 짚고 넘어가겠습니다.
+
+  - 배송지 입력 폼과 주문 요약, 결제수단 선택 영역을 카드 형태로 배치했습니다.
+  - PortOne 결제 창이 준비되기 전에는 버튼이 비활성화되어 있고, 준비가 되면 메시지가 “결제 모듈이 준비되었습니다.”로 바뀝니다.
+  - 주문 완료 후에는 /orders/complete 페이지로 이동해 결제 금액, 배송지, 주문 상품을 확인합니다.
+
+  #### 8. 상태 메시지와 로딩 처리
+
+  사용자 경험을 살리기 위해 다양한 상태를 표시합니다.
+
+  - statusMessage 변수를 이용해 성공/실패 메시지를 화면 상단에 보여 줍니다.
+  - isLoadingProducts, isLoadingAccountData 등을 이용해 API가 응답하기 전에 “로딩 중…” 문구를 표시합니다.
+  - 버튼에는 disabled={!cart.length} 같은 조건을 달아, 조건을 만족하지 않으면 누를 수 없게 합니다.
+
+  #### 9. 아래층에서도 사용할 효율적인 요청 함수
+
+  client/src/lib/apiClient.js는 fetch를 감싸서 반복되는 코드를 줄여 줍니다.
+
+  export async function apiRequest(path, options = {}) {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+      credentials: 'include',
+      headers: {
+        ...(options.headers || {}),
+      },
+      ...options,
+    });
+
+    if (!response.ok) {
+      let message = '요청 중 오류가 발생했습니다.';
+      const raw = await response.text();
+      if (raw) {
+        try {
+          const data = JSON.parse(raw);
+          message = data?.message ?? message;
+        } catch (_error) {
+          message = raw;
+        }
+      }
+      throw new Error(message);
+    }
+
+    if (response.status === 204) {
+      return null;
+    }
+
+    return response.json();
+  }
+
+  - 자동으로 credentials: 'include'가 설정되어 쿠키를 함께 보냅니다.
+  - 실패 시 서버의 메시지를 파싱해 깔끔한 오류 메시지를 제공합니다.
+
+  #### 10. 기억해 둘 CSS 포인트
+
+  client/src/App.css에는 Navbar, 카드, 버튼, 체크아웃 섹션에 필요한 스타일이 이미 들어 있습니다. 중학생도 이해하기 쉽게 주요 클래스 이름을
+  직관적으로 지었습니다.
+
+  - .navbar__button--cart, .navbar__cart-badge: 장바구니 버튼과 배지를 꾸밉니다.
+  - .product-card, .product-grid, .badge: 상품 카드 레이아웃과 태그 스타일.
+  - .status, .status.error: 알림 메시지.
+  - .checkout-section, .checkout-summary, .payment-option: 체크아웃 카드와 요약 레이아웃.
+
+  필요에 따라 CSS를 수정해 색상이나 폰트를 바꾸면 됩니다.
+
+  #### 11. 요약
+
+  - React Router로 페이지를 나누고, AuthContext로 로그인 상태를 전역에서 관리합니다.
+  - Navbar는 로그인 여부에 따라 다른 요소를 보여주고, 장바구니 수량을 배지로 표시합니다.
+  - Home, ProductDetail, Checkout 등 주요 화면을 사용자 친화적으로 다듬고, 로딩·에러 상태 메시지를 추가했습니다.
+  - apiClient 유틸을 통해 반복 코드를 줄이고, fetch 요청에 공통 옵션을 적용했습니다.
+
+  이제 프런트엔드가 깔끔하게 정리되었습니다. 다음 장에서는 상세 페이지와 추천 상품 영역을 더 멋지게 꾸미고, 이미지 갤러리를 완성해 전체 경험
+  을 업그레이드하겠습니다.
+
+
+### 8장  상세 페이지와 추천 상품 – 내용 개요
+
+  이 장에서는 상품을 자세히 보여 주는 페이지를 완성합니다. 큰 사진, 썸네일, 가격, 카테고리, 설명뿐 아니라 “이 상품은 어떠세요?” 같은 추천 상
+  품까지 포함해 사용자에게 풍성한 정보를 제공합니다. 로그인하지 않은 사용자도 상세 페이지는 볼 수 있게 하고, 장바구니 버튼을 눌렀을 때만 로
+  그인 검사를 진행합니다. 또한 이미지 갤러리를 깔끔하게 정리해 메인 이미지와 썸네일을 자연스럽게 전환하고, 추천 상품 카드가 동일한 스타일로
+  배치되도록 CSS를 손봅니다.
+
+  ———
+
+  ### 8장  상세 페이지와 추천 상품
+
+  #### 1. 왜 상세 페이지가 중요할까?
+
+  상품 목록에서 제목과 썸네일만 보고 구매를 결정하기는 어렵습니다. 상세 페이지는 “사용자가 상품에 확신을 갖도록” 돕는 역할을 합니다. 사진을
+  크게 보여주고, 가격과 설명을 자세히 적어 주며, 비슷한 상품을 추천하면 “다른 것도 한번 볼까?” 하는 생각이 들겠죠.
+
+  #### 2. ProductDetail 페이지 구조 살펴보기
+
+  client/src/pages/ProductDetail.jsx는 다음과 같은 순서로 구성됩니다.
+
+  1. URL에 있는 productId를 읽어 서버에서 상품 정보를 가져온다.
+  2. 이미지 목록 중 대표 이미지를 크게 보여주고, 나머지는 썸네일로 배치한다.
+  3. 가격, SKU, 카테고리, 설명을 보여주고 장바구니 버튼을 제공한다.
+  4. 같은 카테고리의 추천 상품을 모아 아래쪽 그리드에 표시한다.
+
+  import { useEffect, useMemo, useState } from 'react';
+  import { useLocation, useNavigate, useParams } from 'react-router-dom';
+  import '../App.css';
+  import { apiRequest } from '../lib/apiClient.js';
+  import { useAuth } from '../context/AuthContext.jsx';
+
+  컨텍스트에서 user와 setCartCount를 가져옵니다. 로그인 여부에 따라 장바구니 버튼 동작이 달라집니다.
+
+  #### 3. 상품 정보 가져오기
+
+  useEffect를 이용해 컴포넌트가 처음 렌더링될 때 상품 정보를 요청합니다.
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      setLoading(true);
+      try {
+        const data = await apiRequest(`/products/${productId}`);
+        setProduct(data);
+        const primaryIndex = data.images?.findIndex((image) => image.isPrimary) ?? -1;
+        setActiveIndex(primaryIndex >= 0 ? primaryIndex : 0);
+
+        const list = await apiRequest('/products');
+        const candidates = list
+          .filter((item) => item.id !== data.id)
+          .filter((item) => item.category === data.category)
+          .slice(0, 8);
+        setRelated(candidates);
+      } catch (error) {
+        setStatus(error.message ?? '상품 정보를 불러오지 못했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProduct();
+  }, [productId]);
+
+  - 상품 상세 정보를 가져오고, 썸네일 표시를 위해 대표 이미지의 인덱스를 계산합니다.
+  - 추천 상품은 같은 카테고리에 속한 다른 상품 중 최대 8개를 보여줍니다.
+
+  #### 4. 이미지 갤러리
+
+  메인 이미지는 activeIndex 상태를 이용해 선택한 사진을 표시합니다. 아래쪽에 썸네일 버튼을 두어 클릭하면 activeIndex가 바뀝니다.
+
+  <div className="detail-gallery">
+    {activeImage ? (
+      <img src={activeImage.url} alt={`${product.name} 대표 이미지`} className="detail-hero__image" />
+    ) : (
+      <div className="detail-hero__placeholder">이미지를 준비 중입니다.</div>
+    )}
+
+    {images.length > 1 && (
+      <div className="detail-thumbnails">
+        {images.map((image, index) => (
+          <button
+            type="button"
+            key={image.publicId}
+            className={`detail-thumbnail ${index === activeIndex ? 'is-active' : ''}`}
+            onClick={() => setActiveIndex(index)}
+          >
+            <img src={image.url} alt={`${product.name} 썸네일 ${index + 1}`} />
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  CSS에서 .detail-thumbnail.is-active에 파란 테두리와 그림자 효과를 주어 선택된 썸네일이 확실히 보이도록 했습니다.
+
+  #### 5. 상품 정보와 장바구니 버튼
+
+  우측 패널에는 상품 이름, SKU, 카테고리 배지, 가격, 설명, 장바구니 버튼이 표시됩니다. 설명은 줄바꿈을 유지하기 위해 split을 사용해 단락으로
+  나눕니다.
+
+  <div className="detail-info">
+    <h1>{product.name}</h1>
+    <p className="detail-sku">SKU {product.sku}</p>
+    <div className="detail-price">{formatPrice(product.price)}</div>
+    <div className="detail-tags">
+      <span className="badge">{product.category}</span>
+      <span className="badge badge--muted">이미지 {product.images?.length ?? 0}장</span>
+    </div>
+
+    {recombinedDescription.length ? (
+      <div className="detail-description">
+        {recombinedDescription.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+      </div>
+    ) : (
+      <p className="detail-description muted-text">상품 설명이 준비 중입니다.</p>
+    )}
+
+    {status && <div className={`status ${status.startsWith('장바구니') ? '' : 'error'}`}>{status}</div>}
+
+    <div className="detail-actions">
+      <button type="button" className="detail-primary" onClick={handleAddToCart} disabled={working}>
+        {working ? '처리 중...' : '장바구니에 담기'}
+      </button>
+      <button type="button" className="detail-secondary" onClick={() => navigate('/')}>
+        상품 목록으로
+      </button>
+    </div>
+  </div>
+
+  handleAddToCart 함수는 로그인 여부를 확인하고, 로그인되어 있으면 /cart API를 호출해 장바구니에 추가합니다. 성공하면 컨텍스트의
+  setCartCount를 업데이트해 네비게이션 배지가 즉시 반영됩니다.
+
+  const handleAddToCart = async () => {
+    if (!product) return;
+    if (!user) {
+      setStatus('로그인 후 장바구니를 이용할 수 있습니다.');
+      navigate('/login', { state: { from: location.pathname } });
+      return;
+    }
+
+    setWorking(true);
+    try {
+      await apiRequest('/cart', {
+        method: 'POST',
+        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+      });
+      setStatus('장바구니에 상품이 담겼습니다.');
+      const data = await apiRequest('/cart');
+      const totalCount = (data.items ?? []).reduce((sum, item) => sum + (item.quantity ?? 0), 0);
+      setCartCount(totalCount);
+    } catch (error) {
+      setStatus(error.message ?? '장바구니에 담는 중 문제가 발생했습니다.');
+    } finally {
+      setWorking(false);
+    }
+  };
+
+  #### 6. 추천 상품 그리드
+
+  페이지 하단에는 “이 상품은 어떠세요?” 섹션을 추가했습니다.
+
+  {related.length > 0 && (
+    <section className="detail-related">
+      <div className="section-header">
+        <h2>이 상품은 어떠세요?</h2>
+        <button type="button" onClick={() => navigate('/')}>더 보기</button>
+      </div>
+
+      <div className="related-grid">
+        {related.map((item) => (
+          <article
+            key={item.id}
+            className="related-card"
+            onClick={() => navigate(`/products/${item.id}`)}
+          >
+            <div className="related-thumb">
+              {item.primaryImage?.url ? (
+                <img src={item.primaryImage.url} alt={item.name} />
+              ) : (
+                <span className="placeholder">이미지 없음</span>
+              )}
+            </div>
+            <div className="related-body">
+              <h3>{item.name}</h3>
+              <p className="related-price">₩ {item.price?.toLocaleString?.() ?? item.price}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  마우스를 올리면 related-card에 살짝 그림자와 상승 효과를 주어 클릭 유도력이 높아집니다.
+
+  #### 7. 로그인하지 않은 사용자도 접근 가능
+
+  이 페이지는 누구나 볼 수 있어야 하므로 useAuth()로 로그인 여부만 확인하고, user가 없을 때는 장바구니 버튼 대신 로그인 안내만 표기합니다.
+  상세 페이지 자체는 보호하지 않습니다.
+
+  #### 8. CSS 포인트 정리
+
+  client/src/App.css에서 상세 페이지 스타일을 담당하는 주요 클래스는 다음과 같습니다.
+
+  - .detail-page, .detail-hero, .detail-gallery, .detail-thumbnails
+  - .detail-info, .detail-price, .detail-description, .detail-actions
+  - .detail-related, .related-grid, .related-card, .related-thumb, .related-body
+
+  폰트 색상과 여백, 버튼 스타일을 일관되게 맞춰 전체 UI가 한 디자인으로 통일됩니다.
+
+  #### 9. 테스트하기
+
+  1. 홈 화면에서 “상세 보기” 버튼을 클릭합니다.
+  2. 메인 이미지와 썸네일이 잘 표시되는지 확인합니다.
+  3. 장바구니 버튼을 눌러 로그인 흐름과 메시지가 정상 작동하는지 체크합니다.
+  4. 추천 상품 카드를 클릭해 다른 상세 페이지로 이동해 봅니다.
+  5. 관리자 대시보드에서 이미지를 바꿨을 때 상세 페이지에서도 대표 이미지가 제대로 반영되는지 확인합니다.
+
+  #### 10. 요약
+
+  - 상품 상세 페이지에 큰 이미지, 썸네일, 가격, 설명, 장바구니 버튼 등을 구현했습니다.
+  - 로그인하지 않아도 상세 페이지는 볼 수 있지만, 장바구니 버튼은 로그인 후에만 작동하도록 했습니다.
+  - 같은 카테고리의 상품을 추천 상품 섹션에서 보여주어 사용자의 탐색 경험을 강화했습니다.
+  - CSS를 활용해 갤러리와 추천 카드가 보기 좋게 배치되도록 정리했습니다.
+
+  이제 사용자에게 더 많은 정보를 한 눈에 보여줄 수 있는 상세 페이지가 완성되었습니다. 다음 장에서는 체크아웃과 주문 완료 페이지를 더욱 풍성
+  하게 다듬고, 실제 주문 흐름을 완성해 보겠습니다.
+
+
+
+### 9장  체크아웃과 주문 완료 페이지 – 내용 개요
+
+  이 장은 “장바구니 → 주문하기 → 주문 완료” 흐름을 프런트엔드에서 완성하는 단계입니다. 사용자에게 친숙한 주문/결제 폼을 제공하고, 결제 모듈
+  과 연결하여 주문을 “확정”합니다. 다룰 핵심은 다음과 같습니다.
+
+  1. 체크아웃 페이지 레이아웃 – 배송지 입력, 결제 수단 선택, 가격 요약을 깔끔하게 배치.
+  2. 주문 제출 흐름 – 장바구니 데이터를 불러와 확인하고, 포트원 결제 창으로 결제 후 /api/orders에 요청.
+  3. 주문 완료 페이지 – 결제 금액, 배송지, 주문 상품을 한눈에 보여 주고, 사용자가 홈으로 돌아가거나 주문 내역을 확인할 수 있게 안내.
+  4. 장바구니 초기화 – 주문 성공 후 컨텍스트의 장바구니 수량을 0으로 만들고, 홈이나 주문 내역을 재로드할 때도 반영.
+
+  ———
+
+  ### 9장  체크아웃과 주문 완료 페이지
+
+  #### 1. 체크아웃 페이지의 목표
+
+  장바구니는 이미 상품과 수량을 담고 있지만, 실제 배송을 만들려면 수령인 이름, 연락처, 주소, 결제 수단을 입력해야 합니다. 체크아웃 페이지는
+  사용자가 이 정보를 편하게 입력하고 확인할 수 있도록 만들어야 합니다. 참고한 디자인(byslim 주문창)을 기반으로, 우리는 섹션을 크게 네 부분으
+  로 나누었습니다.
+
+  1. 주문자 정보
+  2. 배송지
+  3. 주문 상품 목록
+  4. 결제 요약 + 결제 수단
+
+  #### 2. 체크아웃 페이지 구조
+
+  client/src/pages/Checkout.jsx에서 전체 레이아웃을 <form>으로 감싸고, checkout-section 클래스를 이용해 카드를 나눴습니다.
+
+  <form className="checkout-grid" onSubmit={handleSubmit}>
+    <section className="checkout-section">...</section>
+    <section className="checkout-section">배송지 입력</section>
+    <section className="checkout-section">주문 상품</section>
+    <section className="checkout-section">결제 요약 및 수단</section>
+  </form>
+
+  각 섹션은 CSS로 카드 형태로 꾸며져 있고, 모바일에서도 잘 보이기 위해 display: grid, gap 속성을 사용했습니다.
+
+  #### 3. 장바구니 데이터 불러오기
+
+  페이지를 열면 먼저 /api/cart를 호출해 현재 장바구니를 가져옵니다. 로그인 상태가 아니면 /login으로 이동시키고, 장바구니가 비어 있으면 에러
+  메시지를 보여줍니다.
+
+  useEffect(() => {
+    const bootstrap = async () => {
+      if (!user) return;
+      setIsLoadingCart(true);
+      try {
+        const data = await apiRequest('/cart');
+        setCart(data.items ?? []);
+        if (data.items?.length) {
+          setShipping((prev) => ({
+            ...prev,
+            recipientName: user.name ?? prev.recipientName,
+            phone: user.phone ?? prev.phone,
+            addressLine1: user.address ?? prev.addressLine1,
+          }));
+        }
+      } catch (err) {
+        setError(err.message ?? '주문 정보를 불러오지 못했습니다.');
+      } finally {
+        setIsLoadingCart(false);
+      }
+    };
+
+    bootstrap();
+  }, [user]);
+
+  - 장바구니에 담긴 상품이 없으면 “주문을 진행할 수 없습니다”라는 메시지를 보여줍니다.
+  - 로그인 정보에서 이름과 연락처, 주소를 가져와 배송지 필드의 기본값으로 사용합니다.
+
+  #### 4. 배송지 입력 폼
+
+  배송지는 recipientName, phone, postalCode, addressLine1, addressLine2, requestMessage 등으로 구성합니다. 인풋마다 checkout-input 클래스를
+  붙여 글씨와 여백을 보기 좋게 꾸몄습니다.
+
+  <label className="checkout-input">
+    수령인
+    <input value={shipping.recipientName} onChange={updateShipping('recipientName')} required />
+  </label>
+  <label className="checkout-input">
+    연락처
+    <input value={shipping.phone} onChange={updateShipping('phone')} placeholder="010-0000-0000" required />
+  </label>
+  ...
+  <label className="checkout-input">
+    배송 메모
+    <textarea value={shipping.requestMessage} onChange={updateShipping('requestMessage')} placeholder="문 앞에 놓아주세요" />
+  </label>
+
+  “최근 배송지 사용” vs “새로운 배송지 입력” 라디오 버튼은 실제 데이터를 다루진 않지만, 사용자 경험을 고려해 토글 UI를 만들어 두었습니다.
+
+  #### 5. 주문 상품 목록
+
+  checkout-items 리스트에 장바구니 상품을 표시합니다. 썸네일, 이름, 수량, 금액을 함께 보여줍니다. 썸네일이 없는 경우 placeholder를 사용합
+  니다.
+
+  <ul className="checkout-items">
+    {cart.map((item) => (
+      <li key={item.id} className="checkout-item">
+        <div className="checkout-item__thumb">
+          {item.primaryImage?.url ? (
+            <img src={item.primaryImage.url} alt={item.name} />
+          ) : (
+            <span className="placeholder">이미지 없음</span>
+          )}
+        </div>
+        <div className="checkout-item__info">
+          <strong>{item.name}</strong>
+          <span>수량 {item.quantity}개</span>
+        </div>
+        <div className="checkout-item__price">₩ {item.price.toLocaleString()}</div>
+      </li>
+    ))}
+  </ul>
+
+  이 정보를 바탕으로 subtotal, shippingFee, discount, total을 계산합니다.
+
+  const subtotal = useMemo(
+    () => cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cart],
+  );
+  const discount = 0;
+  const shippingFee = cart.length ? DEFAULT_SHIPPING_FEE : 0;
+  const total = subtotal - discount + shippingFee;
+
+  #### 6. 결제 수단과 결제 창
+
+  결제 수단은 카드, 계좌이체, 가상계좌, 휴대폰 결제 네 가지를 기본으로 제공합니다. 선택하면 paymentMethod 상태가 바뀌고, 실제 결제 시
+  pay_method 코드에 매핑됩니다.
+
+  <div className="payment-options">
+    {[
+      { value: 'card', label: '카드 결제' },
+      { value: 'bank_transfer', label: '계좌이체' },
+      { value: 'virtual_account', label: '가상계좌' },
+      { value: 'mobile', label: '휴대폰 결제' },
+    ].map((option) => (
+      <label key={option.value} className={`payment-option ${paymentMethod === option.value ? 'is-selected' : ''}`}>
+        <input
+          type="radio"
+          name="payment"
+          value={option.value}
+          checked={paymentMethod === option.value}
+          onChange={() => setPaymentMethod(option.value)}
+        />
+        {option.label}
+      </label>
+    ))}
+  </div>
+
+  결제하기 버튼을 누르면 포트원 JS SDK로 결제 창을 띄웁니다. SDK는 페이지 로드 시 <script src="https://cdn.iamport.kr/v1/iamport.js">를 추가
+  해 불러옵니다. SDK가 아직 로딩 중이면 impReady가 false라서 버튼이 비활성화되고 “결제 모듈을 불러오는 중입니다…” 메시지가 뜹니다.
+
+  useEffect(() => {
+    if (!PORTONE_CUSTOMER_CODE) {
+      setModuleStatus('포트원 고객사 식별코드가 설정되지 않았습니다.');
+      setImpReady(false);
+      return;
+    }
+
+    const existing = window.IMP;
+    if (existing) {
+      existing.init(PORTONE_CUSTOMER_CODE);
+      setImpReady(true);
+      setModuleStatus('결제 모듈이 준비되었습니다.');
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.iamport.kr/v1/iamport.js';
+    script.async = true;
+    script.onload = () => {
+      if (window.IMP) {
+        window.IMP.init(PORTONE_CUSTOMER_CODE);
+        setImpReady(true);
+        setModuleStatus('결제 모듈이 준비되었습니다.');
+      }
+    };
+    script.onerror = () => {
+      setImpReady(false);
+      setModuleStatus('결제 모듈을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  결제 요청은 IMP.request_pay를 이용하며, 성공하면 imp_uid, merchant_uid를 받아 서버 /api/orders에 전송해 결제를 검증하고 주문을 저장합니다.
+
+  const merchantUid = `order_${Date.now()}`;
+  const payMethod = PAY_METHOD_MAP[paymentMethod] ?? 'card';
+
+  window.IMP.request_pay(
+    {
+      pg: `${PG_PROVIDER}.${PORTONE_PG_MID}`,
+      pay_method: payMethod,
+      merchant_uid: merchantUid,
+      name: `쇼핑몰 주문 (${cart.length}건)`,
+      amount: total,
+      buyer_email: user?.email ?? '',
+      buyer_name: shipping.recipientName,
+      buyer_tel: shipping.phone,
+      buyer_addr: `${shipping.addressLine1} ${shipping.addressLine2 ?? ''}`.trim(),
+      buyer_postcode: shipping.postalCode,
+    },
+    async (response) => {
+      if (!response.success) {
+        setSubmitting(false);
+        setError(response.error_msg || '결제가 취소되었습니다.');
+        return;
+      }
+
+      try {
+        const order = await apiRequest('/orders', {
+          method: 'POST',
+          body: JSON.stringify({
+            shipping,
+            payment: {
+              method: paymentMethod,
+              impUid: response.imp_uid,
+              merchantUid: response.merchant_uid,
+              pgProvider: response.pg_provider,
+              payMethod: response.pay_method,
+              pgTid: response.pg_tid,
+              cardName: response.card_name,
+              applyNum: response.apply_num,
+            },
+            pricing: {
+              subtotal,
+              discount,
+              shippingFee,
+              total,
+            },
+          }),
+        });
+
+        setCartCount(0);
+        navigate('/orders/complete', { replace: true, state: { order } });
+      } catch (err) {
+        setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  );
+
+  서버는 getPaymentByImpUid로 포트원 REST API에 결제 내역을 조회해 주문 금액과 결제 금액이 맞는지 확인합니다. 주문 생성이 끝나면 장바구니를
+  비우고, 컨텍스트의 cartCount를 0으로 설정합니다.
+
+  #### 7. 주문 완료 페이지
+
+  /orders/complete 페이지(client/src/pages/OrderComplete.jsx)는 주문 요약 정보를 보여줍니다. location.state.order에 주문 데이터가 포함되어
+  오며, 없으면 홈으로 리다이렉트합니다.
+
+  const order = location.state?.order ?? null;
+
+  if (!order) {
+    navigate('/', { replace: true });
+    return null;
+  }
+
+  결제 금액, 배송지, 주문 상품을 보여주기 위해 체크아웃과 똑같은 컴포넌트를 재사용합니다.
+
+  <section className="checkout-section">
+    <h2>결제 요약</h2>
+    <div className="checkout-summary">
+      <div>
+        <span>주문 상품</span>
+        <strong>₩ {order.pricing?.subtotal?.toLocaleString?.() ?? '-'}</strong>
+      </div>
+      <div>
+        <span>할인 금액</span>
+        <strong>- ₩ {order.pricing?.discount?.toLocaleString?.() ?? '0'}</strong>
+      </div>
+      <div>
+        <span>배송비</span>
+        <strong>+ ₩ {order.pricing?.shippingFee?.toLocaleString?.() ?? '0'}</strong>
+      </div>
+      <div className="checkout-summary__total">
+        <span>최종 결제 금액</span>
+        <strong>₩ {order.pricing?.total?.toLocaleString?.() ?? '-'}</strong>
+      </div>
+    </div>
+  </section>
+
+  배송지 정보와 주문 상품 목록도 같은 스타일로 보여줍니다. 마지막에는 “쇼핑 계속하기” 버튼을 제공해 홈으로 이동할 수 있게 합니다.
+
+  #### 8. 장바구니 초기화와 리다이렉트
+
+  주문이 성공하면 setCartCount(0)을 호출하고, navigate('/orders/complete', { state: { order } })로 이동합니다. 장바구니 페이지(Home)에서
+  setCart([])를 해 줬기 때문에 다시 홈으로 돌아가도 장바구니가 비어 있습니다. 만약 /orders/complete 페이지를 직접 새로고침하면 state가 없기
+  때문에 홈으로 리다이렉트합니다.
+
+  #### 9. 테스트 체크리스트
+
+  1. 장바구니에 상품을 담은 상태에서 /checkout으로 이동한다.
+  2. 배송지 정보를 입력하고 결제 수단을 선택한 다음 결제하기 버튼을 누른다.
+  3. 포트원 테스트 결제창에서 카드 정보를 입력하고 결제를 완료한다.
+  4. 결제 성공 시 주문 완료 페이지로 이동하고, 요약 정보가 정확한지 확인한다.
+  5. MongoDB에서 orders 컬렉션을 확인하여 status: "paid" 가 기록되었는지 확인한다.
+  6. 결제창에서 취소를 누르면 페이지에 오류 메시지가 뜨고 주문이 생성되지 않는지 확인한다.
+
+  #### 10. 요약
+
+  - 체크아웃 페이지를 구현하여 사용자가 배송지와 결제 정보를 입력할 수 있게 했습니다.
+  - 포트원(JS SDK + REST API)과 연동해 결제 성공 후 /api/orders에서 결제를 검증하고 주문을 저장했습니다.
+  - 주문 완료 페이지를 만들어 사용자가 결제 내역과 배송지를 확인할 수 있도록 했습니다.
+  - 장바구니 수량과 상태를 업데이트하여 주문 후 장바구니가 비어 있도록 유지했습니다.
+
+  이제 실제 쇼핑몰과 비슷한 전체 흐름이 완성되었습니다. 다음 장에서는 결제 모듈 연동을 좀 더 자세히 설명하고, 운영 모드로 전환할 때 고려해야
+  할 사항을 다루겠습니다. (이미 10장에서 이어지겠지만, 여기까지가 체크아웃의 핵심입니다.)
+
+
+### 10장  결제 모듈(PortOne + KG이니시스) 연결
+
+  #### 1. PortOne과 KG이니시스를 왜 쓰나요?
+
+  국내에서 신용카드 결제를 직접 구현하려면 많은 절차가 필요합니다. PortOne은 이런 절차를 간단한 API로 묶어 준 서비스입니다. 우리는 PortOne을
+  통해 KG이니시스 결제창을 띄우고, 결제 결과를 쉽게 확인할 수 있습니다.
+
+  #### 2. 필요한 환경 변수 정리
+
+  결제는 돈이 오가므로, 키가 유출되지 않도록 꼭 환경 변수(.env)로 따로 보관해야 합니다. 우리는 두 곳에 값을 넣습니다.
+
+  1. 서버용 .env (위치: server/.env)
+
+     | 변수 이름 | 하는 일 |
+     | --- | --- |
+     | PORTONE_CHANNEL_KEY | PortOne 대시보드에서 결제 채널을 구분하는 키 |
+     | PORTONE_PG_PROVIDER | 사용할 PG 이름. KG이니시스 웹표준 결제는 html5_inicis |
+     | PORTONE_PG_MID | KG이니시스 상점 아이디 (테스트는 INIpayTest) |
+     | PORTONE_SIGNKEY | KG이니시스에서 제공하는 웹결제 sign key |
+     | PORTONE_IMP_KEY | PortOne REST API 키 (결제 내역 조회용) |
+     | PORTONE_IMP_SECRET | PortOne REST API 비밀키 |
+     | PORTONE_CUSTOMER_CODE | PortOne 고객사 식별 코드 (IMP.init에서 사용) |
+
+     예시:
+
+     PORTONE_CHANNEL_KEY=channel-key-117dee3b-d95f-4eeb-8e9c-1ab4a0adc4c8
+     PORTONE_PG_PROVIDER=html5_inicis
+     PORTONE_PG_MID=INIpayTest
+     PORTONE_SIGNKEY=SU5JTElURV9UUklQTEVERVNfS0VZU1RS
+     PORTONE_IMP_KEY=2656665815633610
+     PORTONE_IMP_SECRET=q90WanZAvEc33WtpI4Yoxdk2AhXkpgzqAieLaCggPD38F0hpbIgdW2xlK3feJCLR7WjeCFJHYYb2J
+
+  PORTONE_CUSTOMER_CODE=imp52880748
+
+
+  2. **클라이언트용 `.env` (위치: `client/.env`)**
+
+  | 변수 이름 | 설명 |
+  | --- | --- |
+  | `VITE_PORTONE_CUSTOMER_CODE` | PortOne 고객사 식별 코드 (IMP.init) |
+  | `VITE_PORTONE_PG` | 사용할 PG provider (`html5_inicis`) |
+  | `VITE_PORTONE_PG_MID` | PG MID (`INIpayTest`) |
+
+  예시:
+
+  VITE_PORTONE_CUSTOMER_CODE=imp52880748
+  VITE_PORTONE_PG=html5_inicis
+  VITE_PORTONE_PG_MID=INIpayTest
+
+
+  > ⚠️ **중요**
+  > `.env` 파일은 절대 Git에 올리면 안 됩니다. 이미 `.gitignore`에 등록해 두었으니 안심하고 정보를 넣으세요. 키가 바뀌면 서버와 클라이언트를
+  모두 재시작해야 합니다.
+
+  #### 3. 프런트에서 결제창 띄우기 (IMP.request_pay)
+
+  체크아웃 페이지(`Checkout.jsx`)에서 결제 버튼을 누르면 PortOne JS SDK가 `IMP.request_pay` 함수를 실행합니다. 이 함수가 KG이니시스 결제창을
+  띄웁니다.
+
+  1. `<script src="https://cdn.iamport.kr/v1/iamport.js">`를 불러옵니다. 로딩이 끝나면 `window.IMP.init(VITE_PORTONE_CUSTOMER_CODE)`로 초기
+  화합니다.
+  2. 사용자가 “결제하기”를 누르면 `IMP.request_pay`에 PG provider, 결제수단, 주문번호, 금액, 구매자 정보 등을 전달합니다.
+  3. 사용자가 결제를 완료하면 콜백 함수로 `success`, `imp_uid`, `merchant_uid` 등이 전달됩니다.
+
+  ```javascript
+  const merchantUid = `order_${Date.now()}`;
+  window.IMP.request_pay(
+  {
+   pg: `${PG_PROVIDER}.${PORTONE_PG_MID}`,
+   pay_method: payMethod,   // card, trans, vbank, phone 등
+   merchant_uid: merchantUid,
+   name: `쇼핑몰 주문 (${cart.length}건)`,
+   amount: total,
+   buyer_email: user?.email ?? '',
+   buyer_name: shipping.recipientName,
+   buyer_tel: shipping.phone,
+   buyer_addr: `${shipping.addressLine1} ${shipping.addressLine2 ?? ''}`.trim(),
+   buyer_postcode: shipping.postalCode,
+  },
+  async (response) => {
+   if (!response.success) {
+     setError(response.error_msg || '결제가 취소되었습니다.');
+     return;
+   }
+   // 성공했다면 서버에 imp_uid와 merchant_uid를 전달
+  },
+  );
+
+  #### 4. 서버에서 결제 결과 확인하기
+
+  사용자가 결제를 성공했다고 말했지만, 서버는 직접 포트원 REST API를 호출해 금액과 상태가 맞는지 “한 번 더” 확인해야 합니다.
+
+  server/src/services/portoneService.js:
+
+  const axios = require('axios');
+
+  async function getAccessToken() {
+    const response = await axios.post('https://api.iamport.kr/users/getToken', {
+      imp_key: process.env.PORTONE_IMP_KEY,
+      imp_secret: process.env.PORTONE_IMP_SECRET,
+    });
+    if (response.data.code !== 0) {
+      throw new Error(`포트원 토큰 발급 실패: ${response.data.message}`);
+    }
+    return response.data.response.access_token;
+  }
+
+  async function getPaymentByImpUid(impUid) {
+    const accessToken = await getAccessToken();
+    const response = await axios.get(`https://api.iamport.kr/payments/${impUid}`, {
+      headers: { Authorization: accessToken },
+    });
+    if (response.data.code !== 0) {
+      throw new Error(`포트원 결제 조회 실패: ${response.data.message}`);
+    }
+    return response.data.response;
+  }
+
+  createOrder 컨트롤러에서 이 함수를 호출해 결제 상태와 금액이 올바른지 검사합니다.
+
+  const pgPayment = await getPaymentByImpUid(impUid);
+
+  if (pgPayment.merchant_uid !== merchantUid) {
+    return res.status(400).json({ message: '결제 정보가 주문 정보와 일치하지 않습니다.' });
+  }
+
+  if (!['paid', 'ready'].includes(pgPayment.status)) {
+    return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
+  }
+
+  if (Number(pgPayment.amount) !== Math.max(0, total)) {
+    return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
+  }
+
+  검증에 성공하면 주문을 status: 'paid' 또는 pending으로 저장합니다. pg_tid, card_name 같은 정보도 payment 필드에 함께 저장해 나중에 주문 상
+  세 페이지에서 보여 줄 수 있습니다.
+
+  #### 5. 주문 저장과 장바구니 비우기
+
+  검증이 끝나면 Order.create로 주문을 저장하고, 장바구니는 빈 배열로 바꿉니다. 프런트에서는 setCartCount(0)으로 배지를 즉시 업데이트합니다.
+
+  #### 6. 결제 실패/취소 처리
+
+  - 결제 창에서 취소하거나 오류가 나면 response.success 값이 false가 됩니다. 이때 error_msg를 사용자에게 보여주고, 주문을 만들지 않습니다.
+  - 결제는 성공했지만 서버 검증 단계에서 실패하면 오류 메시지를 표시하고 주문을 저장하지 않습니다.
+
+  #### 7. 웹훅과 환불은 어떻게 할까?
+
+  PortOne 대시보드에서 웹훅 URL을 등록해 놓으면 결제 완료, 취소, 환불 등의 이벤트를 자동으로 받아 처리할 수 있습니다. 현재 구조에는 웹훅 엔
+  드포인트가 비어 있으므로, 필요 시 /api/payments/webhook 같은 라우트를 만들어 결제 상태를 업데이트하면 됩니다. 환불 API(/payments/cancel)도
+  차후 기능으로 추가할 수 있습니다.
+
+  #### 8. 테스트 모드에서 검증하기
+
+  1. client/.env와 server/.env에 위에서 설명한 값을 넣습니다. (테스트 값 사용)
+  2. npm install 후 client, server 각각 개발 서버를 실행합니다.
+  3. 체크아웃 페이지에서 “결제하기”를 누르고 포트원이 제공하는 테스트 카드 정보를 입력합니다.
+  4. 결제가 완료되면 주문이 “주문 완료” 페이지에 표시되고, MongoDB orders 컬렉션에서 status: 'paid'를 확인할 수 있습니다.
+  5. 결제 취소나 오류 상황도 테스트해 보고, 메시지가 잘 출력되는지 살펴보세요.
+
+  #### 9. 요약
+
+  - 결제를 위해 필요한 키는 모두 .env 파일에 보관합니다. 서버와 클라이언트 각각에 설정할 값이 다르므로 위치를 헷갈리지 않도록 주의합니다.
+  - 프런트에서는 PortOne JS SDK로 결제창을 띄우고, 결제 성공 후 imp_uid, merchant_uid를 서버에 전달합니다.
+  - 서버는 PortOne REST API로 결제 내역을 확인해 금액과 상태를 검증한 뒤 주문을 저장합니다.
+  - 장바구니를 비우고 주문 완료 페이지로 이동하며, 실패/취소 상황도 친절히 안내합니다.
+
+  이로써 “장바구니에 담고 실제로 결제까지 하는 흐름”이 모두 완성되었습니다. 이제 사용자는 처음부터 끝까지 자연스럽게 쇼핑을 즐길 수 있습
+  니다.
+
+ ### 11장  마무리 점검과 다음 단계 – 내용 개요
+
+  마지막 장에서는 지금까지 만든 쇼핑몰을 “검사하고 정리”하는 시간을 갖습니다. 세 가지를 중심으로 다룹니다.
+
+  1. 점검 체크리스트 – 회원 가입 → 로그인 → 상품 보기 → 장바구니 → 결제 → 주문 완료까지 전체 흐름이 문제없이 작동하는지, 그리고 에러 메시지
+  나 로딩 상태가 제대로 표시되는지 확인합니다.
+  2. 관리자 주문 관리 – 관리자 계정으로 로그인해 주문 목록을 열람하고, 주문 상태를 변경하거나 취소하는 방법을 단계별로 설명합니다.
+  3. 다음 단계 아이디어 – 실제 배포, 보안 강화, 웹훅·환불 기능, 통계 대시보드, 모바일 UI 개선 등 앞으로 확장할 수 있는 방향을 제시합니다.
+
+  이 장을 마치면 프로젝트 전체를 한눈에 되짚고, 어떤 부분을 더 발전시킬지 계획을 세울 수 있습니다.
+
+
+  ### 11장  마무리 점검과 다음 단계
+
+  이제 쇼핑몰이 처음부터 끝까지 돌아갑니다. 하지만 출시 전에 마지막으로 전부 한 번씩 점검해 보는 것이 좋습니다. 이 장에서는 ➊ 주문 흐름 전체
+  를 체크하고, ➋ 관리자(admin) 계정으로 주문을 관리하는 방법을 익히며, ➌ 앞으로 더 발전시키고 싶은 아이디어를 모아 보겠습니다.
+
+  ———
+
+  #### 11.1 주문 흐름 전체 점검하기
+
+  아래 순서를 차례대로 따라가며 기능이 끊기지 않고 이어지는지 확인해 보세요. 문제를 발견하면 체크를 멈추고 바로 수정한 뒤 다시 처음부터 점검
+  하는 것이 좋습니다.
+
+  1. 회원 가입
+      - /signup 페이지에서 이메일, 비밀번호, 주소, 사용자 분류를 입력합니다.
+      - 필수 약관 체크박스를 모두 선택해야 버튼이 활성화되는지 확인합니다.
+      - 가입 성공 후 홈으로 이동하는지, 입력값이 MongoDB users 컬렉션에 저장되는지 살펴봅니다.
+  2. 로그인
+      - /login 페이지에서 방금 만든 계정으로 로그인합니다.
+      - 상단 Navbar에 “OOO님 반갑습니다.”와 장바구니 버튼이 나타나는지 확인합니다.
+      - httpOnly 쿠키 accessToken이 생성되었는지도 브라우저 개발자 도구에서 볼 수 있습니다.
+  3. 상품 보기
+      - / 홈 화면에서 상품 카드가 정상적으로 로딩되는지 확인합니다.
+      - “상세 보기” 버튼을 눌러 ProductDetail 페이지가 잘 열리는지, 대표 이미지와 설명, 추천 상품이 보이는지 체크합니다.
+  4. 장바구니 담기
+      - 상품 상세 페이지에서 “장바구니에 담기”를 눌러 성공 메시지가 뜨는지 확인합니다.
+      - 홈 화면 장바구니 섹션에 상품이 추가되고, Navbar 배지 숫자가 늘어났는지 봅니다.
+  5. 체크아웃 이동
+      - 장바구니 섹션에서 “주문하기”를 누르면 /checkout 페이지로 이동합니다.
+      - 장바구니 목록, 배송지 입력 폼, 결제수단 선택 항목이 모두 보이는지 확인합니다.
+      - 결제 모듈이 로딩되기 전에는 버튼이 비활성화되어 있고, 준비가 되면 “결제 모듈이 준비되었습니다.” 안내가 뜨는지 확인합니다.
+  6. 테스트 결제 진행
+      - PortOne 테스트 카드 번호로 결제를 진행합니다.
+      - 결제가 성공하면 /orders/complete 페이지로 이동하고, 결제 금액·배송지·주문 상품이 정확하게 표시되는지 확인합니다.
+      - MongoDB orders 컬렉션에서 주문 문서의 status가 paid로 저장되었는지 확인합니다.
+      - 장바구니가 비워졌고 Navbar 배지 숫자가 0이 되었는지도 체크합니다.
+  7. 로그아웃
+      - Navbar에서 “로그아웃”을 클릭했을 때 쿠키가 삭제되고 홈으로 돌아오는지 확인합니다.
+      - 보호된 페이지(/checkout, /admin)에 다시 접근하면 로그인 페이지로 되돌아가는지 확인합니다.
+
+  이 과정을 여러 번 반복해서도 문제가 없는지 확인하면 좋습니다. 특히 네트워크가 느린 환경에서도 로딩 메시지가 제대로 뜨는지 살펴보세요.
+
+  ———
+
+  #### 11.2 기능별 빠른 점검표
+
+  - 회원 관리: 중복 이메일 가입이 막혀 있고, 비밀번호를 짧게 입력하면 오류 메시지가 뜨는지 확인합니다.
+  - 장바구니: 같은 상품을 여러 번 담으면 수량이 증가하는지, 삭제 버튼이 잘 작동하는지 확인합니다.
+  - 주문 API: 결제 실패/취소 시 서버가 주문을 만들지 않는지, 오류 메시지가 친절한지 확인합니다.
+  - 에러 처리: 존재하지 않는 페이지에 접근했을 때 404 메시지가 뜨는지, 서버 오류가 발생하면 콘솔 로그에 정보를 남기는지 확인합니다.
+
+  ———
+
+  #### 11.3 관리자(Admin) 계정으로 주문 관리하기
+
+  관리자는 주문 목록을 보고 상태를 바꿀 수 있어야 합니다. 지금까지 구축한 기능으로 다음과 같은 흐름을 사용할 수 있습니다.
+
+  1. 관리자 로그인
+      - 관리자 계정으로 /login에 접속합니다. (예: role이 admin인 계정)
+      - Navbar에 “관리자 대시보드” 링크가 보이면 정상입니다.
+  2. 주문 목록 확인
+      - /admin 페이지에서 상품 목록과 함께 주문 섹션(필요시 새 컴포넌트로 구분 가능)을 열람합니다.
+      - 아직 주문 목록용 UI가 없다면 MongoDB Compass나 간단한 관리자 테이블을 추가해 확인할 수 있습니다.
+  3. 주문 상태 변경
+      - 주문 문서를 직접 업데이트할 경우, MongoDB에서 status를 shipped나 cancelled로 변경해 테스트할 수 있습니다.
+      - 실제 UI를 추가하고 싶다면 /admin/orders 라우트를 만들고, 주문 리스트를 테이블로 보여 준 뒤 상태를 바꾸는 버튼을 넣으면 됩니다. 상태
+  변경 시 order.history에 기록이 남도록 orderController에 메서드를 추가하는 것도 좋습니다.
+  4. 주문 취소
+      - 사용자가 /api/orders/:id DELETE 요청을 보내면 주문이 cancelled로 바뀝니다. 관리자는 주문 화면에서 취소 요청을 대신 처리할 수도 있습
+  니다.
+      - 결제가 이미 완료된 주문이라면, 환불 API를 연동해 payment.status를 refunded로 바꾸고 PG사 환불을 동시에 실행해야 합니다(추후 확장).
+
+  ※ 지금 단계에서는 주문 관리를 위한 관리자 UI가 단순하거나 아직 비어 있을 수 있습니다. 하지만 최소한 관리자 계정으로 주문 데이터를 열람하
+  고, 필요하면 DB에서 상태를 바꿀 수 있다는 점을 기억해 주세요. 이후에 “주문 관리 대시보드”를 별도로 강화하면 더 편리해집니다.
+
+  ———
+
+  #### 11.4 환경 변수와 배포 준비
+
+  - 환경 변수 다시 확인
+      - server/.env와 client/.env에 있는 PortOne, Cloudinary, MongoDB 키를 최신 값으로 맞춰 둡니다.
+      - 개발 환경과 운영 환경을 나눌 계획이라면 .env.production 등을 따로 만들어 두는 것이 좋습니다.
+  - 보안 점검
+      - httpOnly 쿠키가 제대로 설정되어 있는지, HTTPS 환경에서 secure: true 옵션을 꼭 사용하세요.
+      - 관리자 페이지는 서버에서도 authorize('admin') 미들웨어로 보호되고 있는지 확인합니다.
+  - 테스트 카드로 마지막 검증
+      - 성공 케이스뿐 아니라 결제 취소, 금액 불일치(일부러 잘못된 금액을 보내 보기), 네트워크 오류 등을 시뮬레이션해 실제 상황에서 어떤 메시
+  지가 나오는지 확인합니다.
+
+  ———
+
+  #### 11.5 다음 단계 아이디어
+
+  이제 기본 기능은 모두 갖추었습니다. 더 멋진 쇼핑몰로 발전시키고 싶다면 아래 아이디어를 참고해 보세요.
+
+  1. 배포
+      - 백엔드: Render, Railway, AWS Lightsail, Heroku 등
+      - 프런트엔드: Vercel, Netlify, GitHub Pages
+      - MongoDB는 Atlas 무료 클러스터를 그대로 사용할 수 있습니다.
+  2. 웹훅 & 환불
+      - PortOne 웹훅을 등록해 결제/취소 알림을 자동으로 받고, 주문 상태를 실시간으로 업데이트해 보세요.
+      - /api/payments/cancel API를 추가해 관리자 페이지에서 환불을 처리할 수 있습니다.
+  3. 주문 관리 대시보드 강화
+      - 주문 리스트를 테이블 형태로 보여 주고, 상태 변경 버튼을 만들어 일괄 처리합니다.
+      - 배송사 연동, 송장번호 입력, 통계 그래프 등을 추가하면 더욱 편리합니다.
+  4. 사용자 경험 개선
+      - 반응형(모바일) 레이아웃 만들기
+      - 무한 스크롤, 검색/필터 기능
+      - 쿠폰과 포인트 제도 도입
+  5. 테스트 자동화
+      - Jest, React Testing Library, Cypress 등을 사용해 주요 화면과 API에 자동 테스트를 붙이면 유지보수가 훨씬 쉬워집니다.
+
+  #### 11.5.1 배포 (Deploy)
+
+  ① 백엔드 배포
+
+  1. 플랫폼 선택
+      - Render: GitHub 저장소를 연결해 자동 배포 가능. 무료 플랜은 잠시 쉬었다가 다시 시작하면 첫 요청이 느릴 수 있습니다.
+      - Railway: 간단한 Express 서버 배포에 적합. MongoDB 플러그인도 제공.
+      - AWS Lightsail / EC2: 인스턴스 관리가 가능하지만, 초기 설정이 조금 더 필요합니다.
+      - Heroku: 무료 플랜이 축소되었지만, 소규모 프로젝트에는 여전히 적합한 선택입니다.
+  2. 환경 변수 설정
+      - server/.env에 있던 내용을 플랫폼의 환경 변수 설정 화면에 그대로 입력합니다.
+      - 특히 PORTONE_*, CLOUDINARY_*, MONGODB_URI는 반드시 운영용 값으로 교체해야 합니다.
+  3. 빌드 & 시작 스크립트 확인
+      - package.json의 start 스크립트를 node src/index.js로 유지하고, dev는 개발용으로만 사용합니다.
+      - Docker를 사용할 경우 Dockerfile을 작성해 npm install → npm run build → npm start 순서로 실행되게 합니다.
+
+  ② 프런트엔드 배포
+
+  1. Vercel: Vite 프로젝트와 궁합이 좋고, npm run build 결과(dist/)를 자동으로 호스팅합니다.
+  2. Netlify: 빌드 설정에 npm run build, 배포 폴더를 dist로 지정합니다.
+  3. GitHub Pages: Vite에서 npm run build 후 dist 폴더를 Pages에 올리거나, npm run deploy 스크립트를 이용할 수 있습니다.
+  4. 배포 서버의 API 주소(VITE_API_BASE_URL)를 운영 서버 URL로 바꾸는 것도 잊지 마세요.
+
+  ———
+
+  #### 11.5.2 웹훅(Webhook) 연동
+
+  웹훅은 결제 완료, 취소, 환불 같은 이벤트가 발생했을 때 PortOne이 우리 서버로 “알림”을 보내 주는 기능입니다. 사용자가 결제 화면을 닫아버리
+  거나, 관리자가 포트원 관리자에서 직접 환불했을 때도 주문 상태를 정확하게 맞출 수 있습니다.
+
+  1. 서버 엔드포인트 만들기
+      - 예: POST /api/payments/webhook
+      - 들어오는 JSON에는 imp_uid, merchant_uid, status, amount 등이 담겨 있습니다.
+
+  const express = require('express');
+  const router = express.Router();
+  const { getPaymentByImpUid } = require('../services/portoneService');
+  const Order = require('../models/Order');
+
+  router.post('/webhook', async (req, res) => {
+    const { imp_uid: impUid, merchant_uid: merchantUid, status } = req.body;
+    if (!impUid || !merchantUid) {
+      return res.status(400).json({ message: '잘못된 웹훅 요청입니다.' });
+    }
+
+    try {
+      const payment = await getPaymentByImpUid(impUid);
+      const order = await Order.findOne({ 'payment.merchantUid': merchantUid });
+      if (!order) {
+        return res.status(404).json({ message: '주문을 찾을 수 없습니다.' });
+      }
+
+      if (status === 'paid') {
+        order.status = 'paid';
+        order.payment.status = 'paid';
+        order.payment.paidAt = new Date(payment.paid_at * 1000);
+        order.history.push({ status: 'paid', note: '웹훅으로 결제 완료 확인' });
+      } else if (status === 'cancelled') {
+        order.status = 'cancelled';
+        order.payment.status = 'refunded';
+        order.history.push({ status: 'cancelled', note: '웹훅으로 결제 취소 확인' });
+      }
+      await order.save();
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: '웹훅 처리 중 오류가 발생했습니다.' });
+    }
+  });
+
+  module.exports = router;
+
+  2. PortOne 대시보드에서 URL 등록
+      - “시스템 설정 → Webhook URL”에 위 엔드포인트를 입력합니다. HTTPS 주소를 권장합니다.
+  3. 보안
+      - 웹훅 요청이 진짜 PortOne에서 온 것인지 검증하려면 imp_uid 조회를 통해 크로스 체크하는 방법이 안전합니다.
+      - 요청 Body에 대한 해시를 검증하는 방식도 있지만, getPaymentByImpUid 검증만으로도 중간 변조 가능성을 줄일 수 있습니다.
+
+  ———
+
+  #### 11.5.3 환불 기능
+
+  결제된 주문을 사용자가 취소하거나 관리자가 환불하려면 PG사와 연동해 “결제 취소 API”를 호출해야 합니다. PortOne에서는 /payments/cancel 엔드
+  포인트를 이용합니다.
+
+  1. 환불 API 만들기
+
+  const axios = require('axios');
+  const { getAccessToken } = require('../services/portoneService');
+
+  async function cancelPayment({ impUid, reason }) {
+    const token = await getAccessToken();
+    const response = await axios.post(
+      'https://api.iamport.kr/payments/cancel',
+      {
+        reason: reason ?? '사용자 환불 요청',
+        imp_uid: impUid,
+      },
+      {
+        headers: { Authorization: token },
+      },
+    );
+
+    if (response.data.code !== 0) {
+      throw new Error(`환불 실패: ${response.data.message}`);
+    }
+    return response.data.response;
+  }
+
+  2. 관리자 API와 연결
+      - /api/admin/orders/:orderId/cancel 같은 라우트를 만들고, 결제 상태가 paid인 주문만 환불을 허용합니다.
+      - 환불이 성공하면 주문 상태를 cancelled, payment.status를 refunded로 바꾸고, 환불 내역을 history에 기록합니다.
+
+  ———
+
+  #### 11.5.4 주문 관리 대시보드 강화
+
+  관리자가 주문을 쉽게 확인하려면 전용 화면을 마련하는 것이 좋습니다.
+
+  1. 기본 테이블 구조
+      - 주문 ID, 주문일자, 고객 이름, 총 금액, 결제 상태, 배송 상태 등을 한눈에 볼 수 있게 테이블을 만듭니다.
+      - React에서 orders 데이터를 가져와 <table> 또는 <DataGrid> 형태로 보여주면 됩니다.
+  2. 상태 변경 버튼
+      - 각 주문 행에 “배송 시작”, “배송 완료”, “취소” 버튼을 두고, 클릭하면 /api/admin/orders/:id로 상태 업데이트 요청을 보냅니다.
+      - 요청이 성공하면 history에 기록합니다. 예: { status: 'shipped', note: '관리자가 배송 시작 처리', operator: adminId }.
+  3. 검색과 필터
+      - 주문 상태별 필터(예: pending, paid, shipped)
+      - 기간 검색(오늘, 이번 주, 이번 달)
+      - 고객 이름, 이메일로 검색하기
+  4. 대시보드 통계 (확장 아이디어)
+      - 하루/주간 주문 수, 총 매출, 인기 상품 통계 등을 그래프로 보여줍니다.
+      - Chart.js, Recharts 같은 라이브러리를 활용하면 좋습니다.
+
+  ———
+
+  ### 1. 실제 PG(이니시스) 계약 정보
+
+  - 상점아이디(MID): 테스트 INIpayTest가 아니라 실제 발급 받은 MID를 사용합니다.
+  - 결제채널(채널 키): 포트원 대시보드 → “채널 관리”에서 운영용 채널을 새로 만들어 실 MID를 연결해야 합니다. 테스트 채널 키와 값이 다릅니다.
+  - 웹결제 SignKey: 이니시스 관리자 페이지에서 발급받은 운영용 SignKey를 입력합니다.
+  - 거래 인증서/키 파일: 일부 결제수단(가상계좌, 실시간 계좌이체) 사용 시 필수입니다. 이니시스에서 내려받아 서버에 보관합니다.
+  - 라이선스/계약 구비: 실 운영을 위해서는 사업자 등록 정보, 통장 사본 등 이니시스 계약 절차를 완료해야 합니다.
+
+  ———
+
+  ### 2. 포트원 운영 설정
+
+  - 고객사 식별코드(imp_번호): 운영 프로젝트용 imp 번호를 새로 발급 받아야 합니다. 테스트용 imp 번호를 사용하지 않도록 주의합니다.
+  - REST API Key/Secret: 포트원 대시보드에서 운영용 키를 발급받아 .env에 저장합니다.
+  - 결제 도메인/리다이렉트 URL 등록: 운영 사이트 URL(예: https://yourshop.com)을 포트원 대시보드에 등록해야 결제창이 정상 동작합니다. 테스트
+  도메인과 구분해 주세요.
+  - Webhook URL: 운영 서버의 HTTPS 엔드포인트를 등록하여 결제/환불 알림을 받습니다.
+
+  ———
+
+  ### 3. .env 파일 업데이트
+
+  운영용으로 발급 받은 값으로 교체한 뒤 서버와 클라이언트를 재시작해야 합니다.
+
+  server/.env 예시:
+
+  PORTONE_CHANNEL_KEY=운영용 채널 키
+  PORTONE_PG_PROVIDER=html5_inicis
+  PORTONE_PG_MID=운영용 MID
+  PORTONE_SIGNKEY=운영용 SIGNKEY
+  PORTONE_IMP_KEY=운영용 REST API 키
+  PORTONE_IMP_SECRET=운영용 REST API 비밀키
+  PORTONE_CUSTOMER_CODE=운영용 imp 코드
+
+  client/.env 예시:
+
+  VITE_PORTONE_CUSTOMER_CODE=운영용 imp 코드
+  VITE_PORTONE_PG=html5_inicis
+  VITE_PORTONE_PG_MID=운영용 MID
+
+  ※ .env 파일은 Git에 올리지 말고, 배포 플랫폼의 환경 변수 설정 화면에도 같은 값으로 등록해 주세요.
+
+  ———
+
+  ### 4. 실제 결제 전 필수 점검
+
+  1. PG사(이니시스) 계약 완료: 심사 승인 여부, 결제수수료, 입금 주기 등을 확인합니다.
+  2. 포트원 채널 연결: 실 MID를 운영 채널에 연결했는지 확인합니다.
+  3. 도메인 HTTPS 적용: 운영 사이트에 SSL 인증서를 설치해야 결제창이 정상적으로 뜹니다.
+  4. 결제종류 허용: 카드, 가상계좌, 계좌이체 등 필요한 결제수단이 모두 승인되었는지 확인합니다.
+  5. 운영 테스트: 운영 모드에서도 소액 테스트 결제(예: 100원)를 진행하고 PG 관리자에서 거래가 확인되는지 살펴봅니다.
+  6. 환불 프로세스: PortOne /payments/cancel API로 환불이 제대로 되는지 테스트합니다.
+
+  ———
+
+  정리하면, 테스트 모드에서 쓰던 값들을 운영용으로 모두 교체하고, 포트원 및 이니시스 관리자에서 운영 채널을 준비해야 합니다. 운영 전에는 꼭
+  테스트 결제를 다시 진행해 원활히 결제가 이뤄지는지 확인하세요.
+
+
+  ### 마무리
+
+  이제 배포, 웹훅, 환불, 주문 관리 대시보드까지 전체 운영 흐름을 상상해 볼 수 있습니다. 처음에는 작은 테스트 모드로 시작했지만, 이런 기능을
+  하나씩 더해 나가면 실제 서비스에 가까워집니다. 가장 중요한 건, 기능을 추가할 때마다 환경 변수를 다시 확인하고, 로컬과 배포 환경을 분리해
+  관리하는 습관을 들이는 것입니다. 이렇게 조금씩 다듬다 보면, 여러분의 쇼핑몰은 계속해서 더 안정적이고 편리한 서비스가 될 것입니다.
+
+
+
+부록 A. 용어 사전
+| 프런트엔드(Frontend) | 우리가 보는 화면을 만들고 버튼을 눌렀을 때 어떤 일이 일어나는지 정해 주는 부분. |
+  | 백엔드(Backend) | 눈에 보이지 않는 곳에서 데이터베이스와 연결하고, 로그인·주문 같은 일을 처리해 주는 부분. |
+  | API | “어떤 주소로 어떤 요청을 보내면 이런 정보를 돌려줄게”라는 약속. 서로 다른 프로그램끼리 소통하는 방법. |
+  | REST API | 주소(URI)와 HTTP 메서드(GET, POST 등)를 사용해 데이터를 주고받는 규칙. |
+  | JWT(Json Web Token) | 로그인한 사람이라는 것을 증명하는 짧은 암호문. 서버가 만들어서 사용자에게 주고, 사용자가 요청을 보낼 때마다 함께
+  보냄. |
+  | httpOnly 쿠키 | 자바스크립트에서 직접 읽을 수 없도록 막아 둔 쿠키. 로그인 토큰을 안전하게 보관할 때 사용. |
+  | CRUD | Create, Read, Update, Delete의 앞 글자. 데이터 만들기/읽기/수정/삭제를 한 번에 부르는 말. |
+  | SKU | Stock Keeping Unit. 상품마다 붙이는 고유 번호. 예: TOP-001. |
+  | Webhook | “특정 일이 생기면 이 주소로 알려줄게!” 하는 자동 알림. PortOne이 결제 완료/취소를 알려줄 때 사용. |
+  | PG(Payment Gateway) | 카드 결제, 계좌이체 같은 일을 대신 처리해 주는 회사. 여기서는 KG이니시스를 사용함. |
+  | Cloudinary | 이미지를 쉽게 업로드하고 URL로 받을 수 있게 해 주는 서비스. |
+  | 포트원(PortOne) | 여러 PG를 쉽게 연결해 주는 플랫폼. 예전 이름은 아임포트. |
+  | MongoDB | 데이터를 JSON과 비슷한 형태로 저장하는 NoSQL 데이터베이스. |
+  | Mongoose | Node.js(백엔드)에서 MongoDB를 쉽게 다룰 수 있게 도와주는 라이브러리. |
+  | Deployment(배포) | 개발한 코드를 인터넷에 올려 다른 사람이 사용할 수 있게 만드는 과정. |
+
+부록 B. 에러 로그 읽는 법과 디버깅 기본기
+
+ 부록 B. 에러 로그 읽는 법과 디버깅 기본기 (자세한 버전)
+
+  개발을 하다 보면 “왜 안 되지?” 싶은 순간이 반드시 찾아옵니다. 이때 에러 로그를 읽고 문제를 좁혀 가는 능력이 아주 중요해요. 아래 내용을 차
+  근차근 따라 하면서 익숙해져 봅시다.
+
+  ———
+
+  ## 1. 에러 메시지는 친구다
+
+  - 에러 메시지가 뜨면 당황하지 말고 맨 앞 문장을 읽어 봅니다.
+    예: TypeError: Cannot read properties of undefined (reading 'map')
+    →  undefined인 값에서 map이라는 속성을 읽으려 했다는 뜻입니다.
+  - 보통 “어떤 파일의 몇 번째 줄에서 문제가 발생했는지”까지 알려줍니다.
+    예: at Home.jsx:128 → VS Code에서 Home.jsx 파일 128번 줄로 이동해 봅니다.
+
+  ———
+
+  ## 2. 에러 위치 찾는 법
+
+  1. 메시지에 있는 파일/줄번호를 클릭하거나, VS Code에서 Ctrl + G (Mac은 Cmd + G)를 눌러 줄번호로 이동합니다.
+  2. 문제가 나타나는 부분을 발견하면, 주변 코드를 살펴보고 실제로 어떤 변수 값이 들어와 있는지 확인합니다.
+
+  ———
+
+  ## 3. 로그 찍어서 확인하기 (console.log)
+
+  - console.log(변수)를 이용하면 코드가 실행될 때 변수의 값이 콘솔에 출력됩니다.
+  - 예: 장바구니에 담을 때 console.log(productId, quantity);를 추가하면, 요청이 들어왔을 때 어떤 값이 넘어오는지 눈으로 확인할 수 있습니다.
+  - 문제를 찾을 때는 “이 값이 내가 기대한 값과 같은지?”를 계속 비교해 보세요.
+
+  ———
+
+  ## 4. 브라우저 개발자 도구 (F12) 사용하기
+
+  ### 4.1 개발자 도구 여는 방법
+
+  - Chrome 기준: 페이지에서 F12 또는 Ctrl + Shift + I (Mac은 Cmd + Option + I)를 눌러 개발자 도구를 엽니다.
+
+  ### 4.2 주요 탭 설명
+
+  | 탭 | 하는 일 |
+  | --- | --- |
+  | Elements | 현재 페이지의 HTML 구조와 CSS를 볼 수 있습니다. 디자인이 틀어졌을 때 활용합니다. |
+  | Console | console.log 로 찍은 내용, 실행 중 발생한 에러를 볼 수 있습니다. 에러가 있다면 빨간색으로 표시됩니다. |
+  | Network | 페이지가 요청한 모든 파일과 API 목록이 나오고, 각 요청의 결과(메서드, 응답코드, 시간 등)를 확인할 수 있습니다. |
+  | Sources | 실행 중인 스크립트(Vite가 만든 번들 포함)를 보고, 중간에 멈춰서 값들을 직접 살펴볼 수 있습니다. |
+  | Application | 쿠키, 로컬스토리지, 세션스토리지, IndexedDB 등 브라우저에 저장된 데이터를 확인하고 삭제할 수 있습니다. |
+  | Performance | 페이지 속도를 측정해 성능 문제를 분석할 수 있습니다. (처음엔 꼭 필요하지 않아요.) |
+  | Lighthouse | 페이지 품질(성능, 접근성, SEO)을 자동으로 분석해 줍니다. |
+  | Console 탭과 Network 탭만큼은 꼭 익숙해져 보세요. |
+
+  ———
+
+  ## 5. Console 탭 세부 팁
+
+  - 에러 메시지를 더블 클릭하면 해당 코드 위치로 이동하는 링크가 표시됩니다.
+  - console.log로 출력한 값은 오브젝트 형태일 경우, 삼각형(▶)을 눌러 안쪽 속성까지 볼 수 있습니다.
+  - console.clear()로 콘솔을 깨끗하게 정리할 수 있습니다.
+  - 브라우저 콘솔에서 직접 자바스크립트를 실행해 볼 수도 있습니다. 예: location.href를 입력하면 현재 페이지 주소가 표시됩니다.
+
+  ———
+
+  ## 6. Network 탭 세부 팁
+
+  1. 필터: 상단에 Fetch/XHR을 선택하면 API 요청만 모아 볼 수 있습니다.
+  2. 상태 코드 색깔
+      - 200 (초록): 요청 성공
+      - 400/401/404 (빨강/주황): 내 요청이 잘못되었거나 권한이 없음
+      - 500 (빨강): 서버 내부 오류
+  3. 요청 세부 정보 보기
+      - 목록에서 특정 요청을 클릭하면 오른쪽에 세부 정보가 나옵니다.
+      - Headers: 어떤 URL에, 어떤 방법(GET/POST)으로 요청했는지, 어떤 응답 코드가 들어왔는지 확인.
+      - Request Payload: POST 요청에 보낸 데이터가 어떤 형식인지 볼 수 있음.
+      - Response: 서버가 어떤 메시지를 돌려주었는지 확인.
+  4. 빠르게 재요청: Right Click → Replay XHR을 누르면 같은 요청을 다시 보낼 수 있습니다.
+
+  ———
+
+  ## 7. 기본 디버깅 순서
+
+  1. 문제 발견: 화면이 안 뜨거나 예상과 다르게 동작한다.
+  2. 콘솔/Network 확인: 개발자 도구에서 에러 메시지와 API 응답을 체크한다.
+  3. 코드 위치로 이동: 메시지에 나온 파일/줄번호로 이동해 코드를 읽는다.
+  4. 로그 찍기: 변수 값을 출력해 실제로 무엇이 들어왔는지 확인한다.
+  5. 수정 후 테스트: 문제를 고친 뒤 새로고침 또는 서버 재시작을 하고 다시 실행해 본다.
+
+  ———
+
+  ## 8. 자주 보는 에러와 해결법
+
+  | 에러 | 원인 | 해결 방법 |
+  | --- | --- | --- |
+  | Cannot read properties of undefined | 변수에 값이 들어오지 않았는데 속성을 읽으려 함 | 조건문으로 값이 있는지 확인하거나, 값을 넣어주는
+  코드를 수정 |
+  | Failed to fetch / net::ERR_CONNECTION_REFUSED | 서버가 실행 중이 아니거나 주소가 잘못됨 | npm run dev 실행 여부 확인, API URL에 오타 없
+  는지 확인 |
+  | Unauthorized (401) | 로그인 토큰이 없거나 만료됨 | 로그인 페이지로 이동해 다시 로그인해 토큰을 수령 |
+  | E11000 duplicate key error | MongoDB에서 고유 키(SKU, 이메일 등)가 중복 | 다른 값으로 입력하거나 중복 검사를 추가 |
+  | Cannot find module 'xxx' | 필요한 패키지가 설치되지 않음 | /server 또는 /client 폴더에서 npm install 실행 |
+  | Cross-Origin Request Blocked | CORS 정책에 막힘 | 서버 cors 설정에서 프런트 URL을 허용했는지 확인 |
+
+  ———
+
+  ## 9. 구조적으로 생각하기
+
+  에러를 고칠 때는 항상 “어디에서 문제가 생겼지?” → “왜 생겼지?” → “어떻게 고칠까?” 세 단계로 접근하세요. 에러 하나가 전부를 망가뜨리는 듯
+  느껴질 때도 있지만, 차근차근 한 부분씩 해결하면 어느새 모든 문제가 사라져 있을 거예요.
+
+  다음 장에서 더 복잡한 기능을 추가할 때도 이 디버깅 기본기를 계속 활용하면 좋습니다.
+

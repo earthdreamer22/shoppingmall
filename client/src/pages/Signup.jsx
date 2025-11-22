@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createEmptyUser, USER_ROLES } from '../../models/userModel.js';
-import { registerUser } from '../../controllers/userController.js';
+import { createEmptyUser, USER_ROLES } from '../models/userModel.js';
+import { registerUser } from '../controllers/userController.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import '../App.css';
 
