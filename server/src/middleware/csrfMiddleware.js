@@ -2,7 +2,7 @@ const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS'];
 const CSRF_COOKIE_NAME = 'csrfToken';
 const CSRF_HEADER_NAME = 'x-csrf-token';
 
-const EXCLUDED_PATHS = ['/api/auth/login', '/api/users', '/api/payments/webhook'];
+const EXCLUDED_PATHS = ['/api/auth/login', '/api/auth/logout', '/api/users', '/api/payments/webhook'];
 
 function isExcludedPath(path) {
   return EXCLUDED_PATHS.some((excluded) => path.startsWith(excluded));
