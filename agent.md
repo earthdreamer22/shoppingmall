@@ -64,3 +64,246 @@
 - 주문 생성 시 결제 정보(impUid, merchantUid)를 필수로 받고 포트원 REST API로 상태/금액을 검증한 뒤 주문 상태를 `paid` 또는 `pending`으로 저장합니다. 저장된 주문에는 결제 식별자·PG 정보·카드사 정보가 함께 남습니다.
 - 체크아웃 페이지는 포트원 JS SDK를 로드해 `IMP.request_pay`로 KG이니시스 테스트 결제창을 호출하고, 결제 성공 시 `/api/orders`에 검증 요청을 보냅니다.
 - 서버 `.env`에는 `PORTONE_CHANNEL_KEY`, `PORTONE_PG_PROVIDER`, `PORTONE_PG_MID`, `PORTONE_SIGNKEY`, `PORTONE_IMP_KEY`, `PORTONE_IMP_SECRET`, `PORTONE_CUSTOMER_CODE`를, 클라이언트 `.env`에는 `VITE_PORTONE_CUSTOMER_CODE`, `VITE_PORTONE_PG`, `VITE_PORTONE_PG_MID`를 설정해야 합니다.
+
+---
+
+## 배포 및 운영 환경 구성
+
+### Vercel (프런트엔드) 배포
+1. **저장소 연결**: GitHub 저장소를 Vercel에 연결하고 `client` 폴더를 Root Directory로 설정합니다.
+2. **빌드 설정**:
+   - Framework Preset: Vite
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. **환경 변수** (Vercel Dashboard → Settings → Environment Variables):
+   ```
+   VITE_API_BASE_URL=/api
+   VITE_CLOUDINARY_CLOUD_NAME=your_cloud_name
+   VITE_CLOUDINARY_UPLOAD_PRESET=your_preset
+   VITE_PORTONE_STORE_ID=your_store_id (심사 완료 후)
+   VITE_PORTONE_CHANNEL_KEY=your_channel_key (심사 완료 후)
+   ```
+
+### Render (백엔드) 배포
+1. **Web Service 생성**: GitHub 저장소 연결, Root Directory를 `server`로 설정
+2. **빌드 설정**:
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+3. **환경 변수** (Render Dashboard → Environment):
+   ```
+   NODE_ENV=production
+   PORT=10000
+   MONGODB_URI=mongodb+srv://...
+   JWT_SECRET=your_secret
+   JWT_EXPIRES_MINUTES=60
+   CLIENT_ORIGIN=https://your-domain.com,https://your-app.vercel.app
+   COOKIE_SAMESITE=none
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   PORTONE_API_SECRET=your_api_secret (심사 완료 후)
+   ```
+
+### Vercel Rewrites (API 프록시 설정)
+크로스 도메인 쿠키 문제를 해결하기 위해 `client/vercel.json`에 API 프록시를 설정합니다:
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://your-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+- 첫 번째 규칙: `/api/*` 요청을 Render 백엔드로 프록시
+- 두 번째 규칙: SPA 라우팅을 위한 fallback (페이지 새로고침 시 404 방지)
+
+### CORS 설정 (server/src/app.js)
+```javascript
+const allowedOrigins = process.env.CLIENT_ORIGIN
+  ? process.env.CLIENT_ORIGIN.split(',').map(o => o.trim())
+  : [];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    // Vercel 프리뷰 도메인 자동 허용
+    if (origin.endsWith('-your-project.vercel.app')) {
+      return callback(null, true);
+    }
+    callback(new Error('CORS not allowed'));
+  },
+  credentials: true
+}));
+```
+
+### 커스텀 도메인 연결 (Cloudflare + Vercel)
+1. **도메인 구매**: Cloudflare Registrar에서 도메인 구매 (예: yuu-haru.com)
+2. **Vercel 도메인 설정**: Vercel Dashboard → Settings → Domains에서 도메인 추가
+3. **Cloudflare DNS 설정**:
+   - `www` → CNAME → `cname.vercel-dns.com` (Proxied 해제)
+   - `@` (apex) → A → `76.76.21.21` (Proxied 해제)
+4. **CLIENT_ORIGIN 업데이트**: Render 환경변수에 새 도메인 추가
+
+---
+
+## 법적 요구사항 및 PG사 심사 준비
+
+### Footer 사업자 정보 표시
+전자상거래법에 따라 Footer에 다음 정보를 필수로 표시해야 합니다:
+- 상호명
+- 대표자명
+- 사업자등록번호
+- 사업장 주소
+- 담당자 이메일/연락처
+
+**구현 파일**:
+- `client/src/components/Footer.jsx` - 사업자 정보 컴포넌트
+- `client/src/components/Footer.css` - Footer 스타일
+
+### 이용약관 페이지 (/terms)
+전자상거래 표준약관을 기반으로 다음 조항을 포함:
+1. 목적
+2. 정의
+3. 약관의 명시와 개정
+4. 서비스의 제공 및 변경
+5. 서비스의 중단
+6. 회원가입
+7. 회원 탈퇴 및 자격 상실
+8. 구매신청
+9. 결제방법
+10. 배송
+11. 청약철회 및 환불
+12. 개인정보보호
+13. 분쟁해결
+
+**구현 파일**: `client/src/pages/Terms.jsx`
+
+### 개인정보처리방침 페이지 (/privacy)
+개인정보보호법에 따라 다음 내용을 포함:
+1. 개인정보의 수집 및 이용 목적
+2. 수집하는 개인정보의 항목
+3. 개인정보의 보유 및 이용기간
+4. 개인정보의 제3자 제공 (배송업체, PG사)
+5. 개인정보 처리의 위탁
+6. 정보주체의 권리·의무 및 행사방법
+7. 개인정보의 파기
+8. 개인정보의 안전성 확보조치
+9. 개인정보 보호책임자 (이름, 연락처)
+10. 권익침해 구제방법
+11. 개인정보 처리방침 변경
+
+**구현 파일**: `client/src/pages/Privacy.jsx`
+
+### 공통 스타일
+**구현 파일**: `client/src/pages/Legal.css` - 이용약관/개인정보처리방침 공통 스타일
+
+### App.jsx 라우트 추가
+```javascript
+import Terms from './pages/Terms.jsx';
+import Privacy from './pages/Privacy.jsx';
+import Footer from './components/Footer.jsx';
+
+// Routes 내부에 추가
+<Route path="/terms" element={<Terms />} />
+<Route path="/privacy" element={<Privacy />} />
+
+// Routes 종료 후 Footer 추가
+<Footer />
+```
+
+---
+
+## PG사 (결제대행사) 연동
+
+### PortOne 가입 및 설정
+1. **PortOne 가입**: https://admin.portone.io 에서 계정 생성
+2. **PG사 선택**: 추천 패키지로 다음 PG사 선택
+   - **KG이니시스** - 신용카드 일반결제 (필수)
+   - **카카오페이** - 간편결제 (권장)
+   - **네이버페이** - 간편결제 (선택, 심사 까다로움)
+3. **채널 등록**: 각 PG사별로 채널 등록 및 정보 입력
+   - 웹사이트명: 쇼핑몰 브랜드명 (예: 종이책연구소)
+   - 웹사이트 도메인: 실제 도메인 (예: yuu-haru.com)
+   - 개발방식: 자체개발
+   - 배송/서비스 기간: 결제 후 1~3일 이내 배송
+
+### PG사 심사 필요 서류 (개인사업자)
+1. 사업자등록증 사본
+2. 대표자 신분증 사본
+3. 통장 사본 (대표자 명의)
+4. 인감증명서 원본 (3개월 이내)
+5. 보증보험증권 (심사 후 필요시)
+
+### 심사 기간
+- 일반적으로 3~7일 소요
+- 네이버페이는 사이트 완성도 검증이 까다로움 (이용약관, 개인정보처리방침, 사업자 정보 필수)
+
+### 환경변수 설정 (심사 완료 후)
+**Vercel (클라이언트)**:
+```
+VITE_PORTONE_STORE_ID=store_xxx
+VITE_PORTONE_CHANNEL_KEY=channel_xxx
+```
+
+**Render (서버)**:
+```
+PORTONE_API_SECRET=api_secret_xxx
+```
+
+### 테스트 모드
+- 심사 대기 중에도 테스트 채널로 개발 가능
+- PortOne 콘솔 → 연동 관리 → 연동 정보에서 테스트 키 확인
+
+---
+
+## 체크리스트: 새 쇼핑몰 구축 시
+
+### 1. 개발 환경 설정
+- [ ] 프런트엔드: Vite + React 프로젝트 생성
+- [ ] 백엔드: Express + Mongoose 프로젝트 생성
+- [ ] MongoDB Atlas 클러스터 생성 및 연결
+- [ ] Cloudinary 계정 생성 및 Upload Preset 설정
+
+### 2. 핵심 기능 구현
+- [ ] 사용자 인증 (회원가입, 로그인, JWT)
+- [ ] 상품 관리 (CRUD, 이미지 업로드)
+- [ ] 장바구니 기능
+- [ ] 주문 및 결제 기능
+- [ ] 관리자 대시보드
+
+### 3. 배포 준비
+- [ ] Vercel 프로젝트 생성 및 환경변수 설정
+- [ ] Render 서비스 생성 및 환경변수 설정
+- [ ] vercel.json API 프록시 설정
+- [ ] CORS 설정 (CLIENT_ORIGIN)
+
+### 4. 도메인 연결
+- [ ] 도메인 구매 (Cloudflare, Namecheap 등)
+- [ ] DNS 설정 (CNAME, A 레코드)
+- [ ] SSL 인증서 확인 (Vercel 자동)
+
+### 5. 법적 요구사항
+- [ ] 사업자등록 완료
+- [ ] Footer에 사업자 정보 표시
+- [ ] 이용약관 페이지 작성
+- [ ] 개인정보처리방침 페이지 작성
+
+### 6. PG사 연동
+- [ ] PortOne 계정 생성
+- [ ] PG사 선택 및 채널 등록
+- [ ] 심사 서류 제출
+- [ ] 심사 완료 후 실결제 키 설정
+
+### 7. 최종 검증
+- [ ] 회원가입/로그인 테스트
+- [ ] 상품 등록/수정/삭제 테스트
+- [ ] 장바구니 → 결제 → 주문완료 플로우 테스트
+- [ ] 모바일 반응형 확인
+- [ ] 이용약관/개인정보처리방침 링크 확인

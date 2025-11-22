@@ -1170,6 +1170,18 @@ textarea {
   .image-card {
     width: 45%;
   }
+
+  .detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-info {
+    order: 2;
+  }
+
+  .detail-gallery {
+    order: 1;
+  }
 }
 
 .inline-field {
