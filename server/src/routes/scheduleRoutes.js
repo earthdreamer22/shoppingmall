@@ -1,7 +1,7 @@
 const express = require('express');
 const Schedule = require('../models/Schedule');
 const { asyncHandler } = require('../utils/asyncHandler');
-const { authenticateToken, requireAdmin } = require('../middleware/authMiddleware');
+const { authenticate, authorize } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -34,8 +34,8 @@ router.get(
 // 관리자 API: 일정 생성/수정
 router.post(
   '/',
-  authenticateToken,
-  requireAdmin,
+  authenticate,
+  authorize('admin'),
   asyncHandler(async (req, res) => {
     const { date, status, note } = req.body;
 
@@ -59,8 +59,8 @@ router.post(
 // 관리자 API: 일정 삭제
 router.delete(
   '/:id',
-  authenticateToken,
-  requireAdmin,
+  authenticate,
+  authorize('admin'),
   asyncHandler(async (req, res) => {
     const { id } = req.params;
 
@@ -73,8 +73,8 @@ router.delete(
 // 관리자 API: 일괄 업데이트
 router.put(
   '/bulk',
-  authenticateToken,
-  requireAdmin,
+  authenticate,
+  authorize('admin'),
   asyncHandler(async (req, res) => {
     const { schedules } = req.body;
 
