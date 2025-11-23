@@ -103,6 +103,15 @@ function Schedule() {
 
   return (
     <div className="App schedule-page">
+      {/* 히어로 이미지 */}
+      <div className="page-hero">
+        <img
+          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80"
+          alt="책장 이미지"
+          className="page-hero__image"
+        />
+      </div>
+
       <section className="schedule-section">
         <div className="schedule-header">
           <span className="schedule-header__icon">📅</span>

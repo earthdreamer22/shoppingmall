@@ -3,6 +3,15 @@ import '../App.css';
 function Inquiry() {
   return (
     <div className="App inquiry-page">
+      {/* 히어로 이미지 */}
+      <div className="page-hero">
+        <img
+          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80"
+          alt="책장 이미지"
+          className="page-hero__image"
+        />
+      </div>
+
       <section className="inquiry-section">
         <h2>맞춤 제본, 수선 문의</h2>
         <p className="inquiry-subtitle">&</p>
