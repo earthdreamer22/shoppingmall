@@ -739,8 +739,7 @@ section {
 }
 
 .product-body {
-  flex: 1;
-  padding: 16px;
+  display: none;
 }
 
 .product-body h3 {
@@ -1184,10 +1183,6 @@ textarea {
 
   .detail-gallery {
     order: 1;
-  }
-
-  .product-body {
-    display: none;
   }
 }
 
