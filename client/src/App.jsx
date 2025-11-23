@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home.jsx';
+import Welcome from './pages/Welcome.jsx';
+import Shop from './pages/Shop.jsx';
+import Schedule from './pages/Schedule.jsx';
+import Inquiry from './pages/Inquiry.jsx';
+import Design from './pages/Design.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import Admin from './pages/Admin.jsx';
@@ -20,7 +24,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/inquiry" element={<Inquiry />} />
+          <Route path="/design" element={<Design />} />
+          <Route path="/class" element={<Shop />} />
+          <Route path="/repair" element={<Shop />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />

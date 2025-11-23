@@ -14,46 +14,45 @@ function Navbar() {
     }
   };
 
-  const displayName = user?.name || user?.email || '사용자';
-
   return (
     <nav className="navbar">
+      {/* 좌측: 로고 */}
       <Link to="/" className="navbar__brand">
-        종이책 연구소
+        종이책연구소
       </Link>
 
-      <div className="navbar__links">
-        {user?.role === 'admin' && (
-          <Link to="/admin" className="navbar__link">
-            관리자 대시보드
-          </Link>
-        )}
+      {/* 중앙: 메인 메뉴 (6개) */}
+      <div className="navbar__menu">
+        <Link to="/" className="navbar__menu-item">welcome</Link>
+        <Link to="/schedule" className="navbar__menu-item">class schedule</Link>
+        <Link to="/inquiry" className="navbar__menu-item">제본/수선/수업 문의</Link>
+        <Link to="/shop" className="navbar__menu-item">NOTE SHOP</Link>
+        <Link to="/class" className="navbar__menu-item">class&repair</Link>
+        <Link to="/design" className="navbar__menu-item">Book design</Link>
       </div>
 
+      {/* 우측: 사용자 액션 */}
       <div className="navbar__actions">
         {loading ? (
           <span className="navbar__status">로딩 중...</span>
         ) : user ? (
           <>
+            {user.role === 'admin' && (
+              <Link to="/admin" className="navbar__button">관리자</Link>
+            )}
             <Link to="/cart" className="navbar__button navbar__button--cart">
               장바구니
               {cartCount > 0 && <span className="navbar__cart-badge">{cartCount}</span>}
             </Link>
-            <Link to="/mypage" className="navbar__button">
-              마이페이지
-            </Link>
+            <Link to="/mypage" className="navbar__button">my</Link>
             <button type="button" onClick={handleLogout} className="navbar__button">
               로그아웃
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="navbar__button">
-              로그인
-            </Link>
-            <Link to="/signup" className="navbar__button navbar__button--primary">
-              회원가입
-            </Link>
+            <Link to="/login" className="navbar__button">로그인</Link>
+            <Link to="/signup" className="navbar__button navbar__button--primary">회원가입</Link>
           </>
         )}
       </div>

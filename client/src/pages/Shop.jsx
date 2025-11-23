@@ -7,7 +7,7 @@ import { PRODUCT_CATEGORIES, getCategoryLabel } from '../lib/productCategories.j
 
 const CATEGORY_FILTERS = [{ value: 'all', label: '전체' }, ...PRODUCT_CATEGORIES];
 
-function Home() {
+function Shop() {
   const { user, setCartCount } = useAuth();
   const navigate = useNavigate();
 
@@ -147,4 +147,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Shop;
