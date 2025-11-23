@@ -1171,6 +1171,9 @@ textarea {
     width: 45%;
   }
 
+}
+
+@media (max-width: 1024px) {
   .detail-hero {
     grid-template-columns: 1fr;
   }
