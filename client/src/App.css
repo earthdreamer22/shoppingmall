@@ -1638,11 +1638,13 @@ textarea {
 /* ===== Page Hero ===== */
 .page-hero {
   margin: 0 auto 30px;
-  max-width: 800px;
+  max-width: 600px;
+  text-align: center;
 }
 
 .page-hero__image {
   width: 100%;
+  max-width: 600px;
   height: auto;
   border-radius: 12px;
   display: block;
