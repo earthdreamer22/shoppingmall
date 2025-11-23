@@ -14,10 +14,6 @@ function Navbar() {
     }
   };
 
-  const handleCartClick = () => {
-    navigate('/', { state: { focus: 'cart' } });
-  };
-
   const displayName = user?.name || user?.email || '사용자';
 
   return (
@@ -39,11 +35,13 @@ function Navbar() {
           <span className="navbar__status">로딩 중...</span>
         ) : user ? (
           <>
-            <span className="navbar__greeting">{displayName}님 반갑습니다.</span>
-            <button type="button" onClick={handleCartClick} className="navbar__button navbar__button--cart">
+            <Link to="/cart" className="navbar__button navbar__button--cart">
               장바구니
               {cartCount > 0 && <span className="navbar__cart-badge">{cartCount}</span>}
-            </button>
+            </Link>
+            <Link to="/mypage" className="navbar__button">
+              마이페이지
+            </Link>
             <button type="button" onClick={handleLogout} className="navbar__button">
               로그아웃
             </button>
@@ -51,10 +49,10 @@ function Navbar() {
         ) : (
           <>
             <Link to="/login" className="navbar__button">
-              log in
+              로그인
             </Link>
             <Link to="/signup" className="navbar__button navbar__button--primary">
-              sign up
+              회원가입
             </Link>
           </>
         )}
