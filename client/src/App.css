@@ -1179,11 +1179,7 @@ textarea {
   }
 
   .detail-info {
-    order: 2;
-  }
-
-  .detail-gallery {
-    order: 1;
+    display: none;
   }
 }
 
