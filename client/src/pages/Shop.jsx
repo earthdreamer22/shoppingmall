@@ -1,25 +1,23 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
-import { PRODUCT_CATEGORIES, getCategoryLabel } from '../lib/productCategories.js';
-
-const CATEGORY_FILTERS = [{ value: 'all', label: '전체' }, ...PRODUCT_CATEGORIES];
+import { getCategoryLabel } from '../lib/productCategories.js';
 
 function Shop() {
   const { user, setCartCount } = useAuth();
   const navigate = useNavigate();
+  const { category } = useParams();
 
   const [products, setProducts] = useState([]);
   const [statusMessage, setStatusMessage] = useState('');
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('all');
 
   const fetchProducts = useCallback(async () => {
     setIsLoadingProducts(true);
     try {
-      const query = activeCategory === 'all' ? '' : `?category=${activeCategory}`;
+      const query = category ? `?category=${category}` : '';
       const data = await apiRequest(`/products${query}`);
       setProducts(data);
     } catch (error) {
@@ -27,7 +25,7 @@ function Shop() {
     } finally {
       setIsLoadingProducts(false);
     }
-  }, [activeCategory]);
+  }, [category]);
 
   useEffect(() => {
     fetchProducts();
@@ -35,7 +33,7 @@ function Shop() {
 
   useEffect(() => {
     setStatusMessage('');
-  }, [activeCategory]);
+  }, [category]);
 
   const handleAddToCart = async (productId) => {
     if (!user) {
@@ -59,16 +57,16 @@ function Shop() {
     }
   };
 
-  const activeCategoryLabel = useMemo(
-    () => (activeCategory === 'all' ? '전체' : getCategoryLabel(activeCategory)),
-    [activeCategory],
-  );
+  const pageTitle = useMemo(() => {
+    if (!category) return '전체 상품';
+    return getCategoryLabel(category);
+  }, [category]);
 
   return (
     <div className="App">
       <header>
-        <h1>종이책 연구소</h1>
-        <p>종이책 연구소의 온라인 쇼핑몰입니다.</p>
+        <h1>{pageTitle}</h1>
+        <p>종이책 연구소의 {pageTitle} 목록입니다.</p>
       </header>
 
       {statusMessage && <div className="status">{statusMessage}</div>}
@@ -80,19 +78,6 @@ function Shop() {
             <button type="button" onClick={fetchProducts} disabled={isLoadingProducts}>
               새로고침
             </button>
-          </div>
-          <div className="category-filters">
-            {CATEGORY_FILTERS.map((filter) => (
-              <button
-                key={filter.value}
-                type="button"
-                className={`category-pill ${activeCategory === filter.value ? 'is-active' : ''}`}
-                onClick={() => setActiveCategory(filter.value)}
-                disabled={isLoadingProducts && activeCategory === filter.value}
-              >
-                {filter.label}
-              </button>
-            ))}
           </div>
 
           {isLoadingProducts ? (
@@ -138,7 +123,7 @@ function Shop() {
             </div>
           ) : (
             <p className="muted-text">
-              {activeCategoryLabel} 카테고리에 등록된 상품이 없습니다.
+              {pageTitle} 카테고리에 등록된 상품이 없습니다.
             </p>
           )}
         </section>

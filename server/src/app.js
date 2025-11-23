@@ -12,6 +12,7 @@ const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const authRoutes = require('./routes/authRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const scheduleRoutes = require('./routes/scheduleRoutes');
 const { csrfProtection } = require('./middleware/csrfMiddleware');
 const { rateLimiter } = require('./middleware/rateLimitMiddleware');
 
@@ -58,6 +59,7 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/schedules', scheduleRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: `${req.originalUrl} 경로를 찾을 수 없습니다.` });

@@ -25,12 +25,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:category" element={<Shop />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/inquiry" element={<Inquiry />} />
           <Route path="/design" element={<Design />} />
-          <Route path="/class" element={<Shop />} />
-          <Route path="/repair" element={<Shop />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
