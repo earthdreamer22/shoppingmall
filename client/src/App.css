@@ -1173,13 +1173,13 @@ textarea {
 
 }
 
+.detail-info {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .detail-hero {
     grid-template-columns: 1fr;
-  }
-
-  .detail-info {
-    display: none;
   }
 }
 
