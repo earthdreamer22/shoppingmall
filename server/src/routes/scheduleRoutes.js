@@ -1,6 +1,6 @@
 const express = require('express');
 const Schedule = require('../models/Schedule');
-const asyncHandler = require('../utils/asyncHandler');
+const { asyncHandler } = require('../utils/asyncHandler');
 const { authenticateToken, requireAdmin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
