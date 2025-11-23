@@ -27,7 +27,8 @@ function Navbar() {
         <Link to="/schedule" className="navbar__menu-item">class schedule</Link>
         <Link to="/inquiry" className="navbar__menu-item">제본/수선/수업 문의</Link>
         <Link to="/shop" className="navbar__menu-item">NOTE SHOP</Link>
-        <Link to="/class" className="navbar__menu-item">class&repair</Link>
+        <Link to="/class" className="navbar__menu-item">class</Link>
+        <Link to="/repair" className="navbar__menu-item">Book repair</Link>
         <Link to="/design" className="navbar__menu-item">Book design</Link>
       </div>
 

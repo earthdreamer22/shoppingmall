@@ -35,6 +35,26 @@ body {
   justify-content: center;
 }
 
+.navbar__menu {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar__menu-item {
+  color: #cbd5f5;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.navbar__menu-item:hover {
+  color: white;
+}
+
 .navbar__link {
   color: #cbd5f5;
   text-decoration: none;
