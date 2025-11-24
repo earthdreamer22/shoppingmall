@@ -38,21 +38,21 @@ function Navbar() {
         ) : user ? (
           <>
             {user.role === 'admin' && (
-              <Link to="/admin" className="navbar__button">관리자</Link>
+              <Link to="/admin" className="navbar__menu-item">admin</Link>
             )}
-            <Link to="/cart" className="navbar__button navbar__button--cart">
-              장바구니
+            <Link to="/cart" className="navbar__menu-item navbar__menu-item--cart">
+              cart
               {cartCount > 0 && <span className="navbar__cart-badge">{cartCount}</span>}
             </Link>
-            <Link to="/mypage" className="navbar__button">my</Link>
-            <button type="button" onClick={handleLogout} className="navbar__button">
-              로그아웃
+            <Link to="/mypage" className="navbar__menu-item">myPage</Link>
+            <button type="button" onClick={handleLogout} className="navbar__menu-item navbar__menu-item--button">
+              Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="navbar__button">로그인</Link>
-            <Link to="/signup" className="navbar__button navbar__button--primary">회원가입</Link>
+            <Link to="/login" className="navbar__menu-item">Log in</Link>
+            <Link to="/signup" className="navbar__menu-item">Sign up</Link>
           </>
         )}
       </div>
