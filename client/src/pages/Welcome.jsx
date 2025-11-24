@@ -31,10 +31,9 @@ function Welcome() {
 
       {/* 외부 링크 */}
       <div className="welcome-external-links">
-        <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer">BLOG</a>
-        <a href="https://instagram.com/bookharu.kr" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+        <a href="https://blog.naver.com/ear-ly-" target="_blank" rel="noopener noreferrer">BLOG</a>
+        <a href="https://www.instagram.com/paperbook.haru/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
         <a href="https://pf.kakao.com" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
       </div>
 
       {/* 퀵 메뉴 */}
