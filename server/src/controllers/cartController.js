@@ -26,6 +26,7 @@ function formatCart(cartDoc) {
       imageUrl: primaryImage?.url ?? '',
       primaryImage,
       description: product ? product.description : '',
+      selectedOptions: item.selectedOptions ?? [],
     };
   });
 
@@ -44,7 +45,7 @@ const getCart = asyncHandler(async (req, res) => {
 
 const addToCart = asyncHandler(async (req, res) => {
   const userId = await resolveUserId(req);
-  const { productId, quantity = 1 } = req.body;
+  const { productId, quantity = 1, selectedOptions = [] } = req.body;
 
   if (!productId) {
     return res.status(400).json({ message: 'productId가 필요합니다.' });
@@ -65,11 +66,18 @@ const addToCart = asyncHandler(async (req, res) => {
     cart = await Cart.create({ user: userId, items: [] });
   }
 
-  const existingItem = cart.items.find((item) => item.product.toString() === productId);
+  // 동일 상품 + 동일 옵션 조합인지 확인
+  const optionsKey = JSON.stringify(selectedOptions.sort((a, b) => a.name.localeCompare(b.name)));
+  const existingItem = cart.items.find((item) => {
+    if (item.product.toString() !== productId) return false;
+    const itemOptionsKey = JSON.stringify((item.selectedOptions || []).sort((a, b) => a.name.localeCompare(b.name)));
+    return itemOptionsKey === optionsKey;
+  });
+
   if (existingItem) {
     existingItem.quantity += numericQuantity;
   } else {
-    cart.items.push({ product: productId, quantity: numericQuantity });
+    cart.items.push({ product: productId, quantity: numericQuantity, selectedOptions });
   }
 
   await cart.save();

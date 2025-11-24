@@ -9,6 +9,25 @@ const imageSchema = new Schema(
   { _id: false },
 );
 
+const detailBlockSchema = new Schema(
+  {
+    type: { type: String, enum: ['text', 'image', 'notice'], required: true },
+    content: { type: String, default: '' },
+    url: { type: String },
+    publicId: { type: String },
+  },
+  { _id: false },
+);
+
+const optionSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    values: [{ type: String }],
+    required: { type: Boolean, default: false },
+  },
+  { _id: false },
+);
+
 const CATEGORIES = ['book_repair', 'class', 'shop'];
 
 const productSchema = new Schema(
@@ -19,6 +38,8 @@ const productSchema = new Schema(
     category: { type: String, required: true, enum: CATEGORIES },
     shippingFee: { type: Number, default: 3000, min: 0 },
     description: { type: String, default: '' },
+    detailBlocks: { type: [detailBlockSchema], default: [] },
+    options: { type: [optionSchema], default: [] },
     images: {
       type: [imageSchema],
       validate: {

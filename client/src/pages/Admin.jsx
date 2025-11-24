@@ -42,6 +42,8 @@ function createEmptyProduct() {
     category: PRODUCT_CATEGORIES[0].value,
     shippingFee: 3000,
     description: '',
+    detailBlocks: [],
+    options: [],
     images: [],
   };
 }
@@ -405,6 +407,8 @@ function Admin() {
         category: form.category,
         shippingFee: Number(form.shippingFee) || 0,
         description: form.description,
+        detailBlocks: form.detailBlocks,
+        options: form.options,
         images: form.images.map(({ publicId, url, isPrimary }) => ({ publicId, url, isPrimary })),
         primaryImagePublicId: primaryImage.publicId,
       };
@@ -446,6 +450,8 @@ function Admin() {
       category: product.category ?? PRODUCT_CATEGORIES[0].value,
       shippingFee: product.shippingFee != null ? String(product.shippingFee) : '3000',
       description: product.description ?? '',
+      detailBlocks: product.detailBlocks ?? [],
+      options: product.options ?? [],
       images: (product.images ?? []).map((image) => ({
         publicId: image.publicId,
         url: image.url,
@@ -735,7 +741,7 @@ function Admin() {
                 <small className="muted-text">상품별 기본 배송비입니다. 500원 단위로 입력하세요.</small>
               </label>
               <label className="full-width">
-                상품 설명
+                상품 설명 (간략)
                 <textarea
                   name="description"
                   value={form.description}
@@ -743,6 +749,212 @@ function Admin() {
                   placeholder="상품 상세 설명을 입력해주세요."
                 />
               </label>
+            </div>
+
+            <div className="detail-blocks-editor">
+              <div className="detail-blocks-header">
+                <h3>상세 페이지 블록 편집</h3>
+                <div className="detail-blocks-actions">
+                  <button type="button" onClick={() => setForm((prev) => ({
+                    ...prev,
+                    detailBlocks: [...prev.detailBlocks, { type: 'text', content: '' }]
+                  }))}>+ 텍스트</button>
+                  <button type="button" onClick={() => setForm((prev) => ({
+                    ...prev,
+                    detailBlocks: [...prev.detailBlocks, { type: 'notice', content: '' }]
+                  }))}>+ 주의사항</button>
+                </div>
+              </div>
+              <p className="muted-text">텍스트, 이미지, 주의사항을 순서대로 배치하여 상세 페이지를 구성합니다.</p>
+
+              {form.detailBlocks.length === 0 && (
+                <p className="muted-text">등록된 블록이 없습니다. 위 버튼으로 블록을 추가하세요.</p>
+              )}
+
+              <div className="detail-blocks-list">
+                {form.detailBlocks.map((block, index) => (
+                  <div key={index} className={`detail-block detail-block--${block.type}`}>
+                    <div className="detail-block-header">
+                      <span className="detail-block-type">
+                        {block.type === 'text' && '텍스트'}
+                        {block.type === 'image' && '이미지'}
+                        {block.type === 'notice' && '주의사항'}
+                      </span>
+                      <div className="detail-block-controls">
+                        {index > 0 && (
+                          <button type="button" onClick={() => {
+                            const newBlocks = [...form.detailBlocks];
+                            [newBlocks[index - 1], newBlocks[index]] = [newBlocks[index], newBlocks[index - 1]];
+                            setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
+                          }}>↑</button>
+                        )}
+                        {index < form.detailBlocks.length - 1 && (
+                          <button type="button" onClick={() => {
+                            const newBlocks = [...form.detailBlocks];
+                            [newBlocks[index], newBlocks[index + 1]] = [newBlocks[index + 1], newBlocks[index]];
+                            setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
+                          }}>↓</button>
+                        )}
+                        <button type="button" className="danger" onClick={() => {
+                          setForm((prev) => ({
+                            ...prev,
+                            detailBlocks: prev.detailBlocks.filter((_, i) => i !== index)
+                          }));
+                        }}>삭제</button>
+                      </div>
+                    </div>
+
+                    {(block.type === 'text' || block.type === 'notice') && (
+                      <textarea
+                        value={block.content}
+                        onChange={(e) => {
+                          const newBlocks = [...form.detailBlocks];
+                          newBlocks[index] = { ...block, content: e.target.value };
+                          setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
+                        }}
+                        placeholder={block.type === 'notice' ? '주의사항 내용을 입력하세요.' : '텍스트 내용을 입력하세요.'}
+                        rows={4}
+                      />
+                    )}
+
+                    {block.type === 'image' && (
+                      <div className="detail-block-image">
+                        {block.url ? (
+                          <img src={block.url} alt="상세 이미지" />
+                        ) : (
+                          <p className="muted-text">이미지가 없습니다.</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="detail-blocks-image-upload">
+                <button type="button" onClick={() => {
+                  if (!widgetRef.current) {
+                    setStatusType('error');
+                    setStatus(widgetMessage || '이미지 업로드 위젯을 사용할 수 없습니다.');
+                    return;
+                  }
+                  // 상세 이미지 업로드용 임시 핸들러 설정
+                  const originalHandler = widgetRef.current;
+                  widgetRef.current = window.cloudinary.createUploadWidget(
+                    {
+                      cloudName,
+                      uploadPreset,
+                      multiple: false,
+                      maxFiles: 1,
+                      resourceType: 'image',
+                      folder: 'shoppingmall/details',
+                    },
+                    (error, result) => {
+                      if (error) {
+                        console.error('[cloudinary] detail image error', error);
+                        return;
+                      }
+                      if (result && result.event === 'success') {
+                        const info = result.info;
+                        setForm((prev) => ({
+                          ...prev,
+                          detailBlocks: [...prev.detailBlocks, {
+                            type: 'image',
+                            url: info.secure_url ?? info.url,
+                            publicId: info.public_id,
+                            content: ''
+                          }]
+                        }));
+                      }
+                    }
+                  );
+                  widgetRef.current.open();
+                }} disabled={!widgetReady}>+ 상세 이미지 업로드</button>
+              </div>
+            </div>
+
+            <div className="options-editor">
+              <div className="options-header">
+                <h3>상품 옵션 설정</h3>
+                <button type="button" onClick={() => setForm((prev) => ({
+                  ...prev,
+                  options: [...prev.options, { name: '', values: [], required: false }]
+                }))}>+ 옵션 추가</button>
+              </div>
+              <p className="muted-text">상품 구매 시 선택할 수 있는 옵션을 설정합니다. (예: 디자인 선택, 색상 등)</p>
+
+              {form.options.length === 0 && (
+                <p className="muted-text">등록된 옵션이 없습니다.</p>
+              )}
+
+              <div className="options-list">
+                {form.options.map((option, index) => (
+                  <div key={index} className="option-item">
+                    <div className="option-header">
+                      <input
+                        type="text"
+                        value={option.name}
+                        onChange={(e) => {
+                          const newOptions = [...form.options];
+                          newOptions[index] = { ...option, name: e.target.value };
+                          setForm((prev) => ({ ...prev, options: newOptions }));
+                        }}
+                        placeholder="옵션명 (예: 내지디자인)"
+                      />
+                      <label className="option-required">
+                        <input
+                          type="checkbox"
+                          checked={option.required}
+                          onChange={(e) => {
+                            const newOptions = [...form.options];
+                            newOptions[index] = { ...option, required: e.target.checked };
+                            setForm((prev) => ({ ...prev, options: newOptions }));
+                          }}
+                        />
+                        필수
+                      </label>
+                      <button type="button" className="danger" onClick={() => {
+                        setForm((prev) => ({
+                          ...prev,
+                          options: prev.options.filter((_, i) => i !== index)
+                        }));
+                      }}>삭제</button>
+                    </div>
+                    <div className="option-values">
+                      <input
+                        type="text"
+                        placeholder="옵션값 입력 후 Enter (예: 만슬리, 라인)"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const value = e.target.value.trim();
+                            if (value && !option.values.includes(value)) {
+                              const newOptions = [...form.options];
+                              newOptions[index] = { ...option, values: [...option.values, value] };
+                              setForm((prev) => ({ ...prev, options: newOptions }));
+                              e.target.value = '';
+                            }
+                          }
+                        }}
+                      />
+                      <div className="option-tags">
+                        {option.values.map((val, vi) => (
+                          <span key={vi} className="option-tag">
+                            {val}
+                            <button type="button" onClick={() => {
+                              const newOptions = [...form.options];
+                              newOptions[index] = {
+                                ...option,
+                                values: option.values.filter((_, i) => i !== vi)
+                              };
+                              setForm((prev) => ({ ...prev, options: newOptions }));
+                            }}>×</button>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="image-upload">

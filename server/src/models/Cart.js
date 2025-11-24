@@ -1,9 +1,18 @@
 const { Schema, model } = require('mongoose');
 
+const selectedOptionSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    value: { type: String, required: true },
+  },
+  { _id: false },
+);
+
 const cartItemSchema = new Schema(
   {
     product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
     quantity: { type: Number, default: 1, min: 1 },
+    selectedOptions: { type: [selectedOptionSchema], default: [] },
   },
   {
     _id: true,

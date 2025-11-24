@@ -1,5 +1,13 @@
 const { Schema, model } = require('mongoose');
 
+const selectedOptionSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    value: { type: String, required: true },
+  },
+  { _id: false },
+);
+
 const orderItemSchema = new Schema(
   {
     product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
@@ -9,6 +17,7 @@ const orderItemSchema = new Schema(
     quantity: { type: Number, required: true, min: 1 },
     imageUrl: { type: String, default: '' },
     imagePublicId: { type: String, default: '' },
+    selectedOptions: { type: [selectedOptionSchema], default: [] },
   },
   {
     _id: true,

@@ -6,8 +6,8 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { getCategoryLabel } from '../lib/productCategories.js';
 
 function formatPrice(value) {
-  if (value == null) return '₩ -';
-  return `₩ ${Number(value).toLocaleString()}`;
+  if (value == null) return '-';
+  return `${Number(value).toLocaleString()}원`;
 }
 
 function ProductDetail() {
@@ -22,6 +22,7 @@ function ProductDetail() {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -68,12 +69,22 @@ function ProductDetail() {
       return;
     }
 
+    // 필수 옵션 검증
+    const requiredOptions = product.options?.filter((opt) => opt.required) ?? [];
+    for (const opt of requiredOptions) {
+      if (!selectedOptions[opt.name]) {
+        setStatus(`${opt.name}을(를) 선택해주세요.`);
+        return;
+      }
+    }
+
     setWorking(true);
     setStatus('');
     try {
+      const optionsArray = Object.entries(selectedOptions).map(([name, value]) => ({ name, value }));
       await apiRequest('/cart', {
         method: 'POST',
-        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+        body: JSON.stringify({ productId: product.id, quantity: 1, selectedOptions: optionsArray }),
       });
       setStatus('장바구니에 상품이 담겼습니다.');
 
@@ -111,8 +122,17 @@ function ProductDetail() {
     );
   }
 
+  const handleInquiry = () => {
+    // 카카오톡 채널 또는 문의 페이지로 이동
+    window.open('https://pf.kakao.com/_xkxkAn', '_blank');
+  };
+
   return (
     <div className="App detail-page">
+      <button type="button" className="floating-inquiry" onClick={handleInquiry}>
+        <span className="inquiry-icon">💬</span>
+        <span>문의</span>
+      </button>
       <nav className="detail-breadcrumb">
         <button type="button" onClick={() => navigate(-1)}>
           ← 뒤로가기
@@ -149,14 +169,13 @@ function ProductDetail() {
 
         <aside className="detail-info">
           <h1>{product.name}</h1>
-          <p className="detail-sku">SKU {product.sku}</p>
           <div className="detail-price">{formatPrice(product.price)}</div>
           <div className="detail-tags">
             <span className="badge">{getCategoryLabel(product.category)}</span>
             {product.images?.length ? (
               <span className="badge badge--muted">이미지 {product.images.length}장</span>
             ) : null}
-            <span className="badge badge--muted">배송비 ₩ {(product.shippingFee ?? 0).toLocaleString()}</span>
+            <span className="badge badge--muted">배송비 {(product.shippingFee ?? 0).toLocaleString()}원</span>
           </div>
 
           {recombinedDescription.length ? (
@@ -169,16 +188,72 @@ function ProductDetail() {
             <p className="detail-description muted-text">상품 설명이 준비 중입니다.</p>
           )}
 
+          {product.options?.length > 0 && (
+            <div className="detail-options">
+              {product.options.map((option) => (
+                <div key={option.name} className="detail-option">
+                  <label className="detail-option-label">
+                    {option.name} {option.required && <span className="required">*</span>}
+                  </label>
+                  <select
+                    value={selectedOptions[option.name] || ''}
+                    onChange={(e) => setSelectedOptions((prev) => ({
+                      ...prev,
+                      [option.name]: e.target.value
+                    }))}
+                    className={option.required && !selectedOptions[option.name] ? 'required-select' : ''}
+                  >
+                    <option value="">{option.name} 선택{option.required ? ' (필수)' : ''}</option>
+                    {option.values.map((val) => (
+                      <option key={val} value={val}>{val}</option>
+                    ))}
+                  </select>
+                </div>
+              ))}
+            </div>
+          )}
+
           {status && <div className={`status ${status.startsWith('장바구니') ? '' : 'error'}`}>{status}</div>}
 
           <div className="detail-actions">
-            <button type="button" className="detail-primary" onClick={handleAddToCart} disabled={working}>
-              {working ? '처리 중...' : '장바구니에 담기'}
+            <button type="button" className="detail-buy" onClick={handleAddToCart} disabled={working}>
+              {working ? '처리 중...' : '구매하기'}
             </button>
-            <button type="button" className="detail-secondary" onClick={() => navigate('/')}>상품 목록으로</button>
+            <button type="button" className="detail-cart" onClick={handleAddToCart} disabled={working}>
+              {working ? '처리 중...' : '장바구니'}
+            </button>
           </div>
         </aside>
       </section>
+
+      {product.detailBlocks?.length > 0 && (
+        <section className="detail-content">
+          {product.detailBlocks.map((block, index) => (
+            <div key={index} className={`content-block content-block--${block.type}`}>
+              {block.type === 'text' && (
+                <div className="content-text">
+                  {block.content.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
+              {block.type === 'image' && block.url && (
+                <div className="content-image">
+                  <img src={block.url} alt="상세 이미지" />
+                </div>
+              )}
+              {block.type === 'notice' && (
+                <div className="content-notice">
+                  <h4>주의사항</h4>
+                  {block.content.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="detail-related">
