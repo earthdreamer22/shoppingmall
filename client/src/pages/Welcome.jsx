@@ -4,22 +4,14 @@ import '../App.css';
 function Welcome() {
   return (
     <div className="App welcome-page">
-      {/* 브랜드 영역 */}
-      <div className="welcome-brand">
-        <div className="welcome-logo">
-          <span className="welcome-logo__icon">📖</span>
-          <h1>종이책연구소</h1>
-        </div>
-        <p className="welcome-tagline">책을 만들고 수선합니다.</p>
+      {/* 로고 이미지 */}
+      <div className="welcome-logo-image">
+        <img src="/logo.jpg" alt="종이책연구소 로고" className="welcome-logo__img" />
       </div>
 
-      {/* 히어로 이미지 */}
+      {/* 배너 이미지 */}
       <div className="welcome-hero">
-        <img
-          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80"
-          alt="책장 이미지"
-          className="welcome-hero__image"
-        />
+        <img src="/banner.jpg" alt="종이책연구소 배너" className="welcome-hero__image" />
       </div>
 
       {/* 소개 문구 */}

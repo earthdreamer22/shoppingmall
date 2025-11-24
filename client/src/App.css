@@ -1528,30 +1528,15 @@ textarea {
   padding: 20px;
 }
 
-.welcome-brand {
+.welcome-logo-image {
   margin-bottom: 30px;
+  text-align: center;
 }
 
-.welcome-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.welcome-logo__icon {
-  font-size: 32px;
-}
-
-.welcome-logo h1 {
-  margin: 0;
-  font-size: 28px;
-  color: #1e1e2d;
-}
-
-.welcome-tagline {
-  color: #64748b;
-  margin-top: 8px;
+.welcome-logo__img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
 }
 
 .welcome-hero {
