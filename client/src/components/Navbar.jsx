@@ -29,7 +29,6 @@ function Navbar() {
         <Link to="/shop/shop" className="navbar__menu-item">NOTE SHOP</Link>
         <Link to="/shop/class" className="navbar__menu-item">class</Link>
         <Link to="/shop/book_repair" className="navbar__menu-item">Book repair</Link>
-        <Link to="/design" className="navbar__menu-item">Book design</Link>
       </div>
 
       {/* 우측: 사용자 액션 */}

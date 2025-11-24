@@ -4,6 +4,16 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="site-footer">
+      {/* 상단 네비게이션 메뉴 */}
+      <div className="footer-nav">
+        <Link to="/" className="footer-nav__item">welcome</Link>
+        <Link to="/schedule" className="footer-nav__item">class schedule</Link>
+        <Link to="/inquiry" className="footer-nav__item">제본/수선/수업 문의</Link>
+        <Link to="/shop/shop" className="footer-nav__item">NOTE SHOP</Link>
+        <Link to="/shop/class" className="footer-nav__item">class</Link>
+        <Link to="/shop/book_repair" className="footer-nav__item">Book repair</Link>
+      </div>
+
       <div className="footer-content">
         <div className="footer-section">
           <h3>종이책연구소</h3>

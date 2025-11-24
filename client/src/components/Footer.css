@@ -1,13 +1,38 @@
 .site-footer {
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
-  padding: 2rem 1rem;
+  padding: 0;
   margin-top: 3rem;
+}
+
+/* Footer 상단 네비게이션 */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.footer-nav__item {
+  color: #0f172a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.footer-nav__item:hover {
+  color: #3b82f6;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
