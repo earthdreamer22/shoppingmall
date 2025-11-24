@@ -36,22 +36,6 @@ function Welcome() {
         <a href="http://pf.kakao.com/_cqxltxj/friend" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
       </div>
 
-      {/* 퀵 메뉴 */}
-      <div className="welcome-quick-menu">
-        <Link to="/schedule" className="welcome-menu-item">
-          <span className="welcome-menu-item__check">✓</span>
-          수업일정
-        </Link>
-        <Link to="/inquiry" className="welcome-menu-item">
-          <span className="welcome-menu-item__check">✓</span>
-          제본&수선 상담
-        </Link>
-        <Link to="/inquiry" className="welcome-menu-item">
-          <span className="welcome-menu-item__check">✓</span>
-          클래스상담
-        </Link>
-      </div>
-
       {/* 문의 버튼 */}
       <a
         href="http://pf.kakao.com/_cqxltxj/friend"
