@@ -3,9 +3,7 @@ import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 
 const SCHEDULE_STATUS = {
-  available: { label: '수업 가능', color: '#22c55e' },
   unavailable: { label: '수업 불가', color: '#ef4444' },
-  booked: { label: '예약됨', color: '#3b82f6' },
 };
 
 function Schedule() {

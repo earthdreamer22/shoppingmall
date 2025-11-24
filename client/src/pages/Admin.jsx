@@ -12,9 +12,7 @@ const ORDER_STATUS_OPTIONS = [
 ];
 
 const SCHEDULE_STATUS_OPTIONS = [
-  { value: 'available', label: '수업 가능', color: '#22c55e' },
   { value: 'unavailable', label: '수업 불가', color: '#ef4444' },
-  { value: 'booked', label: '예약됨', color: '#3b82f6' },
 ];
 
 const DEFAULT_INVITE_HOURS = Number(import.meta.env.VITE_ADMIN_INVITE_HOURS ?? 12) || 12;
@@ -85,7 +83,7 @@ function Admin() {
   const [scheduleNotice, setScheduleNotice] = useState('');
   const [scheduleNoticeType, setScheduleNoticeType] = useState('info');
   const [selectedDay, setSelectedDay] = useState(null);
-  const [scheduleForm, setScheduleForm] = useState({ status: 'available', note: '' });
+  const [scheduleForm, setScheduleForm] = useState({ status: 'unavailable', note: '' });
 
   const widgetRef = useRef(null);
 
@@ -510,31 +508,52 @@ function Admin() {
 
   // Schedule handlers
   const handleScheduleSubmit = async (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     if (!selectedDay) return;
 
     try {
       const year = scheduleDate.getFullYear();
       const month = scheduleDate.getMonth();
-      const dateStr = new Date(year, month, selectedDay).toISOString();
+      // UTC 변환 문제 방지: 로컬 날짜를 YYYY-MM-DD 형식으로 전송
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}T12:00:00.000Z`;
 
       await apiRequest('/schedules', {
         method: 'POST',
         body: JSON.stringify({
           date: dateStr,
-          status: scheduleForm.status,
-          note: scheduleForm.note,
+          status: 'unavailable',
+          note: '',
         }),
       });
 
       setScheduleNoticeType('success');
-      setScheduleNotice('일정이 저장되었습니다.');
+      setScheduleNotice('수업 불가로 설정되었습니다.');
       setSelectedDay(null);
-      setScheduleForm({ status: 'available', note: '' });
       await fetchSchedules();
     } catch (error) {
       setScheduleNoticeType('error');
       setScheduleNotice(error.message ?? '일정 저장에 실패했습니다.');
+    }
+  };
+
+  const handleScheduleDelete = async () => {
+    if (!selectedDay) return;
+
+    const schedule = getScheduleForDay(selectedDay);
+    if (!schedule) return;
+
+    try {
+      await apiRequest(`/schedules/${schedule._id}`, {
+        method: 'DELETE',
+      });
+
+      setScheduleNoticeType('success');
+      setScheduleNotice('수업 가능으로 되돌렸습니다.');
+      setSelectedDay(null);
+      await fetchSchedules();
+    } catch (error) {
+      setScheduleNoticeType('error');
+      setScheduleNotice(error.message ?? '일정 삭제에 실패했습니다.');
     }
   };
 
@@ -554,7 +573,7 @@ function Admin() {
     if (existing) {
       setScheduleForm({ status: existing.status, note: existing.note || '' });
     } else {
-      setScheduleForm({ status: 'available', note: '' });
+      setScheduleForm({ status: 'unavailable', note: '' });
     }
   };
 
@@ -1040,33 +1059,22 @@ function Admin() {
 
             <div className="admin-schedule-form">
               {selectedDay ? (
-                <form onSubmit={handleScheduleSubmit}>
+                <div>
                   <h4>{scheduleDate.getFullYear()}년 {scheduleDate.getMonth() + 1}월 {selectedDay}일</h4>
-                  <label>
-                    상태
-                    <select
-                      value={scheduleForm.status}
-                      onChange={(e) => setScheduleForm((prev) => ({ ...prev, status: e.target.value }))}
-                      className="inline-select"
-                    >
-                      {SCHEDULE_STATUS_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    메모
-                    <textarea
-                      value={scheduleForm.note}
-                      onChange={(e) => setScheduleForm((prev) => ({ ...prev, note: e.target.value }))}
-                      placeholder="메모 (선택사항)"
-                    />
-                  </label>
-                  <div className="form-actions">
-                    <button type="submit">저장</button>
-                    <button type="button" onClick={() => setSelectedDay(null)}>취소</button>
-                  </div>
-                </form>
+                  {getScheduleForDay(selectedDay) ? (
+                    <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
+                      <p style={{ color: '#ef4444', fontWeight: 600 }}>현재: 수업 불가</p>
+                      <button type="button" onClick={handleScheduleDelete}>되돌리기 (수업 가능)</button>
+                      <button type="button" onClick={() => setSelectedDay(null)}>닫기</button>
+                    </div>
+                  ) : (
+                    <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
+                      <p style={{ color: '#22c55e', fontWeight: 600 }}>현재: 수업 가능</p>
+                      <button type="button" className="danger" onClick={handleScheduleSubmit}>수업 불가로 설정</button>
+                      <button type="button" onClick={() => setSelectedDay(null)}>닫기</button>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <p className="muted-text">캘린더에서 날짜를 클릭하여 일정을 수정하세요.</p>
               )}
