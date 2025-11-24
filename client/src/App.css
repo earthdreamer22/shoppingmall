@@ -46,13 +46,13 @@ body {
   justify-content: center;
   gap: 24px;
   padding: 12px 20px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e9ecef;
+  background-color: #0f172a;
+  border-bottom: none;
   flex-wrap: wrap;
 }
 
 .header-nav__item {
-  color: #0f172a;
+  color: #cbd5e1;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -61,7 +61,7 @@ body {
 }
 
 .header-nav__item:hover {
-  color: #3b82f6;
+  color: #ffffff;
 }
 
 .navbar__menu-item {
