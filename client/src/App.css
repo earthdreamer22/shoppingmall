@@ -12,6 +12,11 @@ body {
   background-color: inherit;
 }
 
+/* ===== Site Header ===== */
+.site-header {
+  background-color: #0f172a;
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -35,11 +40,28 @@ body {
   justify-content: center;
 }
 
-.navbar__menu {
+/* Header 하단 네비게이션 (footer nav와 동일 스타일) */
+.header-nav {
   display: flex;
-  gap: 24px;
-  flex: 1;
   justify-content: center;
+  gap: 24px;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.header-nav__item {
+  color: #0f172a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.header-nav__item:hover {
+  color: #3b82f6;
 }
 
 .navbar__menu-item {
