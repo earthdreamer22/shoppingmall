@@ -27,16 +27,6 @@ function Welcome() {
         <a href="https://www.instagram.com/paperbook.haru/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
         <a href="http://pf.kakao.com/_cqxltxj/friend" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
       </div>
-
-      {/* 문의 버튼 */}
-      <a
-        href="http://pf.kakao.com/_cqxltxj/friend"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="welcome-inquiry-btn"
-      >
-        💬 문의
-      </a>
     </div>
   );
 }
