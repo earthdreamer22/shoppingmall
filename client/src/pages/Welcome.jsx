@@ -33,7 +33,7 @@ function Welcome() {
       <div className="welcome-external-links">
         <a href="https://blog.naver.com/ear-ly-" target="_blank" rel="noopener noreferrer">BLOG</a>
         <a href="https://www.instagram.com/paperbook.haru/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-        <a href="https://pf.kakao.com" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
+        <a href="http://pf.kakao.com/_cqxltxj/friend" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
       </div>
 
       {/* 퀵 메뉴 */}
@@ -54,7 +54,7 @@ function Welcome() {
 
       {/* 문의 버튼 */}
       <a
-        href="https://pf.kakao.com"
+        href="http://pf.kakao.com/_cqxltxj/friend"
         target="_blank"
         rel="noopener noreferrer"
         className="welcome-inquiry-btn"
