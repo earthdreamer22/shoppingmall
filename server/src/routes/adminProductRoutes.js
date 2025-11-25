@@ -7,15 +7,16 @@ const {
   getProduct,
 } = require('../controllers/productController');
 const { authenticate, authorize } = require('../middleware/authMiddleware');
+const { validateObjectId } = require('../middleware/objectIdValidator');
 
 const router = express.Router();
 
 router.use(authenticate, authorize('admin'));
 
 router.get('/', listProducts);
-router.get('/:productId', getProduct);
+router.get('/:productId', validateObjectId('productId'), getProduct);
 router.post('/', createProduct);
-router.put('/:productId', updateProduct);
-router.delete('/:productId', deleteProduct);
+router.put('/:productId', validateObjectId('productId'), updateProduct);
+router.delete('/:productId', validateObjectId('productId'), deleteProduct);
 
 module.exports = router;

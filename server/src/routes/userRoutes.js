@@ -7,10 +7,11 @@ const {
   deleteUser,
 } = require('../controllers/userController');
 const { authenticate, authorize } = require('../middleware/authMiddleware');
+const { registerLimiter } = require('../middleware/authRateLimiter');
 
 const router = express.Router();
 
-router.post('/', createUser);
+router.post('/', registerLimiter, createUser);
 
 router.use(authenticate, authorize('admin'));
 

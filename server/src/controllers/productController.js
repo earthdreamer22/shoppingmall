@@ -52,7 +52,7 @@ async function destroyImages(publicIds = []) {
 }
 
 const listProducts = asyncHandler(async (req, res) => {
-  const { category } = req.query ?? {};
+  const { category, limit = 20 } = req.query ?? {};
   const filter = {};
 
   if (category) {
@@ -63,7 +63,14 @@ const listProducts = asyncHandler(async (req, res) => {
     filter.category = normalized;
   }
 
-  const products = await Product.find(filter).sort({ createdAt: -1 });
+  // 페이지네이션 제한: 최대 100개
+  const maxLimit = 100;
+  const numericLimit = Math.min(Math.max(1, Number(limit) || 20), maxLimit);
+
+  const products = await Product.find(filter)
+    .sort({ createdAt: -1 })
+    .limit(numericLimit);
+
   res.json(products);
 });
 

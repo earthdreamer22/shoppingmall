@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 const productRoutes = require('./routes/productRoutes');
 const adminProductRoutes = require('./routes/adminProductRoutes');
@@ -17,6 +18,12 @@ const { csrfProtection } = require('./middleware/csrfMiddleware');
 const { rateLimiter } = require('./middleware/rateLimitMiddleware');
 
 const app = express();
+
+// Helmet 보안 헤더 설정
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+  contentSecurityPolicy: false, // CSP는 프론트엔드에서 관리
+}));
 
 const allowedOrigins = process.env.CLIENT_ORIGIN
   ? process.env.CLIENT_ORIGIN.split(',').map(o => o.trim())
