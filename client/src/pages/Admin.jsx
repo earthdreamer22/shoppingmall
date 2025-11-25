@@ -34,6 +34,31 @@ function formatDate(value) {
 const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ?? '';
 const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET ?? '';
 
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+
+function validateImageFile(file) {
+  if (!file) {
+    return { valid: false, error: '파일이 선택되지 않았습니다.' };
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+    return {
+      valid: false,
+      error: 'JPG, PNG, WEBP 형식의 이미지만 업로드 가능합니다.'
+    };
+  }
+
+  if (file.size > MAX_IMAGE_SIZE) {
+    return {
+      valid: false,
+      error: `파일 크기는 ${(MAX_IMAGE_SIZE / (1024 * 1024)).toFixed(0)}MB 이하여야 합니다.`
+    };
+  }
+
+  return { valid: true };
+}
+
 function createEmptyProduct() {
   return {
     sku: '',
@@ -282,6 +307,8 @@ function Admin() {
           folder: 'shoppingmall/products',
           showCompletedButton: true,
           showUploadMoreButton: true,
+          clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+          maxFileSize: MAX_IMAGE_SIZE,
           styles: {
             palette: {
               window: '#1e293b',
@@ -847,6 +874,8 @@ function Admin() {
                       maxFiles: 1,
                       resourceType: 'image',
                       folder: 'shoppingmall/details',
+                      clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+                      maxFileSize: MAX_IMAGE_SIZE,
                     },
                     (error, result) => {
                       if (error) {
