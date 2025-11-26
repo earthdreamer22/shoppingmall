@@ -83,7 +83,7 @@ const getProduct = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { sku, name, price, category, shippingFee = 3000, description = '', images, primaryImagePublicId } = req.body;
+  const { sku, name, price, category, shippingFee = 3000, description = '', detailBlocks = [], options = [], images, primaryImagePublicId } = req.body;
 
   if (!sku) {
     return res.status(400).json({ message: '상품 ID(sku)는 필수입니다.' });
@@ -117,6 +117,8 @@ const createProduct = asyncHandler(async (req, res) => {
       category,
       shippingFee: numericShippingFee,
       description,
+      detailBlocks,
+      options,
       images: normalizedImages,
     });
 
@@ -138,6 +140,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     category,
     shippingFee,
     description,
+    detailBlocks,
+    options,
     images,
     primaryImagePublicId,
     removedImagePublicIds = [],
@@ -175,6 +179,14 @@ const updateProduct = asyncHandler(async (req, res) => {
 
   if (description !== undefined) {
     updates.description = description;
+  }
+
+  if (detailBlocks !== undefined) {
+    updates.detailBlocks = detailBlocks;
+  }
+
+  if (options !== undefined) {
+    updates.options = options;
   }
 
   if (images !== undefined) {
