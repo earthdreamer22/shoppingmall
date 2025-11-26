@@ -776,6 +776,127 @@ function Admin() {
                   placeholder="상품 상세 설명을 입력해주세요."
                 />
               </label>
+
+              <div className="options-editor">
+                <div className="options-header">
+                  <h3>상품 옵션 설정</h3>
+                  <button type="button" onClick={() => setForm((prev) => ({
+                    ...prev,
+                    options: [...prev.options, { name: '', values: [], required: false }]
+                  }))}>+ 옵션 추가</button>
+                </div>
+                <p className="muted-text">상품 구매 시 선택할 수 있는 옵션을 설정합니다. (예: 디자인 선택, 색상 등)</p>
+
+                {form.options.length === 0 && (
+                  <p className="muted-text">등록된 옵션이 없습니다.</p>
+                )}
+
+                <div className="options-list">
+                  {form.options.map((option, index) => (
+                    <div key={index} className="option-item">
+                      <div className="option-header">
+                        <input
+                          type="text"
+                          value={option.name}
+                          onChange={(e) => {
+                            const newOptions = [...form.options];
+                            newOptions[index] = { ...option, name: e.target.value };
+                            setForm((prev) => ({ ...prev, options: newOptions }));
+                          }}
+                          placeholder="옵션명 (예: 내지디자인)"
+                        />
+                        <label className="option-required">
+                          <input
+                            type="checkbox"
+                            checked={option.required}
+                            onChange={(e) => {
+                              const newOptions = [...form.options];
+                              newOptions[index] = { ...option, required: e.target.checked };
+                              setForm((prev) => ({ ...prev, options: newOptions }));
+                            }}
+                          />
+                          필수
+                        </label>
+                        <button type="button" className="danger" onClick={() => {
+                          setForm((prev) => ({
+                            ...prev,
+                            options: prev.options.filter((_, i) => i !== index)
+                          }));
+                        }}>삭제</button>
+                      </div>
+                      <div className="option-values">
+                        <input
+                          type="text"
+                          placeholder="옵션값 입력 후 Enter (예: 만슬리, 라인)"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              const value = e.target.value.trim();
+                              if (value && !option.values.includes(value)) {
+                                const newOptions = [...form.options];
+                                newOptions[index] = { ...option, values: [...option.values, value] };
+                                setForm((prev) => ({ ...prev, options: newOptions }));
+                                e.target.value = '';
+                              }
+                            }
+                          }}
+                        />
+                        <div className="option-tags">
+                          {option.values.map((val, vi) => (
+                            <span key={vi} className="option-tag">
+                              {val}
+                              <button type="button" onClick={() => {
+                                const newOptions = [...form.options];
+                                newOptions[index] = {
+                                  ...option,
+                                  values: option.values.filter((_, i) => i !== vi)
+                                };
+                                setForm((prev) => ({ ...prev, options: newOptions }));
+                              }}>×</button>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="image-upload">
+              <div className="image-upload__header">
+                <h3>상품 이미지</h3>
+                <button type="button" onClick={openUploadWidget} disabled={!widgetReady}>
+                  이미지 업로드
+                </button>
+              </div>
+              {widgetMessage && <p className="muted-text">{widgetMessage}</p>}
+
+              <div className="image-list">
+                {form.images.map((image) => (
+                  <div
+                    key={image.publicId}
+                    className={`image-card ${image.isPrimary ? 'image-card--primary' : ''}`}
+                  >
+                    <img src={image.url} alt="상품 이미지" />
+                    {image.isPrimary && <span className="badge badge--primary">대표</span>}
+                    <div className="image-card__actions">
+                      {!image.isPrimary && (
+                        <button type="button" onClick={() => handleSetPrimaryImage(image.publicId)}>
+                          대표로 지정
+                        </button>
+                      )}
+                      <button type="button" className="danger" onClick={() => handleRemoveImage(image.publicId)}>
+                        이미지 제거
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+                {!form.images.length && (
+                  <p className="muted-text">업로드된 이미지가 없습니다. 대표 이미지를 포함해 최소 한 장 이상 등록해주세요.</p>
+                )}
+              </div>
             </div>
 
             <div className="detail-blocks-editor">
@@ -859,14 +980,13 @@ function Admin() {
 
               <div className="detail-blocks-image-upload">
                 <button type="button" onClick={() => {
-                  if (!widgetRef.current) {
+                  if (!window.cloudinary) {
                     setStatusType('error');
                     setStatus(widgetMessage || '이미지 업로드 위젯을 사용할 수 없습니다.');
                     return;
                   }
-                  // 상세 이미지 업로드용 임시 핸들러 설정
-                  const originalHandler = widgetRef.current;
-                  widgetRef.current = window.cloudinary.createUploadWidget(
+                  // 상세 이미지 업로드용 별도 위젯 생성 (widgetRef.current를 덮어쓰지 않음)
+                  const detailWidget = window.cloudinary.createUploadWidget(
                     {
                       cloudName,
                       uploadPreset,
@@ -896,129 +1016,8 @@ function Admin() {
                       }
                     }
                   );
-                  widgetRef.current.open();
+                  detailWidget.open();
                 }} disabled={!widgetReady}>+ 상세 이미지 업로드</button>
-              </div>
-            </div>
-
-            <div className="options-editor">
-              <div className="options-header">
-                <h3>상품 옵션 설정</h3>
-                <button type="button" onClick={() => setForm((prev) => ({
-                  ...prev,
-                  options: [...prev.options, { name: '', values: [], required: false }]
-                }))}>+ 옵션 추가</button>
-              </div>
-              <p className="muted-text">상품 구매 시 선택할 수 있는 옵션을 설정합니다. (예: 디자인 선택, 색상 등)</p>
-
-              {form.options.length === 0 && (
-                <p className="muted-text">등록된 옵션이 없습니다.</p>
-              )}
-
-              <div className="options-list">
-                {form.options.map((option, index) => (
-                  <div key={index} className="option-item">
-                    <div className="option-header">
-                      <input
-                        type="text"
-                        value={option.name}
-                        onChange={(e) => {
-                          const newOptions = [...form.options];
-                          newOptions[index] = { ...option, name: e.target.value };
-                          setForm((prev) => ({ ...prev, options: newOptions }));
-                        }}
-                        placeholder="옵션명 (예: 내지디자인)"
-                      />
-                      <label className="option-required">
-                        <input
-                          type="checkbox"
-                          checked={option.required}
-                          onChange={(e) => {
-                            const newOptions = [...form.options];
-                            newOptions[index] = { ...option, required: e.target.checked };
-                            setForm((prev) => ({ ...prev, options: newOptions }));
-                          }}
-                        />
-                        필수
-                      </label>
-                      <button type="button" className="danger" onClick={() => {
-                        setForm((prev) => ({
-                          ...prev,
-                          options: prev.options.filter((_, i) => i !== index)
-                        }));
-                      }}>삭제</button>
-                    </div>
-                    <div className="option-values">
-                      <input
-                        type="text"
-                        placeholder="옵션값 입력 후 Enter (예: 만슬리, 라인)"
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            const value = e.target.value.trim();
-                            if (value && !option.values.includes(value)) {
-                              const newOptions = [...form.options];
-                              newOptions[index] = { ...option, values: [...option.values, value] };
-                              setForm((prev) => ({ ...prev, options: newOptions }));
-                              e.target.value = '';
-                            }
-                          }
-                        }}
-                      />
-                      <div className="option-tags">
-                        {option.values.map((val, vi) => (
-                          <span key={vi} className="option-tag">
-                            {val}
-                            <button type="button" onClick={() => {
-                              const newOptions = [...form.options];
-                              newOptions[index] = {
-                                ...option,
-                                values: option.values.filter((_, i) => i !== vi)
-                              };
-                              setForm((prev) => ({ ...prev, options: newOptions }));
-                            }}>×</button>
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="image-upload">
-              <div className="image-upload__header">
-                <h3>상품 이미지</h3>
-                <button type="button" onClick={openUploadWidget} disabled={!widgetReady}>
-                  이미지 업로드
-                </button>
-              </div>
-              {widgetMessage && <p className="muted-text">{widgetMessage}</p>}
-
-              <div className="image-list">
-                {form.images.map((image) => (
-                  <div
-                    key={image.publicId}
-                    className={`image-card ${image.isPrimary ? 'image-card--primary' : ''}`}
-                  >
-                    <img src={image.url} alt="상품 이미지" />
-                    {image.isPrimary && <span className="badge badge--primary">대표</span>}
-                    <div className="image-card__actions">
-                      {!image.isPrimary && (
-                        <button type="button" onClick={() => handleSetPrimaryImage(image.publicId)}>
-                          대표로 지정
-                        </button>
-                      )}
-                      <button type="button" className="danger" onClick={() => handleRemoveImage(image.publicId)}>
-                        이미지 제거
-                      </button>
-                    </div>
-                  </div>
-                ))}
-
-                {!form.images.length && (
-                  <p className="muted-text">업로드된 이미지가 없습니다. 대표 이미지를 포함해 최소 한 장 이상 등록해주세요.</p>
-                )}
               </div>
             </div>
 
