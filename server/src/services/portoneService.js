@@ -25,10 +25,15 @@ async function getAccessToken() {
 async function getPaymentByImpUid(impUid) {
   const accessToken = await getAccessToken();
 
+  // 2026.1.26 포트원 API 변경 대응: 테스트 환경에서는 include_sandbox=true 필요
+  const isTestMode = process.env.NODE_ENV !== 'production';
+  const params = isTestMode ? { include_sandbox: true } : {};
+
   const response = await axios.get(`${PORTONE_API_BASE}/payments/${impUid}`, {
     headers: {
       Authorization: accessToken,
     },
+    params,
   });
 
   if (response.data.code !== 0) {
