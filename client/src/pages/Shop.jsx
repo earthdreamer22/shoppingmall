@@ -69,16 +69,6 @@ function Shop() {
                       <span className="placeholder">이미지 없음</span>
                     )}
                   </div>
-                  <div className="product-body">
-                    <div className="product-meta">
-                      <span className="badge badge--muted">SKU {product.sku}</span>
-                      <span className="badge">{getCategoryLabel(product.category)}</span>
-                      <span className="badge badge--muted">
-                        배송비 ₩ {(product.shippingFee ?? 0).toLocaleString()}
-                      </span>
-                    </div>
-                    <p className="description">{product.description}</p>
-                  </div>
 
                   <div className="product-info">
                     <h3>{product.name}</h3>
