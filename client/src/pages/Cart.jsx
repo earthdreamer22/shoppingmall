@@ -42,6 +42,20 @@ function Cart() {
     }
   }, [loading, fetchCart]);
 
+  const handleUpdateQuantity = async (itemId, newQuantity) => {
+    if (newQuantity <= 0) return;
+
+    try {
+      await apiRequest(`/cart/${itemId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ quantity: newQuantity }),
+      });
+      await fetchCart();
+    } catch (error) {
+      setStatusMessage(error.message);
+    }
+  };
+
   const handleRemoveFromCart = async (itemId) => {
     try {
       await apiRequest(`/cart/${itemId}`, { method: 'DELETE' });
@@ -107,7 +121,34 @@ function Cart() {
                 <li key={item.id} className="cart-item">
                   <div className="cart-item__info">
                     <strong>{item.name}</strong>
-                    <span className="cart-item__quantity">수량: {item.quantity}</span>
+                    {item.selectedOptions?.length > 0 && (
+                      <div className="cart-item__options">
+                        {item.selectedOptions.map((opt, idx) => (
+                          <span key={idx} className="cart-item__option">
+                            {opt.name}: {opt.value}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="cart-item__quantity">
+                      <span>수량:</span>
+                      <div className="quantity-controls">
+                        <button
+                          type="button"
+                          onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+                          disabled={item.quantity <= 1}
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          type="button"
+                          onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
                     <span className="cart-item__price">
                       ₩ {(item.price * item.quantity).toLocaleString()}
                     </span>

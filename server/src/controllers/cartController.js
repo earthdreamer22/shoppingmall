@@ -86,6 +86,32 @@ const addToCart = asyncHandler(async (req, res) => {
   res.status(201).json(formatCart(cart));
 });
 
+const updateCartItem = asyncHandler(async (req, res) => {
+  const userId = await resolveUserId(req);
+  const { itemId } = req.params;
+  const { quantity } = req.body;
+
+  if (!quantity || quantity <= 0) {
+    return res.status(400).json({ message: '수량은 1 이상이어야 합니다.' });
+  }
+
+  const cart = await Cart.findOne({ user: userId });
+  if (!cart) {
+    return res.status(404).json({ message: '장바구니가 비어 있습니다.' });
+  }
+
+  const item = cart.items.id(itemId);
+  if (!item) {
+    return res.status(404).json({ message: '해당 상품이 장바구니에 없습니다.' });
+  }
+
+  item.quantity = Number(quantity);
+  await cart.save();
+  await cart.populate('items.product');
+
+  res.json(formatCart(cart));
+});
+
 const removeFromCart = asyncHandler(async (req, res) => {
   const userId = await resolveUserId(req);
   const { itemId } = req.params;
@@ -110,5 +136,6 @@ const removeFromCart = asyncHandler(async (req, res) => {
 module.exports = {
   getCart,
   addToCart,
+  updateCartItem,
   removeFromCart,
 };

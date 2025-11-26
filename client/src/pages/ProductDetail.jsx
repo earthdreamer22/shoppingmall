@@ -105,6 +105,52 @@ function ProductDetail() {
     }
   };
 
+  const handlePurchase = async () => {
+    if (!product) return;
+
+    if (!user) {
+      setStatus('로그인 후 구매하실 수 있습니다.');
+      navigate('/login', { state: { from: location.pathname } });
+      return;
+    }
+
+    // 필수 옵션 검증
+    const requiredOptions = product.options?.filter((opt) => opt.required) ?? [];
+    for (const opt of requiredOptions) {
+      if (!selectedOptions[opt.name]) {
+        setStatus(`${opt.name}을(를) 선택해주세요.`);
+        return;
+      }
+    }
+
+    setWorking(true);
+    setStatus('');
+    try {
+      const optionsArray = Object.entries(selectedOptions).map(([name, value]) => ({ name, value }));
+      await apiRequest('/cart', {
+        method: 'POST',
+        body: JSON.stringify({ productId: product.id, quantity: 1, selectedOptions: optionsArray }),
+      });
+
+      try {
+        const data = await apiRequest('/cart');
+        const totalCount = (data.items ?? []).reduce(
+          (sum, item) => sum + (item.quantity ?? 0),
+          0,
+        );
+        setCartCount(totalCount);
+      } catch (error) {
+        console.error('Failed to refresh cart count', error);
+      }
+
+      // 장바구니 페이지로 이동
+      navigate('/cart');
+    } catch (error) {
+      setStatus(error.message ?? '구매 처리 중 문제가 발생했습니다.');
+      setWorking(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="App detail-page">
@@ -124,7 +170,7 @@ function ProductDetail() {
 
   const handleInquiry = () => {
     // 카카오톡 채널 또는 문의 페이지로 이동
-    window.open('https://pf.kakao.com/_xkxkAn', '_blank');
+    window.open('http://pf.kakao.com/_cqxltxj/friend', '_blank');
   };
 
   return (
@@ -216,7 +262,7 @@ function ProductDetail() {
           {status && <div className={`status ${status.startsWith('장바구니') ? '' : 'error'}`}>{status}</div>}
 
           <div className="detail-actions">
-            <button type="button" className="detail-buy" onClick={handleAddToCart} disabled={working}>
+            <button type="button" className="detail-buy" onClick={handlePurchase} disabled={working}>
               {working ? '처리 중...' : '구매하기'}
             </button>
             <button type="button" className="detail-cart" onClick={handleAddToCart} disabled={working}>

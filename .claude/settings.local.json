@@ -1,14 +1,17 @@
 {
   "permissions": {
     "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx vite build)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push)",
-      "Bash(npm run build:*)",
-      "Bash(npx vite build)",
-      "Bash(npm install:*)"
-    ],
-    "deny": [],
-    "ask": []
+      "Bash(git push:*)"
+    ]
   }
 }

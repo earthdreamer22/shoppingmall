@@ -727,7 +727,7 @@ function Admin() {
                   required
                   type="number"
                   min="0"
-                  step="1000"
+                  step="10"
                   name="price"
                   value={form.price}
                   onChange={(event) => setForm((prev) => ({ ...prev, price: event.target.value }))}
