@@ -53,7 +53,7 @@ function Navbar() {
         <Link to="/" className="header-nav__item">welcome</Link>
         <Link to="/schedule" className="header-nav__item">class schedule</Link>
         <Link to="/inquiry" className="header-nav__item">제본/수선/수업 문의</Link>
-        <Link to="/shop/shop" className="header-nav__item">NOTE SHOP</Link>
+        <Link to="/shop/shop" className="header-nav__item">Shop</Link>
         <Link to="/shop/class" className="header-nav__item">class</Link>
         <Link to="/shop/book_repair" className="header-nav__item">Book repair</Link>
       </div>

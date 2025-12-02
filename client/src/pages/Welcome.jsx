@@ -4,11 +4,6 @@ import '../App.css';
 function Welcome() {
   return (
     <div className="App welcome-page">
-      {/* 로고 이미지 */}
-      <div className="welcome-logo-image">
-        <img src="/logo.jpg" alt="종이책연구소 로고" className="welcome-logo__img" />
-      </div>
-
       {/* 배너 이미지 */}
       <div className="welcome-hero">
         <img src="/banner.jpg" alt="종이책연구소 배너" className="welcome-hero__image" />
@@ -26,6 +21,11 @@ function Welcome() {
         <a href="https://blog.naver.com/ear-ly-" target="_blank" rel="noopener noreferrer">BLOG</a>
         <a href="https://www.instagram.com/paperbook.haru/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
         <a href="http://pf.kakao.com/_cqxltxj/friend" target="_blank" rel="noopener noreferrer">KAKAO TALK</a>
+      </div>
+
+      {/* 로고 이미지 */}
+      <div className="welcome-logo-image">
+        <img src="/logo.jpg" alt="종이책연구소 로고" className="welcome-logo__img" />
       </div>
     </div>
   );
