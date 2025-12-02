@@ -17,6 +17,7 @@ body {
 /* ===== Site Header ===== */
 .site-header {
   background-color: #0f172a;
+  border-radius: 0;
 }
 
 .navbar {
