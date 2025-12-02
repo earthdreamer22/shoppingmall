@@ -20,6 +20,7 @@ function Footer() {
           <ul className="business-info">
             <li><strong>대표자:</strong> 신윤재</li>
             <li><strong>사업자등록번호:</strong> 267-75-00407</li>
+            <li><strong>전화번호:</strong> <a href="tel:0507-1371-9981">0507-1371-9981</a></li>
             <li><strong>주소:</strong> 대구광역시 북구 침산남로37길 24, 106동 2층 202호 상가2층 취미는책 (침산동, 침산2차화성아파트)</li>
             <li><strong>이메일:</strong> <a href="mailto:haeglim@naver.com">haeglim@naver.com</a></li>
           </ul>
