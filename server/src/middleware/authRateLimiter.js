@@ -7,10 +7,8 @@ const loginLimiter = rateLimit({
   message: '너무 많은 로그인 시도가 있었습니다. 15분 후에 다시 시도해주세요.',
   standardHeaders: true,
   legacyHeaders: false,
-  // IP 주소 기반 제한
-  keyGenerator: (req) => {
-    return req.ip;
-  },
+  skipFailedRequests: false,
+  skipSuccessfulRequests: false,
 });
 
 // 회원가입 제한: 1시간당 3회
@@ -20,9 +18,8 @@ const registerLimiter = rateLimit({
   message: '너무 많은 회원가입 시도가 있었습니다. 1시간 후에 다시 시도해주세요.',
   standardHeaders: true,
   legacyHeaders: false,
-  keyGenerator: (req) => {
-    return req.ip;
-  },
+  skipFailedRequests: false,
+  skipSuccessfulRequests: false,
 });
 
 module.exports = {
