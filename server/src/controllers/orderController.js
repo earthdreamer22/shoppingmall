@@ -2,7 +2,7 @@ const Cart = require('../models/Cart');
 const Order = require('../models/Order');
 const { asyncHandler } = require('../utils/asyncHandler');
 const { resolveUserId } = require('../utils/userContext');
-const { getPaymentByImpUid } = require('../services/portoneService');
+const { getPaymentByImpUid, cancelPayment } = require('../services/portoneService');
 const { recordAuditLog } = require('../utils/auditLogger');
 
 function formatOrder(orderDoc) {
@@ -184,6 +184,7 @@ const createOrder = asyncHandler(async (req, res) => {
 const cancelOrder = asyncHandler(async (req, res) => {
   const requester = req.user ?? {};
   const { orderId } = req.params;
+  const { reason } = req.body ?? {};
 
   let order;
   if (requester.role === 'admin') {
@@ -197,11 +198,26 @@ const cancelOrder = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: '주문을 찾을 수 없습니다.' });
   }
 
+  if (order.status === 'cancelled') {
+    return res.status(400).json({ message: '이미 취소된 주문입니다.' });
+  }
+
+  // 결제가 완료된 경우 포트원 결제 취소 API 호출
+  if (order.payment.status === 'paid' && order.payment.impUid) {
+    try {
+      await cancelPayment(order.payment.impUid, reason || '주문 취소');
+    } catch (error) {
+      return res.status(500).json({
+        message: `결제 취소 중 오류가 발생했습니다: ${error.message}`
+      });
+    }
+  }
+
   order.status = 'cancelled';
   order.payment.status = order.payment.status === 'paid' ? 'refunded' : 'cancelled';
   order.history.push({
     status: 'cancelled',
-    note: requester.role === 'admin' ? '관리자가 주문을 취소했습니다.' : '사용자 요청으로 주문 취소',
+    note: reason || (requester.role === 'admin' ? '관리자가 주문을 취소했습니다.' : '사용자 요청으로 주문 취소'),
     operator: requester.role === 'admin' ? requester.id ?? requester._id : undefined,
   });
   await order.save();
@@ -211,7 +227,7 @@ const cancelOrder = asyncHandler(async (req, res) => {
     action: 'order.cancel',
     userId: actorId,
     ip: req.ip,
-    metadata: { orderId, role: requester.role },
+    metadata: { orderId, role: requester.role, reason },
   });
 
   res.status(204).send();

@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(authenticate, authorize('admin'));
 
 router.get('/', listAllOrders);
-router.delete('/:orderId', validateObjectId('orderId'), cancelOrder);
+router.post('/:orderId/cancel', validateObjectId('orderId'), cancelOrder);
 router.patch('/:orderId/status', validateObjectId('orderId'), updateOrderStatus);
 
 module.exports = router;

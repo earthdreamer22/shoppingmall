@@ -526,13 +526,17 @@ function Admin() {
   };
 
   const handleAdminCancelOrder = async (orderId) => {
-    if (!window.confirm('주문을 취소하시겠습니까?')) return;
+    const reason = window.prompt('취소 사유를 입력해주세요 (선택사항):');
+    if (reason === null) return; // 사용자가 취소를 누른 경우
 
     try {
-      await apiRequest(`/admin/orders/${orderId}`, { method: 'DELETE' });
+      await apiRequest(`/admin/orders/${orderId}/cancel`, {
+        method: 'POST',
+        body: JSON.stringify({ reason: reason || undefined }),
+      });
       await fetchOrders();
       setOrderNoticeType('success');
-      setOrderNotice('주문이 취소되었습니다.');
+      setOrderNotice('주문이 취소되었습니다. 결제가 완료된 주문은 환불 처리됩니다.');
     } catch (error) {
       setOrderNoticeType('error');
       setOrderNotice(error.message ?? '주문을 취소하지 못했습니다.');

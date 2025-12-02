@@ -43,7 +43,34 @@ async function getPaymentByImpUid(impUid) {
   return response.data.response;
 }
 
+async function cancelPayment(impUid, reason, amount = null) {
+  const accessToken = await getAccessToken();
+
+  const requestBody = {
+    imp_uid: impUid,
+    reason: reason || '관리자 주문 취소',
+  };
+
+  // amount가 지정되면 부분 취소, 없으면 전액 취소
+  if (amount) {
+    requestBody.amount = amount;
+  }
+
+  const response = await axios.post(`${PORTONE_API_BASE}/payments/cancel`, requestBody, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+
+  if (response.data.code !== 0) {
+    throw new Error(`포트원 결제 취소 실패: ${response.data.message}`);
+  }
+
+  return response.data.response;
+}
+
 module.exports = {
   getAccessToken,
   getPaymentByImpUid,
+  cancelPayment,
 };
