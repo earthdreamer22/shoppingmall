@@ -9,7 +9,7 @@ function Footer() {
         <Link to="/" className="footer-nav__item">welcome</Link>
         <Link to="/schedule" className="footer-nav__item">class schedule</Link>
         <Link to="/inquiry" className="footer-nav__item">제본/수선/수업 문의</Link>
-        <Link to="/shop/shop" className="footer-nav__item">NOTE SHOP</Link>
+        <Link to="/shop/shop" className="footer-nav__item">Shop</Link>
         <Link to="/shop/class" className="footer-nav__item">class</Link>
         <Link to="/shop/book_repair" className="footer-nav__item">Book repair</Link>
       </div>
