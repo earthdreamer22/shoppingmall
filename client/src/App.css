@@ -847,11 +847,16 @@ body {
 
 header {
   background: white;
-  border: 1px solid #d9dce3;
+  border: 0.5px solid #e2e8f0;
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 24px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+header:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 header h1 {
@@ -866,7 +871,7 @@ header p {
 
 header small {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 16px;
   color: #94a3b8;
 }
 
@@ -879,37 +884,43 @@ header small {
 
 main {
   display: grid;
-  gap: 40px;
+  gap: 32px;
 }
 
 section {
   background: white;
-  border: 1px solid #d9dce3;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  border: 0.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-grid {
   display: grid;
-  gap: 20px;
+  gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e2e8f0;
+  border: 0.5px solid #e2e8f0;
   border-radius: 12px;
   overflow: hidden;
-  background: #f8fafc;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-thumb {
@@ -1006,21 +1017,30 @@ button {
   background-color: #3b82f6;
   border: none;
   color: white;
-  padding: 8px 12px;
+  padding: 10px 16px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   background-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button:disabled {
   background-color: #cbd5f5;
   cursor: not-allowed;
   color: #475569;
+  transform: none;
+  box-shadow: none;
 }
 
 button.danger {
@@ -1409,11 +1429,19 @@ label {
 
 input,
 textarea {
-  border: 1px solid #cbd5f5;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   font-size: 12px;
   font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 textarea {
@@ -1961,7 +1989,7 @@ textarea {
 }
 
 .welcome-logo__img {
-  max-width: 150px;
+  max-width: 75px;
   width: 100%;
   height: auto;
 }
