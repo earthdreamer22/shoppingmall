@@ -107,12 +107,42 @@ function MyPage() {
                       {getOrderStatusLabel(order.status)}
                     </span>
                   </div>
+
+                  <div className="order-item__products">
+                    {order.items?.map((item, idx) => (
+                      <div key={idx} className="order-product">
+                        <strong>{item.name}</strong> x {item.quantity}
+                        {item.selectedOptions && item.selectedOptions.length > 0 && (
+                          <div style={{ fontSize: '0.9em', color: '#64748b', marginTop: '4px' }}>
+                            {item.selectedOptions.map((opt, oi) => (
+                              <span key={oi}>
+                                {opt.name}: {opt.value}
+                                {oi < item.selectedOptions.length - 1 && ', '}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="order-item__body">
-                    <span className="order-item__count">품목 {order.items?.length ?? 0}개</span>
                     <span className="order-item__total">
                       ₩ {(order.pricing?.total ?? order.total ?? 0).toLocaleString()}
                     </span>
                   </div>
+
+                  {(order.status === 'shipped' || order.status === 'delivered') && order.shipping && (
+                    <div className="order-item__shipping">
+                      {order.shipping.carrier && (
+                        <p><strong>택배사:</strong> {order.shipping.carrier}</p>
+                      )}
+                      {order.shipping.trackingNumber && (
+                        <p><strong>송장번호:</strong> {order.shipping.trackingNumber}</p>
+                      )}
+                    </div>
+                  )}
+
                   {order.status !== 'cancelled' && (
                     <button
                       type="button"

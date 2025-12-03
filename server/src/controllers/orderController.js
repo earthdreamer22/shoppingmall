@@ -24,6 +24,7 @@ function formatOrder(orderDoc) {
       quantity: item.quantity,
       imageUrl: item.imageUrl,
       imagePublicId: item.imagePublicId,
+      selectedOptions: item.selectedOptions ?? [],
     })),
   };
 }

@@ -510,11 +510,16 @@ function Admin() {
     [editingProductId],
   );
 
-  const handleUpdateOrderStatus = async (orderId, nextStatus) => {
+  const handleUpdateOrderStatus = async (orderId, nextStatus, shippingData = {}) => {
     try {
+      const payload = { status: nextStatus };
+      if (Object.keys(shippingData).length > 0) {
+        payload.shipping = shippingData;
+      }
+
       const updated = await apiRequest(`/admin/orders/${orderId}/status`, {
         method: 'PATCH',
-        body: JSON.stringify({ status: nextStatus }),
+        body: JSON.stringify(payload),
       });
       setOrders((prev) => prev.map((order) => (order.id === orderId ? { ...order, ...updated } : order)));
       setOrderNoticeType('success');
@@ -522,6 +527,21 @@ function Admin() {
     } catch (error) {
       setOrderNoticeType('error');
       setOrderNotice(error.message ?? '주문 상태를 변경하지 못했습니다.');
+    }
+  };
+
+  const handleUpdateTracking = async (orderId, carrier, trackingNumber) => {
+    try {
+      const order = orders.find(o => o.id === orderId);
+      if (!order) return;
+
+      await handleUpdateOrderStatus(orderId, order.status, {
+        carrier,
+        trackingNumber,
+      });
+    } catch (error) {
+      setOrderNoticeType('error');
+      setOrderNotice(error.message ?? '송장 정보 업데이트에 실패했습니다.');
     }
   };
 
@@ -1107,6 +1127,7 @@ function Admin() {
                     <th>주문번호</th>
                     <th>주문일</th>
                     <th>고객</th>
+                    <th>주문 상품</th>
                     <th>결제 금액</th>
                     <th>결제 상태</th>
                     <th>배송 상태</th>
@@ -1129,6 +1150,25 @@ function Admin() {
                           <span className="muted-text">알 수 없음</span>
                         )}
                       </td>
+                      <td>
+                        <div className="order-items">
+                          {order.items?.map((item, idx) => (
+                            <div key={idx} style={{ marginBottom: '8px' }}>
+                              <strong>{item.name}</strong> x {item.quantity}
+                              {item.selectedOptions && item.selectedOptions.length > 0 && (
+                                <div style={{ fontSize: '0.85em', color: '#64748b' }}>
+                                  {item.selectedOptions.map((opt, oi) => (
+                                    <span key={oi}>
+                                      {opt.name}: {opt.value}
+                                      {oi < item.selectedOptions.length - 1 && ', '}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </td>
                       <td>{formatCurrency(order.pricing?.total)}</td>
                       <td>
                         <div className="order-payment">
@@ -1150,7 +1190,39 @@ function Admin() {
                           ))}
                         </select>
                         <div className="order-shipping">
-                          <small>송장: {order.shipping?.trackingNumber || '-'}</small>
+                          {order.status === 'shipped' || order.status === 'delivered' ? (
+                            <>
+                              <div style={{ marginTop: '8px' }}>
+                                <select
+                                  value={order.shipping?.carrier || ''}
+                                  onChange={(e) => handleUpdateTracking(order.id, e.target.value, order.shipping?.trackingNumber || '')}
+                                  style={{ marginBottom: '4px', width: '100%' }}
+                                >
+                                  <option value="">택배사 선택</option>
+                                  <option value="CJ대한통운">CJ대한통운</option>
+                                  <option value="한진택배">한진택배</option>
+                                  <option value="롯데택배">롯데택배</option>
+                                  <option value="우체국택배">우체국택배</option>
+                                  <option value="로젠택배">로젠택배</option>
+                                  <option value="경동택배">경동택배</option>
+                                </select>
+                                <input
+                                  type="text"
+                                  placeholder="송장번호"
+                                  value={order.shipping?.trackingNumber || ''}
+                                  onChange={(e) => handleUpdateTracking(order.id, order.shipping?.carrier || '', e.target.value)}
+                                  style={{ width: '100%' }}
+                                />
+                              </div>
+                              <small>택배사: {order.shipping?.carrier || '-'}</small>
+                              <small>송장: {order.shipping?.trackingNumber || '-'}</small>
+                            </>
+                          ) : (
+                            <>
+                              <small>택배사: {order.shipping?.carrier || '-'}</small>
+                              <small>송장: {order.shipping?.trackingNumber || '-'}</small>
+                            </>
+                          )}
                           <small>배송 시작: {formatDate(order.shipping?.shippedAt)}</small>
                           <small>배송 완료: {formatDate(order.shipping?.deliveredAt)}</small>
                         </div>
