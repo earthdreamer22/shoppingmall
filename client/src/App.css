@@ -134,6 +134,48 @@ body {
   font-size: 14px;
 }
 
+@media (max-width: 768px) {
+  .header-row {
+    padding: 6px 16px;
+  }
+
+  .header-row--brand {
+    padding-top: 10px;
+    padding-bottom: 4px;
+  }
+
+  .header-row--actions {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    gap: 8px;
+  }
+
+  .header-row--nav {
+    padding-top: 4px;
+    padding-bottom: 8px;
+    gap: 12px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar__brand {
+    font-size: 18px;
+  }
+
+  .navbar__menu-item {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  .header-nav__item {
+    font-size: 12px;
+    padding: 4px 4px;
+    white-space: nowrap;
+  }
+}
+
 .navbar__greeting {
   font-weight: 600;
 }
