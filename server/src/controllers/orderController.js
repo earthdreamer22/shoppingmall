@@ -1,4 +1,4 @@
-const Cart = require('../models/Cart');
+﻿const Cart = require('../models/Cart');
 const Order = require('../models/Order');
 const { asyncHandler } = require('../utils/asyncHandler');
 const { resolveUserId } = require('../utils/userContext');
@@ -96,6 +96,7 @@ const createOrder = asyncHandler(async (req, res) => {
       quantity: item.quantity,
       imageUrl: primaryImage?.url ?? '',
       imagePublicId: primaryImage?.publicId ?? '',
+      selectedOptions: item.selectedOptions ?? [],
     };
   });
 

@@ -1227,8 +1227,36 @@ button.danger:hover {
   border: 1px solid #86efac;
 }
 
-.options-header {
-  display: flex;
+.options-editor--aside {
+  grid-column: 3 / -1;
+  grid-row: 1 / span 3;
+  align-self: start;
+  max-width: 360px;
+  margin-left: auto;
+}
+
+.options-editor--aside .options-list {
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .options-editor--aside {
+    grid-column: 2 / -1;
+    grid-row: auto;
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .options-editor--aside {
+    grid-column: 1 / -1;
+  }
+}
+
+  .options-header {
+    display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;

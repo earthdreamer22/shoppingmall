@@ -111,12 +111,15 @@ function MyPage() {
                   <div className="order-item__products">
                     {order.items?.map((item, idx) => (
                       <div key={idx} className="order-product">
-                        <strong>{item.name}</strong> x {item.quantity}
-                        {item.selectedOptions && item.selectedOptions.length > 0 && (
-                          <div style={{ fontSize: '0.9em', color: '#64748b', marginTop: '4px' }}>
-                            {item.selectedOptions.map((opt, oi) => (
-                              <span key={oi}>
-                                {opt.name}: {opt.value}
+                      <strong>{item.name}</strong> x {item.quantity}
+                      {item.sku && (
+                        <div style={{ fontSize: '0.9em', color: '#475569' }}>SKU {item.sku}</div>
+                      )}
+                      {item.selectedOptions && item.selectedOptions.length > 0 && (
+                        <div style={{ fontSize: '0.9em', color: '#64748b', marginTop: '4px' }}>
+                          {item.selectedOptions.map((opt, oi) => (
+                            <span key={oi}>
+                              {opt.name}: {opt.value}
                                 {oi < item.selectedOptions.length - 1 && ', '}
                               </span>
                             ))}
