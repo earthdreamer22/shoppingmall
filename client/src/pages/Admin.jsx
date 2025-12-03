@@ -715,7 +715,7 @@ function Admin() {
   return (
     <div className="App">
       <header>
-        <h1>관리자 대시보드</h1>
+        <h3>관리자 대시보드</h3>
         <p>상품 정보를 생성, 수정, 삭제하고 이미지 관리까지 수행할 수 있습니다.</p>
       </header>
 
@@ -723,7 +723,7 @@ function Admin() {
 
       <main>
         <section className="product-form">
-          <h2>{pageTitle}</h2>
+          <h4>{pageTitle}</h4>
           <form onSubmit={handleSubmit} className="admin-form">
             <div className="form-grid">
               <label>
