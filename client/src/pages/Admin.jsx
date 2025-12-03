@@ -894,7 +894,9 @@ function Admin() {
                 />
               </label>
 
-              <div className="image-upload">
+            </div>
+
+            <div className="image-upload">
               <div className="image-upload__header">
                 <h3>상품 이미지</h3>
                 <button type="button" onClick={openUploadWidget} disabled={!widgetReady}>
