@@ -1,26 +1,112 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
+import { apiRequest } from '../lib/apiClient.js';
+
+const CHECKOUT_STORAGE_KEY = 'checkout:payload';
+
+function clearStoredPayload() {
+  try {
+    window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+  } catch (_error) {
+    // ignore
+  }
+}
+
+function loadStoredPayload() {
+  try {
+    const raw = window.sessionStorage.getItem(CHECKOUT_STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (_error) {
+    return null;
+  }
+}
 
 function OrderComplete() {
   const location = useLocation();
   const navigate = useNavigate();
-  const order = location.state?.order ?? null;
+  const [order, setOrder] = useState(location.state?.order ?? null);
+  const [status, setStatus] = useState(order ? '' : '결제 정보를 확인하는 중입니다.');
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!order) {
-      navigate('/', { replace: true });
+    if (order) {
+      clearStoredPayload();
+      return;
     }
-  }, [order, navigate]);
+
+    const params = new URLSearchParams(location.search);
+    const impUid = params.get('imp_uid');
+    const merchantUid = params.get('merchant_uid');
+    const success = params.get('success');
+    const errorMsg = params.get('error_msg') || params.get('error_message');
+
+    if (!impUid || !merchantUid) {
+      navigate('/', { replace: true });
+      return;
+    }
+
+    if (success === 'false') {
+      setError(errorMsg || '결제가 취소되었습니다.');
+      clearStoredPayload();
+      return;
+    }
+
+    const payload = loadStoredPayload();
+    if (!payload) {
+      setError('결제 정보가 만료되었습니다. 다시 결제해 주세요.');
+      return;
+    }
+
+    const createOrder = async () => {
+      setStatus('주문을 생성하는 중입니다...');
+      try {
+        const created = await apiRequest('/orders', {
+          method: 'POST',
+          body: JSON.stringify({
+            shipping: payload.shipping,
+            pricing: payload.pricing,
+            payment: {
+              ...payload.payment,
+              impUid,
+              merchantUid,
+            },
+          }),
+        });
+        setOrder(created);
+        setError('');
+        clearStoredPayload();
+      } catch (err) {
+        setError(err.message ?? '주문 생성에 실패했습니다.');
+      } finally {
+        setStatus('');
+      }
+    };
+
+    createOrder();
+  }, [order, location.search, navigate]);
 
   if (!order) {
-    return null;
+    return (
+      <div className="App checkout-page">
+        <header className="checkout-header">
+          <h1>결제 처리 중</h1>
+          <p>{error || status || '결제 정보를 확인하는 중입니다.'}</p>
+        </header>
+        <div className="checkout-actions">
+          <button type="button" className="detail-secondary" onClick={() => navigate('/', { replace: true })}>
+            홈으로 돌아가기
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="App checkout-page">
       <header className="checkout-header">
-        <h1>주문이 완료되었습니다</h1>
+        <h1>주문이 완료되었습니다.</h1>
         <p>주문 번호: {order.id}</p>
       </header>
 
@@ -28,20 +114,20 @@ function OrderComplete() {
         <h2>결제 요약</h2>
         <div className="checkout-summary">
           <div>
-            <span>주문 상품</span>
-            <strong>₩ {order.pricing?.subtotal?.toLocaleString?.() ?? '-'}</strong>
+            <span>주문 금액</span>
+            <strong>₩{order.pricing?.subtotal?.toLocaleString?.() ?? '-'}</strong>
           </div>
           <div>
             <span>할인 금액</span>
-            <strong>- ₩ {order.pricing?.discount?.toLocaleString?.() ?? '0'}</strong>
+            <strong>- ₩{order.pricing?.discount?.toLocaleString?.() ?? '0'}</strong>
           </div>
           <div>
             <span>배송비</span>
-            <strong>+ ₩ {order.pricing?.shippingFee?.toLocaleString?.() ?? '0'}</strong>
+            <strong>+ ₩{order.pricing?.shippingFee?.toLocaleString?.() ?? '0'}</strong>
           </div>
           <div className="checkout-summary__total">
             <span>최종 결제 금액</span>
-            <strong>₩ {order.pricing?.total?.toLocaleString?.() ?? '-'}</strong>
+            <strong>₩{order.pricing?.total?.toLocaleString?.() ?? '-'}</strong>
           </div>
         </div>
       </section>
@@ -78,14 +164,16 @@ function OrderComplete() {
                 <span>SKU {item.sku}</span>
                 <span>수량 {item.quantity}개</span>
               </div>
-              <div className="checkout-item__price">₩ {item.price?.toLocaleString?.()}</div>
+              <div className="checkout-item__price">₩{item.price?.toLocaleString?.()}</div>
             </li>
           ))}
         </ul>
       </section>
 
       <div className="checkout-actions">
-        <button type="button" className="detail-primary" onClick={() => navigate('/')}>쇼핑 계속하기</button>
+        <button type="button" className="detail-primary" onClick={() => navigate('/')}>
+          쇼핑 계속하기
+        </button>
       </div>
     </div>
   );
