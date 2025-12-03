@@ -307,3 +307,194 @@ PORTONE_API_SECRET=api_secret_xxx
 - [ ] 장바구니 → 결제 → 주문완료 플로우 테스트
 - [ ] 모바일 반응형 확인
 - [ ] 이용약관/개인정보처리방침 링크 확인
+
+쇼핑몰 보안 처치 종합 보고서
+📊 요약
+총 9개 카테고리, 30개 이상의 보안 처치가 적용되어 있습니다.
+1️⃣ 인증 & 인가 (Authentication & Authorization)
+✅ JWT 토큰 기반 인증
+위치: authMiddleware.js:18-50
+기능:
+Bearer 토큰 및 쿠키에서 JWT 추출
+JWT 서명 검증
+만료된 토큰 차단 (InvalidToken 컬렉션 활용)
+방어: 위조 토큰, 탈취된 토큰 재사용
+✅ 역할 기반 접근 제어 (RBAC)
+위치: authMiddleware.js:52-64
+역할: admin, user
+적용 라우트:
+모든 /api/admin/* 엔드포인트
+방어: 권한 없는 사용자의 관리자 기능 접근
+✅ 비밀번호 해싱
+위치: userController.js:19,54
+알고리즘: bcrypt (SALT_ROUNDS=10)
+방어: 데이터베이스 유출 시 비밀번호 노출
+✅ 관리자 초대 코드 시스템
+위치: userController.js:59-82
+검증 항목:
+코드 존재 여부
+사용 여부 (usedAt)
+만료 여부 (expiresAt)
+이메일 일치 여부
+방어: 무단 관리자 계정 생성
+2️⃣ 요청 보호 (Request Protection)
+✅ 범용 Rate Limiting
+위치: rateLimitMiddleware.js
+일반 요청: 5분당 300회
+민감 요청 (/api/auth/*, /api/admin/*, /api/payments/*): 1시간당 50회
+방어: DoS 공격, API 남용
+✅ 인증 특화 Rate Limiting
+위치: authRateLimiter.js
+로그인: 15분당 5회 (authRoutes.js:8)
+회원가입: 1시간당 3회 (userRoutes.js:14)
+방어: 무차별 대입 공격, 계정 생성 스팸
+✅ CSRF 보호
+위치: csrfMiddleware.js
+검증 방식: Double Submit Cookie
+쿠키: csrfToken
+헤더: x-csrf-token
+예외 경로: /api/auth/login, /api/payments/webhook
+방어: Cross-Site Request Forgery 공격
+✅ CORS 정책
+위치: app.js:32-49
+허용 출처:
+CLIENT_ORIGIN 환경변수 설정값
+Vercel 프리뷰 도메인 (*-earth-shins-projects.vercel.app)
+개발 환경 (origin 없음)
+설정: credentials: true (쿠키 전송 허용)
+방어: 허가되지 않은 도메인의 API 접근
+✅ Helmet 보안 헤더
+위치: app.js:23-26
+설정:
+crossOriginResourcePolicy: 'cross-origin' - Cloudinary 이미지 허용
+contentSecurityPolicy: false - 프론트엔드에서 관리
+방어: XSS, 클릭재킹, MIME 스니핑
+3️⃣ 입력 검증 (Input Validation)
+✅ MongoDB ObjectId 검증
+위치: objectIdValidator.js
+적용 라우트:
+productRoutes.js:8 - /:productId
+adminProductRoutes.js:17,19,20
+cartRoutes.js:10 - /:itemId
+adminOrderRoutes.js:11,12 - /:orderId
+방어: 잘못된 ID로 인한 서버 에러, NoSQL Injection
+✅ 이메일 정규화
+위치:
+authController.js:70
+userController.js:44
+처리: trim() + toLowerCase()
+방어: 대소문자로 인한 중복 계정
+✅ 비밀번호 최소 길이
+위치: userController.js:50-52
+제한: 최소 6자
+방어: 취약한 비밀번호
+✅ 카테고리 enum 검증
+위치: productController.js:58-63
+허용값: book_repair, class, shop
+방어: 잘못된 카테고리 삽입
+✅ 숫자 입력 검증
+예시: productController.js:89-92
+검사: Number.isNaN(), 범위 체크
+방어: 음수, NaN, Infinity 입력
+4️⃣ API 보안
+✅ 페이지네이션 상한
+위치: productController.js:66-72
+기본값: 20개
+최대값: 100개
+방어: 과도한 데이터 요청으로 인한 서버 부하
+✅ 민감 정보 필터링
+비밀번호 제외:
+userController.js:7 - .select('-password')
+userController.js:128 - .select('-password')
+방어: 응답에 비밀번호 해시 노출
+5️⃣ 파일 업로드 보안
+✅ Cloudinary 클라이언트 측 검증
+위치: Admin.jsx:37-60
+허용 형식: JPG, PNG, WEBP
+최대 크기: 5MB
+방어: 악성 파일 업로드, 스토리지 남용
+✅ Cloudinary 위젯 설정
+위치: Admin.jsx:285-286
+설정:
+clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp']
+maxFileSize: 5MB
+folder: 'shoppingmall/products' 또는 'shoppingmall/details'
+방어: 허용되지 않은 파일 형식, 과도한 파일 크기
+6️⃣ 데이터베이스 보안
+✅ Mongoose 스키마 검증
+예시: Product.js
+required: true
+min: 0
+enum: CATEGORIES
+unique: true (sku)
+방어: 잘못된 데이터 삽입
+✅ 유니크 인덱스
+위치: Product.js:54
+필드: sku
+방어: 중복 상품 ID
+✅ 복합 유니크 인덱스
+위치: Order.js:98
+필드: payment.impUid (sparse)
+방어: 중복 결제 주문
+7️⃣ 세션 & 쿠키 보안
+✅ HTTP-Only 쿠키
+위치: authController.js:27-32
+쿠키: accessToken
+설정: httpOnly: true
+방어: XSS를 통한 토큰 탈취
+✅ Secure 쿠키
+위치: authController.js:17-18
+조건: COOKIE_SECURE=true 또는 NODE_ENV=production
+방어: HTTP를 통한 쿠키 도청
+✅ SameSite 정책
+위치: authController.js:16
+기본값: strict
+방어: CSRF 공격
+✅ 쿠키 만료 시간
+위치: authController.js:11,15
+기본값: 60분
+방어: 오래된 토큰 재사용
+8️⃣ 감사 로깅 (Audit Logging)
+✅ 인증 이벤트 로깅
+위치: authController.js:74,80,88,119
+기록 이벤트:
+auth.login_failed - 로그인 실패
+auth.login - 로그인 성공
+auth.logout - 로그아웃
+메타데이터: IP 주소, 이메일, userId
+방어: 보안 사고 추적, 이상 행위 탐지
+9️⃣ 에러 처리
+✅ 중앙 에러 핸들러
+위치: app.js:68-73
+처리:
+에러 로깅
+상태 코드 표준화
+메시지 정규화
+방어: 민감한 에러 정보 노출
+✅ AsyncHandler 래퍼
+사용: 모든 비동기 컨트롤러
+기능: try-catch 자동화, 에러 전파
+방어: 처리되지 않은 프로미스 거부
+📈 보안 수준 평가
+카테고리	수준	비고
+인증/인가	⭐⭐⭐⭐⭐	JWT + RBAC + 초대코드
+요청 보호	⭐⭐⭐⭐⭐	Rate Limit + CSRF + CORS + Helmet
+입력 검증	⭐⭐⭐⭐	ObjectId + 정규화 + 타입 체크
+API 보안	⭐⭐⭐⭐	페이지네이션 + 민감정보 필터링
+파일 업로드	⭐⭐⭐⭐	형식/크기 제한
+데이터베이스	⭐⭐⭐⭐	스키마 검증 + 유니크 인덱스
+세션/쿠키	⭐⭐⭐⭐⭐	HttpOnly + Secure + SameSite
+감사 로깅	⭐⭐⭐	인증 이벤트만 기록
+에러 처리	⭐⭐⭐⭐	중앙 핸들러 + AsyncHandler
+전체 평가: ⭐⭐⭐⭐ (4.5/5) - 우수함
+✅ 잘 구현된 부분
+다층 Rate Limiting (범용 + 특화)
+CSRF + CORS 결합 방어
+JWT 무효화 메커니즘 (InvalidToken)
+관리자 초대 코드 시스템
+Cloudinary 업로드 검증
+⚠️ 개선 가능 부분
+입력 검증 라이브러리 (Joi/Zod) 미도입
+감사 로깅 범위 확대 (주문, 상품 수정 등)
+SQL Injection 대비 불필요 (MongoDB 사용)
+

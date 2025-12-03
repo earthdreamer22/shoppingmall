@@ -4,7 +4,9 @@
       "Bash(npm run build:*)",
       "Bash(npx vite build)",
       "Bash(npm install:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm run dev)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": [

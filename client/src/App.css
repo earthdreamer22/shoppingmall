@@ -1532,11 +1532,11 @@ textarea {
   }
 
   .App {
-    padding: 12px;
+    padding: 12px 24px;
   }
 
   section {
-    padding: 16px;
+    padding: 16px 0;
   }
 
   .product-grid {
