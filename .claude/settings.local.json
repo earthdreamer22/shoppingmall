@@ -6,7 +6,9 @@
       "Bash(npm install:*)",
       "Bash(curl:*)",
       "Bash(npm run dev)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx ts-node:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": [

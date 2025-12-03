@@ -43,6 +43,11 @@ function isSensitive(path) {
 }
 
 function rateLimiter(req, res, next) {
+  // 관리자 계정은 rate limit 면제
+  if (req.user && req.user.role === 'admin') {
+    return next();
+  }
+
   const sensitive = isSensitive(req.path);
   const windowMs = sensitive ? windows.sensitive : windows.standard;
   const max = sensitive ? limits.sensitive : limits.standard;
