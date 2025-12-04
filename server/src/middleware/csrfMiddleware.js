@@ -2,14 +2,26 @@ const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS'];
 const CSRF_COOKIE_NAME = 'csrfToken';
 const CSRF_HEADER_NAME = 'x-csrf-token';
 
-const EXCLUDED_PATHS = ['/api/auth/login', '/api/auth/logout', '/api/users', '/api/payments/webhook'];
+// Path/methodº° CSRF ¿¹¿Ü ±ÔÄ¢
+const EXCLUDED_RULES = [
+  { prefix: '/api/auth/login', methods: ['POST'] },
+  { prefix: '/api/auth/logout', methods: ['POST'] },
+  { prefix: '/api/auth/csrf-token', methods: ['GET'] },
+  { prefix: '/api/payments/webhook', methods: ['POST'] },
+  // È¸¿ø°¡ÀÔ¸¸ ¿¹¿Ü, ¼öÁ¤/»èÁ¦´Â º¸È£
+  { prefix: '/api/users', methods: ['POST'] },
+];
 
-function isExcludedPath(path) {
-  return EXCLUDED_PATHS.some((excluded) => path.startsWith(excluded));
+function isExcluded(req) {
+  return EXCLUDED_RULES.some(
+    (rule) =>
+      req.path.startsWith(rule.prefix) &&
+      (!rule.methods || rule.methods.includes(req.method))
+  );
 }
 
 function csrfProtection(req, res, next) {
-  if (SAFE_METHODS.includes(req.method) || isExcludedPath(req.path)) {
+  if (SAFE_METHODS.includes(req.method) || isExcluded(req)) {
     return next();
   }
 
@@ -17,7 +29,9 @@ function csrfProtection(req, res, next) {
   const headerToken = req.get(CSRF_HEADER_NAME);
 
   if (!cookieToken || !headerToken || cookieToken !== headerToken) {
-    return res.status(403).json({ message: 'ìœ íš¨í•˜ì§€ ì•Šì€ CSRF í† í°ì…ë‹ˆë‹¤.' });
+    return res
+      .status(403)
+      .json({ message: 'CSRF ÅäÅ«ÀÌ ¾ø°Å³ª ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.' });
   }
 
   return next();
