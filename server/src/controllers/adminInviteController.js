@@ -2,12 +2,13 @@ const crypto = require('crypto');
 const AdminInvite = require('../models/AdminInvite');
 const { asyncHandler } = require('../utils/asyncHandler');
 const { recordAuditLog } = require('../utils/auditLogger');
-
-const DEFAULT_EXPIRES_HOURS = Number(process.env.ADMIN_INVITE_EXPIRES_HOURS ?? 12);
+const { config } = require('../config/env');
 
 function randomCode(length = 32) {
   return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
 }
+
+const DEFAULT_EXPIRES_HOURS = config.adminInvite.expiresHours;
 
 function buildInviteResponse(invite) {
   if (!invite) return null;
@@ -59,7 +60,7 @@ const revokeInvite = asyncHandler(async (req, res) => {
   const { inviteId } = req.params;
   const invite = await AdminInvite.findById(inviteId);
   if (!invite) {
-    return res.status(404).json({ message: 'ì´ˆëŒ€ì¥ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.' });
+    return res.status(404).json({ message: 'ÃÊ´ë Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.' });
   }
 
   invite.expiresAt = new Date(Date.now() - 1000);

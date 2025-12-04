@@ -3,9 +3,10 @@ const http = require('http');
 
 const app = require('./app');
 const { connectDatabase } = require('./config/database');
+const { config } = require('./config/env');
 
-const PORT = Number(process.env.PORT) || 5000;
-const MONGODB_URI = process.env.MONGODB_URI;
+const PORT = config.port;
+const MONGODB_URI = config.mongoUri;
 
 async function bootstrap() {
   try {
@@ -13,10 +14,10 @@ async function bootstrap() {
 
     const server = http.createServer(app);
     server.listen(PORT, () => {
-      console.log(`ğŸš€ ì„œë²„ê°€ í¬íŠ¸ ${PORT}ì—ì„œ ì‹¤í–‰ ì¤‘ì…ë‹ˆë‹¤.`);
+      console.log(`¼­¹ö°¡ Æ÷Æ® ${PORT}¿¡¼­ ½ÇÇà ÁßÀÔ´Ï´Ù.`);
     });
   } catch (error) {
-    console.error('ì„œë²„ ì‹œì‘ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.', error.message);
+    console.error('¼­¹ö ½ÃÀÛ¿¡ ½ÇÆĞÇß½À´Ï´Ù.', error.message);
     process.exit(1);
   }
 }

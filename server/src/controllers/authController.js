@@ -7,19 +7,16 @@ const { extractToken } = require('../middleware/authMiddleware');
 const { generateCsrfToken } = require('../utils/csrf');
 const { CSRF_COOKIE_NAME } = require('../middleware/csrfMiddleware');
 const { recordAuditLog } = require('../utils/auditLogger');
+const { config } = require('../config/env');
 
-const TOKEN_EXPIRES_MINUTES = Number(process.env.JWT_EXPIRES_MINUTES ?? 60);
 const COOKIE_NAME = 'accessToken';
 
 function buildBaseCookieOptions() {
-  const maxAge = TOKEN_EXPIRES_MINUTES * 60 * 1000;
-  const cookieSameSite = process.env.COOKIE_SAMESITE ?? 'strict';
-  const cookieSecure =
-    process.env.COOKIE_SECURE === 'true' || process.env.NODE_ENV === 'production';
+  const maxAge = config.auth.jwtExpiresMinutes * 60 * 1000;
 
   return {
-    sameSite: cookieSameSite,
-    secure: cookieSecure,
+    sameSite: config.auth.cookie.sameSite,
+    secure: config.auth.cookie.secure,
     maxAge,
   };
 }
@@ -45,11 +42,7 @@ function attachCsrfToken(res) {
 }
 
 function issueToken(user) {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    throw new Error('JWT_SECRET í™˜ê²½ ë³€ìˆ˜ê°€ ì„¤ì •ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.');
-  }
-
+  const secret = config.auth.jwtSecret;
   const payload = {
     sub: user.id,
     email: user.email,
@@ -57,14 +50,14 @@ function issueToken(user) {
     role: user.role,
   };
 
-  return jwt.sign(payload, secret, { expiresIn: `${TOKEN_EXPIRES_MINUTES}m` });
+  return jwt.sign(payload, secret, { expiresIn: `${config.auth.jwtExpiresMinutes}m` });
 }
 
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: 'ì´ë©”ì¼ê³¼ ë¹„ë°€ë²ˆí˜¸ë¥¼ ëª¨ë‘ ì…ë ¥í•´ì£¼ì„¸ìš”.' });
+    return res.status(400).json({ message: 'ÀÌ¸ŞÀÏ°ú ºñ¹Ğ¹øÈ£¸¦ ¸ğµÎ ÀÔ·ÂÇØÁÖ¼¼¿ä.' });
   }
 
   const normalizedEmail = String(email).trim().toLowerCase();
@@ -72,13 +65,13 @@ const login = asyncHandler(async (req, res) => {
 
   if (!user) {
     await recordAuditLog({ action: 'auth.login_failed', ip: req.ip, metadata: { email: normalizedEmail } });
-    return res.status(401).json({ message: 'ì´ë©”ì¼ ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.' });
+    return res.status(401).json({ message: 'ÀÌ¸ŞÀÏ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.' });
   }
 
   const isValidPassword = await bcrypt.compare(String(password), user.password);
   if (!isValidPassword) {
     await recordAuditLog({ action: 'auth.login_failed', ip: req.ip, metadata: { email: normalizedEmail } });
-    return res.status(401).json({ message: 'ì´ë©”ì¼ ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.' });
+    return res.status(401).json({ message: 'ÀÌ¸ŞÀÏ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.' });
   }
 
   const token = issueToken(user);
@@ -122,12 +115,12 @@ const logout = asyncHandler(async (req, res) => {
 
 const me = asyncHandler(async (req, res) => {
   if (!req.user) {
-    return res.status(401).json({ message: 'ì¸ì¦ ì •ë³´ê°€ í•„ìš”í•©ë‹ˆë‹¤.' });
+    return res.status(401).json({ message: 'ÀÎÁõ Á¤º¸°¡ ¾ø½À´Ï´Ù.' });
   }
 
   const user = await User.findById(req.user.id).select('-password');
   if (!user) {
-    return res.status(404).json({ message: 'íšŒì›ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.' });
+    return res.status(404).json({ message: '»ç¿ëÀÚ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.' });
   }
 
   res.json({ user: user.toJSON() });
@@ -135,7 +128,7 @@ const me = asyncHandler(async (req, res) => {
 
 const issueCsrfToken = asyncHandler(async (req, res) => {
   if (!req.user) {
-    return res.status(401).json({ message: 'ì¸ì¦ ì •ë³´ê°€ í•„ìš”í•©ë‹ˆë‹¤.' });
+    return res.status(401).json({ message: 'ÀÎÁõ Á¤º¸°¡ ¾ø½À´Ï´Ù.' });
   }
 
   const csrfToken = attachCsrfToken(res);

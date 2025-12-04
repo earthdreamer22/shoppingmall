@@ -1,15 +1,17 @@
+const { config } = require('../config/env');
+
 const sensitivePatterns = [/^\/api\/auth\//, /^\/api\/admin/, /^\/api\/payments/];
 
 const windows = {
-  standard: Number(process.env.RATE_LIMIT_WINDOW_MS ?? 5 * 60 * 1000),
-  admin: Number(process.env.RATE_LIMIT_ADMIN_WINDOW_MS ?? 5 * 60 * 1000),
-  sensitive: Number(process.env.RATE_LIMIT_SENSITIVE_WINDOW_MS ?? 60 * 60 * 1000),
+  standard: config.rateLimit.windowMs,
+  admin: config.rateLimit.adminWindowMs,
+  sensitive: config.rateLimit.sensitiveWindowMs,
 };
 
 const limits = {
-  standard: Number(process.env.RATE_LIMIT_MAX ?? 300),
-  admin: Number(process.env.RATE_LIMIT_ADMIN_MAX ?? 500),
-  sensitive: Number(process.env.RATE_LIMIT_SENSITIVE_MAX ?? 50),
+  standard: config.rateLimit.max,
+  admin: config.rateLimit.adminMax,
+  sensitive: config.rateLimit.sensitiveMax,
 };
 
 const bucket = new Map();
@@ -48,20 +50,15 @@ function rateLimiter(req, res, next) {
   const isAdminPath = req.path.startsWith('/api/admin');
   const sensitive = isSensitive(req.path);
 
-  const windowMs = isAdminPath
-    ? windows.admin
-    : (sensitive ? windows.sensitive : windows.standard);
-
-  const max = isAdminPath
-    ? limits.admin
-    : (sensitive ? limits.sensitive : limits.standard);
+  const windowMs = isAdminPath ? windows.admin : sensitive ? windows.sensitive : windows.standard;
+  const max = isAdminPath ? limits.admin : sensitive ? limits.sensitive : limits.standard;
   const key = getKey(req, windowMs);
 
   cleanExpired(key, windowMs);
   const count = increment(key, windowMs);
 
   if (count > max) {
-    return res.status(429).json({ message: 'ìš”ì²­ì´ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.' });
+    return res.status(429).json({ message: '¿äÃ»ÀÌ ³Ê¹« ¸¹½À´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.' });
   }
 
   return next();

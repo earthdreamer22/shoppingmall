@@ -1,22 +1,18 @@
 const axios = require('axios');
+const { config } = require('../config/env');
 
 const PORTONE_API_BASE = 'https://api.iamport.kr';
 
 async function getAccessToken() {
-  const key = process.env.PORTONE_IMP_KEY;
-  const secret = process.env.PORTONE_IMP_SECRET;
-
-  if (!key || !secret) {
-    throw new Error('í¬íŠ¸ì› API í‚¤ê°€ ì„¤ì •ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤. PORTONE_IMP_KEY/PORTONE_IMP_SECRETë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”.');
-  }
+  const { impKey, impSecret } = config.portone;
 
   const response = await axios.post(`${PORTONE_API_BASE}/users/getToken`, {
-    imp_key: key,
-    imp_secret: secret,
+    imp_key: impKey,
+    imp_secret: impSecret,
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`í¬íŠ¸ì› í† í° ë°œê¸‰ ì‹¤íŒ¨: ${response.data.message}`);
+    throw new Error(`Æ÷Æ®¿ø ¾×¼¼½º ÅäÅ« ¹ß±Ş ½ÇÆĞ: ${response.data.message}`);
   }
 
   return response.data.response.access_token;
@@ -25,9 +21,8 @@ async function getAccessToken() {
 async function getPaymentByImpUid(impUid) {
   const accessToken = await getAccessToken();
 
-  // 2026.1.26 í¬íŠ¸ì› API ë³€ê²½ ëŒ€ì‘: í…ŒìŠ¤íŠ¸ í™˜ê²½ì—ì„œëŠ” include_sandbox=true í•„ìš”
-  const isTestMode = process.env.NODE_ENV !== 'production';
-  const params = isTestMode ? { include_sandbox: true } : {};
+  // include_sandbox´Â Å×½ºÆ® ¸ğµå¿¡¼­¸¸ »ç¿ë
+  const params = config.portone.isTestMode ? { include_sandbox: true } : {};
 
   const response = await axios.get(`${PORTONE_API_BASE}/payments/${impUid}`, {
     headers: {
@@ -37,7 +32,7 @@ async function getPaymentByImpUid(impUid) {
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`í¬íŠ¸ì› ê²°ì œ ì¡°íšŒ ì‹¤íŒ¨: ${response.data.message}`);
+    throw new Error(`Æ÷Æ®¿ø °áÁ¦ Á¶È¸ ½ÇÆĞ: ${response.data.message}`);
   }
 
   return response.data.response;
@@ -48,10 +43,9 @@ async function cancelPayment(impUid, reason, amount = null) {
 
   const requestBody = {
     imp_uid: impUid,
-    reason: reason || 'ê´€ë¦¬ì ì£¼ë¬¸ ì·¨ì†Œ',
+    reason: reason || '°ü¸®ÀÚ ÁÖ¹® Ãë¼Ò',
   };
 
-  // amountê°€ ì§€ì •ë˜ë©´ ë¶€ë¶„ ì·¨ì†Œ, ì—†ìœ¼ë©´ ì „ì•¡ ì·¨ì†Œ
   if (amount) {
     requestBody.amount = amount;
   }
@@ -63,7 +57,7 @@ async function cancelPayment(impUid, reason, amount = null) {
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`í¬íŠ¸ì› ê²°ì œ ì·¨ì†Œ ì‹¤íŒ¨: ${response.data.message}`);
+    throw new Error(`Æ÷Æ®¿ø °áÁ¦ Ãë¼Ò ½ÇÆĞ: ${response.data.message}`);
   }
 
   return response.data.response;

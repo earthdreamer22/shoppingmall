@@ -16,17 +16,16 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
 const { csrfProtection } = require('./middleware/csrfMiddleware');
 const { rateLimiter } = require('./middleware/rateLimitMiddleware');
+const { config } = require('./config/env');
 
 const app = express();
 
 // 신뢰 프록시 설정: X-Forwarded-For 등을 활용해 실제 클라이언트 IP 사용
 app.set('trust proxy', 1);
 
-const allowedOrigins = process.env.CLIENT_ORIGIN
-  ? process.env.CLIENT_ORIGIN.split(',').map((o) => o.trim())
-  : [];
-const previewPattern = process.env.PREVIEW_ORIGIN_PATTERN; // 예: "-project.vercel.app"
-const appEnv = process.env.APP_ENV || process.env.NODE_ENV || 'production';
+const allowedOrigins = config.cors.clientOrigins;
+const previewPattern = config.cors.previewPattern; // 예: "-project.vercel.app"
+const appEnv = config.appEnv;
 
 const cspDirectives = {
   defaultSrc: ["'self'"],
@@ -89,13 +88,13 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/schedules', scheduleRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({ message: `${req.originalUrl} ??????眷? ??????堧?.` });
+  res.status(404).json({ message: `${req.originalUrl} 경로를 찾을 수 없습니다.` });
 });
 
 app.use((error, _req, res, _next) => {
   console.error('[error]', error);
   const status = error.status || 500;
-  const message = error.message || '??? ?る?臧€ ?滌?????堧?.';
+  const message = error.message || '서버 오류가 발생했습니다.';
   res.status(status).json({ message });
 });
 
