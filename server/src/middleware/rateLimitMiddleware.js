@@ -2,11 +2,13 @@ const sensitivePatterns = [/^\/api\/auth\//, /^\/api\/admin/, /^\/api\/payments/
 
 const windows = {
   standard: Number(process.env.RATE_LIMIT_WINDOW_MS ?? 5 * 60 * 1000),
+  admin: Number(process.env.RATE_LIMIT_ADMIN_WINDOW_MS ?? 5 * 60 * 1000),
   sensitive: Number(process.env.RATE_LIMIT_SENSITIVE_WINDOW_MS ?? 60 * 60 * 1000),
 };
 
 const limits = {
   standard: Number(process.env.RATE_LIMIT_MAX ?? 300),
+  admin: Number(process.env.RATE_LIMIT_ADMIN_MAX ?? 500),
   sensitive: Number(process.env.RATE_LIMIT_SENSITIVE_MAX ?? 50),
 };
 
@@ -43,14 +45,16 @@ function isSensitive(path) {
 }
 
 function rateLimiter(req, res, next) {
-  // 관리자 계정은 rate limit 면제
-  if (req.user && req.user.role === 'admin') {
-    return next();
-  }
-
+  const isAdminPath = req.path.startsWith('/api/admin');
   const sensitive = isSensitive(req.path);
-  const windowMs = sensitive ? windows.sensitive : windows.standard;
-  const max = sensitive ? limits.sensitive : limits.standard;
+
+  const windowMs = isAdminPath
+    ? windows.admin
+    : (sensitive ? windows.sensitive : windows.standard);
+
+  const max = isAdminPath
+    ? limits.admin
+    : (sensitive ? limits.sensitive : limits.standard);
   const key = getKey(req, windowMs);
 
   cleanExpired(key, windowMs);
