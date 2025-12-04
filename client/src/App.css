@@ -2,11 +2,24 @@
 
 :root {
   color-scheme: light;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
-  color: #1e1e2d;
-  background-color: #FFFFFF;
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+
+  /* Design tokens (existing 값과 동일) */
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --color-ink: #1e1e2d;
+  --color-surface: #ffffff;
+  --color-header: #0f172a;
+  --color-primary: #3b82f6;
+  --color-primary-strong: #2563eb;
+  --color-accent: #f97316;
+  --color-border: #e2e8f0;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
 }
 
 body {
@@ -16,7 +29,7 @@ body {
 
 /* ===== Site Header ===== */
 .site-header {
-  background-color: #0f172a;
+  background-color: var(--color-header);
   border-radius: 0;
   width: 100%;
 }
@@ -25,7 +38,7 @@ body {
   display: flex;
   align-items: center;
   padding: 8px 24px;
-  background-color: #0f172a;
+  background-color: var(--color-header);
   color: white;
   width: 100%;
   box-sizing: border-box;
