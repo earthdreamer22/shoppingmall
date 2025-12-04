@@ -37,6 +37,8 @@ app.use(helmet({
 const allowedOrigins = process.env.CLIENT_ORIGIN
   ? process.env.CLIENT_ORIGIN.split(',').map(o => o.trim())
   : [];
+const previewPattern = process.env.PREVIEW_ORIGIN_PATTERN; // 예: "-project.vercel.app"
+const appEnv = process.env.APP_ENV || process.env.NODE_ENV || 'production';
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -49,7 +51,7 @@ app.use(cors({
       return callback(null, true);
     }
     // Vercel ?꾨━酉??꾨찓???먮룞 ?덉슜 (earth-shins-projects.vercel.app)
-    if (origin.endsWith('-earth-shins-projects.vercel.app')) {
+    if (appEnv === 'preview' && previewPattern && origin.endsWith(previewPattern)) {
       return callback(null, true);
     }
     callback(new Error('CORS not allowed'));
