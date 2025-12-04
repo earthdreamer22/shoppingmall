@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -19,10 +19,13 @@ const { rateLimiter } = require('./middleware/rateLimitMiddleware');
 
 const app = express();
 
+// 프록시/로드밸런서 뒤에서 실제 클라이언트 IP를 얻기 위함
+app.set('trust proxy', 1);
+
 // Helmet 보안 헤더 설정
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
-  contentSecurityPolicy: false, // CSP는 프론트엔드에서 관리
+  contentSecurityPolicy: false, // CSP는 리소스 허용에 맞춰 조정 필요
 }));
 
 const allowedOrigins = process.env.CLIENT_ORIGIN
@@ -31,15 +34,15 @@ const allowedOrigins = process.env.CLIENT_ORIGIN
 
 app.use(cors({
   origin: (origin, callback) => {
-    // 개발환경 (origin 없음)
+    // 媛쒕컻?섍꼍 (origin ?놁쓬)
     if (!origin) {
       return callback(null, true);
     }
-    // 명시적으로 허용된 origin
+    // 紐낆떆?곸쑝濡??덉슜??origin
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-    // Vercel 프리뷰 도메인 자동 허용 (earth-shins-projects.vercel.app)
+    // Vercel ?꾨━酉??꾨찓???먮룞 ?덉슜 (earth-shins-projects.vercel.app)
     if (origin.endsWith('-earth-shins-projects.vercel.app')) {
       return callback(null, true);
     }
@@ -69,14 +72,18 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/schedules', scheduleRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({ message: `${req.originalUrl} 경로를 찾을 수 없습니다.` });
+  res.status(404).json({ message: `${req.originalUrl} 寃쎈줈瑜?李얠쓣 ???놁뒿?덈떎.` });
 });
 
 app.use((error, _req, res, _next) => {
   console.error('[error]', error);
   const status = error.status || 500;
-  const message = error.message || '서버 오류가 발생했습니다.';
+  const message = error.message || '?쒕쾭 ?ㅻ쪟媛 諛쒖깮?덉뒿?덈떎.';
   res.status(status).json({ message });
 });
 
 module.exports = app;
+
+
+
+
