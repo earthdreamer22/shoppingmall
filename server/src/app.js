@@ -22,6 +22,12 @@ const app = express();
 // 프록시/로드밸런서 뒤에서 실제 클라이언트 IP를 얻기 위함
 app.set('trust proxy', 1);
 
+// 임시: IP 확인용 로그 (확인 후 제거하세요)
+// app.use((req, _res, next) => {
+//   console.log('req.ip:', req.ip, 'x-forwarded-for:', req.headers['x-forwarded-for']);
+//   next();
+// });
+
 // Helmet 보안 헤더 설정
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
