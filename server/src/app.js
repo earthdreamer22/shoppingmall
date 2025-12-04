@@ -1,4 +1,4 @@
-ï»¿const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -19,45 +19,54 @@ const { rateLimiter } = require('./middleware/rateLimitMiddleware');
 
 const app = express();
 
-// í”„ë¡ì‹œ/ë¡œë“œë°¸ëŸ°ì„œ ë’¤ì—ì„œ ì‹¤ì œ í´ë¼ì´ì–¸íŠ¸ IPë¥¼ ì–»ê¸° ìœ„í•¨
+// ½Å·Ú ÇÁ·Ï½Ã ¼³Á¤: X-Forwarded-For µîÀ» È°¿ëÇØ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ® IP »ç¿ë
 app.set('trust proxy', 1);
 
-// ì„ì‹œ: IP í™•ì¸ìš© ë¡œê·¸ (í™•ì¸ í›„ ì œê±°í•˜ì„¸ìš”)
-// app.use((req, _res, next) => {
-//   console.log('req.ip:', req.ip, 'x-forwarded-for:', req.headers['x-forwarded-for']);
-//   next();
-// });
-
-// Helmet ë³´ì•ˆ í—¤ë” ì„¤ì •
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'cross-origin' },
-  contentSecurityPolicy: false, // CSPëŠ” ë¦¬ì†ŒìŠ¤ í—ˆìš©ì— ë§ì¶° ì¡°ì • í•„ìš”
-}));
-
 const allowedOrigins = process.env.CLIENT_ORIGIN
-  ? process.env.CLIENT_ORIGIN.split(',').map(o => o.trim())
+  ? process.env.CLIENT_ORIGIN.split(',').map((o) => o.trim())
   : [];
-const previewPattern = process.env.PREVIEW_ORIGIN_PATTERN; // ì˜ˆ: "-project.vercel.app"
+const previewPattern = process.env.PREVIEW_ORIGIN_PATTERN; // ¿¹: "-project.vercel.app"
 const appEnv = process.env.APP_ENV || process.env.NODE_ENV || 'production';
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // åª›ì’•ì»»?ì„ê¼ (origin ?ë†ì“¬)
-    if (!origin) {
-      return callback(null, true);
-    }
-    // ï§ë‚†ë–†?ê³¸ì‘æ¿¡??ë‰ìŠœ??origin
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    // Vercel ?ê¾¨â”é…‰??ê¾¨ì°“???ë¨®ë£ ?ë‰ìŠœ (earth-shins-projects.vercel.app)
-    if (appEnv === 'preview' && previewPattern && origin.endsWith(previewPattern)) {
-      return callback(null, true);
-    }
-    callback(new Error('CORS not allowed'));
-  },
-  credentials: true
-}));
+const cspDirectives = {
+  defaultSrc: ["'self'"],
+  baseUri: ["'self'"],
+  frameAncestors: ["'none'"],
+  objectSrc: ["'none'"],
+};
+
+// Helmet ±âº» Çì´õ + CSP/Referrer Àû¿ë
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    contentSecurityPolicy: { useDefaults: true, directives: cspDirectives },
+    referrerPolicy: { policy: 'no-referrer' },
+  })
+);
+
+// Permissions-Policy: ºÒÇÊ¿äÇÑ ±â±â ±ÇÇÑ Â÷´Ü
+app.use((req, res, next) => {
+  res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()');
+  next();
+});
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      if (appEnv === 'preview' && previewPattern && origin.endsWith(previewPattern)) {
+        return callback(null, true);
+      }
+      callback(new Error('CORS not allowed'));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
@@ -80,18 +89,14 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/schedules', scheduleRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({ message: `${req.originalUrl} å¯ƒìˆì¤ˆç‘œ?ï§¡ì– ì“£ ???ë†ë’¿?ëˆë–.` });
+  res.status(404).json({ message: `${req.originalUrl} ??????Ïï? ??????æÀ?.` });
 });
 
 app.use((error, _req, res, _next) => {
   console.error('[error]', error);
   const status = error.status || 500;
-  const message = error.message || '?ì’•ì¾­ ?ã…»ìªŸåª›Â€ è«›ì’–ê¹®?ë‰ë’¿?ëˆë–.';
+  const message = error.message || '??? ?ªë?íõ¢æ ?ô¯?????æÀ?.';
   res.status(status).json({ message });
 });
 
 module.exports = app;
-
-
-
-
