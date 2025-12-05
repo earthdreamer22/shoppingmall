@@ -1183,6 +1183,68 @@ button.danger:hover {
   gap: 24px;
 }
 
+.product-form-grid-4 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.product-form-row {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: flex-start;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.product-card h4 {
+  margin: 0 0 12px;
+}
+
+.product-description-card textarea {
+  width: 100%;
+  min-height: 180px;
+  resize: vertical;
+}
+
+.product-detail-blocks-card .card-header {
+  margin-bottom: 12px;
+}
+
+.option-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.option-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.option-chip button {
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.option-value-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.option-value-input input {
+  flex: 1;
+}
+
 .form-grid {
   display: grid;
   gap: 16px;
