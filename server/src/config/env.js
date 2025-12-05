@@ -21,15 +21,26 @@ const parseList = (value) =>
     .map((v) => v.trim())
     .filter(Boolean);
 
+const DEFAULT_DEV_ORIGINS = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+];
+
 // Validate required variables early
 REQUIRED_VARS.forEach(requireEnv);
 
+const appEnv = process.env.APP_ENV || process.env.NODE_ENV || 'production';
+
 const config = {
-  appEnv: process.env.APP_ENV || process.env.NODE_ENV || 'production',
+  appEnv,
   port: numberEnv('PORT', 5000),
   mongoUri: requireEnv('MONGODB_URI'),
   cors: {
-    clientOrigins: parseList(process.env.CLIENT_ORIGIN),
+    clientOrigins:
+      parseList(process.env.CLIENT_ORIGIN) ||
+      (appEnv !== 'production' ? DEFAULT_DEV_ORIGINS : []),
     previewPattern: process.env.PREVIEW_ORIGIN_PATTERN || null,
   },
   auth: {
