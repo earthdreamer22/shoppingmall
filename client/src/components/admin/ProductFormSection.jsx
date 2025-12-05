@@ -278,7 +278,12 @@ function ProductFormSection({
               </button>
               <button
                 type="button"
-                onClick={() => setForm((prev) => ({ ...prev, detailBlocks: [...prev.detailBlocks, { type: 'note', content: '' }] }))}
+                onClick={() =>
+                  setForm((prev) => ({
+                    ...prev,
+                    detailBlocks: [...prev.detailBlocks, { type: 'notice', content: '' }],
+                  }))
+                }
               >
                 + 주의사항
               </button>
@@ -293,17 +298,22 @@ function ProductFormSection({
               form.detailBlocks.map((block, idx) => (
                 <div key={idx} className="detail-block">
                   <div className="detail-block-header">
-                    <span className="detail-block-type">{block.type === 'text' ? '텍스트' : block.type === 'note' ? '주의사항' : '상세 이미지'}</span>
+                    <span className="detail-block-type">
+                      {block.type === 'text' ? '텍스트' : block.type === 'notice' ? '주의사항' : '상세 이미지'}
+                    </span>
                     <div className="detail-block-controls">
                       <button type="button" onClick={() => moveDetailBlock(idx, 'up')}>▲</button>
                       <button type="button" onClick={() => moveDetailBlock(idx, 'down')}>▼</button>
                       <button
                         type="button"
                         onClick={() => {
-                          const nextType = block.type === 'text' ? 'note' : block.type === 'note' ? 'image' : 'text';
+                          const nextType =
+                            block.type === 'text' ? 'notice' : block.type === 'notice' ? 'image' : 'text';
                           setForm((prev) => ({
                             ...prev,
-                            detailBlocks: prev.detailBlocks.map((b, i) => (i === idx ? { ...b, type: nextType } : b)),
+                            detailBlocks: prev.detailBlocks.map((b, i) =>
+                              i === idx ? { ...b, type: nextType } : b
+                            ),
                           }));
                         }}
                       >
@@ -335,7 +345,7 @@ function ProductFormSection({
                       }}
                     />
                   )}
-                  {block.type === 'note' && (
+                  {block.type === 'notice' && (
                     <textarea
                       placeholder="주의사항 내용"
                       value={block.content ?? ''}
