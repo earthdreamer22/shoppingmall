@@ -125,13 +125,12 @@ function ProductFormSection({
                       }));
                     }}
                   />
-                  <input
-                    type="text"
-                    placeholder="옵션 값들을 콤마로 구분해 입력"
-                    value={option.values?.join(', ') ?? ''}
+                  <textarea
+                    placeholder="옵션 값을 한 줄에 하나씩 입력"
+                    value={option.values?.join('\n') ?? ''}
                     onChange={(event) => {
                       const values = event.target.value
-                        .split(',')
+                        .split('\n')
                         .map((v) => v.trim())
                         .filter(Boolean);
                       setForm((prev) => ({
@@ -139,6 +138,7 @@ function ProductFormSection({
                         options: prev.options.map((o, i) => (i === idx ? { ...o, values } : o)),
                       }));
                     }}
+                    rows={2}
                   />
                   <button
                     type="button"
