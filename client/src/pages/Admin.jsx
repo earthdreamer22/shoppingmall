@@ -1,25 +1,30 @@
-ï»¿import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { PRODUCT_CATEGORIES, getCategoryLabel } from '../lib/productCategories.js';
+import OrdersSection from '../components/admin/OrdersSection.jsx';
+import InvitesSection from '../components/admin/InvitesSection.jsx';
+import ScheduleSection from '../components/admin/ScheduleSection.jsx';
+import ProductListSection from '../components/admin/ProductListSection.jsx';
+import AdminFormNotice from '../components/admin/AdminFormNotice.jsx';
 const ORDER_STATUS_OPTIONS = [
-  { value: 'pending', label: 'ê²°ì œ ëŒ€ê¸°' },
-  { value: 'paid', label: 'ê²°ì œ ì™„ë£Œ' },
-  { value: 'shipped', label: 'ë°°ì†¡ ì¤‘' },
-  { value: 'delivered', label: 'ë°°ì†¡ ì™„ë£Œ' },
-  { value: 'cancelled', label: 'ì·¨ì†Œ' },
+  { value: 'pending', label: '°áÁ¦ ´ë±â' },
+  { value: 'paid', label: '°áÁ¦ ¿Ï·á' },
+  { value: 'shipped', label: '¹è¼Û Áß' },
+  { value: 'delivered', label: '¹è¼Û ¿Ï·á' },
+  { value: 'cancelled', label: 'Ãë¼Ò' },
 ];
 
 const SCHEDULE_STATUS_OPTIONS = [
-  { value: 'unavailable', label: 'ìˆ˜ì—… ë¶ˆê°€', color: '#ef4444' },
+  { value: 'unavailable', label: '¼ö¾÷ ºÒ°¡', color: '#ef4444' },
 ];
 
 const DEFAULT_INVITE_HOURS = Number(import.meta.env.VITE_ADMIN_INVITE_HOURS ?? 12) || 12;
 
 function formatCurrency(amount) {
   if (amount == null) return '-';
-  return `â‚© ${Number(amount).toLocaleString()}`;
+  return `\ ${Number(amount).toLocaleString()}`;
 }
 
 function formatDate(value) {
@@ -39,20 +44,20 @@ const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 
 function validateImageFile(file) {
   if (!file) {
-    return { valid: false, error: 'íŒŒì¼ì´ ì„ íƒë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.' };
+    return { valid: false, error: 'ÆÄÀÏÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.' };
   }
 
   if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
     return {
       valid: false,
-      error: 'JPG, PNG, WEBP í˜•ì‹ì˜ ì´ë¯¸ì§€ë§Œ ì—…ë¡œë“œ ê°€ëŠ¥í•©ë‹ˆë‹¤.'
+      error: 'JPG, PNG, WEBP Çü½ÄÀÇ ÀÌ¹ÌÁö¸¸ ¾÷·Îµå °¡´ÉÇÕ´Ï´Ù.'
     };
   }
 
   if (file.size > MAX_IMAGE_SIZE) {
     return {
       valid: false,
-      error: `íŒŒì¼ í¬ê¸°ëŠ” ${(MAX_IMAGE_SIZE / (1024 * 1024)).toFixed(0)}MB ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.`
+      error: `ÆÄÀÏ Å©±â´Â ${(MAX_IMAGE_SIZE / (1024 * 1024)).toFixed(0)}MB ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù.`
     };
   }
 
@@ -138,7 +143,7 @@ function Admin() {
       const data = await apiRequest('/admin/orders');
       setOrders(data);
     } catch (error) {
-      setOrdersError(error.message ?? 'ì£¼ë¬¸ ëª©ë¡ì„ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.');
+      setOrdersError(error.message ?? 'ÁÖ¹® ¸ñ·ÏÀ» ºÒ·¯¿ÀÁö ¸øÇß½À´Ï´Ù.');
     } finally {
       setOrdersLoading(false);
     }
@@ -151,7 +156,7 @@ function Admin() {
       const data = await apiRequest('/admin/invites');
       setInvites(data);
     } catch (error) {
-      setInviteError(error.message ?? 'ì´ˆëŒ€ ëª©ë¡ì„ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.');
+      setInviteError(error.message ?? 'ÃÊ´ë ¸ñ·ÏÀ» ºÒ·¯¿ÀÁö ¸øÇß½À´Ï´Ù.');
     } finally {
       setInvitesLoading(false);
     }
@@ -166,7 +171,7 @@ function Admin() {
       setSchedules(data);
     } catch (error) {
       setScheduleNoticeType('error');
-      setScheduleNotice(error.message ?? 'ì¼ì •ì„ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.');
+      setScheduleNotice(error.message ?? 'ÀÏÁ¤À» ºÒ·¯¿ÀÁö ¸øÇß½À´Ï´Ù.');
     } finally {
       setSchedulesLoading(false);
     }
@@ -209,12 +214,12 @@ function Admin() {
           body: JSON.stringify(payload),
         });
         setInviteNoticeType('success');
-        setInviteNotice('ìƒˆ ê´€ë¦¬ì ì´ˆëŒ€ ì½”ë“œê°€ ë°œê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤.');
+        setInviteNotice('»õ °ü¸®ÀÚ ÃÊ´ë ÄÚµå°¡ ¹ß±ŞµÇ¾ú½À´Ï´Ù.');
         setInviteForm({ email: '', expiresInHours: DEFAULT_INVITE_HOURS });
         await fetchInvites();
       } catch (error) {
         setInviteNoticeType('error');
-        setInviteNotice(error.message ?? 'ì´ˆëŒ€ ì½”ë“œ ë°œê¸‰ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
+        setInviteNotice(error.message ?? 'ÃÊ´ë ÄÚµå ¹ß±Ş¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
       } finally {
         setIsCreatingInvite(false);
       }
@@ -230,27 +235,27 @@ function Admin() {
         throw new Error('clipboard api unavailable');
       }
       setInviteNoticeType('success');
-      setInviteNotice('ì´ˆëŒ€ ì½”ë“œê°€ í´ë¦½ë³´ë“œì— ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤.');
+      setInviteNotice('ÃÊ´ë ÄÚµå°¡ Å¬¸³º¸µå¿¡ º¹»çµÇ¾ú½À´Ï´Ù.');
     } catch (_error) {
-      window.prompt('ì´ˆëŒ€ ì½”ë“œë¥¼ ë³µì‚¬í•´ì£¼ì„¸ìš”.', code);
+      window.prompt('ÃÊ´ë ÄÚµå¸¦ º¹»çÇØÁÖ¼¼¿ä.', code);
       setInviteNoticeType('info');
-      setInviteNotice('ë¸Œë¼ìš°ì €ì—ì„œ ë³µì‚¬ ì°½ì„ ì—´ì—ˆìŠµë‹ˆë‹¤.');
+      setInviteNotice('ºê¶ó¿ìÀú¿¡¼­ º¹»ç Ã¢À» ¿­¾ú½À´Ï´Ù.');
     }
   }, []);
 
   const handleRevokeInvite = useCallback(
     async (inviteId) => {
-      if (!window.confirm('í•´ë‹¹ ì´ˆëŒ€ ì½”ë“œë¥¼ ì¦‰ì‹œ ë§Œë£Œì‹œí‚¤ê² ìŠµë‹ˆê¹Œ?')) return;
+      if (!window.confirm('ÇØ´ç ÃÊ´ë ÄÚµå¸¦ Áï½Ã ¸¸·á½ÃÅ°°Ú½À´Ï±î?')) return;
       try {
         await apiRequest(`/admin/invites/${inviteId}`, {
           method: 'DELETE',
         });
         setInviteNoticeType('success');
-        setInviteNotice('ì´ˆëŒ€ ì½”ë“œê°€ ë§Œë£Œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.');
+        setInviteNotice('ÃÊ´ë ÄÚµå°¡ ¸¸·á Ã³¸®µÇ¾ú½À´Ï´Ù.');
         await fetchInvites();
       } catch (error) {
         setInviteNoticeType('error');
-        setInviteNotice(error.message ?? 'ì´ˆëŒ€ ì½”ë“œ ë§Œë£Œ ì²˜ë¦¬ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
+        setInviteNotice(error.message ?? 'ÃÊ´ë ÄÚµå ¸¸·á Ã³¸®¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
       }
     },
     [fetchInvites],
@@ -260,7 +265,7 @@ function Admin() {
     if (error) {
       console.error('[cloudinary] widget error', error);
       setStatusType('error');
-      setStatus(error.message ?? 'ì´ë¯¸ì§€ ì—…ë¡œë“œ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.');
+      setStatus(error.message ?? 'ÀÌ¹ÌÁö ¾÷·Îµå Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.');
       return;
     }
 
@@ -292,7 +297,7 @@ function Admin() {
     if (widgetRef.current || widgetReady) return;
 
     if (!cloudName || !uploadPreset) {
-      setWidgetMessage('Cloudinary í™˜ê²½ ë³€ìˆ˜ê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. .env íŒŒì¼ì„ í™•ì¸í•´ì£¼ì„¸ìš”.');
+      setWidgetMessage('Cloudinary È¯°æ º¯¼ö°¡ ¼³Á¤µÇÁö ¾Ê¾Ò½À´Ï´Ù. .env ÆÄÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.');
       return;
     }
 
@@ -331,10 +336,10 @@ function Admin() {
       setWidgetReady(true);
       setWidgetMessage('');
     } else {
-      setWidgetMessage('Cloudinary ìœ„ì ¯ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ì…ë‹ˆë‹¤...');
+      setWidgetMessage('Cloudinary À§Á¬À» ºÒ·¯¿À´Â ÁßÀÔ´Ï´Ù...');
       const timer = setTimeout(() => {
         if (!window.cloudinary?.createUploadWidget) {
-          setWidgetMessage('Cloudinary ìœ„ì ¯ì„ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤. ìƒˆë¡œê³ ì¹¨ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.');
+          setWidgetMessage('Cloudinary À§Á¬À» ºÒ·¯¿ÀÁö ¸øÇß½À´Ï´Ù. »õ·Î°íÄ§ ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.');
         }
       }, 4000);
       return () => clearTimeout(timer);
@@ -351,7 +356,7 @@ function Admin() {
         body: formData,
       });
     } catch (error) {
-      console.error('[cloudinary] delete_by_token ì‹¤íŒ¨', error);
+      console.error('[cloudinary] delete_by_token ½ÇÆĞ', error);
     }
   }, []);
 
@@ -364,7 +369,7 @@ function Admin() {
   const openUploadWidget = () => {
     if (!widgetRef.current) {
       setStatusType('error');
-      setStatus(widgetMessage || 'ì´ë¯¸ì§€ ì—…ë¡œë“œ ìœ„ì ¯ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
+      setStatus(widgetMessage || 'ÀÌ¹ÌÁö ¾÷·Îµå À§Á¬À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.');
       return;
     }
     widgetRef.current.open();
@@ -411,20 +416,20 @@ function Admin() {
 
     try {
       if (!form.sku.trim()) {
-        throw new Error('ìƒí’ˆ ID(SKU)ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.');
+        throw new Error('»óÇ° ID(SKU)¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');
       }
 
       if (!form.name.trim()) {
-        throw new Error('ìƒí’ˆ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
+        throw new Error('»óÇ° ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.');
       }
 
       if (!form.images.length) {
-        throw new Error('ëŒ€í‘œ ì´ë¯¸ì§€ë¥¼ í¬í•¨í•œ ìƒí’ˆ ì´ë¯¸ì§€ë¥¼ ìµœì†Œ í•œ ì¥ ì´ìƒ ë“±ë¡í•´ì£¼ì„¸ìš”.');
+        throw new Error('´ëÇ¥ ÀÌ¹ÌÁö¸¦ Æ÷ÇÔÇÑ »óÇ° ÀÌ¹ÌÁö¸¦ ÃÖ¼Ò ÇÑ Àå ÀÌ»ó µî·ÏÇØÁÖ¼¼¿ä.');
       }
 
       const primaryImage = form.images.find((image) => image.isPrimary);
       if (!primaryImage) {
-        throw new Error('ëŒ€í‘œ ì´ë¯¸ì§€ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.');
+        throw new Error('´ëÇ¥ ÀÌ¹ÌÁö¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.');
       }
 
       const payload = {
@@ -447,21 +452,21 @@ function Admin() {
           body: JSON.stringify(payload),
         });
         setStatusType('success');
-        setStatus('ìƒí’ˆì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.');
+        setStatus('»óÇ°ÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.');
       } else {
         await apiRequest('/admin/products', {
           method: 'POST',
           body: JSON.stringify(payload),
         });
         setStatusType('success');
-        setStatus('ìƒí’ˆì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.');
+        setStatus('»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.');
       }
 
       resetForm();
       await fetchProducts();
     } catch (error) {
       setStatusType('error');
-      setStatus(error.message ?? 'ìƒí’ˆ ì €ì¥ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.');
+      setStatus(error.message ?? '»óÇ° ÀúÀå Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.');
     } finally {
       setIsSubmitting(false);
     }
@@ -489,12 +494,12 @@ function Admin() {
   };
 
   const handleDelete = async (productId) => {
-    if (!window.confirm('í•´ë‹¹ ìƒí’ˆì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) return;
+    if (!window.confirm('ÇØ´ç »óÇ°À» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')) return;
 
     try {
       await apiRequest(`/admin/products/${productId}`, { method: 'DELETE' });
       setStatusType('success');
-      setStatus('ìƒí’ˆì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.');
+      setStatus('»óÇ°ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.');
       if (editingProductId === productId) {
         resetForm();
       }
@@ -506,7 +511,7 @@ function Admin() {
   };
 
   const pageTitle = useMemo(
-    () => (editingProductId ? 'ìƒí’ˆ ìˆ˜ì •' : 'ìƒí’ˆ ë“±ë¡'),
+    () => (editingProductId ? '»óÇ° ¼öÁ¤' : '»óÇ° µî·Ï'),
     [editingProductId],
   );
 
@@ -523,10 +528,10 @@ function Admin() {
       });
       setOrders((prev) => prev.map((order) => (order.id === orderId ? { ...order, ...updated } : order)));
       setOrderNoticeType('success');
-      setOrderNotice('ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ë˜ì—ˆìŠµë‹ˆë‹¤.');
+      setOrderNotice('ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ®µÇ¾ú½À´Ï´Ù.');
     } catch (error) {
       setOrderNoticeType('error');
-      setOrderNotice(error.message ?? 'ì£¼ë¬¸ ìƒíƒœë¥¼ ë³€ê²½í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.');
+      setOrderNotice(error.message ?? 'ÁÖ¹® »óÅÂ¸¦ º¯°æÇÏÁö ¸øÇß½À´Ï´Ù.');
     }
   };
 
@@ -541,13 +546,13 @@ function Admin() {
       });
     } catch (error) {
       setOrderNoticeType('error');
-      setOrderNotice(error.message ?? 'ì†¡ì¥ ì •ë³´ ì—…ë°ì´íŠ¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
+      setOrderNotice(error.message ?? '¼ÛÀå Á¤º¸ ¾÷µ¥ÀÌÆ®¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
     }
   };
 
   const handleAdminCancelOrder = async (orderId) => {
-    const reason = window.prompt('ì·¨ì†Œ ì‚¬ìœ ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” (ì„ íƒì‚¬í•­):');
-    if (reason === null) return; // ì‚¬ìš©ìê°€ ì·¨ì†Œë¥¼ ëˆ„ë¥¸ ê²½ìš°
+    const reason = window.prompt('Ãë¼Ò »çÀ¯¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä (¼±ÅÃ»çÇ×):');
+    if (reason === null) return; // »ç¿ëÀÚ°¡ Ãë¼Ò¸¦ ´©¸¥ °æ¿ì
 
     try {
       await apiRequest(`/admin/orders/${orderId}/cancel`, {
@@ -556,10 +561,10 @@ function Admin() {
       });
       await fetchOrders();
       setOrderNoticeType('success');
-      setOrderNotice('ì£¼ë¬¸ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤. ê²°ì œê°€ ì™„ë£Œëœ ì£¼ë¬¸ì€ í™˜ë¶ˆ ì²˜ë¦¬ë©ë‹ˆë‹¤.');
+      setOrderNotice('ÁÖ¹®ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù. °áÁ¦°¡ ¿Ï·áµÈ ÁÖ¹®Àº È¯ºÒ Ã³¸®µË´Ï´Ù.');
     } catch (error) {
       setOrderNoticeType('error');
-      setOrderNotice(error.message ?? 'ì£¼ë¬¸ì„ ì·¨ì†Œí•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.');
+      setOrderNotice(error.message ?? 'ÁÖ¹®À» Ãë¼ÒÇÏÁö ¸øÇß½À´Ï´Ù.');
     }
   };
 
@@ -571,7 +576,7 @@ function Admin() {
     try {
       const year = scheduleDate.getFullYear();
       const month = scheduleDate.getMonth();
-      // UTC ë³€í™˜ ë¬¸ì œ ë°©ì§€: ë¡œì»¬ ë‚ ì§œë¥¼ YYYY-MM-DD í˜•ì‹ìœ¼ë¡œ ì „ì†¡
+      // UTC º¯È¯ ¹®Á¦ ¹æÁö: ·ÎÄÃ ³¯Â¥¸¦ YYYY-MM-DD Çü½ÄÀ¸·Î Àü¼Û
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}T12:00:00.000Z`;
 
       await apiRequest('/schedules', {
@@ -584,12 +589,12 @@ function Admin() {
       });
 
       setScheduleNoticeType('success');
-      setScheduleNotice('ìˆ˜ì—… ë¶ˆê°€ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.');
+      setScheduleNotice('¼ö¾÷ ºÒ°¡·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.');
       setSelectedDay(null);
       await fetchSchedules();
     } catch (error) {
       setScheduleNoticeType('error');
-      setScheduleNotice(error.message ?? 'ì¼ì • ì €ì¥ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
+      setScheduleNotice(error.message ?? 'ÀÏÁ¤ ÀúÀå¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
     }
   };
 
@@ -605,12 +610,12 @@ function Admin() {
       });
 
       setScheduleNoticeType('success');
-      setScheduleNotice('ìˆ˜ì—… ê°€ëŠ¥ìœ¼ë¡œ ë˜ëŒë ¸ìŠµë‹ˆë‹¤.');
+      setScheduleNotice('¼ö¾÷ °¡´ÉÀ¸·Î µÇµ¹·È½À´Ï´Ù.');
       setSelectedDay(null);
       await fetchSchedules();
     } catch (error) {
       setScheduleNoticeType('error');
-      setScheduleNotice(error.message ?? 'ì¼ì • ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
+      setScheduleNotice(error.message ?? 'ÀÏÁ¤ »èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
     }
   };
 
@@ -662,8 +667,8 @@ function Admin() {
     const month = scheduleDate.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const weekDays = ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '];
-    const monthNames = ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'];
+    const weekDays = ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'];
+    const monthNames = ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'];
 
     const days = [];
     for (let i = 0; i < firstDay; i++) {
@@ -691,7 +696,7 @@ function Admin() {
       <div className="admin-calendar">
         <div className="admin-calendar-header">
           <button type="button" onClick={schedulePrevMonth} className="calendar-nav-btn">&lt;</button>
-          <h3>{year}ë…„ {monthNames[month]}</h3>
+          <h3>{year}³â {monthNames[month]}</h3>
           <button type="button" onClick={scheduleNextMonth} className="calendar-nav-btn">&gt;</button>
         </div>
         <div className="admin-calendar-weekdays">
@@ -705,7 +710,7 @@ function Admin() {
   };
 
   if (loading) {
-    return <div className="App">ì‚¬ìš©ì ì •ë³´ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ì…ë‹ˆë‹¤...</div>;
+    return <div className="App">»ç¿ëÀÚ Á¤º¸¸¦ ºÒ·¯¿À´Â ÁßÀÔ´Ï´Ù...</div>;
   }
 
   if (!user || user.role !== 'admin') {
@@ -715,11 +720,11 @@ function Admin() {
   return (
     <div className="App">
       <header>
-        <h3>ê´€ë¦¬ì ëŒ€ì‹œë³´ë“œ</h3>
-        <p>ìƒí’ˆ ì •ë³´ë¥¼ ìƒì„±, ìˆ˜ì •, ì‚­ì œí•˜ê³  ì´ë¯¸ì§€ ê´€ë¦¬ê¹Œì§€ ìˆ˜í–‰í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>
+        <h3>°ü¸®ÀÚ ´ë½Ãº¸µå</h3>
+        <p>»óÇ° Á¤º¸¸¦ »ı¼º, ¼öÁ¤, »èÁ¦ÇÏ°í ÀÌ¹ÌÁö °ü¸®±îÁö ¼öÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.</p>
       </header>
 
-      {status && <div className={`status ${statusType === 'error' ? 'error' : ''}`}>{status}</div>}
+      <AdminFormNotice status={status} statusType={statusType} />
 
       <main>
         <section className="product-form">
@@ -727,17 +732,17 @@ function Admin() {
           <form onSubmit={handleSubmit} className="admin-form">
             <div className="form-grid">
               <label>
-                ìƒí’ˆ ID (SKU)
+                »óÇ° ID (SKU)
                 <input
                   required
                   name="sku"
                   value={form.sku}
                   onChange={(event) => setForm((prev) => ({ ...prev, sku: event.target.value }))}
-                  placeholder="ì˜ˆ: TOP-001"
+                  placeholder="¿¹: TOP-001"
                 />
               </label>
               <label>
-                ìƒí’ˆ ì´ë¦„
+                »óÇ° ÀÌ¸§
                 <input
                   required
                   name="name"
@@ -746,7 +751,7 @@ function Admin() {
                 />
               </label>
               <label>
-                ìƒí’ˆ ê°€ê²© (ì›)
+                »óÇ° °¡°İ (¿ø)
                 <input
                   required
                   type="number"
@@ -758,7 +763,7 @@ function Admin() {
                 />
               </label>
             <label>
-              ìƒí’ˆ ì¹´í…Œê³ ë¦¬
+              »óÇ° Ä«Å×°í¸®
               <select
                 value={form.category}
                 onChange={(event) => setForm((prev) => ({ ...prev, category: event.target.value }))}
@@ -774,23 +779,23 @@ function Admin() {
                 <small className="muted-text">
                   {
                     PRODUCT_CATEGORIES.find((option) => option.value === form.category)?.description ??
-                    'ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.'
+                    'Ä«Å×°í¸®¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.'
                   }
                 </small>
             </label>
 
             <div className="options-editor options-editor--aside">
               <div className="options-header">
-                <h3>ìƒí’ˆ ì˜µì…˜ ì„¤ì •</h3>
+                <h3>»óÇ° ¿É¼Ç ¼³Á¤</h3>
                 <button type="button" onClick={() => setForm((prev) => ({
                   ...prev,
                   options: [...prev.options, { name: '', values: [], required: false }]
-                }))}>+ ì˜µì…˜ ì¶”ê°€</button>
+                }))}>+ ¿É¼Ç Ãß°¡</button>
               </div>
-              <p className="muted-text">ìƒí’ˆ êµ¬ë§¤ ì‹œ ì„ íƒí•  ìˆ˜ ìˆëŠ” ì˜µì…˜ì„ ì„¤ì •í•©ë‹ˆë‹¤. (ì˜ˆ: ë””ìì¸ ì„ íƒ, ìƒ‰ìƒ ë“±)</p>
+              <p className="muted-text">»óÇ° ±¸¸Å ½Ã ¼±ÅÃÇÒ ¼ö ÀÖ´Â ¿É¼ÇÀ» ¼³Á¤ÇÕ´Ï´Ù. (¿¹: µğÀÚÀÎ ¼±ÅÃ, »ö»ó µî)</p>
 
               {form.options.length === 0 && (
-                <p className="muted-text">ë“±ë¡ëœ ì˜µì…˜ì´ ì—†ìŠµë‹ˆë‹¤.</p>
+                <p className="muted-text">µî·ÏµÈ ¿É¼ÇÀÌ ¾ø½À´Ï´Ù.</p>
               )}
 
               <div className="options-list">
@@ -805,7 +810,7 @@ function Admin() {
                           newOptions[index].name = e.target.value;
                           setForm((prev) => ({ ...prev, options: newOptions }));
                         }}
-                        placeholder="ì˜µì…˜ëª… (ì˜ˆ: ë‚´ì§€ë””ìì¸)"
+                        placeholder="¿É¼Ç¸í (¿¹: ³»ÁöµğÀÚÀÎ)"
                       />
                       <label className="option-required">
                         <input
@@ -817,7 +822,7 @@ function Admin() {
                             setForm((prev) => ({ ...prev, options: newOptions }));
                           }}
                         />
-                        í•„ìˆ˜
+                        ÇÊ¼ö
                       </label>
                       <button
                         type="button"
@@ -829,14 +834,14 @@ function Admin() {
                           }));
                         }}
                       >
-                        ì‚­ì œ
+                        »èÁ¦
                       </button>
                     </div>
 
                     <div className="option-values">
                       <input
                         type="text"
-                        placeholder="ì˜µì…˜ê°’ ì…ë ¥ í›„ Enter (ì˜ˆ: ë§ŒìŠ¬ë¦¬, ë¼ì¸)"
+                        placeholder="¿É¼Ç°ª ÀÔ·Â ÈÄ Enter (¿¹: ¸¸½½¸®, ¶óÀÎ)"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
@@ -861,7 +866,7 @@ function Admin() {
                                 setForm((prev) => ({ ...prev, options: newOptions }));
                               }}
                             >
-                              Ã—
+                              ¡¿
                             </button>
                           </span>
                         ))}
@@ -872,7 +877,7 @@ function Admin() {
               </div>
             </div>
               <label>
-                ë°°ì†¡ë¹„ (ì›)
+                ¹è¼Ûºñ (¿ø)
                 <input
                   required
                   type="number"
@@ -880,17 +885,17 @@ function Admin() {
                   step="500"
                   value={form.shippingFee}
                   onChange={(event) => setForm((prev) => ({ ...prev, shippingFee: event.target.value }))}
-                  placeholder="ì˜ˆ: 3000"
+                  placeholder="¿¹: 3000"
                 />
-                <small className="muted-text">ìƒí’ˆë³„ ê¸°ë³¸ ë°°ì†¡ë¹„ì…ë‹ˆë‹¤. 500ì› ë‹¨ìœ„ë¡œ ì…ë ¥í•˜ì„¸ìš”.</small>
+                <small className="muted-text">»óÇ°º° ±âº» ¹è¼ÛºñÀÔ´Ï´Ù. 500¿ø ´ÜÀ§·Î ÀÔ·ÂÇÏ¼¼¿ä.</small>
               </label>
               <label className="full-width">
-                ìƒí’ˆ ì„¤ëª… (ê°„ëµ)
+                »óÇ° ¼³¸í (°£·«)
                 <textarea
                   name="description"
                   value={form.description}
                   onChange={(event) => setForm((prev) => ({ ...prev, description: event.target.value }))}
-                  placeholder="ìƒí’ˆ ìƒì„¸ ì„¤ëª…ì„ ì…ë ¥í•´ì£¼ì„¸ìš”."
+                  placeholder="»óÇ° »ó¼¼ ¼³¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä."
                 />
               </label>
 
@@ -898,9 +903,9 @@ function Admin() {
 
             <div className="image-upload">
               <div className="image-upload__header">
-                <h3>ìƒí’ˆ ì´ë¯¸ì§€</h3>
+                <h3>»óÇ° ÀÌ¹ÌÁö</h3>
                 <button type="button" onClick={openUploadWidget} disabled={!widgetReady}>
-                  ì´ë¯¸ì§€ ì—…ë¡œë“œ
+                  ÀÌ¹ÌÁö ¾÷·Îµå
                 </button>
               </div>
               {widgetMessage && <p className="muted-text">{widgetMessage}</p>}
@@ -911,45 +916,45 @@ function Admin() {
                     key={image.publicId}
                     className={`image-card ${image.isPrimary ? 'image-card--primary' : ''}`}
                   >
-                    <img src={image.url} alt="ìƒí’ˆ ì´ë¯¸ì§€" />
-                    {image.isPrimary && <span className="badge badge--primary">ëŒ€í‘œ</span>}
+                    <img src={image.url} alt="»óÇ° ÀÌ¹ÌÁö" />
+                    {image.isPrimary && <span className="badge badge--primary">´ëÇ¥</span>}
                     <div className="image-card__actions">
                       {!image.isPrimary && (
                         <button type="button" onClick={() => handleSetPrimaryImage(image.publicId)}>
-                          ëŒ€í‘œë¡œ ì§€ì •
+                          ´ëÇ¥·Î ÁöÁ¤
                         </button>
                       )}
                       <button type="button" className="danger" onClick={() => handleRemoveImage(image.publicId)}>
-                        ì´ë¯¸ì§€ ì œê±°
+                        ÀÌ¹ÌÁö Á¦°Å
                       </button>
                     </div>
                   </div>
                 ))}
 
                 {!form.images.length && (
-                  <p className="muted-text">ì—…ë¡œë“œëœ ì´ë¯¸ì§€ê°€ ì—†ìŠµë‹ˆë‹¤. ëŒ€í‘œ ì´ë¯¸ì§€ë¥¼ í¬í•¨í•´ ìµœì†Œ í•œ ì¥ ì´ìƒ ë“±ë¡í•´ì£¼ì„¸ìš”.</p>
+                  <p className="muted-text">¾÷·ÎµåµÈ ÀÌ¹ÌÁö°¡ ¾ø½À´Ï´Ù. ´ëÇ¥ ÀÌ¹ÌÁö¸¦ Æ÷ÇÔÇØ ÃÖ¼Ò ÇÑ Àå ÀÌ»ó µî·ÏÇØÁÖ¼¼¿ä.</p>
                 )}
               </div>
             </div>
 
             <div className="detail-blocks-editor">
               <div className="detail-blocks-header">
-                <h3>ìƒì„¸ í˜ì´ì§€ ë¸”ë¡ í¸ì§‘</h3>
+                <h3>»ó¼¼ ÆäÀÌÁö ºí·Ï ÆíÁı</h3>
                 <div className="detail-blocks-actions">
                   <button type="button" onClick={() => setForm((prev) => ({
                     ...prev,
                     detailBlocks: [...prev.detailBlocks, { type: 'text', content: '' }]
-                  }))}>+ í…ìŠ¤íŠ¸</button>
+                  }))}>+ ÅØ½ºÆ®</button>
                   <button type="button" onClick={() => setForm((prev) => ({
                     ...prev,
                     detailBlocks: [...prev.detailBlocks, { type: 'notice', content: '' }]
-                  }))}>+ ì£¼ì˜ì‚¬í•­</button>
+                  }))}>+ ÁÖÀÇ»çÇ×</button>
                 </div>
               </div>
-              <p className="muted-text">í…ìŠ¤íŠ¸, ì´ë¯¸ì§€, ì£¼ì˜ì‚¬í•­ì„ ìˆœì„œëŒ€ë¡œ ë°°ì¹˜í•˜ì—¬ ìƒì„¸ í˜ì´ì§€ë¥¼ êµ¬ì„±í•©ë‹ˆë‹¤.</p>
+              <p className="muted-text">ÅØ½ºÆ®, ÀÌ¹ÌÁö, ÁÖÀÇ»çÇ×À» ¼ø¼­´ë·Î ¹èÄ¡ÇÏ¿© »ó¼¼ ÆäÀÌÁö¸¦ ±¸¼ºÇÕ´Ï´Ù.</p>
 
               {form.detailBlocks.length === 0 && (
-                <p className="muted-text">ë“±ë¡ëœ ë¸”ë¡ì´ ì—†ìŠµë‹ˆë‹¤. ìœ„ ë²„íŠ¼ìœ¼ë¡œ ë¸”ë¡ì„ ì¶”ê°€í•˜ì„¸ìš”.</p>
+                <p className="muted-text">µî·ÏµÈ ºí·ÏÀÌ ¾ø½À´Ï´Ù. À§ ¹öÆ°À¸·Î ºí·ÏÀ» Ãß°¡ÇÏ¼¼¿ä.</p>
               )}
 
               <div className="detail-blocks-list">
@@ -957,9 +962,9 @@ function Admin() {
                   <div key={index} className={`detail-block detail-block--${block.type}`}>
                     <div className="detail-block-header">
                       <span className="detail-block-type">
-                        {block.type === 'text' && 'í…ìŠ¤íŠ¸'}
-                        {block.type === 'image' && 'ì´ë¯¸ì§€'}
-                        {block.type === 'notice' && 'ì£¼ì˜ì‚¬í•­'}
+                        {block.type === 'text' && 'ÅØ½ºÆ®'}
+                        {block.type === 'image' && 'ÀÌ¹ÌÁö'}
+                        {block.type === 'notice' && 'ÁÖÀÇ»çÇ×'}
                       </span>
                       <div className="detail-block-controls">
                         {index > 0 && (
@@ -967,21 +972,21 @@ function Admin() {
                             const newBlocks = [...form.detailBlocks];
                             [newBlocks[index - 1], newBlocks[index]] = [newBlocks[index], newBlocks[index - 1]];
                             setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
-                          }}>â†‘</button>
+                          }}>¡è</button>
                         )}
                         {index < form.detailBlocks.length - 1 && (
                           <button type="button" onClick={() => {
                             const newBlocks = [...form.detailBlocks];
                             [newBlocks[index], newBlocks[index + 1]] = [newBlocks[index + 1], newBlocks[index]];
                             setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
-                          }}>â†“</button>
+                          }}>¡é</button>
                         )}
                         <button type="button" className="danger" onClick={() => {
                           setForm((prev) => ({
                             ...prev,
                             detailBlocks: prev.detailBlocks.filter((_, i) => i !== index)
                           }));
-                        }}>ì‚­ì œ</button>
+                        }}>»èÁ¦</button>
                       </div>
                     </div>
 
@@ -993,7 +998,7 @@ function Admin() {
                           newBlocks[index] = { ...block, content: e.target.value };
                           setForm((prev) => ({ ...prev, detailBlocks: newBlocks }));
                         }}
-                        placeholder={block.type === 'notice' ? 'ì£¼ì˜ì‚¬í•­ ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.' : 'í…ìŠ¤íŠ¸ ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.'}
+                        placeholder={block.type === 'notice' ? 'ÁÖÀÇ»çÇ× ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.' : 'ÅØ½ºÆ® ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.'}
                         rows={4}
                       />
                     )}
@@ -1001,9 +1006,9 @@ function Admin() {
                     {block.type === 'image' && (
                       <div className="detail-block-image">
                         {block.url ? (
-                          <img src={block.url} alt="ìƒì„¸ ì´ë¯¸ì§€" />
+                          <img src={block.url} alt="»ó¼¼ ÀÌ¹ÌÁö" />
                         ) : (
-                          <p className="muted-text">ì´ë¯¸ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
+                          <p className="muted-text">ÀÌ¹ÌÁö°¡ ¾ø½À´Ï´Ù.</p>
                         )}
                       </div>
                     )}
@@ -1015,10 +1020,10 @@ function Admin() {
                 <button type="button" onClick={() => {
                   if (!window.cloudinary) {
                     setStatusType('error');
-                    setStatus(widgetMessage || 'ì´ë¯¸ì§€ ì—…ë¡œë“œ ìœ„ì ¯ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
+                    setStatus(widgetMessage || 'ÀÌ¹ÌÁö ¾÷·Îµå À§Á¬À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.');
                     return;
                   }
-                  // ìƒì„¸ ì´ë¯¸ì§€ ì—…ë¡œë“œìš© ë³„ë„ ìœ„ì ¯ ìƒì„± (widgetRef.currentë¥¼ ë®ì–´ì“°ì§€ ì•ŠìŒ)
+                  // »ó¼¼ ÀÌ¹ÌÁö ¾÷·Îµå¿ë º°µµ À§Á¬ »ı¼º (widgetRef.current¸¦ µ¤¾î¾²Áö ¾ÊÀ½)
                   const detailWidget = window.cloudinary.createUploadWidget(
                     {
                       cloudName,
@@ -1050,369 +1055,82 @@ function Admin() {
                     }
                   );
                   detailWidget.open();
-                }} disabled={!widgetReady}>+ ìƒì„¸ ì´ë¯¸ì§€ ì—…ë¡œë“œ</button>
+                }} disabled={!widgetReady}>+ »ó¼¼ ÀÌ¹ÌÁö ¾÷·Îµå</button>
               </div>
             </div>
 
             <div className="form-actions">
               <button type="submit" disabled={isSubmitting || !form.images.length}>
-                {isSubmitting ? 'ì €ì¥ ì¤‘...' : editingProductId ? 'ìƒí’ˆ ìˆ˜ì •' : 'ìƒí’ˆ ë“±ë¡'}
+                {isSubmitting ? 'ÀúÀå Áß...' : editingProductId ? '»óÇ° ¼öÁ¤' : '»óÇ° µî·Ï'}
               </button>
               {editingProductId && (
                 <button type="button" onClick={resetForm}>
-                  ìƒˆ ìƒí’ˆ ë“±ë¡
+                  »õ »óÇ° µî·Ï
                 </button>
               )}
             </div>
           </form>
         </section>
 
-        <section className="products">
-          <div className="section-header">
-            <h2>ìƒí’ˆ ëª©ë¡</h2>
-            <button type="button" onClick={fetchProducts}>
-              ìƒˆë¡œê³ ì¹¨
-            </button>
-          </div>
+                <ProductListSection
+          products={products}
+          onRefresh={fetchProducts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          getCategoryLabel={getCategoryLabel}
+        />
 
-          <div className="product-grid">
-            {products.map((product) => (
-              <article key={product.id} className="product-card">
-                <div className="product-thumb">
-                  {product.primaryImage?.url ? (
-                    <img src={product.primaryImage.url} alt={product.name} />
-                  ) : (
-                    <span className="placeholder">ì´ë¯¸ì§€ ì—†ìŒ</span>
-                  )}
-                </div>
-                <div className="product-body">
-                  <h3>{product.name}</h3>
-                  <div className="product-meta">
-                    <span className="badge badge--muted">SKU {product.sku}</span>
-                    <span className="badge">{getCategoryLabel(product.category)}</span>
-                    <span className="badge badge--muted">ì´ë¯¸ì§€ {product.images?.length ?? 0}ì¥</span>
-                    <span className="badge badge--muted">ë°°ì†¡ë¹„ â‚© {(product.shippingFee ?? 0).toLocaleString()}</span>
-                  </div>
-                  <p className="price">â‚© {product.price?.toLocaleString?.() ?? product.price}</p>
-                  <p className="description">{product.description}</p>
-                </div>
+                <OrdersSection
+          orders={orders}
+          ordersLoading={ordersLoading}
+          ordersError={ordersError}
+          orderNotice={orderNotice}
+          orderNoticeType={orderNoticeType}
+          onRefresh={fetchOrders}
+          onUpdateStatus={handleUpdateOrderStatus}
+          onUpdateTracking={handleUpdateTracking}
+          onCancel={handleAdminCancelOrder}
+          formatCurrency={formatCurrency}
+          formatDate={formatDate}
+          statusOptions={ORDER_STATUS_OPTIONS}
+        />
 
-                <div className="product-actions">
-                  <button type="button" onClick={() => handleEdit(product)}>
-                    ìˆ˜ì •
-                  </button>
-                  <button type="button" className="danger" onClick={() => handleDelete(product.id)}>
-                    ì‚­ì œ
-                  </button>
-                </div>
-              </article>
-            ))}
+                <InvitesSection
+          invites={invites}
+          invitesLoading={invitesLoading}
+          inviteError={inviteError}
+          inviteNotice={inviteNotice}
+          inviteNoticeType={inviteNoticeType}
+          inviteForm={inviteForm}
+          isCreatingInvite={isCreatingInvite}
+          onRefresh={fetchInvites}
+          onSubmit={handleCreateInvite}
+          onChangeForm={setInviteForm}
+          onCopyCode={handleCopyInviteCode}
+          onRevoke={handleRevokeInvite}
+          formatDate={formatDate}
+        />
 
-            {!products.length && <p>ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.</p>}
-          </div>
-        </section>
-
-        <section className="admin-orders">
-          <div className="section-header">
-            <h2>ì£¼ë¬¸ ê´€ë¦¬</h2>
-            <button type="button" onClick={fetchOrders}>
-              ìƒˆë¡œê³ ì¹¨
-            </button>
-          </div>
-
-          {orderNotice && (
-            <div className={`status ${orderNoticeType === 'error' ? 'error' : ''}`}>{orderNotice}</div>
-          )}
-
-          {ordersLoading ? (
-            <p>ì£¼ë¬¸ ëª©ë¡ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ì…ë‹ˆë‹¤...</p>
-          ) : ordersError ? (
-            <p className="status error">{ordersError}</p>
-          ) : orders.length ? (
-            <div className="admin-order-table-wrapper">
-              <table className="admin-order-table">
-                <thead>
-                  <tr>
-                    <th>ì£¼ë¬¸ë²ˆí˜¸</th>
-                    <th>ì£¼ë¬¸ì¼</th>
-                    <th>ê³ ê°</th>
-                    <th>ì£¼ë¬¸ ìƒí’ˆ</th>
-                    <th>ê²°ì œ ê¸ˆì•¡</th>
-                    <th>ê²°ì œ ìƒíƒœ</th>
-                    <th>ë°°ì†¡ ìƒíƒœ</th>
-                    <th>ì¡°ì¹˜</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.map((order) => (
-                    <tr key={order.id}>
-                      <td>{order.id}</td>
-                      <td>{formatDate(order.createdAt)}</td>
-                      <td>
-                        {order.customer ? (
-                          <div className="order-customer">
-                            <strong>{order.customer.name}</strong>
-                            <span>{order.customer.email}</span>
-                            <span>{order.customer.phone}</span>
-                          </div>
-                        ) : (
-                          <span className="muted-text">ì•Œ ìˆ˜ ì—†ìŒ</span>
-                        )}
-                      </td>
-                      <td>
-                        <div className="order-items">
-                          {order.items?.map((item, idx) => (
-                            <div key={idx} style={{ marginBottom: '8px' }}>
-                              <strong>{item.name}</strong> x {item.quantity}
-                              {item.sku && (
-                                <div style={{ fontSize: '0.85em', color: '#475569' }}>SKU {item.sku}</div>
-                              )}
-                              {item.selectedOptions && item.selectedOptions.length > 0 && (
-                                <div style={{ fontSize: '0.85em', color: '#64748b' }}>
-                                  {item.selectedOptions.map((opt, oi) => (
-                                    <span key={oi}>
-                                      {opt.name}: {opt.value}
-                                      {oi < item.selectedOptions.length - 1 && ', '}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </td>
-                      <td>{formatCurrency(order.pricing?.total)}</td>
-                      <td>
-                        <div className="order-payment">
-                          <span className={`order-badge status-${order.payment?.status ?? 'unknown'}`}>
-                            {order.payment?.status ?? 'unknown'}
-                          </span>
-                          <small>{order.payment?.method}</small>
-                        </div>
-                      </td>
-                      <td>
-                        <select
-                          value={order.status}
-                          onChange={(event) => handleUpdateOrderStatus(order.id, event.target.value)}
-                        >
-                          {ORDER_STATUS_OPTIONS.map((option) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
-                        </select>
-                        <div className="order-shipping">
-                          {order.status === 'shipped' || order.status === 'delivered' ? (
-                            <>
-                              <div style={{ marginTop: '8px' }}>
-                                <select
-                                  value={order.shipping?.carrier || ''}
-                                  onChange={(e) => handleUpdateTracking(order.id, e.target.value, order.shipping?.trackingNumber || '')}
-                                  style={{ marginBottom: '4px', width: '100%' }}
-                                >
-                                  <option value="">íƒë°°ì‚¬ ì„ íƒ</option>
-                                  <option value="CJëŒ€í•œí†µìš´">CJëŒ€í•œí†µìš´</option>
-                                  <option value="í•œì§„íƒë°°">í•œì§„íƒë°°</option>
-                                  <option value="ë¡¯ë°íƒë°°">ë¡¯ë°íƒë°°</option>
-                                  <option value="ìš°ì²´êµ­íƒë°°">ìš°ì²´êµ­íƒë°°</option>
-                                  <option value="ë¡œì  íƒë°°">ë¡œì  íƒë°°</option>
-                                  <option value="ê²½ë™íƒë°°">ê²½ë™íƒë°°</option>
-                                </select>
-                                <input
-                                  type="text"
-                                  placeholder="ì†¡ì¥ë²ˆí˜¸"
-                                  value={order.shipping?.trackingNumber || ''}
-                                  onChange={(e) => handleUpdateTracking(order.id, order.shipping?.carrier || '', e.target.value)}
-                                  style={{ width: '100%' }}
-                                />
-                              </div>
-                              <small>íƒë°°ì‚¬: {order.shipping?.carrier || '-'}</small>
-                              <small>ì†¡ì¥: {order.shipping?.trackingNumber || '-'}</small>
-                            </>
-                          ) : (
-                            <>
-                              <small>íƒë°°ì‚¬: {order.shipping?.carrier || '-'}</small>
-                              <small>ì†¡ì¥: {order.shipping?.trackingNumber || '-'}</small>
-                            </>
-                          )}
-                          <small>ë°°ì†¡ ì‹œì‘: {formatDate(order.shipping?.shippedAt)}</small>
-                          <small>ë°°ì†¡ ì™„ë£Œ: {formatDate(order.shipping?.deliveredAt)}</small>
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          className="danger"
-                          onClick={() => handleAdminCancelOrder(order.id)}
-                          disabled={order.status === 'cancelled'}
-                        >
-                          ì£¼ë¬¸ ì·¨ì†Œ
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p>ì•„ì§ ë“±ë¡ëœ ì£¼ë¬¸ì´ ì—†ìŠµë‹ˆë‹¤.</p>
-          )}
-        </section>
-
-        <section className="admin-invites">
-          <div className="section-header">
-            <h2>ê´€ë¦¬ì ì´ˆëŒ€ ì½”ë“œ</h2>
-            <button type="button" onClick={fetchInvites}>
-              ìƒˆë¡œê³ ì¹¨
-            </button>
-          </div>
-
-          <form className="admin-form invite-form" onSubmit={handleCreateInvite}>
-            <div className="form-grid">
-              <label>
-                ì´ˆëŒ€ ì´ë©”ì¼ (ì„ íƒ)
-                <input
-                  type="email"
-                  value={inviteForm.email}
-                  onChange={(event) =>
-                    setInviteForm((prev) => ({ ...prev, email: event.target.value }))
-                  }
-                  placeholder="ì§€ì •ëœ ì´ë©”ì¼ë§Œ í—ˆìš©í•˜ë ¤ë©´ ì…ë ¥"
-                />
-              </label>
-              <label>
-                ë§Œë£Œ ì‹œê°„ (ì‹œê°„)
-                <input
-                  type="number"
-                  min="1"
-                  value={inviteForm.expiresInHours}
-                  onChange={(event) =>
-                    setInviteForm((prev) => ({ ...prev, expiresInHours: event.target.value }))
-                  }
-                  required
-                />
-              </label>
-            </div>
-            <div className="form-actions">
-              <button type="submit" disabled={isCreatingInvite}>
-                {isCreatingInvite ? 'ë°œê¸‰ ì¤‘...' : 'ì´ˆëŒ€ ì½”ë“œ ë°œê¸‰'}
-              </button>
-            </div>
-          </form>
-
-          {inviteNotice && (
-            <div className={`status ${inviteNoticeType === 'error' ? 'error' : ''}`}>{inviteNotice}</div>
-          )}
-          {inviteError && <p className="status error">{inviteError}</p>}
-
-          {invitesLoading ? (
-            <p>ì´ˆëŒ€ ì½”ë“œë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ì…ë‹ˆë‹¤...</p>
-          ) : invites.length ? (
-            <div className="admin-order-table-wrapper">
-              <table className="admin-order-table">
-                <thead>
-                  <tr>
-                    <th>ì½”ë“œ</th>
-                    <th>ëŒ€ìƒ ì´ë©”ì¼</th>
-                    <th>ë§Œë£Œ</th>
-                    <th>ìƒíƒœ</th>
-                    <th>ì¡°ì¹˜</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {invites.map((invite) => {
-                    const expiresAt = invite.expiresAt ? new Date(invite.expiresAt) : null;
-                    const isExpired = expiresAt ? expiresAt.getTime() < Date.now() : false;
-                    const isUsed = Boolean(invite.usedAt);
-                    return (
-                      <tr key={invite.id}>
-                        <td className="code-cell">
-                          <code>{invite.code}</code>
-                        </td>
-                        <td>{invite.email || <span className="muted-text">ì œí•œ ì—†ìŒ</span>}</td>
-                        <td>{formatDate(invite.expiresAt)}</td>
-                        <td>
-                          {isUsed ? (
-                            <span className="badge badge--muted">ì‚¬ìš©ë¨</span>
-                          ) : isExpired ? (
-                            <span className="badge badge--muted">ë§Œë£Œ</span>
-                          ) : (
-                            <span className="badge">ëŒ€ê¸°</span>
-                          )}
-                        </td>
-                        <td className="invite-actions">
-                          <button
-                            type="button"
-                            onClick={() => handleCopyInviteCode(invite.code)}
-                            disabled={isUsed || isExpired}
-                          >
-                            ì½”ë“œ ë³µì‚¬
-                          </button>
-                          <button
-                            type="button"
-                            className="danger"
-                            onClick={() => handleRevokeInvite(invite.id)}
-                            disabled={isUsed}
-                          >
-                            ì¦‰ì‹œ ë§Œë£Œ
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p>ë°œê¸‰ëœ ì´ˆëŒ€ ì½”ë“œê°€ ì—†ìŠµë‹ˆë‹¤.</p>
-          )}
-        </section>
-
-        <section className="admin-schedule">
-          <div className="section-header">
-            <h2>ìˆ˜ì—… ì¼ì • ê´€ë¦¬</h2>
-            <button type="button" onClick={fetchSchedules} disabled={schedulesLoading}>
-              ìƒˆë¡œê³ ì¹¨
-            </button>
-          </div>
-
-          {scheduleNotice && (
-            <div className={`status ${scheduleNoticeType === 'error' ? 'error' : ''}`}>{scheduleNotice}</div>
-          )}
-
-          <div className="admin-schedule-layout">
-            <div className="admin-schedule-calendar">
-              {schedulesLoading ? <p>ì¼ì •ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘...</p> : renderAdminCalendar()}
-            </div>
-
-            <div className="admin-schedule-form">
-              {selectedDay ? (
-                <div>
-                  <h4>{scheduleDate.getFullYear()}ë…„ {scheduleDate.getMonth() + 1}ì›” {selectedDay}ì¼</h4>
-                  {getScheduleForDay(selectedDay) ? (
-                    <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
-                      <p style={{ color: '#ef4444', fontWeight: 600 }}>í˜„ì¬: ìˆ˜ì—… ë¶ˆê°€</p>
-                      <button type="button" onClick={handleScheduleDelete}>ë˜ëŒë¦¬ê¸° (ìˆ˜ì—… ê°€ëŠ¥)</button>
-                      <button type="button" onClick={() => setSelectedDay(null)}>ë‹«ê¸°</button>
-                    </div>
-                  ) : (
-                    <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
-                      <p style={{ color: '#22c55e', fontWeight: 600 }}>í˜„ì¬: ìˆ˜ì—… ê°€ëŠ¥</p>
-                      <button type="button" className="danger" onClick={handleScheduleSubmit}>ìˆ˜ì—… ë¶ˆê°€ë¡œ ì„¤ì •</button>
-                      <button type="button" onClick={() => setSelectedDay(null)}>ë‹«ê¸°</button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <p className="muted-text">ìº˜ë¦°ë”ì—ì„œ ë‚ ì§œë¥¼ í´ë¦­í•˜ì—¬ ì¼ì •ì„ ìˆ˜ì •í•˜ì„¸ìš”.</p>
-              )}
-            </div>
-          </div>
-        </section>
+                <ScheduleSection
+          schedulesLoading={schedulesLoading}
+          scheduleNotice={scheduleNotice}
+          scheduleNoticeType={scheduleNoticeType}
+          renderCalendar={renderAdminCalendar}
+          selectedDay={selectedDay}
+          scheduleDate={scheduleDate}
+          getScheduleForDay={getScheduleForDay}
+          onSubmit={handleScheduleSubmit}
+          onDelete={handleScheduleDelete}
+          onClose={() => setSelectedDay(null)}
+        />
       </main>
     </div>
   );
 }
 
 export default Admin;
+
+
+
+
 
