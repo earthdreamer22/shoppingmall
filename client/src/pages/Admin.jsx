@@ -1,1 +1,847 @@
-﻿浩潰瑲笠甠敳慃汬慢正‬獵䕥晦捥ⱴ甠敳敍潭‬獵剥晥‬獵卥慴整素映潲⁭爧慥瑣㬧਍浩潰瑲笠甠敳慎楶慧整素映潲⁭爧慥瑣爭畯整⵲潤❭഻椊灭牯⁴⁻灡剩煥敵瑳素映潲⁭⸧⼮楬⽢灡䍩楬湥⹴獪㬧਍浩潰瑲笠甠敳畁桴素映潲⁭⸧⼮潣瑮硥⽴畁桴潃瑮硥⹴獪❸഻椊灭牯⁴⁻剐䑏䍕彔䅃䕔佇䥒卅‬敧䍴瑡来牯䱹扡汥素映潲⁭⸧⼮楬⽢牰摯捵䍴瑡来牯敩⹳獪㬧਍浩潰瑲传摲牥即捥楴湯映潲⁭⸧⼮潣灭湯湥獴愯浤湩伯摲牥即捥楴湯樮硳㬧਍浩潰瑲䤠癮瑩獥敓瑣潩⁮牦浯✠⸮振浯潰敮瑮⽳摡業⽮湉楶整即捥楴湯樮硳㬧਍浩潰瑲匠档摥汵卥捥楴湯映潲⁭⸧⼮潣灭湯湥獴愯浤湩匯档摥汵卥捥楴湯樮硳㬧਍浩潰瑲倠潲畤瑣楌瑳敓瑣潩⁮牦浯✠⸮振浯潰敮瑮⽳摡業⽮牐摯捵䱴獩却捥楴湯樮硳㬧਍浩潰瑲䄠浤湩潆浲潎楴散映潲⁭⸧⼮潣灭湯湥獴愯浤湩䄯浤湩潆浲潎楴散樮硳㬧椊灭牯⁴牐摯捵䙴牯卭捥楴湯映潲⁭⸧⼮潣灭湯湥獴愯浤湩倯潲畤瑣潆浲敓瑣潩⹮獪❸഻挊湯瑳传䑒剅卟䅔啔当偏䥔乏⁓‽൛ 笠瘠污敵›瀧湥楤杮Ⱗ氠扡汥›뀧쇡₦‧ⱽ਍†⁻慶畬㩥✠慰摩Ⱗ氠扡汥›뀧쇡₦쾿‧ⱽ਍†⁻慶畬㩥✠桳灩数❤‬慬敢㩬✠�선⟟素ബ 笠瘠污敵›搧汥癩牥摥Ⱗ氠扡汥›뤧볨⃛쾿‧ⱽ਍†⁻慶畬㩥✠慣据汥敬❤‬慬敢㩬✠튼‧ⱽ਍㭝਍਍潣獮⁴䍓䕈啄䕌卟䅔啔当偏䥔乏⁓‽൛ 笠瘠污敵›甧慮慶汩扡敬Ⱗ氠扡汥›밧뻶⃷튺ꆰⰧ挠汯牯›⌧晥㐴㐴‧ⱽ਍㭝਍਍潣獮⁴䕄䅆䱕彔义䥖䕔䡟問卒㴠丠浵敢⡲浩潰瑲洮瑥⹡湥⹶䥖䕔䅟䵄义䥟噎呉彅佈剕⁓㼿ㄠ⤲簠⁼㈱഻ഊ昊湵瑣潩⁮潦浲瑡畃牲湥祣愨潭湵⥴笠਍†晩⠠浡畯瑮㴠‽畮汬 敲畴湲✠✭഻ 爠瑥牵⁮屠␠乻浵敢⡲浡畯瑮⸩潴潌慣敬瑓楲杮⤨恽഻紊਍਍畦据楴湯映牯慭䑴瑡⡥慶畬⥥笠਍†晩⠠瘡污敵 敲畴湲✠✭഻ 琠祲笠਍††敲畴湲渠睥䐠瑡⡥慶畬⥥琮䱯捯污卥牴湩⡧㬩਍†⁽慣捴⁨弨牥潲⥲笠਍††敲畴湲瘠污敵഻ 素਍ൽഊ挊湯瑳挠潬摵慎敭㴠椠灭牯⹴敭慴攮癮嘮呉彅䱃問䥄䅎奒䍟佌䑕也䵁⁅㼿✠㬧਍潣獮⁴灵潬摡牐獥瑥㴠椠灭牯⹴敭慴攮癮嘮呉彅䱃問䥄䅎奒啟䱐䅏彄剐卅呅㼠‿✧഻ഊ挊湯瑳䄠䱌坏䑅䥟䅍䕇呟偙卅㴠嬠椧慭敧樯数❧‬椧慭敧樯杰Ⱗ✠浩条⽥湰❧‬椧慭敧眯扥❰㭝਍潣獮⁴䅍彘䵉䝁彅䥓䕚㴠㔠⨠ㄠ㈰‴‪〱㐲※⼯㔠䉍਍਍畦据楴湯瘠污摩瑡䥥慭敧楆敬昨汩⥥笠਍†晩⠠昡汩⥥笠਍††敲畴湲笠瘠污摩›慦獬ⱥ攠牲牯›옧샄샏⃌놼쏅잵븠뻊뷒듀듏⻙‧㭽਍†ൽഊ 椠⁦ℨ䱁佌䕗彄䵉䝁彅奔䕐⹓湩汣摵獥昨汩⹥祴数⤩笠਍††敲畴湲笠਍†††慶楬㩤映污敳ബ ††攠牲牯›䨧䝐‬乐ⱇ圠䉅⁐ﳇ쒽쟀쀠만쇌룶₸캷뀠뒡쟉듕듏⻙ധ †素഻ 素਍਍†晩⠠楦敬献穩⁥‾䅍彘䵉䝁彅䥓䕚 ൻ †爠瑥牵⁮ൻ ††瘠污摩›慦獬ⱥ਍†††牥潲㩲怠쓆쿀씠놩듢⃂笤䴨塁䥟䅍䕇卟婉⁅ ㄨ㈰‴‪〱㐲⤩琮䙯硩摥〨紩䉍쀠쟌뿏뺩⃟헇쾴�怮਍††㭽਍†ൽഊ 爠瑥牵⁮⁻慶楬㩤琠畲⁥㭽਍ൽഊ昊湵瑣潩⁮牣慥整浅瑰偹潲畤瑣⤨笠਍†敲畴湲笠਍††歳㩵✠Ⱗ਍††慮敭›✧ബ †瀠楲散›✧ബ †挠瑡来牯㩹倠佒啄呃䍟呁䝅剏䕉孓崰瘮污敵ബ †猠楨灰湩䙧敥›〳〰ബ †搠獥牣灩楴湯›✧ബ †搠瑥楡䉬潬正㩳嬠ⱝ਍††灯楴湯㩳嬠ⱝ਍††浩条獥›嵛ബ 素഻紊਍਍畦据楴湯䄠浤湩⤨笠഍ 挠湯瑳渠癡杩瑡⁥‽獵乥癡杩瑡⡥㬩਍†潣獮⁴⁻獵牥‬潬摡湩⁧⁽‽獵䅥瑵⡨㬩਍਍†潣獮⁴灛潲畤瑣ⱳ猠瑥牐摯捵獴⁝‽獵卥慴整嬨⥝഻ 挠湯瑳嬠潦浲‬敳䙴牯嵭㴠甠敳瑓瑡⡥牣慥整浅瑰偹潲畤瑣㬩਍†潣獮⁴敛楤楴杮牐摯捵䥴Ɽ猠瑥摅瑩湩偧潲畤瑣摉⁝‽獵卥慴整渨汵⥬഻ 挠湯瑳嬠敲潭敶䥤慭敧ⱳ猠瑥敒潭敶䥤慭敧嵳㴠甠敳瑓瑡⡥嵛㬩਍†潣獮⁴獛慴畴ⱳ猠瑥瑓瑡獵⁝‽獵卥慴整✨⤧഻ 挠湯瑳嬠瑳瑡獵祔数‬敳却慴畴味灹嵥㴠甠敳瑓瑡⡥椧普❯㬩਍†潣獮⁴楛即扵業瑴湩Ⱨ猠瑥獉畓浢瑩楴杮⁝‽獵卥慴整昨污敳㬩਍†潣獮⁴睛摩敧剴慥祤‬敳坴摩敧剴慥祤⁝‽獵卥慴整昨污敳㬩਍†潣獮⁴睛摩敧䵴獥慳敧‬敳坴摩敧䵴獥慳敧⁝‽獵卥慴整✨⤧഻ഊ 挠湯瑳嬠牯敤獲‬敳佴摲牥嵳㴠甠敳瑓瑡⡥嵛㬩਍†潣獮⁴潛摲牥䱳慯楤杮‬敳佴摲牥䱳慯楤杮⁝‽獵卥慴整昨污敳㬩਍†潣獮⁴潛摲牥䕳牲牯‬敳佴摲牥䕳牲牯⁝‽獵卥慴整✨⤧഻ 挠湯瑳嬠牯敤乲瑯捩ⱥ猠瑥牏敤乲瑯捩嵥㴠甠敳瑓瑡⡥✧㬩਍†潣獮⁴潛摲牥潎楴散祔数‬敳佴摲牥潎楴散祔数⁝‽獵卥慴整✨湩潦⤧഻ 挠湯瑳嬠湩楶整ⱳ猠瑥湉楶整嵳㴠甠敳瑓瑡⡥嵛㬩਍†潣獮⁴楛癮瑩獥潌摡湩Ⱨ猠瑥湉楶整䱳慯楤杮⁝‽獵卥慴整昨污敳㬩਍†潣獮⁴楛癮瑩䕥牲牯‬敳䥴癮瑩䕥牲牯⁝‽獵卥慴整✨⤧഻ 挠湯瑳嬠湩楶整潎楴散‬敳䥴癮瑩乥瑯捩嵥㴠甠敳瑓瑡⡥✧㬩਍†潣獮⁴楛癮瑩乥瑯捩呥灹ⱥ猠瑥湉楶整潎楴散祔数⁝‽獵卥慴整✨湩潦⤧഻ 挠湯瑳嬠湩楶整潆浲‬敳䥴癮瑩䙥牯嵭㴠甠敳瑓瑡⡥⤨㴠‾笨਍††浥楡㩬✠Ⱗ਍††硥楰敲䥳䡮畯獲›䕄䅆䱕彔义䥖䕔䡟問卒ബ 素⤩഻ 挠湯瑳嬠獩牃慥楴杮湉楶整‬敳䥴䍳敲瑡湩䥧癮瑩嵥㴠甠敳瑓瑡⡥慦獬⥥഻ഊ ⼠ 捓敨畤敬猠慴整൳ 挠湯瑳嬠捳敨畤敬慄整‬敳却档摥汵䑥瑡嵥㴠甠敳瑓瑡⡥敮⁷慄整⤨㬩਍†潣獮⁴獛档摥汵獥‬敳却档摥汵獥⁝‽獵卥慴整嬨⥝഻ 挠湯瑳嬠捳敨畤敬䱳慯楤杮‬敳却档摥汵獥潌摡湩嵧㴠甠敳瑓瑡⡥慦獬⥥഻ 挠湯瑳嬠捳敨畤敬潎楴散‬敳却档摥汵乥瑯捩嵥㴠甠敳瑓瑡⡥✧㬩਍†潣獮⁴獛档摥汵乥瑯捩呥灹ⱥ猠瑥捓敨畤敬潎楴散祔数⁝‽獵卥慴整✨湩潦⤧഻ 挠湯瑳嬠敳敬瑣摥慄ⱹ猠瑥敓敬瑣摥慄嵹㴠甠敳瑓瑡⡥畮汬㬩਍†潣獮⁴獛档摥汵䙥牯Ɑ猠瑥捓敨畤敬潆浲⁝‽獵卥慴整笨猠慴畴㩳✠湵癡楡慬汢❥‬潮整›✧素㬩਍਍†潣獮⁴楷杤瑥敒⁦‽獵剥晥渨汵⥬഻ഊ 甠敳晅敦瑣⠨ 㸽笠਍††晩⠠氡慯楤杮☠…ℨ獵牥簠⁼獵牥爮汯⁥㴡‽愧浤湩⤧ ൻ ††渠癡杩瑡⡥⼧⤧഻ †素਍†ⱽ嬠潬摡湩Ⱨ甠敳Ⱳ渠癡杩瑡嵥㬩਍਍†潣獮⁴敦捴偨潲畤瑣⁳‽獵䍥污扬捡⡫獡湹⁣⤨㴠‾ൻ †琠祲笠਍†††潣獮⁴慤慴㴠愠慷瑩愠楰敒畱獥⡴⼧摡業⽮牰摯捵獴⤧഻ ††猠瑥牐摯捵獴搨瑡⥡഻ †素挠瑡档⠠牥潲⥲笠਍†††敳却慴畴味灹⡥攧牲牯⤧഻ ††猠瑥瑓瑡獵攨牲牯洮獥慳敧㬩਍††ൽ 素‬嵛㬩਍਍†潣獮⁴敦捴佨摲牥⁳‽獵䍥污扬捡⡫獡湹⁣⤨㴠‾ൻ †猠瑥牏敤獲潌摡湩⡧牴敵㬩਍††敳佴摲牥䕳牲牯✨⤧഻ †猠瑥牏敤乲瑯捩⡥✧㬩਍††牴⁹ൻ ††挠湯瑳搠瑡⁡‽睡楡⁴灡剩煥敵瑳✨愯浤湩漯摲牥❳㬩਍†††敳佴摲牥⡳慤慴㬩਍††⁽慣捴⁨攨牲牯 ൻ ††猠瑥牏敤獲牅潲⡲牥潲⹲敭獳条⁥㼿✠훁꺹렠럱샏₻튺꾷삿렠쟸뷟듀듏⻙⤧഻ †素映湩污祬笠਍†††敳佴摲牥䱳慯楤杮昨污敳㬩਍††ൽ 素‬嵛㬩਍਍†潣獮⁴敦捴䥨癮瑩獥㴠甠敳慃汬慢正愨祳据⠠ 㸽笠਍††敳䥴癮瑩獥潌摡湩⡧牴敵㬩਍††敳䥴癮瑩䕥牲牯✨⤧഻ †琠祲笠਍†††潣獮⁴慤慴㴠愠慷瑩愠楰敒畱獥⡴⼧摡業⽮湩楶整❳㬩਍†††敳䥴癮瑩獥搨瑡⥡഻ †素挠瑡档⠠牥潲⥲笠਍†††敳䥴癮瑩䕥牲牯攨牲牯洮獥慳敧㼠‿쌧듊⃫쾷므먠럒뾯쇀⃶�삽쾴�✮㬩਍††⁽楦慮汬⁹ൻ ††猠瑥湉楶整䱳慯楤杮昨污敳㬩਍††ൽ 素‬嵛㬩਍਍†潣獮⁴敦捴卨档摥汵獥㴠甠敳慃汬慢正愨祳据⠠ 㸽笠਍††敳却档摥汵獥潌摡湩⡧牴敵㬩਍††牴⁹ൻ ††挠湯瑳礠慥⁲‽捳敨畤敬慄整朮瑥畆汬教牡⤨഻ ††挠湯瑳洠湯桴㴠猠档摥汵䑥瑡⹥敧䵴湯桴⤨⬠ㄠ഻ ††挠湯瑳搠瑡⁡‽睡楡⁴灡剩煥敵瑳怨猯档摥汵獥礿慥㵲笤敹牡♽潭瑮㵨笤潭瑮絨⥠഻ ††猠瑥捓敨畤敬⡳慤慴㬩਍††⁽慣捴⁨攨牲牯 ൻ ††猠瑥捓敨畤敬潎楴散祔数✨牥潲❲㬩਍†††敳却档摥汵乥瑯捩⡥牥潲⹲敭獳条⁥㼿✠쿀꓁므먠럒뾯쇀⃶�삽쾴�✮㬩਍††⁽楦慮汬⁹ൻ ††猠瑥捓敨畤敬䱳慯楤杮昨污敳㬩਍††ൽ 素‬獛档摥汵䑥瑡嵥㬩਍਍†獵䕥晦捥⡴⤨㴠‾ൻ †椠⁦用敳㽲爮汯⁥㴽‽愧浤湩⤧笠਍†††敦捴偨潲畤瑣⡳㬩਍†††敦捴佨摲牥⡳㬩਍†††敦捴䥨癮瑩獥⤨഻ †素਍†ⱽ嬠獵牥‬敦捴偨潲畤瑣ⱳ映瑥档牏敤獲‬敦捴䥨癮瑩獥⥝഻ഊ 甠敳晅敦瑣⠨ 㸽笠਍††晩⠠獵牥⸿潲敬㴠㴽✠摡業❮ ൻ ††映瑥档捓敨畤敬⡳㬩਍††ൽ 素‬畛敳Ⱳ映瑥档捓敨畤敬嵳㬩਍਍†潣獮⁴慨摮敬牃慥整湉楶整㴠甠敳慃汬慢正ന †愠祳据⠠癥湥⥴㴠‾ൻ ††攠敶瑮瀮敲敶瑮敄慦汵⡴㬩਍†††敳䥴癮瑩乥瑯捩⡥✧㬩਍†††敳䥴癮瑩乥瑯捩呥灹⡥椧普❯㬩਍†††敳䥴䍳敲瑡湩䥧癮瑩⡥牴敵㬩਍਍†††牴⁹ൻ †††挠湯瑳瀠祡潬摡㴠笠㭽਍††††潣獮⁴牴浩敭䕤慭汩㴠椠癮瑩䙥牯⹭浥楡⹬牴浩⤨഻ †††椠⁦琨楲浭摥浅楡⥬笠਍†††††慰汹慯⹤浥楡⁬‽牴浩敭䕤慭汩琮䱯睯牥慃敳⤨഻ †††素਍††††潣獮⁴潨牵⁳‽畎扭牥椨癮瑩䙥牯⹭硥楰敲䥳䡮畯獲㬩਍††††晩⠠畎扭牥椮䙳湩瑩⡥潨牵⥳☠…潨牵⁳‾⤰笠਍†††††慰汹慯⹤硥楰敲䥳䡮畯獲㴠栠畯獲഻ †††素਍਍††††睡楡⁴灡剩煥敵瑳✨愯浤湩椯癮瑩獥Ⱗ笠਍†††††敭桴摯›倧协❔ബ ††††戠摯㩹䨠体⹎瑳楲杮晩⡹慰汹慯⥤ബ †††素㬩਍††††敳䥴癮瑩乥瑯捩呥灹⡥猧捵散獳⤧഻ †††猠瑥湉楶整潎楴散✨뀠룼삮⃚쫃쐠뗚냥₡��잵諭삽쾴�✮㬩਍††††敳䥴癮瑩䙥牯⡭⁻浥楡㩬✠Ⱗ攠灸物獥湉潈牵㩳䐠䙅啁呌䥟噎呉彅佈剕⁓⥽഻ †††愠慷瑩映瑥档湉楶整⡳㬩਍†††⁽慣捴⁨攨牲牯 ൻ †††猠瑥湉楶整潎楴散祔数✨牥潲❲㬩਍††††敳䥴癮瑩乥瑯捩⡥牥潲⹲敭獳条⁥㼿✠쫃쐠뗚⃥��ꆿ봠웇쟐뷟듀듏⻙⤧഻ ††素映湩污祬笠਍††††敳䥴䍳敲瑡湩䥧癮瑩⡥慦獬⥥഻ ††素਍††ⱽ਍††楛癮瑩䙥牯Ɑ映瑥档湉楶整嵳ബ ⤠഻ഊ 挠湯瑳栠湡汤䍥灯䥹癮瑩䍥摯⁥‽獵䍥污扬捡⡫獡湹⁣挨摯⥥㴠‾ൻ †琠祲笠਍†††晩⠠慮楶慧潴⹲汣灩潢牡㽤眮楲整敔瑸 ൻ †††愠慷瑩渠癡杩瑡牯挮楬扰慯摲眮楲整敔瑸挨摯⥥഻ ††素攠獬⁥ൻ †††琠牨睯渠睥䔠牲牯✨汣灩潢牡⁤灡⁩湵癡楡慬汢❥㬩਍†††ൽ ††猠瑥湉楶整潎楴散祔数✨畳捣獥❳㬩਍†††敳䥴癮瑩乥瑯捩⡥쌧듊⃫�ꆰ씠뢬몳떸뿥₡릺잵諭삽쾴�✮㬩਍††⁽慣捴⁨弨牥潲⥲笠਍†††楷摮睯瀮潲灭⡴쌧듊⃫�ꚸ먠뮹쟧쇘볖뾼⻤Ⱗ挠摯⥥഻ ††猠瑥湉楶整潎楴散祔数✨湩潦⤧഻ ††猠瑥湉楶整潎楴散✨變ꆿ궼먠뮹⃧ꋃ므뼠뺭뷺듀듏⻙⤧഻ †素਍†ⱽ嬠⥝഻ഊ 挠湯瑳栠湡汤剥癥歯䥥癮瑩⁥‽獵䍥污扬捡⡫਍††獡湹⁣椨癮瑩䥥⥤㴠‾ൻ ††椠⁦ℨ楷摮睯挮湯楦浲✨�쌠듊⃫�ꚸ선뷯⃃뢸쎽냅�삽쾴✿⤩爠瑥牵㭮਍†††牴⁹ൻ †††愠慷瑩愠楰敒畱獥⡴⽠摡業⽮湩楶整⽳笤湩楶整摉恽‬ൻ ††††洠瑥潨㩤✠䕄䕌䕔Ⱗ਍††††⥽഻ †††猠瑥湉楶整潎楴散祔数✨畳捣獥❳㬩਍††††敳䥴癮瑩乥瑯捩⡥쌧듊⃫�ꆰ렠랸⃡돃꺸잵諭삽쾴�✮㬩਍††††睡楡⁴敦捴䥨癮瑩獥⤨഻ ††素挠瑡档⠠牥潲⥲笠਍††††敳䥴癮瑩乥瑯捩呥灹⡥攧牲牯⤧഻ †††猠瑥湉楶整潎楴散攨牲牯洮獥慳敧㼠‿쌧듊⃫�렠랸⃡돃꺸ꆿ봠웇쟐뷟듀듏⻙⤧഻ ††素਍††ⱽ਍††晛瑥档湉楶整嵳ബ ⤠഻ഊ 挠湯瑳栠湡汤坥摩敧剴獥汵⁴‽獵䍥污扬捡⡫攨牲牯‬敲畳瑬 㸽笠਍††晩⠠牥潲⥲笠਍†††潣獮汯⹥牥潲⡲嬧汣畯楤慮祲⁝楷杤瑥攠牲牯Ⱗ攠牲牯㬩਍†††敳却慴畴味灹⡥攧牲牯⤧഻ ††猠瑥瑓瑡獵攨牲牯洮獥慳敧㼠‿쀧만쇌⃶캷선⃟삿醴ꆰ뤠믟쟽뷟듀듏⻙⤧഻ ††爠瑥牵㭮਍††ൽഊ †椠⁦ℨ敲畳瑬簠⁼敲畳瑬攮敶瑮℠㴽✠畳捣獥❳ 敲畴湲഻ഊ †挠湯瑳椠普⁯‽敲畳瑬椮普㭯਍††敳䙴牯⡭瀨敲⥶㴠‾ൻ ††挠湯瑳攠楸瑳⁳‽牰癥椮慭敧⹳潳敭⠨浩条⥥㴠‾浩条⹥異汢捩摉㴠㴽椠普⹯異汢捩楟⥤഻ ††椠⁦攨楸瑳⥳笠਍††††敲畴湲瀠敲㭶਍†††ൽഊ ††挠湯瑳栠獡牐浩牡⁹‽牰癥椮慭敧⹳潳敭⠨浩条⥥㴠‾浩条⹥獩牐浩牡⥹഻ ††挠湯瑳渠硥䥴慭敧⁳‽൛ †††⸠⸮牰癥椮慭敧ⱳ਍††††ൻ ††††瀠扵楬䥣㩤椠普⹯異汢捩楟Ɽ਍†††††牵㩬椠普⹯敳畣敲畟汲㼠‿湩潦甮汲ബ ††††椠偳楲慭祲›慨偳楲慭祲㼠映污敳㨠琠畲ⱥ਍†††††敤敬整潔敫㩮椠普⹯敤敬整瑟歯湥㼠‿畮汬ബ †††素ബ ††崠഻ഊ ††爠瑥牵⁮⁻⸮瀮敲ⱶ椠慭敧㩳渠硥䥴慭敧⁳㭽਍††⥽഻ 素‬嵛㬩਍਍†獵䕥晦捥⡴⤨㴠‾ൻ †椠⁦眨摩敧剴晥挮牵敲瑮簠⁼楷杤瑥敒摡⥹爠瑥牵㭮਍਍††晩⠠挡潬摵慎敭簠⁼甡汰慯偤敲敳⥴笠਍†††敳坴摩敧䵴獥慳敧✨汃畯楤慮祲젠낯⃦꾺ꆰ밠솳떤쇇⃶쪾튾삽쾴�‮攮癮옠샄샏₻껈컀�훁벼✮㬩਍†††敲畴湲഻ †素਍਍††晩⠠楷摮睯挮潬摵湩牡㽹挮敲瑡啥汰慯坤摩敧⥴笠਍†††楷杤瑥敒⹦畣牲湥⁴‽楷摮睯挮潬摵湩牡⹹牣慥整灕潬摡楗杤瑥ന †††笠਍†††††汣畯乤浡ⱥ਍†††††灵潬摡牐獥瑥ബ ††††洠汵楴汰㩥琠畲ⱥ਍†††††慭䙸汩獥›〱ബ ††††爠獥畯捲呥灹㩥✠浩条❥ബ ††††映汯敤㩲✠桳灯楰杮慭汬瀯潲畤瑣❳ബ ††††猠潨䍷浯汰瑥摥畂瑴湯›牴敵ബ ††††猠潨啷汰慯䵤牯䉥瑵潴㩮琠畲ⱥ਍†††††汣敩瑮汁潬敷䙤牯慭獴›❛灪❧‬樧数❧‬瀧杮Ⱗ✠敷灢崧ബ ††††洠硡楆敬楓敺›䅍彘䵉䝁彅䥓䕚ബ ††††猠祴敬㩳笠਍††††††慰敬瑴㩥笠਍†††††††楷摮睯›⌧攱㤲戳Ⱗ਍†††††††楷摮睯潂摲牥›⌧㌳ㄴ㔵Ⱗ਍†††††††慴䥢潣㩮✠㌣戸晤✸ബ ††††††洠湥䥵潣獮›⌧㐹㍡㡢Ⱗ਍†††††††整瑸慄歲›⌧昰㜱愲Ⱗ਍†††††††整瑸楌桧㩴✠攣攲昸✰ബ ††††††氠湩㩫✠㌣戸晤✸ബ ††††††愠瑣潩㩮✠㌣戸晤✸ബ ††††††椠慮瑣癩呥扡捉湯›⌧㐶㐷戸Ⱗ਍†††††††牥潲㩲✠昣㜸㜱✱ബ ††††††椠偮潲牧獥㩳✠㌣戸晤✸ബ ††††††挠浯汰瑥㩥✠㌣搴㤳✹ബ †††††素ബ ††††素ബ †††素ബ †††栠湡汤坥摩敧剴獥汵ⱴ਍†††㬩਍†††敳坴摩敧剴慥祤琨畲⥥഻ ††猠瑥楗杤瑥敍獳条⡥✧㬩਍††⁽汥敳笠਍†††敳坴摩敧䵴獥慳敧✨汃畯楤慮祲쀠솧사₻튺꾷삿슴선샟듔듏⻙⸮⤧഻ ††挠湯瑳琠浩牥㴠猠瑥楔敭畯⡴⤨㴠‾ൻ †††椠⁦ℨ楷摮睯挮潬摵湩牡㽹挮敲瑡啥汰慯坤摩敧⥴笠਍†††††敳坴摩敧䵴獥慳敧✨汃畯楤慮祲쀠솧사₻튺꾷삿렠쟸뷟듀듏⻙묠럵냎쓭₧쓈될뷙⃃쎽떵�훁벼✮㬩਍††††ൽ ††素‬〴〰㬩਍†††敲畴湲⠠ 㸽挠敬牡楔敭畯⡴楴敭⥲഻ †素਍†ⱽ嬠慨摮敬楗杤瑥敒畳瑬‬楷杤瑥敒摡嵹㬩਍਍†潣獮⁴敤敬整浉条䉥呹歯湥㴠甠敳慃汬慢正愨祳据⠠潴敫⥮㴠‾ൻ †椠⁦ℨ潴敫⁮籼℠汣畯乤浡⥥爠瑥牵㭮਍††牴⁹ൻ ††挠湯瑳映牯䑭瑡⁡‽敮⁷潆浲慄慴⤨഻ ††映牯䑭瑡⹡灡数摮✨潴敫❮‬潴敫⥮഻ ††愠慷瑩映瑥档怨瑨灴㩳⼯灡⹩汣畯楤慮祲挮浯瘯弱⼱笤汣畯乤浡絥搯汥瑥彥祢瑟歯湥Ⱡ笠਍††††敭桴摯›倧协❔ബ †††戠摯㩹映牯䑭瑡ⱡ਍†††⥽഻ †素挠瑡档⠠牥潲⥲笠਍†††潣獮汯⹥牥潲⡲嬧汣畯楤慮祲⁝敤敬整扟役潴敫⁮잽탆Ⱗ攠牲牯㬩਍††ൽ 素‬嵛㬩਍਍†潣獮⁴敲敳䙴牯⁭‽獵䍥污扬捡⡫⤨㴠‾ൻ †猠瑥潆浲挨敲瑡䕥灭祴牐摯捵⡴⤩഻ †猠瑥摅瑩湩偧潲畤瑣摉渨汵⥬഻ †猠瑥敒潭敶䥤慭敧⡳嵛㬩਍†ⱽ嬠⥝഻ഊ 挠湯瑳漠数啮汰慯坤摩敧⁴‽⤨㴠‾ൻ †椠⁦ℨ楷杤瑥敒⹦畣牲湥⥴笠਍†††敳却慴畴味灹⡥攧牲牯⤧഻ ††猠瑥瑓瑡獵眨摩敧䵴獥慳敧簠⁼쀧만쇌⃶캷쀠솧사₻틇밠⃶삽쾴�✮㬩਍†††敲畴湲഻ †素਍††楷杤瑥敒⹦畣牲湥⹴灯湥⤨഻ 素഻ഊ 挠湯瑳栠湡汤剥浥癯䥥慭敧㴠愠祳据⠠異汢捩摉 㸽笠਍††潣獮⁴浩条⁥‽潦浲椮慭敧⹳楦摮⠨瑩浥 㸽椠整⹭異汢捩摉㴠㴽瀠扵楬䥣⥤഻ †椠⁦ℨ浩条⥥爠瑥牵㭮਍਍††晩⠠浩条⹥敤敬整潔敫⥮笠਍†††睡楡⁴敤敬整浉条䉥呹歯湥椨慭敧搮汥瑥呥歯湥㬩਍††⁽汥敳椠⁦攨楤楴杮牐摯捵䥴⥤笠਍†††敳剴浥癯摥浉条獥⠨牰癥 㸽⠠牰癥椮据畬敤⡳異汢捩摉 ‿牰癥㨠嬠⸮瀮敲ⱶ瀠扵楬䥣嵤⤩഻ †素਍਍††敳䙴牯⡭瀨敲⥶㴠‾ൻ ††挠湯瑳爠浥楡楮杮㴠瀠敲⹶浩条獥਍††††昮汩整⡲椨整⥭㴠‾瑩浥瀮扵楬䥣⁤㴡‽異汢捩摉ഩ †††⸠慭⡰椨整⥭㴠‾笨⸠⸮瑩浥素⤩഻ഊ ††椠⁦爨浥楡楮杮氮湥瑧⁨☦℠敲慭湩湩⹧潳敭⠨瑩浥 㸽椠整⹭獩牐浩牡⥹ ൻ †††爠浥楡楮杮せ⹝獩牐浩牡⁹‽牴敵഻ ††素਍਍†††敲畴湲笠⸠⸮牰癥‬浩条獥›敲慭湩湩⁧㭽਍††⥽഻ 素഻ഊ 挠湯瑳栠湡汤卥瑥牐浩牡䥹慭敧㴠⠠異汢捩摉 㸽笠਍††敳䙴牯⡭瀨敲⥶㴠‾笨਍†††⸮瀮敲ⱶ਍†††浩条獥›牰癥椮慭敧⹳慭⡰椨慭敧 㸽⠠ൻ †††⸠⸮浩条ⱥ਍††††獩牐浩牡㩹椠慭敧瀮扵楬䥣⁤㴽‽異汢捩摉ബ ††素⤩ബ †素⤩഻ 素਻ 挠湯瑳漠数䑮瑥楡啬汰慯⁤‽⤨㴠‾੻††晩⠠眡摩敧剴慥祤簠⁼挡潬摵慎敭簠⁼甡汰慯偤敲敳⥴爠瑥牵㭮 †挠湯瑳搠瑥楡坬摩敧⁴‽楷摮睯挮潬摵湩牡㽹挮敲瑡啥汰慯坤摩敧⡴ ††笠 †††挠潬摵慎敭ਬ††††灵潬摡牐獥瑥ਬ††††畭瑬灩敬›慦獬ⱥ †††洠硡楆敬㩳ㄠਬ††††敲潳牵散祔数›椢慭敧Ⱒ †††映汯敤㩲∠桳灯楰杮慭汬搯瑥楡獬Ⱒ †††挠楬湥䅴汬睯摥潆浲瑡㩳嬠樢杰Ⱒ∠灪来Ⱒ∠湰≧‬眢扥≰ⱝ †††洠硡楆敬楓敺›䅍彘䵉䝁彅䥓䕚ਬ†††ⱽ ††⠠牥潲Ⱳ爠獥汵⥴㴠‾੻††††晩⠠牥潲⥲笠 ††††挠湯潳敬攮牲牯∨捛潬摵湩牡嵹搠瑥楡⁬浩条⁥牥潲≲‬牥潲⥲਻†††††敲畴湲਻††††੽††††晩⠠敲畳瑬☠…敲畳瑬攮敶瑮㴠㴽∠畳捣獥≳ ੻†††††潣獮⁴湩潦㴠爠獥汵⹴湩潦਻†††††敳䙴牯⡭瀨敲⥶㴠‾笨 †††††⸠⸮牰癥ਬ††††††敤慴汩求捯獫›ਜ਼†††††††⸮瀮敲⹶敤慴汩求捯獫ਬ†††††††੻††††††††祴数›椢慭敧Ⱒ †††††††甠汲›湩潦献捥牵彥牵⁬㼿椠普⹯牵ⱬ †††††††瀠扵楬䥣㩤椠普⹯異汢捩楟Ɽ †††††††挠湯整瑮›∢ਬ†††††††ⱽ †††††崠ਬ†††††⥽㬩 †††素 ††素 †⤠਻††敤慴汩楗杤瑥⸿灯湥⸿⤨਻†㭽਍਍†潣獮⁴慨摮敬畓浢瑩㴠愠祳据⠠癥湥⥴㴠‾ൻ †攠敶瑮瀮敲敶瑮敄慦汵⡴㬩਍††敳却慴畴⡳✧㬩਍††敳却慴畴味灹⡥椧普❯㬩਍††敳䥴即扵業瑴湩⡧牴敵㬩਍਍††牴⁹ൻ ††椠⁦ℨ潦浲献畫琮楲⡭⤩笠਍††††桴潲⁷敮⁷牅潲⡲묧쟳₰䑉匨啋렩₦퓀슷�훁벼✮㬩਍†††ൽഊ ††椠⁦ℨ潦浲渮浡⹥牴浩⤨ ൻ †††琠牨睯渠睥䔠牲牯✨냇쀠료삧₻퓀슷�훁벼✮㬩਍†††ൽഊ ††椠⁦ℨ潦浲椮慭敧⹳敬杮桴 ൻ †††琠牨睯渠睥䔠牲牯✨ꗇ쀠만쇌룶₦퓇퇇묠쟳₰쳀첹ꚸ쌠볖⃒퇇쀠⃥쳀딠럮쟏쇘볖뾼⻤⤧഻ ††素਍਍†††潣獮⁴牰浩牡䥹慭敧㴠映牯⹭浩条獥昮湩⡤椨慭敧 㸽椠慭敧椮偳楲慭祲㬩਍†††晩⠠瀡楲慭祲浉条⥥笠਍††††桴潲⁷敮⁷牅潲⡲됧쟫₥쳀첹ꚸ밠얱쟃쇘볖뾼⻤⤧഻ ††素਍਍†††潣獮⁴慰汹慯⁤‽ൻ †††猠畫›潦浲献畫琮楲⡭Ⱙ਍††††慮敭›潦浲渮浡⹥牴浩⤨ബ †††瀠楲散›畎扭牥昨牯⹭牰捩⥥簠⁼ⰰ਍††††慣整潧祲›潦浲挮瑡来牯ⱹ਍††††桳灩楰杮敆㩥丠浵敢⡲潦浲献楨灰湩䙧敥 籼〠ബ †††搠獥牣灩楴湯›潦浲搮獥牣灩楴湯ബ †††搠瑥楡䉬潬正㩳映牯⹭敤慴汩求捯獫ബ †††漠瑰潩獮›潦浲漮瑰潩獮ബ †††椠慭敧㩳映牯⹭浩条獥洮灡⠨⁻異汢捩摉‬牵ⱬ椠偳楲慭祲素 㸽⠠⁻異汢捩摉‬牵ⱬ椠偳楲慭祲素⤩ബ †††瀠楲慭祲浉条健扵楬䥣㩤瀠楲慭祲浉条⹥異汢捩摉ബ ††素഻ഊ ††椠⁦攨楤楴杮牐摯捵䥴⥤笠਍††††慰汹慯⹤敲潭敶䥤慭敧畐汢捩摉⁳‽敲潭敶䥤慭敧㭳਍††††睡楡⁴灡剩煥敵瑳怨愯浤湩瀯潲畤瑣⽳笤摥瑩湩偧潲畤瑣摉恽‬ൻ ††††洠瑥潨㩤✠啐❔ബ ††††戠摯㩹䨠体⹎瑳楲杮晩⡹慰汹慯⥤ബ †††素㬩਍††††敳却慴畴味灹⡥猧捵散獳⤧഻ †††猠瑥瑓瑡獵✨냇쳀밠쇶떤뻇뷺듀듏⻙⤧഻ ††素攠獬⁥ൻ †††愠慷瑩愠楰敒畱獥⡴⼧摡業⽮牰摯捵獴Ⱗ笠਍†††††敭桴摯›倧协❔ബ ††††戠摯㩹䨠体⹎瑳楲杮晩⡹慰汹慯⥤ബ †††素㬩਍††††敳却慴畴味灹⡥猧捵散獳⤧഻ †††猠瑥瑓瑡獵✨냇쳀딠럮뗏뻇뷺듀듏⻙⤧഻ ††素਍਍†††敲敳䙴牯⡭㬩਍†††睡楡⁴敦捴偨潲畤瑣⡳㬩਍††⁽慣捴⁨攨牲牯 ൻ ††猠瑥瑓瑡獵祔数✨牥潲❲㬩਍†††敳却慴畴⡳牥潲⹲敭獳条⁥㼿✠냇쀠샺⃥�뼠럀냹₡�ﶻ�삽쾴�✮㬩਍††⁽楦慮汬⁹ൻ ††猠瑥獉畓浢瑩楴杮昨污敳㬩਍††ൽ 素഻ഊ 挠湯瑳栠湡汤䕥楤⁴‽瀨潲畤瑣 㸽笠਍††敳䕴楤楴杮牐摯捵䥴⡤牰摯捵⹴摩㬩਍††敳剴浥癯摥浉条獥嬨⥝഻ †猠瑥潆浲笨਍†††歳㩵瀠潲畤瑣献畫ബ ††渠浡㩥瀠潲畤瑣渮浡ⱥ਍†††牰捩㩥瀠潲畤瑣瀮楲散℠‽畮汬㼠匠牴湩⡧牰摯捵⹴牰捩⥥㨠✠Ⱗ਍†††慣整潧祲›牰摯捵⹴慣整潧祲㼠‿剐䑏䍕彔䅃䕔佇䥒卅せ⹝慶畬ⱥ਍†††桳灩楰杮敆㩥瀠潲畤瑣献楨灰湩䙧敥℠‽畮汬㼠匠牴湩⡧牰摯捵⹴桳灩楰杮敆⥥㨠✠〳〰Ⱗ਍†††敤捳楲瑰潩㩮瀠潲畤瑣搮獥牣灩楴湯㼠‿✧ബ ††搠瑥楡䉬潬正㩳瀠潲畤瑣搮瑥楡䉬潬正⁳㼿嬠ⱝ਍†††灯楴湯㩳瀠潲畤瑣漮瑰潩獮㼠‿嵛ബ ††椠慭敧㩳⠠牰摯捵⹴浩条獥㼠‿嵛⸩慭⡰椨慭敧 㸽⠠ൻ †††瀠扵楬䥣㩤椠慭敧瀮扵楬䥣Ɽ਍††††牵㩬椠慭敧甮汲ബ †††椠偳楲慭祲›潂汯慥⡮浩条⹥獩牐浩牡⥹ബ ††素⤩ബ †素㬩਍††敳却慴畴⡳✧㬩਍†㭽਍਍†潣獮⁴慨摮敬敄敬整㴠愠祳据⠠牰摯捵䥴⥤㴠‾ൻ †椠⁦ℨ楷摮睯挮湯楦浲✨�묠쟳산₻ꛁ쿇쎽�삽쾴✿⤩爠瑥牵㭮਍਍††牴⁹ൻ ††愠慷瑩愠楰敒畱獥⡴⽠摡業⽮牰摯捵獴␯灻潲畤瑣摉恽‬⁻敭桴摯›䐧䱅呅❅素㬩਍†††敳却慴畴味灹⡥猧捵散獳⤧഻ ††猠瑥瑓瑡獵✨냇쳀묠쇨떦뻇뷺듀듏⻙⤧഻ ††椠⁦攨楤楴杮牐摯捵䥴⁤㴽‽牰摯捵䥴⥤笠਍††††敲敳䙴牯⡭㬩਍†††ൽ ††愠慷瑩映瑥档牐摯捵獴⤨഻ †素挠瑡档⠠牥潲⥲笠਍†††敳却慴畴味灹⡥攧牲牯⤧഻ ††猠瑥瑓瑡獵攨牲牯洮獥慳敧㬩਍††ൽ 素഻ഊ 挠湯瑳瀠条呥瑩敬㴠甠敳敍潭ന †⠠ 㸽⠠摥瑩湩偧潲畤瑣摉㼠✠냇밠쇶➤㨠✠냇딠럮⟏Ⱙ਍††敛楤楴杮牐摯捵䥴嵤ബ ⤠഻ഊ 挠湯瑳栠湡汤啥摰瑡佥摲牥瑓瑡獵㴠愠祳据⠠牯敤䥲Ɽ渠硥却慴畴ⱳ猠楨灰湩䑧瑡⁡‽絻 㸽笠਍††牴⁹ൻ ††挠湯瑳瀠祡潬摡㴠笠猠慴畴㩳渠硥却慴畴⁳㭽਍†††晩⠠扏敪瑣欮祥⡳桳灩楰杮慄慴⸩敬杮桴㸠〠 ൻ †††瀠祡潬摡献楨灰湩⁧‽桳灩楰杮慄慴഻ ††素਍਍†††潣獮⁴灵慤整⁤‽睡楡⁴灡剩煥敵瑳怨愯浤湩漯摲牥⽳笤牯敤䥲絤猯慴畴恳‬ൻ †††洠瑥潨㩤✠䅐䍔❈ബ †††戠摯㩹䨠体⹎瑳楲杮晩⡹慰汹慯⥤ബ ††素㬩਍†††敳佴摲牥⡳瀨敲⥶㴠‾牰癥洮灡⠨牯敤⥲㴠‾漨摲牥椮⁤㴽‽牯敤䥲⁤‿⁻⸮漮摲牥‬⸮甮摰瑡摥素㨠漠摲牥⤩㬩਍†††敳佴摲牥潎楴散祔数✨畳捣獥❳㬩਍†††敳佴摲牥潎楴散✨훁꺹묠엳냂₡ꖵ쳀껆잵諭삽쾴�✮㬩਍††⁽慣捴⁨攨牲牯 ൻ ††猠瑥牏敤乲瑯捩呥灹⡥攧牲牯⤧഻ ††猠瑥牏敤乲瑯捩⡥牥潲⹲敭獳条⁥㼿✠훁꺹묠엳룂₦꾺쿇렠쟸뷟듀듏⻙⤧഻ †素਍†㭽਍਍†潣獮⁴慨摮敬灕慤整牔捡楫杮㴠愠祳据⠠牯敤䥲Ɽ挠牡楲牥‬牴捡楫杮畎扭牥 㸽笠਍††牴⁹ൻ ††挠湯瑳漠摲牥㴠漠摲牥⹳楦摮漨㴠‾⹯摩㴠㴽漠摲牥摉㬩਍†††晩⠠漡摲牥 敲畴湲഻ഊ ††愠慷瑩栠湡汤啥摰瑡佥摲牥瑓瑡獵漨摲牥摉‬牯敤⹲瑳瑡獵‬ൻ †††挠牡楲牥ബ †††琠慲正湩乧浵敢Ⱳ਍†††⥽഻ †素挠瑡档⠠牥潲⥲笠਍†††敳佴摲牥潎楴散祔数✨牥潲❲㬩਍†††敳佴摲牥潎楴散攨牲牯洮獥慳敧㼠‿밧샛⃥꓁뢺븠뗷삥워뾮₡잽탆�삽쾴�✮㬩਍††ൽ 素഻ഊ 挠湯瑳栠湡汤䅥浤湩慃据汥牏敤⁲‽獡湹⁣漨摲牥摉 㸽笠਍††潣獮⁴敲獡湯㴠眠湩潤⹷牰浯瑰✨튼묠샧뢯₦퓀슷�훁벼⠠놼쏅퟇㨩⤧഻ †椠⁦爨慥潳⁮㴽‽畮汬 敲畴湲※⼯묠뿧샫냚₡튼ꚸ될뢩₥਍਍††牴⁹ൻ ††愠慷瑩愠楰敒畱獥⡴⽠摡業⽮牯敤獲␯潻摲牥摉⽽慣据汥Ⱡ笠਍††††敭桴摯›倧协❔ബ †††戠摯㩹䨠体⹎瑳楲杮晩⡹⁻敲獡湯›敲獡湯簠⁼湵敤楦敮⁤⥽ബ ††素㬩਍†††睡楡⁴敦捴佨摲牥⡳㬩਍†††敳佴摲牥潎楴散祔数✨畳捣獥❳㬩਍†††敳佴摲牥潎楴散✨훁꺹쳀쌠볫뗒뻇뷺듀듏⻙뀠쇡낦₡쾿좵선맖삮₺꿈튺쌠뢳떮듋듏⻙⤧഻ †素挠瑡档⠠牥潲⥲笠਍†††敳佴摲牥潎楴散祔数✨牥潲❲㬩਍†††敳佴摲牥潎楴散攨牲牯洮獥慳敧㼠‿섧맖삮₻튼쿇렠쟸뷟듀듏⻙⤧഻ †素਍†㭽਍਍†⼯匠档摥汵⁥慨摮敬獲਍†潣獮⁴慨摮敬捓敨畤敬畓浢瑩㴠愠祳据⠠癥湥⥴㴠‾ൻ †椠⁦攨敶瑮 癥湥⹴牰癥湥䑴晥畡瑬⤨഻ †椠⁦ℨ敳敬瑣摥慄⥹爠瑥牵㭮਍਍††牴⁹ൻ ††挠湯瑳礠慥⁲‽捳敨畤敬慄整朮瑥畆汬教牡⤨഻ ††挠湯瑳洠湯桴㴠猠档摥汵䑥瑡⹥敧䵴湯桴⤨഻ ††⼠ 呕⁃꾺꿈뤠솮₦›캷쏄댠슯뢥₦奙奙䴭ⵍ䑄유뷼샄랸⃎ﳀ�਍†††潣獮⁴慤整瑓⁲‽①祻慥絲␭卻牴湩⡧潭瑮⁨‫⤱瀮摡瑓牡⡴ⰲ✠✰紩␭卻牴湩⡧敳敬瑣摥慄⥹瀮摡瑓牡⡴ⰲ✠✰紩ㅔ㨲〰〺⸰〰娰㭠਍਍†††睡楡⁴灡剩煥敵瑳✨猯档摥汵獥Ⱗ笠਍††††敭桴摯›倧协❔ബ †††戠摯㩹䨠体⹎瑳楲杮晩⡹ൻ ††††搠瑡㩥搠瑡卥牴ബ ††††猠慴畴㩳✠湵癡楡慬汢❥ബ ††††渠瑯㩥✠Ⱗ਍††††⥽ബ ††素㬩਍਍†††敳却档摥汵乥瑯捩呥灹⡥猧捵散獳⤧഻ ††猠瑥捓敨畤敬潎楴散✨먠냒랡⃎뎼꓁잵諭삽쾴�✮㬩਍†††敳却汥捥整䑤祡渨汵⥬഻ ††愠慷瑩映瑥档捓敨畤敬⡳㬩਍††⁽慣捴⁨攨牲牯 ൻ ††猠瑥捓敨畤敬潎楴散祔数✨牥潲❲㬩਍†††敳却档摥汵乥瑯捩⡥牥潲⹲敭獳条⁥㼿✠쿀꓁쀠샺뿥₡잽탆�삽쾴�✮㬩਍††ൽ 素഻ഊ 挠湯瑳栠湡汤卥档摥汵䑥汥瑥⁥‽獡湹⁣⤨㴠‾ൻ †椠⁦ℨ敳敬瑣摥慄⥹爠瑥牵㭮਍਍††潣獮⁴捳敨畤敬㴠朠瑥捓敨畤敬潆䑲祡猨汥捥整䑤祡㬩਍††晩⠠猡档摥汵⥥爠瑥牵㭮਍਍††牴⁹ൻ ††愠慷瑩愠楰敒畱獥⡴⽠捳敨畤敬⽳笤捳敨畤敬弮摩恽‬ൻ †††洠瑥潨㩤✠䕄䕌䕔Ⱗ਍†††⥽഻ഊ ††猠瑥捓敨畤敬潎楴散祔数✨畳捣獥❳㬩਍†††敳却档摥汵乥瑯捩⡥밧뻶⃷ꆰ즴룀캷딠뗇랹뷈듀듏⻙⤧഻ ††猠瑥敓敬瑣摥慄⡹畮汬㬩਍†††睡楡⁴敦捴卨档摥汵獥⤨഻ †素挠瑡档⠠牥潲⥲笠਍†††敳却档摥汵乥瑯捩呥灹⡥攧牲牯⤧഻ ††猠瑥捓敨畤敬潎楴散攨牲牯洮獥慳敧㼠‿쀧쇏₤ꛁꆿ봠웇쟐뷟듀듏⻙⤧഻ †素਍†㭽਍਍†潣獮⁴慨摮敬慄䍹楬正㴠⠠慤⥹㴠‾ൻ †挠湯瑳礠慥⁲‽捳敨畤敬慄整朮瑥畆汬教牡⤨഻ †挠湯瑳洠湯桴㴠猠档摥汵䑥瑡⹥敧䵴湯桴⤨഻ †挠湯瑳搠瑡佥橢㴠渠睥䐠瑡⡥敹牡‬潭瑮ⱨ搠祡㬩਍††慤整扏⹪敳䡴畯獲〨‬ⰰ〠‬⤰഻ഊ †挠湯瑳攠楸瑳湩⁧‽捳敨畤敬⹳楦摮⠨⥳㴠‾ൻ ††挠湯瑳猠慄整㴠渠睥䐠瑡⡥⹳慤整㬩਍†††䑳瑡⹥敳䡴畯獲〨‬ⰰ〠‬⤰഻ ††爠瑥牵⁮䑳瑡⹥敧呴浩⡥ 㴽‽慤整扏⹪敧呴浩⡥㬩਍††⥽഻ഊ †猠瑥敓敬瑣摥慄⡹慤⥹഻ †椠⁦攨楸瑳湩⥧笠਍†††敳却档摥汵䙥牯⡭⁻瑳瑡獵›硥獩楴杮献慴畴ⱳ渠瑯㩥攠楸瑳湩⹧潮整簠⁼✧素㬩਍††⁽汥敳笠਍†††敳却档摥汵䙥牯⡭⁻瑳瑡獵›甧慮慶汩扡敬Ⱗ渠瑯㩥✠‧⥽഻ †素਍†㭽਍਍†潣獮⁴敧却档摥汵䙥牯慄⁹‽搨祡 㸽笠਍††潣獮⁴敹牡㴠猠档摥汵䑥瑡⹥敧䙴汵奬慥⡲㬩਍††潣獮⁴潭瑮⁨‽捳敨畤敬慄整朮瑥潍瑮⡨㬩਍††潣獮⁴慤整扏⁪‽敮⁷慄整礨慥Ⱳ洠湯桴‬慤⥹഻ †搠瑡佥橢献瑥潈牵⡳ⰰ〠‬ⰰ〠㬩਍਍††敲畴湲猠档摥汵獥昮湩⡤猨 㸽笠਍†††潣獮⁴䑳瑡⁥‽敮⁷慄整猨搮瑡⥥഻ ††猠慄整献瑥潈牵⡳ⰰ〠‬ⰰ〠㬩਍†††敲畴湲猠慄整朮瑥楔敭⤨㴠㴽搠瑡佥橢朮瑥楔敭⤨഻ †素㬩਍†㭽਍਍†潣獮⁴捳敨畤敬牐癥潍瑮⁨‽⤨㴠‾ൻ †猠瑥捓敨畤敬慄整渨睥䐠瑡⡥捳敨畤敬慄整朮瑥畆汬教牡⤨‬捳敨畤敬慄整朮瑥潍瑮⡨ ‭ⰱㄠ⤩഻ †猠瑥敓敬瑣摥慄⡹畮汬㬩਍†㭽਍਍†潣獮⁴捳敨畤敬敎瑸潍瑮⁨‽⤨㴠‾ൻ †猠瑥捓敨畤敬慄整渨睥䐠瑡⡥捳敨畤敬慄整朮瑥畆汬教牡⤨‬捳敨畤敬慄整朮瑥潍瑮⡨ ‫ⰱㄠ⤩഻ †猠瑥敓敬瑣摥慄⡹畮汬㬩਍†㭽਍਍†潣獮⁴敲摮牥摁業䍮污湥慤⁲‽⤨㴠‾ൻ †挠湯瑳礠慥⁲‽捳敨畤敬慄整朮瑥畆汬教牡⤨഻ †挠湯瑳洠湯桴㴠猠档摥汵䑥瑡⹥敧䵴湯桴⤨഻ †挠湯瑳映物瑳慄⁹‽敮⁷慄整礨慥Ⱳ洠湯桴‬⤱朮瑥慄⡹㬩਍††潣獮⁴慤獹湉潍瑮⁨‽敮⁷慄整礨慥Ⱳ洠湯桴⬠ㄠ‬⤰朮瑥慄整⤨഻ †挠湯瑳眠敥䑫祡⁳‽❛쿀Ⱗ✠樂Ⱗ✠귈Ⱗ✠Ⱗ✠Ⱗ✠�Ⱗ✠崧഻ †挠湯瑳洠湯桴慎敭⁳‽❛뼱⟹‬㈧樂Ⱗ✠뼳⟹‬㐧樂Ⱗ✠뼵⟹‬㘧樂Ⱗ✠뼷⟹‬㠧樂Ⱗ✠뼹⟹‬ㄧ뼰⟹‬ㄧ뼱⟹‬ㄧ뼲⟹㭝਍਍††潣獮⁴慤獹㴠嬠㭝਍††潦⁲氨瑥椠㴠〠※⁩‼楦獲䑴祡※⭩⤫笠਍†††慤獹瀮獵⡨搼癩欠祥笽敠灭祴␭楻恽⁽汣獡乳浡㵥愢浤湩挭污湥慤⵲慤⁹摡業⵮慣敬摮牡搭祡ⴭ浥瑰≹㰾搯癩⤾഻ †素਍਍††潦⁲氨瑥搠祡㴠ㄠ※慤⁹㴼搠祡䥳䵮湯桴※慤⭹⤫笠਍†††潣獮⁴捳敨畤敬㴠朠瑥捓敨畤敬潆䑲祡搨祡㬩਍†††潣獮⁴瑳瑡獵灏楴湯㴠猠档摥汵⁥‿䍓䕈啄䕌卟䅔啔当偏䥔乏⹓楦摮⠨⥯㴠‾⹯慶畬⁥㴽‽捳敨畤敬献慴畴⥳㨠渠汵㭬਍਍†††慤獹瀮獵⡨਍††††搼癩਍†††††敫㵹摻祡ൽ ††††挠慬獳慎敭笽慠浤湩挭污湥慤⵲慤⁹笤敳敬瑣摥慄⁹㴽‽慤⁹‿愧浤湩挭污湥慤⵲慤⵹猭汥捥整❤㨠✠紧絠਍†††††湯汃捩㵫⡻ 㸽栠湡汤䑥祡汃捩⡫慤⥹ൽ ††††猠祴敬笽瑳瑡獵灏楴湯㼠笠戠捡杫潲湵䍤汯牯›瑳瑡獵灏楴湯挮汯牯⬠✠〲Ⱗ戠牯敤䍲汯牯›瑳瑡獵灏楴湯挮汯牯素㨠笠絽਍††††ാ ††††㰠灳湡挠慬獳慎敭∽摡業⵮慣敬摮牡搭祡彟畮扭牥㸢摻祡㱽猯慰㹮਍†††††獻慴畴佳瑰潩⁮☦㰠灳湡挠慬獳慎敭∽摡業⵮慣敬摮牡搭祡彟瑳瑡獵•瑳汹㵥筻挠汯牯›瑳瑡獵灏楴湯挮汯牯素㹽獻慴畴佳瑰潩⹮慬敢絬⼼灳湡紾਍††††⼼楤㹶਍†††㬩਍††ൽഊ †爠瑥牵⁮ന ††㰠楤⁶汣獡乳浡㵥愢浤湩挭污湥慤≲ാ †††㰠楤⁶汣獡乳浡㵥愢浤湩挭污湥慤⵲敨摡牥㸢਍†††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫獻档摥汵健敲䵶湯桴⁽汣獡乳浡㵥挢污湥慤⵲慮⵶瑢≮☾瑬㰻戯瑵潴㹮਍†††††格㸳祻慥絲笠潭瑮乨浡獥浛湯桴絝⼼㍨ാ ††††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽捳敨畤敬敎瑸潍瑮絨挠慬獳慎敭∽慣敬摮牡渭癡戭湴㸢朦㭴⼼畢瑴湯ാ †††㰠搯癩ാ †††㰠楤⁶汣獡乳浡㵥愢浤湩挭污湥慤⵲敷步慤獹㸢਍†††††睻敥䑫祡⹳慭⡰搨 㸽㰠楤⁶敫㵹摻⁽汣獡乳浡㵥愢浤湩挭污湥慤⵲敷步慤≹笾絤⼼楤㹶紩਍††††⼼楤㹶਍††††搼癩挠慬獳慎敭∽摡業⵮慣敬摮牡搭祡≳ാ ††††笠慤獹ൽ †††㰠搯癩ാ ††㰠搯癩ാ †⤠഻ 素഻ഊ 椠⁦氨慯楤杮 ൻ †爠瑥牵⁮搼癩挠慬獳慎敭∽灁≰묾뿧샫⃚꓁뢺ꚸ먠럒뾯듀⃂�퓀쾴�⸮㰮搯癩㬾਍†ൽഊ 椠⁦ℨ獵牥簠⁼獵牥爮汯⁥㴡‽愧浤湩⤧笠਍††敲畴湲渠汵㭬਍†ൽഊ 爠瑥牵⁮ന †㰠楤⁶汣獡乳浡㵥䄢灰㸢਍†††格慥敤㹲਍††††格㸳ﲰ꺸�될뷫뫃떸㳥栯㸳਍††††瀼묾쟳₰꓁뢺ꚸ묠볽Ⲻ밠쇶Ⲥ묠쇨잦냏⃭쳀첹뀠룼놮쇮⃶틇밠⃶훀삽쾴�㰮瀯ാ ††㰠栯慥敤㹲਍਍†††䄼浤湩潆浲潎楴散猠慴畴㵳獻慴畴絳猠慴畴味灹㵥獻慴畴味灹絥⼠ാഊ ††㰠慭湩ാ †††††††㰠牐摯捵䙴牯卭捥楴湯 ††††瀠条呥瑩敬笽慰敧楔汴絥 ††††映牯㵭晻牯絭 ††††猠瑥潆浲笽敳䙴牯絭 ††††漠卮扵業㵴桻湡汤卥扵業絴 ††††椠即扵業瑴湩㵧楻即扵業瑴湩絧 ††††爠獥瑥潆浲笽敲敳䙴牯絭 ††††攠楤楴杮牐摯捵䥴㵤敻楤楴杮牐摯捵䥴絤 ††††瀠潲畤瑣慃整潧楲獥笽剐䑏䍕彔䅃䕔佇䥒卅੽†††††楷杤瑥敒摡㵹睻摩敧剴慥祤੽†††††楷杤瑥敍獳条㵥睻摩敧䵴獥慳敧੽†††††湯灏湥灕潬摡楗杤瑥笽灯湥灕潬摡楗杤瑥੽†††††湯敓側楲慭祲浉条㵥桻湡汤卥瑥牐浩牡䥹慭敧੽†††††湯敒潭敶浉条㵥桻湡汤剥浥癯䥥慭敧੽†††††湯摁䑤瑥楡䥬慭敧笽灯湥敄慴汩灕潬摡੽††††㸯਍਍††††††††值潲畤瑣楌瑳敓瑣潩൮ ††††瀠潲畤瑣㵳灻潲畤瑣絳਍†††††湯敒牦獥㵨晻瑥档牐摯捵獴ൽ ††††漠䕮楤㵴桻湡汤䕥楤絴਍†††††湯敄敬整笽慨摮敬敄敬整ൽ ††††朠瑥慃整潧祲慌敢㵬杻瑥慃整潧祲慌敢絬਍††††㸯਍਍††††††††似摲牥即捥楴湯਍†††††牯敤獲笽牯敤獲ൽ ††††漠摲牥䱳慯楤杮笽牯敤獲潌摡湩絧਍†††††牯敤獲牅潲㵲潻摲牥䕳牲牯ൽ ††††漠摲牥潎楴散笽牯敤乲瑯捩絥਍†††††牯敤乲瑯捩呥灹㵥潻摲牥潎楴散祔数ൽ ††††漠剮晥敲桳笽敦捴佨摲牥絳਍†††††湯灕慤整瑓瑡獵笽慨摮敬灕慤整牏敤卲慴畴絳਍†††††湯灕慤整牔捡楫杮笽慨摮敬灕慤整牔捡楫杮ൽ ††††漠䍮湡散㵬桻湡汤䅥浤湩慃据汥牏敤絲਍†††††潦浲瑡畃牲湥祣笽潦浲瑡畃牲湥祣ൽ ††††映牯慭䑴瑡㵥晻牯慭䑴瑡絥਍†††††瑳瑡獵灏楴湯㵳佻䑒剅卟䅔啔当偏䥔乏絓਍††††㸯਍਍††††††††䤼癮瑩獥敓瑣潩൮ ††††椠癮瑩獥笽湩楶整絳਍†††††湩楶整䱳慯楤杮笽湩楶整䱳慯楤杮ൽ ††††椠癮瑩䕥牲牯笽湩楶整牅潲絲਍†††††湩楶整潎楴散笽湩楶整潎楴散ൽ ††††椠癮瑩乥瑯捩呥灹㵥楻癮瑩乥瑯捩呥灹絥਍†††††湩楶整潆浲笽湩楶整潆浲ൽ ††††椠䍳敲瑡湩䥧癮瑩㵥楻䍳敲瑡湩䥧癮瑩絥਍†††††湯敒牦獥㵨晻瑥档湉楶整絳਍†††††湯畓浢瑩笽慨摮敬牃慥整湉楶整ൽ ††††漠䍮慨杮䙥牯㵭獻瑥湉楶整潆浲ൽ ††††漠䍮灯䍹摯㵥桻湡汤䍥灯䥹癮瑩䍥摯絥਍†††††湯敒潶敫笽慨摮敬敒潶敫湉楶整ൽ ††††映牯慭䑴瑡㵥晻牯慭䑴瑡絥਍††††㸯਍਍††††††††匼档摥汵卥捥楴湯਍†††††捳敨畤敬䱳慯楤杮笽捳敨畤敬䱳慯楤杮ൽ ††††猠档摥汵乥瑯捩㵥獻档摥汵乥瑯捩絥਍†††††捳敨畤敬潎楴散祔数笽捳敨畤敬潎楴散祔数ൽ ††††爠湥敤䍲污湥慤㵲牻湥敤䅲浤湩慃敬摮牡ൽ ††††猠汥捥整䑤祡笽敳敬瑣摥慄絹਍†††††捳敨畤敬慄整笽捳敨畤敬慄整ൽ ††††朠瑥捓敨畤敬潆䑲祡笽敧却档摥汵䙥牯慄絹਍†††††湯畓浢瑩笽慨摮敬捓敨畤敬畓浢瑩ൽ ††††漠䑮汥瑥㵥桻湡汤卥档摥汵䑥汥瑥絥਍†††††湯汃獯㵥⡻ 㸽猠瑥敓敬瑣摥慄⡹畮汬紩਍††††㸯਍†††⼼慭湩ാ †㰠搯癩ാ ⤠഻紊਍਍硥潰瑲搠晥畡瑬䄠浤湩഻ഊഊഊഊ
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { apiRequest } from '../lib/apiClient.js';
+import { useAuth } from '../context/AuthContext.jsx';
+import { PRODUCT_CATEGORIES, getCategoryLabel } from '../lib/productCategories.js';
+import OrdersSection from '../components/admin/OrdersSection.jsx';
+import InvitesSection from '../components/admin/InvitesSection.jsx';
+import ScheduleSection from '../components/admin/ScheduleSection.jsx';
+import ProductListSection from '../components/admin/ProductListSection.jsx';
+import AdminFormNotice from '../components/admin/AdminFormNotice.jsx';
+import ProductFormSection from '../components/admin/ProductFormSection.jsx';
+const ORDER_STATUS_OPTIONS = [
+  { value: 'pending', label: '결제 대기' },
+  { value: 'paid', label: '결제 완료' },
+  { value: 'shipped', label: '배송 중' },
+  { value: 'delivered', label: '배송 완료' },
+  { value: 'cancelled', label: '취소' },
+];
+
+const SCHEDULE_STATUS_OPTIONS = [
+  { value: 'unavailable', label: '수업 불가', color: '#ef4444' },
+];
+
+const DEFAULT_INVITE_HOURS = Number(import.meta.env.VITE_ADMIN_INVITE_HOURS ?? 12) || 12;
+
+function formatCurrency(amount) {
+  if (amount == null) return '-';
+  return `\ ${Number(amount).toLocaleString()}`;
+}
+
+function formatDate(value) {
+  if (!value) return '-';
+  try {
+    return new Date(value).toLocaleString();
+  } catch (_error) {
+    return value;
+  }
+}
+
+const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ?? '';
+const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET ?? '';
+
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+
+function validateImageFile(file) {
+  if (!file) {
+    return { valid: false, error: '파일이 선택되지 않았습니다.' };
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+    return {
+      valid: false,
+      error: 'JPG, PNG, WEBP 형식의 이미지만 업로드 가능합니다.'
+    };
+  }
+
+  if (file.size > MAX_IMAGE_SIZE) {
+    return {
+      valid: false,
+      error: `파일 크기는 ${(MAX_IMAGE_SIZE / (1024 * 1024)).toFixed(0)}MB 이하여야 합니다.`
+    };
+  }
+
+  return { valid: true };
+}
+
+function createEmptyProduct() {
+  return {
+    sku: '',
+    name: '',
+    price: '',
+    category: PRODUCT_CATEGORIES[0].value,
+    shippingFee: 3000,
+    description: '',
+    detailBlocks: [],
+    options: [],
+    images: [],
+  };
+}
+
+function Admin() {
+
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
+
+  const [products, setProducts] = useState([]);
+  const [form, setForm] = useState(createEmptyProduct);
+  const [editingProductId, setEditingProductId] = useState(null);
+  const [removedImages, setRemovedImages] = useState([]);
+  const [status, setStatus] = useState('');
+  const [statusType, setStatusType] = useState('info');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [widgetReady, setWidgetReady] = useState(false);
+  const [widgetMessage, setWidgetMessage] = useState('');
+
+  const [orders, setOrders] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(false);
+  const [ordersError, setOrdersError] = useState('');
+  const [orderNotice, setOrderNotice] = useState('');
+  const [orderNoticeType, setOrderNoticeType] = useState('info');
+  const [invites, setInvites] = useState([]);
+  const [invitesLoading, setInvitesLoading] = useState(false);
+  const [inviteError, setInviteError] = useState('');
+  const [inviteNotice, setInviteNotice] = useState('');
+  const [inviteNoticeType, setInviteNoticeType] = useState('info');
+  const [inviteForm, setInviteForm] = useState(() => ({
+    email: '',
+    expiresInHours: DEFAULT_INVITE_HOURS,
+  }));
+  const [isCreatingInvite, setIsCreatingInvite] = useState(false);
+
+  // Schedule states
+  const [scheduleDate, setScheduleDate] = useState(new Date());
+  const [schedules, setSchedules] = useState([]);
+  const [schedulesLoading, setSchedulesLoading] = useState(false);
+  const [scheduleNotice, setScheduleNotice] = useState('');
+  const [scheduleNoticeType, setScheduleNoticeType] = useState('info');
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [scheduleForm, setScheduleForm] = useState({ status: 'unavailable', note: '' });
+
+  const widgetRef = useRef(null);
+
+  useEffect(() => {
+    if (!loading && (!user || user.role !== 'admin')) {
+      navigate('/');
+    }
+  }, [loading, user, navigate]);
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      const data = await apiRequest('/admin/products');
+      setProducts(data);
+    } catch (error) {
+      setStatusType('error');
+      setStatus(error.message);
+    }
+  }, []);
+
+  const fetchOrders = useCallback(async () => {
+    setOrdersLoading(true);
+    setOrdersError('');
+    setOrderNotice('');
+    try {
+      const data = await apiRequest('/admin/orders');
+      setOrders(data);
+    } catch (error) {
+      setOrdersError(error.message ?? '주문 목록을 불러오지 못했습니다.');
+    } finally {
+      setOrdersLoading(false);
+    }
+  }, []);
+
+  const fetchInvites = useCallback(async () => {
+    setInvitesLoading(true);
+    setInviteError('');
+    try {
+      const data = await apiRequest('/admin/invites');
+      setInvites(data);
+    } catch (error) {
+      setInviteError(error.message ?? '초대 목록을 불러오지 못했습니다.');
+    } finally {
+      setInvitesLoading(false);
+    }
+  }, []);
+
+  const fetchSchedules = useCallback(async () => {
+    setSchedulesLoading(true);
+    try {
+      const year = scheduleDate.getFullYear();
+      const month = scheduleDate.getMonth() + 1;
+      const data = await apiRequest(`/schedules?year=${year}&month=${month}`);
+      setSchedules(data);
+    } catch (error) {
+      setScheduleNoticeType('error');
+      setScheduleNotice(error.message ?? '일정을 불러오지 못했습니다.');
+    } finally {
+      setSchedulesLoading(false);
+    }
+  }, [scheduleDate]);
+
+  useEffect(() => {
+    if (user?.role === 'admin') {
+      fetchProducts();
+      fetchOrders();
+      fetchInvites();
+    }
+  }, [user, fetchProducts, fetchOrders, fetchInvites]);
+
+  useEffect(() => {
+    if (user?.role === 'admin') {
+      fetchSchedules();
+    }
+  }, [user, fetchSchedules]);
+
+  const handleCreateInvite = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setInviteNotice('');
+      setInviteNoticeType('info');
+      setIsCreatingInvite(true);
+
+      try {
+        const payload = {};
+        const trimmedEmail = inviteForm.email.trim();
+        if (trimmedEmail) {
+          payload.email = trimmedEmail.toLowerCase();
+        }
+        const hours = Number(inviteForm.expiresInHours);
+        if (Number.isFinite(hours) && hours > 0) {
+          payload.expiresInHours = hours;
+        }
+
+        await apiRequest('/admin/invites', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
+        setInviteNoticeType('success');
+        setInviteNotice('새 관리자 초대 코드가 발급되었습니다.');
+        setInviteForm({ email: '', expiresInHours: DEFAULT_INVITE_HOURS });
+        await fetchInvites();
+      } catch (error) {
+        setInviteNoticeType('error');
+        setInviteNotice(error.message ?? '초대 코드 발급에 실패했습니다.');
+      } finally {
+        setIsCreatingInvite(false);
+      }
+    },
+    [inviteForm, fetchInvites],
+  );
+
+  const handleCopyInviteCode = useCallback(async (code) => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(code);
+      } else {
+        throw new Error('clipboard api unavailable');
+      }
+      setInviteNoticeType('success');
+      setInviteNotice('초대 코드가 클립보드에 복사되었습니다.');
+    } catch (_error) {
+      window.prompt('초대 코드를 복사해주세요.', code);
+      setInviteNoticeType('info');
+      setInviteNotice('브라우저에서 복사 창을 열었습니다.');
+    }
+  }, []);
+
+  const handleRevokeInvite = useCallback(
+    async (inviteId) => {
+      if (!window.confirm('해당 초대 코드를 즉시 만료시키겠습니까?')) return;
+      try {
+        await apiRequest(`/admin/invites/${inviteId}`, {
+          method: 'DELETE',
+        });
+        setInviteNoticeType('success');
+        setInviteNotice('초대 코드가 만료 처리되었습니다.');
+        await fetchInvites();
+      } catch (error) {
+        setInviteNoticeType('error');
+        setInviteNotice(error.message ?? '초대 코드 만료 처리에 실패했습니다.');
+      }
+    },
+    [fetchInvites],
+  );
+
+  const handleWidgetResult = useCallback((error, result) => {
+    if (error) {
+      console.error('[cloudinary] widget error', error);
+      setStatusType('error');
+      setStatus(error.message ?? '이미지 업로드 중 오류가 발생했습니다.');
+      return;
+    }
+
+    if (!result || result.event !== 'success') return;
+
+    const info = result.info;
+    setForm((prev) => {
+      const exists = prev.images.some((image) => image.publicId === info.public_id);
+      if (exists) {
+        return prev;
+      }
+
+      const hasPrimary = prev.images.some((image) => image.isPrimary);
+      const nextImages = [
+        ...prev.images,
+        {
+          publicId: info.public_id,
+          url: info.secure_url ?? info.url,
+          isPrimary: hasPrimary ? false : true,
+          deleteToken: info.delete_token ?? null,
+        },
+      ];
+
+      return { ...prev, images: nextImages };
+    });
+  }, []);
+
+  useEffect(() => {
+    if (widgetRef.current || widgetReady) return;
+
+    if (!cloudName || !uploadPreset) {
+      setWidgetMessage('Cloudinary 환경 변수가 설정되지 않았습니다. .env 파일을 확인해주세요.');
+      return;
+    }
+
+    if (window.cloudinary?.createUploadWidget) {
+      widgetRef.current = window.cloudinary.createUploadWidget(
+        {
+          cloudName,
+          uploadPreset,
+          multiple: true,
+          maxFiles: 10,
+          resourceType: 'image',
+          folder: 'shoppingmall/products',
+          showCompletedButton: true,
+          showUploadMoreButton: true,
+          clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+          maxFileSize: MAX_IMAGE_SIZE,
+          styles: {
+            palette: {
+              window: '#1e293b',
+              windowBorder: '#334155',
+              tabIcon: '#38bdf8',
+              menuIcons: '#94a3b8',
+              textDark: '#0f172a',
+              textLight: '#e2e8f0',
+              link: '#38bdf8',
+              action: '#38bdf8',
+              inactiveTabIcon: '#64748b',
+              error: '#f87171',
+              inProgress: '#38bdf8',
+              complete: '#34d399',
+            },
+          },
+        },
+        handleWidgetResult,
+      );
+      setWidgetReady(true);
+      setWidgetMessage('');
+    } else {
+      setWidgetMessage('Cloudinary 위젯을 불러오는 중입니다...');
+      const timer = setTimeout(() => {
+        if (!window.cloudinary?.createUploadWidget) {
+          setWidgetMessage('Cloudinary 위젯을 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.');
+        }
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [handleWidgetResult, widgetReady]);
+
+  const deleteImageByToken = useCallback(async (token) => {
+    if (!token || !cloudName) return;
+    try {
+      const formData = new FormData();
+      formData.append('token', token);
+      await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/delete_by_token`, {
+        method: 'POST',
+        body: formData,
+      });
+    } catch (error) {
+      console.error('[cloudinary] delete_by_token 실패', error);
+    }
+  }, []);
+
+  const resetForm = useCallback(() => {
+    setForm(createEmptyProduct());
+    setEditingProductId(null);
+    setRemovedImages([]);
+  }, []);
+
+  const openUploadWidget = () => {
+    if (!widgetRef.current) {
+      setStatusType('error');
+      setStatus(widgetMessage || '이미지 업로드 위젯을 사용할 수 없습니다.');
+      return;
+    }
+    widgetRef.current.open();
+  };
+
+  const handleRemoveImage = async (publicId) => {
+    const image = form.images.find((item) => item.publicId === publicId);
+    if (!image) return;
+
+    if (image.deleteToken) {
+      await deleteImageByToken(image.deleteToken);
+    } else if (editingProductId) {
+      setRemovedImages((prev) => (prev.includes(publicId) ? prev : [...prev, publicId]));
+    }
+
+    setForm((prev) => {
+      const remaining = prev.images
+        .filter((item) => item.publicId !== publicId)
+        .map((item) => ({ ...item }));
+
+      if (remaining.length && !remaining.some((item) => item.isPrimary)) {
+        remaining[0].isPrimary = true;
+      }
+
+      return { ...prev, images: remaining };
+    });
+  };
+
+  const handleSetPrimaryImage = (publicId) => {
+    setForm((prev) => ({
+      ...prev,
+      images: prev.images.map((image) => ({
+        ...image,
+        isPrimary: image.publicId === publicId,
+      })),
+    }));
+  };
+
+  const openDetailUpload = () => {
+    if (!widgetReady || !cloudName || !uploadPreset) return;
+    const detailWidget = window.cloudinary?.createUploadWidget(
+      {
+        cloudName,
+        uploadPreset,
+        multiple: false,
+        maxFiles: 1,
+        resourceType: "image",
+        folder: "shoppingmall/details",
+        clientAllowedFormats: ["jpg", "jpeg", "png", "webp"],
+        maxFileSize: MAX_IMAGE_SIZE,
+      },
+      (error, result) => {
+        if (error) {
+          console.error("[cloudinary] detail image error", error);
+          return;
+        }
+        if (result && result.event === "success") {
+          const info = result.info;
+          setForm((prev) => ({
+            ...prev,
+            detailBlocks: [
+              ...prev.detailBlocks,
+              {
+                type: "image",
+                url: info.secure_url ?? info.url,
+                publicId: info.public_id,
+                content: "",
+              },
+            ],
+          }));
+        }
+      }
+    );
+    detailWidget?.open?.();
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('');
+    setStatusType('info');
+    setIsSubmitting(true);
+
+    try {
+      if (!form.sku.trim()) {
+        throw new Error('상품 ID(SKU)를 입력해주세요.');
+      }
+
+      if (!form.name.trim()) {
+        throw new Error('상품 이름을 입력해주세요.');
+      }
+
+      if (!form.images.length) {
+        throw new Error('대표 이미지를 포함한 상품 이미지를 최소 한 장 이상 등록해주세요.');
+      }
+
+      const primaryImage = form.images.find((image) => image.isPrimary);
+      if (!primaryImage) {
+        throw new Error('대표 이미지를 선택해주세요.');
+      }
+
+      const payload = {
+        sku: form.sku.trim(),
+        name: form.name.trim(),
+        price: Number(form.price) || 0,
+        category: form.category,
+        shippingFee: Number(form.shippingFee) || 0,
+        description: form.description,
+        detailBlocks: form.detailBlocks,
+        options: form.options,
+        images: form.images.map(({ publicId, url, isPrimary }) => ({ publicId, url, isPrimary })),
+        primaryImagePublicId: primaryImage.publicId,
+      };
+
+      if (editingProductId) {
+        payload.removedImagePublicIds = removedImages;
+        await apiRequest(`/admin/products/${editingProductId}`, {
+          method: 'PUT',
+          body: JSON.stringify(payload),
+        });
+        setStatusType('success');
+        setStatus('상품이 수정되었습니다.');
+      } else {
+        await apiRequest('/admin/products', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
+        setStatusType('success');
+        setStatus('상품이 등록되었습니다.');
+      }
+
+      resetForm();
+      await fetchProducts();
+    } catch (error) {
+      setStatusType('error');
+      setStatus(error.message ?? '상품 저장 중 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEdit = (product) => {
+    setEditingProductId(product.id);
+    setRemovedImages([]);
+    setForm({
+      sku: product.sku,
+      name: product.name,
+      price: product.price != null ? String(product.price) : '',
+      category: product.category ?? PRODUCT_CATEGORIES[0].value,
+      shippingFee: product.shippingFee != null ? String(product.shippingFee) : '3000',
+      description: product.description ?? '',
+      detailBlocks: product.detailBlocks ?? [],
+      options: product.options ?? [],
+      images: (product.images ?? []).map((image) => ({
+        publicId: image.publicId,
+        url: image.url,
+        isPrimary: Boolean(image.isPrimary),
+      })),
+    });
+    setStatus('');
+  };
+
+  const handleDelete = async (productId) => {
+    if (!window.confirm('해당 상품을 삭제하시겠습니까?')) return;
+
+    try {
+      await apiRequest(`/admin/products/${productId}`, { method: 'DELETE' });
+      setStatusType('success');
+      setStatus('상품이 삭제되었습니다.');
+      if (editingProductId === productId) {
+        resetForm();
+      }
+      await fetchProducts();
+    } catch (error) {
+      setStatusType('error');
+      setStatus(error.message);
+    }
+  };
+
+  const pageTitle = useMemo(
+    () => (editingProductId ? '상품 수정' : '상품 등록'),
+    [editingProductId],
+  );
+
+  const handleUpdateOrderStatus = async (orderId, nextStatus, shippingData = {}) => {
+    try {
+      const payload = { status: nextStatus };
+      if (Object.keys(shippingData).length > 0) {
+        payload.shipping = shippingData;
+      }
+
+      const updated = await apiRequest(`/admin/orders/${orderId}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+      });
+      setOrders((prev) => prev.map((order) => (order.id === orderId ? { ...order, ...updated } : order)));
+      setOrderNoticeType('success');
+      setOrderNotice('주문 상태가 업데이트되었습니다.');
+    } catch (error) {
+      setOrderNoticeType('error');
+      setOrderNotice(error.message ?? '주문 상태를 변경하지 못했습니다.');
+    }
+  };
+
+  const handleUpdateTracking = async (orderId, carrier, trackingNumber) => {
+    try {
+      const order = orders.find(o => o.id === orderId);
+      if (!order) return;
+
+      await handleUpdateOrderStatus(orderId, order.status, {
+        carrier,
+        trackingNumber,
+      });
+    } catch (error) {
+      setOrderNoticeType('error');
+      setOrderNotice(error.message ?? '송장 정보 업데이트에 실패했습니다.');
+    }
+  };
+
+  const handleAdminCancelOrder = async (orderId) => {
+    const reason = window.prompt('취소 사유를 입력해주세요 (선택사항):');
+    if (reason === null) return; // 사용자가 취소를 누른 경우
+
+    try {
+      await apiRequest(`/admin/orders/${orderId}/cancel`, {
+        method: 'POST',
+        body: JSON.stringify({ reason: reason || undefined }),
+      });
+      await fetchOrders();
+      setOrderNoticeType('success');
+      setOrderNotice('주문이 취소되었습니다. 결제가 완료된 주문은 환불 처리됩니다.');
+    } catch (error) {
+      setOrderNoticeType('error');
+      setOrderNotice(error.message ?? '주문을 취소하지 못했습니다.');
+    }
+  };
+
+  // Schedule handlers
+  const handleScheduleSubmit = async (event) => {
+    if (event) event.preventDefault();
+    if (!selectedDay) return;
+
+    try {
+      const year = scheduleDate.getFullYear();
+      const month = scheduleDate.getMonth();
+      // UTC 변환 문제 방지: 로컬 날짜를 YYYY-MM-DD 형식으로 전송
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}T12:00:00.000Z`;
+
+      await apiRequest('/schedules', {
+        method: 'POST',
+        body: JSON.stringify({
+          date: dateStr,
+          status: 'unavailable',
+          note: '',
+        }),
+      });
+
+      setScheduleNoticeType('success');
+      setScheduleNotice('수업 불가로 설정되었습니다.');
+      setSelectedDay(null);
+      await fetchSchedules();
+    } catch (error) {
+      setScheduleNoticeType('error');
+      setScheduleNotice(error.message ?? '일정 저장에 실패했습니다.');
+    }
+  };
+
+  const handleScheduleDelete = async () => {
+    if (!selectedDay) return;
+
+    const schedule = getScheduleForDay(selectedDay);
+    if (!schedule) return;
+
+    try {
+      await apiRequest(`/schedules/${schedule._id}`, {
+        method: 'DELETE',
+      });
+
+      setScheduleNoticeType('success');
+      setScheduleNotice('수업 가능으로 되돌렸습니다.');
+      setSelectedDay(null);
+      await fetchSchedules();
+    } catch (error) {
+      setScheduleNoticeType('error');
+      setScheduleNotice(error.message ?? '일정 삭제에 실패했습니다.');
+    }
+  };
+
+  const handleDayClick = (day) => {
+    const year = scheduleDate.getFullYear();
+    const month = scheduleDate.getMonth();
+    const dateObj = new Date(year, month, day);
+    dateObj.setHours(0, 0, 0, 0);
+
+    const existing = schedules.find((s) => {
+      const sDate = new Date(s.date);
+      sDate.setHours(0, 0, 0, 0);
+      return sDate.getTime() === dateObj.getTime();
+    });
+
+    setSelectedDay(day);
+    if (existing) {
+      setScheduleForm({ status: existing.status, note: existing.note || '' });
+    } else {
+      setScheduleForm({ status: 'unavailable', note: '' });
+    }
+  };
+
+  const getScheduleForDay = (day) => {
+    const year = scheduleDate.getFullYear();
+    const month = scheduleDate.getMonth();
+    const dateObj = new Date(year, month, day);
+    dateObj.setHours(0, 0, 0, 0);
+
+    return schedules.find((s) => {
+      const sDate = new Date(s.date);
+      sDate.setHours(0, 0, 0, 0);
+      return sDate.getTime() === dateObj.getTime();
+    });
+  };
+
+  const schedulePrevMonth = () => {
+    setScheduleDate(new Date(scheduleDate.getFullYear(), scheduleDate.getMonth() - 1, 1));
+    setSelectedDay(null);
+  };
+
+  const scheduleNextMonth = () => {
+    setScheduleDate(new Date(scheduleDate.getFullYear(), scheduleDate.getMonth() + 1, 1));
+    setSelectedDay(null);
+  };
+
+  const renderAdminCalendar = () => {
+    const year = scheduleDate.getFullYear();
+    const month = scheduleDate.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+    const monthNames = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+    const days = [];
+    for (let i = 0; i < firstDay; i++) {
+      days.push(<div key={`empty-${i}`} className="admin-calendar-day admin-calendar-day--empty"></div>);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const schedule = getScheduleForDay(day);
+      const statusOption = schedule ? SCHEDULE_STATUS_OPTIONS.find((o) => o.value === schedule.status) : null;
+
+      days.push(
+        <div
+          key={day}
+          className={`admin-calendar-day ${selectedDay === day ? 'admin-calendar-day--selected' : ''}`}
+          onClick={() => handleDayClick(day)}
+          style={statusOption ? { backgroundColor: statusOption.color + '20', borderColor: statusOption.color } : {}}
+        >
+          <span className="admin-calendar-day__number">{day}</span>
+          {statusOption && <span className="admin-calendar-day__status" style={{ color: statusOption.color }}>{statusOption.label}</span>}
+        </div>
+      );
+    }
+
+    return (
+      <div className="admin-calendar">
+        <div className="admin-calendar-header">
+          <button type="button" onClick={schedulePrevMonth} className="calendar-nav-btn">&lt;</button>
+          <h3>{year}년 {monthNames[month]}</h3>
+          <button type="button" onClick={scheduleNextMonth} className="calendar-nav-btn">&gt;</button>
+        </div>
+        <div className="admin-calendar-weekdays">
+          {weekDays.map((d) => <div key={d} className="admin-calendar-weekday">{d}</div>)}
+        </div>
+        <div className="admin-calendar-days">
+          {days}
+        </div>
+      </div>
+    );
+  };
+
+  if (loading) {
+    return <div className="App">사용자 정보를 불러오는 중입니다...</div>;
+  }
+
+  if (!user || user.role !== 'admin') {
+    return null;
+  }
+
+  return (
+    <div className="App">
+      <header>
+        <h3>관리자 대시보드</h3>
+        <p>상품 정보를 생성, 수정, 삭제하고 이미지 관리까지 수행할 수 있습니다.</p>
+      </header>
+
+      <AdminFormNotice status={status} statusType={statusType} />
+
+      <main>
+                <ProductFormSection
+          pageTitle={pageTitle}
+          form={form}
+          setForm={setForm}
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          resetForm={resetForm}
+          editingProductId={editingProductId}
+          productCategories={PRODUCT_CATEGORIES}
+          widgetReady={widgetReady}
+          widgetMessage={widgetMessage}
+          onOpenUploadWidget={openUploadWidget}
+          onSetPrimaryImage={handleSetPrimaryImage}
+          onRemoveImage={handleRemoveImage}
+          onAddDetailImage={openDetailUpload}
+        />
+
+                <ProductListSection
+          products={products}
+          onRefresh={fetchProducts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          getCategoryLabel={getCategoryLabel}
+        />
+
+                <OrdersSection
+          orders={orders}
+          ordersLoading={ordersLoading}
+          ordersError={ordersError}
+          orderNotice={orderNotice}
+          orderNoticeType={orderNoticeType}
+          onRefresh={fetchOrders}
+          onUpdateStatus={handleUpdateOrderStatus}
+          onUpdateTracking={handleUpdateTracking}
+          onCancel={handleAdminCancelOrder}
+          formatCurrency={formatCurrency}
+          formatDate={formatDate}
+          statusOptions={ORDER_STATUS_OPTIONS}
+        />
+
+                <InvitesSection
+          invites={invites}
+          invitesLoading={invitesLoading}
+          inviteError={inviteError}
+          inviteNotice={inviteNotice}
+          inviteNoticeType={inviteNoticeType}
+          inviteForm={inviteForm}
+          isCreatingInvite={isCreatingInvite}
+          onRefresh={fetchInvites}
+          onSubmit={handleCreateInvite}
+          onChangeForm={setInviteForm}
+          onCopyCode={handleCopyInviteCode}
+          onRevoke={handleRevokeInvite}
+          formatDate={formatDate}
+        />
+
+                <ScheduleSection
+          schedulesLoading={schedulesLoading}
+          scheduleNotice={scheduleNotice}
+          scheduleNoticeType={scheduleNoticeType}
+          renderCalendar={renderAdminCalendar}
+          selectedDay={selectedDay}
+          scheduleDate={scheduleDate}
+          getScheduleForDay={getScheduleForDay}
+          onSubmit={handleScheduleSubmit}
+          onDelete={handleScheduleDelete}
+          onClose={() => setSelectedDay(null)}
+        />
+      </main>
+    </div>
+  );
+}
+
+export default Admin;
+
+
+
+

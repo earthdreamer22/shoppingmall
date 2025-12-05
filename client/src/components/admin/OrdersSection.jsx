@@ -1,1 +1,184 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀧潲⵰祴数❳਻昊湵瑣潩⁮牏敤獲敓瑣潩⡮੻†牯敤獲ਬ†牯敤獲潌摡湩Ⱨ 漠摲牥䕳牲牯ਬ†牯敤乲瑯捩ⱥ 漠摲牥潎楴散祔数ਬ†湯敒牦獥ⱨ 漠啮摰瑡卥慴畴ⱳ 漠啮摰瑡呥慲正湩Ⱨ 漠䍮湡散ⱬ 映牯慭䍴牵敲据ⱹ 映牯慭䑴瑡ⱥ 猠慴畴佳瑰潩獮ਬ⥽笠 爠瑥牵⁮ਨ††猼捥楴湯挠慬獳慎敭∽摡業⵮牯敤獲㸢 ††㰠楤⁶汣獡乳浡㵥猢捥楴湯栭慥敤≲ਾ††††格㸲훁꺹뀠룼㲮栯㸲 †††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽湯敒牦獥絨ਾ†††††캷Ꞔ †††㰠戯瑵潴㹮 ††㰠搯癩ਾ ††笠牯敤乲瑯捩⁥☦⠠ †††㰠楤⁶汣獡乳浡㵥恻瑳瑡獵␠潻摲牥潎楴散祔数㴠㴽✠牥潲❲㼠✠牥潲❲㨠✠紧絠笾牯敤乲瑯捩絥⼼楤㹶 ††⤠੽ ††笠牯敤獲潌摡湩⁧‿ਨ††††瀼섾맖₮쾷므먠럒뾯듀⃂�퓀쾴�⸮㰮瀯ਾ††† ›牯敤獲牅潲⁲‿ਨ††††瀼挠慬獳慎敭∽瑳瑡獵攠牲牯㸢潻摲牥䕳牲牯㱽瀯ਾ††† ›牯敤獲氮湥瑧⁨‿ਨ††††搼癩挠慬獳慎敭∽摡業⵮牯敤⵲慴汢ⵥ牷灡数≲ਾ†††††琼扡敬挠慬獳慎敭∽摡業⵮牯敤⵲慴汢≥ਾ††††††琼敨摡ਾ†††††††琼㹲 †††††††㰠桴섾맖릮죸㲣琯㹨 †††††††㰠桴섾맖삮㳏琯㹨 †††††††㰠桴뀾냭㲴琯㹨 †††††††㰠桴섾맖₮냇⼼桴ਾ††††††††琼㹨ꛁ넠뻝㳗琯㹨 †††††††㰠桴뀾쇡₦싅⼼桴ਾ††††††††琼㹨�묠엳㳂琯㹨 †††††††㰠桴섾쒶㲡琯㹨 ††††††㰠琯㹲 †††††㰠琯敨摡ਾ††††††琼潢祤ਾ†††††††潻摲牥⹳慭⡰漨摲牥 㸽⠠ †††††††㰠牴欠祥笽牯敤⹲摩㹽 ††††††††㰠摴笾牯敤⹲摩㱽琯㹤 ††††††††㰠摴笾潦浲瑡慄整漨摲牥挮敲瑡摥瑁紩⼼摴ਾ†††††††††琼㹤 †††††††††笠牯敤⹲畣瑳浯牥㼠⠠ ††††††††††㰠楤⁶汣獡乳浡㵥漢摲牥挭獵潴敭≲ਾ††††††††††††猼牴湯㹧潻摲牥挮獵潴敭⹲慮敭㱽猯牴湯㹧 †††††††††††㰠灳湡笾牯敤⹲畣瑳浯牥攮慭汩㱽猯慰㹮 †††††††††††㰠灳湡笾牯敤⹲畣瑳浯牥瀮潨敮㱽猯慰㹮 ††††††††††㰠搯癩ਾ†††††††††† ›ਨ†††††††††††猼慰⁮汣獡乳浡㵥洢瑵摥琭硥≴븾⃋븠샸㲽猯慰㹮 †††††††††⤠੽†††††††††⼼摴ਾ†††††††††琼㹤 †††††††††㰠楤⁶汣獡乳浡㵥漢摲牥椭整獭㸢 ††††††††††笠牯敤⹲瑩浥㽳洮灡⠨瑩浥‬摩⥸㴠‾ਨ††††††††††††搼癩欠祥笽摩絸猠祴敬笽⁻慭杲湩潂瑴浯›㠧硰‧絽ਾ†††††††††††††猼牴湯㹧楻整⹭慮敭㱽猯牴湯㹧砠笠瑩浥焮慵瑮瑩絹 ††††††††††††笠瑩浥献畫☠…ਨ††††††††††††††搼癩猠祴敬笽⁻潦瑮楓敺›〧㠮攵❭‬潣潬㩲✠㐣㔷㘵✹素㹽䭓⁕楻整⹭歳絵⼼楤㹶 ††††††††††††⤠੽†††††††††††††楻整⹭敳敬瑣摥灏楴湯⁳☦椠整⹭敳敬瑣摥灏楴湯⹳敬杮桴㸠〠☠…ਨ††††††††††††††搼癩猠祴敬笽⁻潦瑮楓敺›〧㠮攵❭‬潣潬㩲✠㘣㜴㠴❢素㹽 ††††††††††††††笠瑩浥献汥捥整佤瑰潩獮洮灡⠨灯ⱴ漠⥩㴠‾ਨ††††††††††††††††猼慰⁮敫㵹潻絩ਾ†††††††††††††††††潻瑰渮浡絥›潻瑰瘮污敵੽†††††††††††††††††潻⁩‼瑩浥献汥捥整佤瑰潩獮氮湥瑧⁨‭‱☦✠‬紧 †††††††††††††††㰠猯慰㹮 ††††††††††††††⤠紩 †††††††††††††㰠搯癩ਾ†††††††††††††紩 †††††††††††㰠搯癩ਾ†††††††††††⤩੽††††††††††⼼楤㹶 ††††††††㰠琯㹤 ††††††††㰠摴笾潦浲瑡畃牲湥祣漨摲牥瀮楲楣杮⸿潴慴⥬㱽琯㹤 ††††††††㰠摴ਾ††††††††††搼癩挠慬獳慎敭∽牯敤⵲慰浹湥≴ਾ†††††††††††猼慰⁮汣獡乳浡㵥恻牯敤⵲慢杤⁥瑳瑡獵␭潻摲牥瀮祡敭瑮⸿瑳瑡獵㼠‿甧歮潮湷紧絠ਾ††††††††††††潻摲牥瀮祡敭瑮⸿瑳瑡獵㼠‿甧歮潮湷紧 ††††††††††㰠猯慰㹮 ††††††††††㰠浳污㹬潻摲牥瀮祡敭瑮⸿敭桴摯㱽猯慭汬ਾ††††††††††⼼楤㹶 ††††††††㰠琯㹤 ††††††††㰠摴ਾ††††††††††猼汥捥ੴ†††††††††††慶畬㵥潻摲牥献慴畴絳 ††††††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾湯灕慤整瑓瑡獵漨摲牥椮Ɽ攠敶瑮琮牡敧⹴慶畬⥥੽††††††††††ਾ†††††††††††獻慴畴佳瑰潩獮洮灡⠨灯楴湯 㸽⠠ †††††††††††㰠灯楴湯欠祥笽灯楴湯瘮污敵⁽慶畬㵥潻瑰潩⹮慶畬絥ਾ†††††††††††††潻瑰潩⹮慬敢絬 †††††††††††㰠漯瑰潩㹮 ††††††††††⤠紩 †††††††††㰠猯汥捥㹴 †††††††††㰠楤⁶汣獡乳浡㵥漢摲牥猭楨灰湩≧ਾ†††††††††††潻摲牥献慴畴⁳㴽‽猧楨灰摥‧籼漠摲牥献慴畴⁳㴽‽搧汥癩牥摥‧‿ਨ††††††††††††㸼 ††††††††††††㰠楤⁶瑳汹㵥筻洠牡楧呮灯›㠧硰‧絽ਾ††††††††††††††猼汥捥ੴ†††††††††††††††慶畬㵥潻摲牥献楨灰湩㽧挮牡楲牥簠⁼✧੽†††††††††††††††湯桃湡敧笽攨 㸽 †††††††††††††††漠啮摰瑡呥慲正湩⡧牯敤⹲摩‬⹥慴杲瑥瘮污敵‬牯敤⹲桳灩楰杮⸿牴捡楫杮畎扭牥簠⁼✧਩†††††††††††††††੽†††††††††††††††瑳汹㵥筻洠牡楧䉮瑯潴㩭✠瀴❸‬楷瑤㩨✠〱┰‧絽 †††††††††††††㸠 ††††††††††††††㰠灯楴湯瘠污敵∽㸢쏅밠얱㳃漯瑰潩㹮 ††††††††††††††㰠灯楴湯瘠污敵∽䩃퇇㸢䩃퇇⼼灯楴湯ਾ†††††††††††††††漼瑰潩⁮慶畬㵥윢쇑엸맃⋨윾쇑엸맃㳨漯瑰潩㹮 ††††††††††††††㰠灯楴湯瘠污敵∽풷ꖵ쏅㸢풷ꖵ쏅⼼灯楴湯ਾ†††††††††††††††漼瑰潩⁮慶畬㵥뼢쏬놼얹맃⋨뼾쏬놼얹맃㳨漯瑰潩㹮 ††††††††††††††㰠灯楴湯瘠污敵∽캷ꣁ쏅㸢캷ꣁ쏅⼼灯楴湯ਾ†††††††††††††††漼瑰潩⁮慶畬㵥뀢뗦얿맃⋨뀾뗦얿맃㳨漯瑰潩㹮 †††††††††††††㰠猯汥捥㹴 †††††††††††††㰠湩異ੴ†††††††††††††††祴数∽整瑸ਢ†††††††††††††††汰捡桥汯敤㵲밢샛맥죸⊣ ††††††††††††††瘠污敵笽牯敤⹲桳灩楰杮⸿牴捡楫杮畎扭牥簠⁼✧੽†††††††††††††††湯桃湡敧笽攨 㸽漠啮摰瑡呥慲正湩⡧牯敤⹲摩‬牯敤⹲桳灩楰杮⸿慣牲敩⁲籼✠Ⱗ攠琮牡敧⹴慶畬⥥੽†††††††††††††††瑳汹㵥筻眠摩桴›ㄧ〰✥素੽††††††††††††††㸯 ††††††††††††㰠搯癩ਾ†††††††††††††猼慭汬씾맃믨㫧笠牯敤⹲桳灩楰杮⸿慣牲敩⁲籼✠✭㱽猯慭汬ਾ†††††††††††††猼慭汬밾샛㫥笠牯敤⹲桳灩楰杮⸿牴捡楫杮畎扭牥簠⁼ⴧ紧⼼浳污㹬 †††††††††††㰠㸯 ††††††††††⤠㨠⠠ †††††††††††㰠ਾ†††††††††††††猼慭汬씾맃믨㫧笠牯敤⹲桳灩楰杮⸿慣牲敩⁲籼✠✭㱽猯慭汬ਾ†††††††††††††猼慭汬밾샛㫥笠牯敤⹲桳灩楰杮⸿牴捡楫杮畎扭牥簠⁼ⴧ紧⼼浳污㹬 †††††††††††㰠㸯 ††††††††††⤠੽†††††††††††猼慭汬뤾볨⃛쎽�›晻牯慭䑴瑡⡥牯敤⹲桳灩楰杮⸿桳灩数䅤⥴㱽猯慭汬ਾ†††††††††††猼慭汬뤾볨⃛쾿›晻牯慭䑴瑡⡥牯敤⹲桳灩楰杮⸿敤楬敶敲䅤⥴㱽猯慭汬ਾ††††††††††⼼楤㹶 ††††††††㰠琯㹤 ††††††††㰠摴ਾ††††††††††戼瑵潴੮†††††††††††祴数∽畢瑴湯ਢ†††††††††††汣獡乳浡㵥搢湡敧≲ ††††††††††漠䍮楬正笽⤨㴠‾湯慃据汥漨摲牥椮⥤੽†††††††††††楤慳汢摥笽牯敤⹲瑳瑡獵㴠㴽✠慣据汥敬❤੽††††††††††ਾ†††††††††††훁꺹쌠볫૒††††††††††⼼畢瑴湯ਾ†††††††††⼼摴ਾ††††††††⼼牴ਾ†††††††⤩੽††††††⼼扴摯㹹 ††††㰠琯扡敬ਾ††††⼼楤㹶 ††⤠㨠⠠ †††㰠㹰욾딠럮뗏⃈훁꺹쳀븠뷸듀듏⻙⼼㹰 ††⤠੽††⼼敳瑣潩㹮 ⤠਻੽伊摲牥即捥楴湯瀮潲呰灹獥㴠笠 漠摲牥㩳倠潲呰灹獥愮牲祡椮剳煥極敲Ɽ 漠摲牥䱳慯楤杮›牐灯祔数⹳潢汯椮剳煥極敲Ɽ 漠摲牥䕳牲牯›牐灯祔数⹳瑳楲杮ਬ†牯敤乲瑯捩㩥倠潲呰灹獥献牴湩Ⱨ 漠摲牥潎楴散祔数›牐灯祔数⹳瑳楲杮ਬ†湯敒牦獥㩨倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯灕慤整瑓瑡獵›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠啮摰瑡呥慲正湩㩧倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯慃据汥›牐灯祔数⹳畦据椮剳煥極敲Ɽ 映牯慭䍴牵敲据㩹倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†潦浲瑡慄整›牐灯祔数⹳畦据椮剳煥極敲Ɽ 猠慴畴佳瑰潩獮›牐灯祔数⹳牡慲⹹獩敒畱物摥ਬ㭽ਊ硥潰瑲搠晥畡瑬传摲牥即捥楴湯഻
+﻿import PropTypes from 'prop-types';
+
+function OrdersSection({
+  orders,
+  ordersLoading,
+  ordersError,
+  orderNotice,
+  orderNoticeType,
+  onRefresh,
+  onUpdateStatus,
+  onUpdateTracking,
+  onCancel,
+  formatCurrency,
+  formatDate,
+  statusOptions,
+}) {
+  return (
+    <section className="admin-orders">
+      <div className="section-header">
+        <h2>주문 관리</h2>
+        <button type="button" onClick={onRefresh}>
+          새로고침
+        </button>
+      </div>
+
+      {orderNotice && (
+        <div className={`status ${orderNoticeType === 'error' ? 'error' : ''}`}>{orderNotice}</div>
+      )}
+
+      {ordersLoading ? (
+        <p>주문 목록을 불러오는 중입니다...</p>
+      ) : ordersError ? (
+        <p className="status error">{ordersError}</p>
+      ) : orders.length ? (
+        <div className="admin-order-table-wrapper">
+          <table className="admin-order-table">
+            <thead>
+              <tr>
+                <th>주문번호</th>
+                <th>주문일</th>
+                <th>고객</th>
+                <th>주문 상품</th>
+                <th>결제 금액</th>
+                <th>결제 상태</th>
+                <th>배송 상태</th>
+                <th>조치</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
+                  <td>{formatDate(order.createdAt)}</td>
+                  <td>
+                    {order.customer ? (
+                      <div className="order-customer">
+                        <strong>{order.customer.name}</strong>
+                        <span>{order.customer.email}</span>
+                        <span>{order.customer.phone}</span>
+                      </div>
+                    ) : (
+                      <span className="muted-text">알 수 없음</span>
+                    )}
+                  </td>
+                  <td>
+                    <div className="order-items">
+                      {order.items?.map((item, idx) => (
+                        <div key={idx} style={{ marginBottom: '8px' }}>
+                          <strong>{item.name}</strong> x {item.quantity}
+                          {item.sku && (
+                            <div style={{ fontSize: '0.85em', color: '#475569' }}>SKU {item.sku}</div>
+                          )}
+                          {item.selectedOptions && item.selectedOptions.length > 0 && (
+                            <div style={{ fontSize: '0.85em', color: '#64748b' }}>
+                              {item.selectedOptions.map((opt, oi) => (
+                                <span key={oi}>
+                                  {opt.name}: {opt.value}
+                                  {oi < item.selectedOptions.length - 1 && ', '}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </td>
+                  <td>{formatCurrency(order.pricing?.total)}</td>
+                  <td>
+                    <div className="order-payment">
+                      <span className={`order-badge status-${order.payment?.status ?? 'unknown'}`}>
+                        {order.payment?.status ?? 'unknown'}
+                      </span>
+                      <small>{order.payment?.method}</small>
+                    </div>
+                  </td>
+                  <td>
+                    <select
+                      value={order.status}
+                      onChange={(event) => onUpdateStatus(order.id, event.target.value)}
+                    >
+                      {statusOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="order-shipping">
+                      {order.status === 'shipped' || order.status === 'delivered' ? (
+                        <>
+                          <div style={{ marginTop: '8px' }}>
+                            <select
+                              value={order.shipping?.carrier || ''}
+                              onChange={(e) =>
+                                onUpdateTracking(order.id, e.target.value, order.shipping?.trackingNumber || '')
+                              }
+                              style={{ marginBottom: '4px', width: '100%' }}
+                            >
+                              <option value="">택배사 선택</option>
+                              <option value="CJ대한통운">CJ대한통운</option>
+                              <option value="한진택배">한진택배</option>
+                              <option value="롯데택배">롯데택배</option>
+                              <option value="우체국택배">우체국택배</option>
+                              <option value="로젠택배">로젠택배</option>
+                              <option value="경동택배">경동택배</option>
+                            </select>
+                            <input
+                              type="text"
+                              placeholder="송장번호"
+                              value={order.shipping?.trackingNumber || ''}
+                              onChange={(e) => onUpdateTracking(order.id, order.shipping?.carrier || '', e.target.value)}
+                              style={{ width: '100%' }}
+                            />
+                          </div>
+                          <small>택배사: {order.shipping?.carrier || '-'}</small>
+                          <small>송장: {order.shipping?.trackingNumber || '-'}</small>
+                        </>
+                      ) : (
+                        <>
+                          <small>택배사: {order.shipping?.carrier || '-'}</small>
+                          <small>송장: {order.shipping?.trackingNumber || '-'}</small>
+                        </>
+                      )}
+                      <small>배송 시작: {formatDate(order.shipping?.shippedAt)}</small>
+                      <small>배송 완료: {formatDate(order.shipping?.deliveredAt)}</small>
+                    </div>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      className="danger"
+                      onClick={() => onCancel(order.id)}
+                      disabled={order.status === 'cancelled'}
+                    >
+                      주문 취소
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p>아직 등록된 주문이 없습니다.</p>
+      )}
+    </section>
+  );
+}
+
+OrdersSection.propTypes = {
+  orders: PropTypes.array.isRequired,
+  ordersLoading: PropTypes.bool.isRequired,
+  ordersError: PropTypes.string,
+  orderNotice: PropTypes.string,
+  orderNoticeType: PropTypes.string,
+  onRefresh: PropTypes.func.isRequired,
+  onUpdateStatus: PropTypes.func.isRequired,
+  onUpdateTracking: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  formatCurrency: PropTypes.func.isRequired,
+  formatDate: PropTypes.func.isRequired,
+  statusOptions: PropTypes.array.isRequired,
+};
+
+export default OrdersSection;

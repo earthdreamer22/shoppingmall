@@ -1,1 +1,72 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀧潲⵰祴数❳਻昊湵瑣潩⁮捓敨畤敬敓瑣潩⡮੻†捳敨畤敬䱳慯楤杮ਬ†捳敨畤敬潎楴散ਬ†捳敨畤敬潎楴散祔数ਬ†敲摮牥慃敬摮牡ਬ†敳敬瑣摥慄ⱹ 猠档摥汵䑥瑡ⱥ 朠瑥捓敨畤敬潆䑲祡ਬ†湯畓浢瑩ਬ†湯敄敬整ਬ†湯汃獯ⱥ紊 ੻†敲畴湲⠠ †㰠敳瑣潩⁮汣獡乳浡㵥愢浤湩猭档摥汵≥ਾ†††搼癩挠慬獳慎敭∽敳瑣潩⵮敨摡牥㸢 †††㰠㉨밾뻶⃷쿀꓁뀠룼㲮栯㸲 ††㰠搯癩ਾ ††笠捳敨畤敬潎楴散☠…ਨ††††搼癩挠慬獳慎敭笽獠慴畴⁳笤捳敨畤敬潎楴散祔数㴠㴽✠牥潲❲㼠✠牥潲❲㨠✠紧絠笾捳敨畤敬潎楴散㱽搯癩ਾ†††紩ਊ†††搼癩挠慬獳慎敭∽摡業⵮捳敨畤敬氭祡畯≴ਾ††††搼癩挠慬獳慎敭∽摡業⵮捳敨畤敬挭污湥慤≲ਾ†††††獻档摥汵獥潌摡湩⁧‿瀼쀾쇏삤₻튺꾷삿슴선⻟⸮⼼㹰㨠爠湥敤䍲污湥慤⡲紩 †††㰠搯癩ਾ †††㰠楤⁶汣獡乳浡㵥愢浤湩猭档摥汵ⵥ潦浲㸢 ††††笠敳敬瑣摥慄⁹‿ਨ††††††搼癩ਾ†††††††格㸴 †††††††笠捳敨畤敬慄整朮瑥畆汬教牡⤨덽⃢獻档摥汵䑥瑡⹥敧䵴湯桴⤨⬠ㄠ뽽⃹獻汥捥整䑤祡쁽૏†††††††⼼㑨ਾ†††††††杻瑥捓敨畤敬潆䑲祡猨汥捥整䑤祡 ‿ਨ††††††††搼癩挠慬獳慎敭∽潦浲愭瑣潩獮•瑳汹㵥筻映敬䑸物捥楴湯›挧汯浵❮‬慧㩰✠㈱硰‧絽ਾ†††††††††瀼猠祴敬笽⁻潣潬㩲✠攣㑦㐴✴‬潦瑮敗杩瑨›〶‰絽윾샶㫧밠뻶⃷튺ꆰ⼼㹰 ††††††††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽湯敄敬整㹽잵릵꺸⠠뀠뒡⧉⼼畢瑴湯ਾ†††††††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫潻䍮潬敳㹽�⼼畢瑴湯ਾ††††††††⼼楤㹶 ††††††⤠㨠⠠ †††††††㰠楤⁶汣獡乳浡㵥昢牯⵭捡楴湯≳猠祴敬笽⁻汦硥楄敲瑣潩㩮✠潣畬湭Ⱗ朠灡›ㄧ瀲❸素㹽 ††††††††㰠⁰瑳汹㵥筻挠汯牯›⌧㈲㕣攵Ⱗ映湯坴楥桧㩴㘠〰素㹽›뀠뒡㳉瀯ਾ†††††††††戼瑵潴⁮祴数∽畢瑴湯•汣獡乳浡㵥搢湡敧≲漠䍮楬正笽湯畓浢瑩㹽먠냒랡⃎뎼꓁⼼畢瑴湯ਾ†††††††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫潻䍮潬敳㹽�⼼畢瑴湯ਾ††††††††⼼楤㹶 ††††††⤠੽††††††⼼楤㹶 ††††⤠㨠⠠ †††††㰠⁰汣獡乳浡㵥洢瑵摥琭硥≴쐾뢶뒰뿵벡₭꾳ꗂꚸ씠뢬잯뿏₩쿀꓁므밠쇶잤볏뾼⻤⼼㹰 ††††⤠੽††††⼼楤㹶 ††㰠搯癩ਾ††⼼敳瑣潩㹮 ⤠਻੽匊档摥汵卥捥楴湯瀮潲呰灹獥㴠笠 猠档摥汵獥潌摡湩㩧倠潲呰灹獥戮潯⹬獩敒畱物摥ਬ†捳敨畤敬潎楴散›牐灯祔数⹳瑳楲杮ਬ†捳敨畤敬潎楴散祔数›牐灯祔数⹳瑳楲杮ਬ†敲摮牥慃敬摮牡›牐灯祔数⹳畦据椮剳煥極敲Ɽ 猠汥捥整䑤祡›牐灯祔数⹳畮扭牥ਬ†捳敨畤敬慄整›牐灯祔数⹳湩瑳湡散晏䐨瑡⥥椮剳煥極敲Ɽ 朠瑥捓敨畤敬潆䑲祡›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠卮扵業㩴倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯敄敬整›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠䍮潬敳›牐灯祔数⹳畦据椮剳煥極敲Ɽ紊਻攊灸牯⁴敤慦汵⁴捓敨畤敬敓瑣潩㭮਍
+﻿import PropTypes from 'prop-types';
+
+function ScheduleSection({
+  schedulesLoading,
+  scheduleNotice,
+  scheduleNoticeType,
+  renderCalendar,
+  selectedDay,
+  scheduleDate,
+  getScheduleForDay,
+  onSubmit,
+  onDelete,
+  onClose,
+}) {
+  return (
+    <section className="admin-schedule">
+      <div className="section-header">
+        <h2>수업 일정 관리</h2>
+      </div>
+
+      {scheduleNotice && (
+        <div className={`status ${scheduleNoticeType === 'error' ? 'error' : ''}`}>{scheduleNotice}</div>
+      )}
+
+      <div className="admin-schedule-layout">
+        <div className="admin-schedule-calendar">
+          {schedulesLoading ? <p>일정을 불러오는 중...</p> : renderCalendar()}
+        </div>
+
+        <div className="admin-schedule-form">
+          {selectedDay ? (
+            <div>
+              <h4>
+                {scheduleDate.getFullYear()}년 {scheduleDate.getMonth() + 1}월 {selectedDay}일
+              </h4>
+              {getScheduleForDay(selectedDay) ? (
+                <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
+                  <p style={{ color: '#ef4444', fontWeight: 600 }}>현재: 수업 불가</p>
+                  <button type="button" onClick={onDelete}>되돌리기 (수업 가능)</button>
+                  <button type="button" onClick={onClose}>닫기</button>
+                </div>
+              ) : (
+                <div className="form-actions" style={{ flexDirection: 'column', gap: '12px' }}>
+                  <p style={{ color: '#22c55e', fontWeight: 600 }}>현재: 수업 가능</p>
+                  <button type="button" className="danger" onClick={onSubmit}>수업 불가로 설정</button>
+                  <button type="button" onClick={onClose}>닫기</button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <p className="muted-text">캘린더에서 날짜를 클릭하여 일정을 수정하세요.</p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+ScheduleSection.propTypes = {
+  schedulesLoading: PropTypes.bool.isRequired,
+  scheduleNotice: PropTypes.string,
+  scheduleNoticeType: PropTypes.string,
+  renderCalendar: PropTypes.func.isRequired,
+  selectedDay: PropTypes.number,
+  scheduleDate: PropTypes.instanceOf(Date).isRequired,
+  getScheduleForDay: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default ScheduleSection;

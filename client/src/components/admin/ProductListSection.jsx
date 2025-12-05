@@ -1,1 +1,60 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀧潲⵰祴数❳਻昊湵瑣潩⁮牐摯捵䱴獩却捥楴湯笨瀠潲畤瑣ⱳ漠剮晥敲桳‬湯摅瑩‬湯敄敬整‬敧䍴瑡来牯䱹扡汥素 ੻†敲畴湲⠠ †㰠敳瑣潩⁮汣獡乳浡㵥瀢潲畤瑣≳ਾ†††搼癩挠慬獳慎敭∽敳瑣潩⵮敨摡牥㸢 †††㰠㉨묾쟳₰쾷⼼㉨ਾ††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫潻剮晥敲桳㹽 ††††묠럵냎쓭ધ††††⼼畢瑴湯ਾ†††⼼楤㹶ਊ†††搼癩挠慬獳慎敭∽牰摯捵⵴牧摩㸢 †††笠牰摯捵獴洮灡⠨牰摯捵⥴㴠‾ਨ†††††愼瑲捩敬欠祥笽牰摯捵⹴摩⁽汣獡乳浡㵥瀢潲畤瑣挭牡≤ਾ††††††搼癩挠慬獳慎敭∽牰摯捵⵴桴浵≢ਾ†††††††灻潲畤瑣瀮楲慭祲浉条㽥甮汲㼠⠠ †††††††㰠浩⁧牳㵣灻潲畤瑣瀮楲慭祲浉条⹥牵絬愠瑬笽牰摯捵⹴慮敭⁽㸯 ††††††⤠㨠⠠ †††††††㰠灳湡挠慬獳慎敭∽汰捡桥汯敤≲쀾만쇌⃶뷀⼼灳湡ਾ†††††††紩 †††††㰠搯癩ਾ††††††搼癩挠慬獳慎敭∽牰摯捵⵴潢祤㸢 ††††††㰠㍨笾牰摯捵⹴慮敭㱽栯㸳 ††††††㰠楤⁶汣獡乳浡㵥瀢潲畤瑣洭瑥≡ਾ††††††††猼慰⁮汣獡乳浡㵥戢摡敧戠摡敧ⴭ畭整≤匾啋笠牰摯捵⹴歳絵⼼灳湡ਾ††††††††猼慰⁮汣獡乳浡㵥戢摡敧㸢杻瑥慃整潧祲慌敢⡬牰摯捵⹴慣整潧祲紩⼼灳湡ਾ††††††††猼慰⁮汣獡乳浡㵥戢摡敧戠摡敧ⴭ畭整≤쀾만쇌⃶灻潲畤瑣椮慭敧㽳氮湥瑧⁨㼿〠쁽㳥猯慰㹮 †††††††㰠灳湡挠慬獳慎敭∽慢杤⁥慢杤ⵥ洭瑵摥㸢�尠笠瀨潲畤瑣献楨灰湩䙧敥㼠‿⤰琮䱯捯污卥牴湩⡧紩⼼灳湡ਾ†††††††⼼楤㹶 ††††††㰠⁰汣獡乳浡㵥瀢楲散㸢⁜灻潲畤瑣瀮楲散⸿潴潌慣敬瑓楲杮⸿⤨㼠‿牰摯捵⹴牰捩絥⼼㹰 ††††††㰠⁰汣獡乳浡㵥搢獥牣灩楴湯㸢灻潲畤瑣搮獥牣灩楴湯㱽瀯ਾ††††††⼼楤㹶ਊ††††††搼癩挠慬獳慎敭∽牰摯捵⵴捡楴湯≳ਾ†††††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫⡻ 㸽漠䕮楤⡴牰摯捵⥴㹽 †††††††밠쇶ત†††††††⼼畢瑴湯ਾ†††††††戼瑵潴⁮祴数∽畢瑴湯•汣獡乳浡㵥搢湡敧≲漠䍮楬正笽⤨㴠‾湯敄敬整瀨潲畤瑣椮⥤㹽 †††††††묠쇨દ†††††††⼼畢瑴湯ਾ††††††⼼楤㹶 ††††㰠愯瑲捩敬ਾ††††⤩੽ †††笠瀡潲畤瑣⹳敬杮桴☠…瀼딾럮뗏⃈냇쳀븠뷸듀듏⻙⼼㹰੽†††⼼楤㹶 †㰠猯捥楴湯ਾ†㬩紊ਊ牐摯捵䱴獩却捥楴湯瀮潲呰灹獥㴠笠 瀠潲畤瑣㩳倠潲呰灹獥愮牲祡椮剳煥極敲Ɽ 漠剮晥敲桳›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠䕮楤㩴倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯敄敬整›牐灯祔数⹳畦据椮剳煥極敲Ɽ 朠瑥慃整潧祲慌敢㩬倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ㭽ਊ硥潰瑲搠晥畡瑬倠潲畤瑣楌瑳敓瑣潩㭮਍
+﻿import PropTypes from 'prop-types';
+
+function ProductListSection({ products, onRefresh, onEdit, onDelete, getCategoryLabel }) {
+  return (
+    <section className="products">
+      <div className="section-header">
+        <h2>상품 목록</h2>
+        <button type="button" onClick={onRefresh}>
+          새로고침
+        </button>
+      </div>
+
+      <div className="product-grid">
+        {products.map((product) => (
+          <article key={product.id} className="product-card">
+            <div className="product-thumb">
+              {product.primaryImage?.url ? (
+                <img src={product.primaryImage.url} alt={product.name} />
+              ) : (
+                <span className="placeholder">이미지 없음</span>
+              )}
+            </div>
+            <div className="product-body">
+              <h3>{product.name}</h3>
+              <div className="product-meta">
+                <span className="badge badge--muted">SKU {product.sku}</span>
+                <span className="badge">{getCategoryLabel(product.category)}</span>
+                <span className="badge badge--muted">이미지 {product.images?.length ?? 0}장</span>
+                <span className="badge badge--muted">배송비 \ {(product.shippingFee ?? 0).toLocaleString()}</span>
+              </div>
+              <p className="price">\ {product.price?.toLocaleString?.() ?? product.price}</p>
+              <p className="description">{product.description}</p>
+            </div>
+
+            <div className="product-actions">
+              <button type="button" onClick={() => onEdit(product)}>
+                수정
+              </button>
+              <button type="button" className="danger" onClick={() => onDelete(product.id)}>
+                삭제
+              </button>
+            </div>
+          </article>
+        ))}
+
+        {!products.length && <p>등록된 상품이 없습니다.</p>}
+      </div>
+    </section>
+  );
+}
+
+ProductListSection.propTypes = {
+  products: PropTypes.array.isRequired,
+  onRefresh: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  getCategoryLabel: PropTypes.func.isRequired,
+};
+
+export default ProductListSection;

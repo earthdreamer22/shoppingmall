@@ -1,1 +1,13 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀧潲⵰祴数❳਻昊湵瑣潩⁮摁業䙮牯乭瑯捩⡥⁻瑳瑡獵‬瑳瑡獵祔数素 ੻†晩⠠猡慴畴⥳爠瑥牵⁮畮汬਻†敲畴湲㰠楤⁶汣獡乳浡㵥恻瑳瑡獵␠獻慴畴味灹⁥㴽‽攧牲牯‧‿攧牲牯‧›✧恽㹽獻慴畴絳⼼楤㹶਻੽䄊浤湩潆浲潎楴散瀮潲呰灹獥㴠笠 猠慴畴㩳倠潲呰灹獥献牴湩Ⱨ 猠慴畴味灹㩥倠潲呰灹獥献牴湩Ⱨ紊਻攊灸牯⁴敤慦汵⁴摁業䙮牯乭瑯捩㭥਍
+﻿import PropTypes from 'prop-types';
+
+function AdminFormNotice({ status, statusType }) {
+  if (!status) return null;
+  return <div className={`status ${statusType === 'error' ? 'error' : ''}`}>{status}</div>;
+}
+
+AdminFormNotice.propTypes = {
+  status: PropTypes.string,
+  statusType: PropTypes.string,
+};
+
+export default AdminFormNotice;

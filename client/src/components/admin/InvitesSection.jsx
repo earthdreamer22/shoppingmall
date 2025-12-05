@@ -1,1 +1,146 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀧潲⵰祴数❳਻昊湵瑣潩⁮湉楶整即捥楴湯笨 椠癮瑩獥ਬ†湩楶整䱳慯楤杮ਬ†湩楶整牅潲Ⱳ 椠癮瑩乥瑯捩ⱥ 椠癮瑩乥瑯捩呥灹ⱥ 椠癮瑩䙥牯Ɑ 椠䍳敲瑡湩䥧癮瑩ⱥ 漠剮晥敲桳ਬ†湯畓浢瑩ਬ†湯桃湡敧潆浲ਬ†湯潃祰潃敤ਬ†湯敒潶敫ਬ†潦浲瑡慄整ਬ⥽笠 爠瑥牵⁮ਨ††猼捥楴湯挠慬獳慎敭∽摡業⵮湩楶整≳ਾ†††搼癩挠慬獳慎敭∽敳瑣潩⵮敨摡牥㸢 †††㰠㉨뀾룼삮⃚쫃쐠뗚㳥栯㸲 †††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽湯敒牦獥絨ਾ†††††캷Ꞔ †††㰠戯瑵潴㹮 ††㰠搯癩ਾ ††㰠潦浲挠慬獳慎敭∽摡業⵮潦浲椠癮瑩ⵥ潦浲•湯畓浢瑩笽湯畓浢瑩㹽 †††㰠楤⁶汣獡乳浡㵥昢牯⵭牧摩㸢 ††††㰠慬敢㹬 †††††쌠듊⃫쳀�쿀⠠놼쏅਩††††††椼灮瑵 ††††††琠灹㵥攢慭汩ਢ†††††††慶畬㵥楻癮瑩䙥牯⹭浥楡絬 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠ਾ††††††††湯桃湡敧潆浲⠨牰癥 㸽⠠⁻⸮瀮敲ⱶ攠慭汩›癥湥⹴慴杲瑥瘮污敵素⤩ ††††††素 ††††††瀠慬散潨摬牥∽꓁좵쀠료샞룏₸쿇솷쀠럔⋂ †††††⼠ਾ†††††⼼慬敢㹬 ††††㰠慬敢㹬 †††††렠랸⃡쎽ꎰ⠠쎽ꎰ਩††††††椼灮瑵 ††††††琠灹㵥渢浵敢≲ ††††††洠湩∽∱ ††††††瘠污敵笽湩楶整潆浲攮灸物獥湉潈牵絳 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠ਾ††††††††湯桃湡敧潆浲⠨牰癥 㸽⠠⁻⸮瀮敲ⱶ攠灸物獥湉潈牵㩳攠敶瑮琮牡敧⹴慶畬⁥⥽਩†††††††੽†††††††敲畱物摥 †††††⼠ਾ†††††⼼慬敢㹬 †††㰠搯癩ਾ††††搼癩挠慬獳慎敭∽潦浲愭瑣潩獮㸢 ††††㰠畢瑴湯琠灹㵥猢扵業≴搠獩扡敬㵤楻䍳敲瑡湩䥧癮瑩絥ਾ††††††楻䍳敲瑡湩䥧癮瑩⁥‿뤧뇟⃞�⸮✮㨠✠쫃쐠뗚⃥��紧 ††††㰠戯瑵潴㹮 †††㰠搯癩ਾ†††⼼潦浲ਾ ††笠湩楶整潎楴散☠…ਨ††††搼癩挠慬獳慎敭笽獠慴畴⁳笤湩楶整潎楴散祔数㴠㴽✠牥潲❲㼠✠牥潲❲㨠✠紧絠笾湩楶整潎楴散㱽搯癩ਾ†††紩 ††笠湩楶整牅潲⁲☦㰠⁰汣獡乳浡㵥猢慴畴⁳牥潲≲笾湩楶整牅潲絲⼼㹰੽ ††笠湩楶整䱳慯楤杮㼠⠠ †††㰠㹰쫃쐠뗚룥₦튺꾷삿슴선샟듔듏⻙⸮⼼㹰 ††⤠㨠椠癮瑩獥氮湥瑧⁨‿ਨ††††搼癩挠慬獳慎敭∽摡業⵮牯敤⵲慴汢ⵥ牷灡数≲ਾ†††††琼扡敬挠慬獳慎敭∽摡業⵮牯敤⵲慴汢≥ਾ††††††琼敨摡ਾ†††††††琼㹲 †††††††㰠桴쐾뗚㳥琯㹨 †††††††㰠桴됾믫⃳쳀�쿀⼼桴ਾ††††††††琼㹨뢸⼼桴ਾ††††††††琼㹨싅⼼桴ਾ††††††††琼㹨뛁ꇄ⼼桴ਾ†††††††⼼牴ਾ††††††⼼桴慥㹤 †††††㰠扴摯㹹 ††††††笠湩楶整⹳慭⡰椨癮瑩⥥㴠‾੻††††††††潣獮⁴硥楰敲䅳⁴‽湩楶整攮灸物獥瑁㼠渠睥䐠瑡⡥湩楶整攮灸物獥瑁 ›畮汬਻††††††††潣獮⁴獩硅楰敲⁤‽硥楰敲䅳⁴‿硥楰敲䅳⹴敧呴浩⡥ ‼慄整渮睯⤨㨠映污敳਻††††††††潣獮⁴獩獕摥㴠䈠潯敬湡椨癮瑩⹥獵摥瑁㬩 †††††††爠瑥牵⁮ਨ†††††††††琼⁲敫㵹楻癮瑩⹥摩㹽 †††††††††㰠摴挠慬獳慎敭∽潣敤挭汥≬ਾ†††††††††††挼摯㹥楻癮瑩⹥潣敤㱽振摯㹥 †††††††††㰠琯㹤 †††††††††㰠摴笾湩楶整攮慭汩簠⁼猼慰⁮汣獡乳浡㵥洢瑵摥琭硥≴섾잦⃑뷀⼼灳湡紾⼼摴ਾ††††††††††琼㹤晻牯慭䑴瑡⡥湩楶整攮灸物獥瑁紩⼼摴ਾ††††††††††琼㹤 ††††††††††笠獩獕摥㼠⠠ †††††††††††㰠灳湡挠慬獳慎敭∽慢杤⁥慢杤ⵥ洭瑵摥㸢쪵⼼灳湡ਾ††††††††††† ›獩硅楰敲⁤‿ਨ††††††††††††猼慰⁮汣獡乳浡㵥戢摡敧戠摡敧ⴭ畭整≤렾랸㳡猯慰㹮 ††††††††††⤠㨠⠠ †††††††††††㰠灳湡挠慬獳慎敭∽慢杤≥됾뇫㳢猯慰㹮 ††††††††††⤠੽††††††††††⼼摴ਾ††††††††††琼⁤汣獡乳浡㵥椢癮瑩ⵥ捡楴湯≳ਾ†††††††††††戼瑵潴੮††††††††††††祴数∽畢瑴湯ਢ††††††††††††湯汃捩㵫⡻ 㸽漠䍮灯䍹摯⡥湩楶整挮摯⥥੽††††††††††††楤慳汢摥笽獩獕摥簠⁼獩硅楰敲絤 ††††††††††㸠 †††††††††††쐠뗚⃥릺 ††††††††††㰠戯瑵潴㹮 ††††††††††㰠畢瑴湯 †††††††††††琠灹㵥戢瑵潴≮ †††††††††††挠慬獳慎敭∽慤杮牥ਢ††††††††††††湯汃捩㵫⡻ 㸽漠剮癥歯⡥湩楶整椮⥤੽††††††††††††楤慳汢摥笽獩獕摥੽†††††††††††ਾ††††††††††††쎽렠랸ૡ†††††††††††⼼畢瑴湯ਾ††††††††††⼼摴ਾ†††††††††⼼牴ਾ††††††††㬩 ††††††素紩 †††††㰠琯潢祤ਾ†††††⼼慴汢㹥 †††㰠搯癩ਾ††† ›ਨ††††瀼뤾뇟뗞⃈쫃쐠뗚냥₡삽쾴�㰮瀯ਾ†††紩 †㰠猯捥楴湯ਾ†㬩紊ਊ湉楶整即捥楴湯瀮潲呰灹獥㴠笠 椠癮瑩獥›牐灯祔数⹳牡慲⹹獩敒畱物摥ਬ†湩楶整䱳慯楤杮›牐灯祔数⹳潢汯椮剳煥極敲Ɽ 椠癮瑩䕥牲牯›牐灯祔数⹳瑳楲杮ਬ†湩楶整潎楴散›牐灯祔数⹳瑳楲杮ਬ†湩楶整潎楴散祔数›牐灯祔数⹳瑳楲杮ਬ†湩楶整潆浲›牐灯祔数⹳扯敪瑣椮剳煥極敲Ɽ 椠䍳敲瑡湩䥧癮瑩㩥倠潲呰灹獥戮潯⹬獩敒畱物摥ਬ†湯敒牦獥㩨倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯畓浢瑩›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠䍮慨杮䙥牯㩭倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯潃祰潃敤›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠剮癥歯㩥倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†潦浲瑡慄整›牐灯祔数⹳畦据椮剳煥極敲Ɽ紊਻攊灸牯⁴敤慦汵⁴湉楶整即捥楴湯഻
+﻿import PropTypes from 'prop-types';
+
+function InvitesSection({
+  invites,
+  invitesLoading,
+  inviteError,
+  inviteNotice,
+  inviteNoticeType,
+  inviteForm,
+  isCreatingInvite,
+  onRefresh,
+  onSubmit,
+  onChangeForm,
+  onCopyCode,
+  onRevoke,
+  formatDate,
+}) {
+  return (
+    <section className="admin-invites">
+      <div className="section-header">
+        <h2>관리자 초대 코드</h2>
+        <button type="button" onClick={onRefresh}>
+          새로고침
+        </button>
+      </div>
+
+      <form className="admin-form invite-form" onSubmit={onSubmit}>
+        <div className="form-grid">
+          <label>
+            초대 이메일 (선택)
+            <input
+              type="email"
+              value={inviteForm.email}
+              onChange={(event) =>
+                onChangeForm((prev) => ({ ...prev, email: event.target.value }))
+              }
+              placeholder="지정된 이메일만 허용하려면 입력"
+            />
+          </label>
+          <label>
+            만료 시간 (시간)
+            <input
+              type="number"
+              min="1"
+              value={inviteForm.expiresInHours}
+              onChange={(event) =>
+                onChangeForm((prev) => ({ ...prev, expiresInHours: event.target.value }))
+              }
+              required
+            />
+          </label>
+        </div>
+        <div className="form-actions">
+          <button type="submit" disabled={isCreatingInvite}>
+            {isCreatingInvite ? '발급 중...' : '초대 코드 발급'}
+          </button>
+        </div>
+      </form>
+
+      {inviteNotice && (
+        <div className={`status ${inviteNoticeType === 'error' ? 'error' : ''}`}>{inviteNotice}</div>
+      )}
+      {inviteError && <p className="status error">{inviteError}</p>}
+
+      {invitesLoading ? (
+        <p>초대 코드를 불러오는 중입니다...</p>
+      ) : invites.length ? (
+        <div className="admin-order-table-wrapper">
+          <table className="admin-order-table">
+            <thead>
+              <tr>
+                <th>코드</th>
+                <th>대상 이메일</th>
+                <th>만료</th>
+                <th>상태</th>
+                <th>조치</th>
+              </tr>
+            </thead>
+            <tbody>
+              {invites.map((invite) => {
+                const expiresAt = invite.expiresAt ? new Date(invite.expiresAt) : null;
+                const isExpired = expiresAt ? expiresAt.getTime() < Date.now() : false;
+                const isUsed = Boolean(invite.usedAt);
+                return (
+                  <tr key={invite.id}>
+                    <td className="code-cell">
+                      <code>{invite.code}</code>
+                    </td>
+                    <td>{invite.email || <span className="muted-text">제한 없음</span>}</td>
+                    <td>{formatDate(invite.expiresAt)}</td>
+                    <td>
+                      {isUsed ? (
+                        <span className="badge badge--muted">사용됨</span>
+                      ) : isExpired ? (
+                        <span className="badge badge--muted">만료</span>
+                      ) : (
+                        <span className="badge">대기</span>
+                      )}
+                    </td>
+                    <td className="invite-actions">
+                      <button
+                        type="button"
+                        onClick={() => onCopyCode(invite.code)}
+                        disabled={isUsed || isExpired}
+                      >
+                        코드 복사
+                      </button>
+                      <button
+                        type="button"
+                        className="danger"
+                        onClick={() => onRevoke(invite.id)}
+                        disabled={isUsed}
+                      >
+                        즉시 만료
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p>발급된 초대 코드가 없습니다.</p>
+      )}
+    </section>
+  );
+}
+
+InvitesSection.propTypes = {
+  invites: PropTypes.array.isRequired,
+  invitesLoading: PropTypes.bool.isRequired,
+  inviteError: PropTypes.string,
+  inviteNotice: PropTypes.string,
+  inviteNoticeType: PropTypes.string,
+  inviteForm: PropTypes.object.isRequired,
+  isCreatingInvite: PropTypes.bool.isRequired,
+  onRefresh: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChangeForm: PropTypes.func.isRequired,
+  onCopyCode: PropTypes.func.isRequired,
+  onRevoke: PropTypes.func.isRequired,
+  formatDate: PropTypes.func.isRequired,
+};
+
+export default InvitesSection;

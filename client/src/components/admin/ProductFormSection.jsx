@@ -1,1 +1,333 @@
-﻿浩潰瑲倠潲呰灹獥映潲⁭瀢潲⵰祴数≳਻昊湵瑣潩⁮牐摯捵䙴牯卭捥楴湯笨 瀠条呥瑩敬ਬ†潦浲ਬ†敳䙴牯Ɑ 漠卮扵業ⱴ 椠即扵業瑴湩Ⱨ 爠獥瑥潆浲ਬ†摥瑩湩偧潲畤瑣摉ਬ†牰摯捵䍴瑡来牯敩ⱳ 眠摩敧剴慥祤ਬ†楷杤瑥敍獳条ⱥ 漠佮数啮汰慯坤摩敧ⱴ 漠卮瑥牐浩牡䥹慭敧ਬ†湯敒潭敶浉条ⱥ 漠䅮摤敄慴汩浉条ⱥ紊 ੻†敲畴湲⠠ †㰠敳瑣潩⁮汣獡乳浡㵥瀢潲畤瑣昭牯≭ਾ†††格㸴灻条呥瑩敬㱽栯㸴 ††㰠潦浲漠卮扵業㵴潻卮扵業絴挠慬獳慎敭∽摡業⵮潦浲㸢 †††㰠楤⁶汣獡乳浡㵥昢牯⵭牧摩㸢 ††††㰠慬敢㹬 †††††묠쟳₰䑉⠠䭓⥕ †††††㰠湩異ੴ†††††††敲畱物摥 ††††††渠浡㵥猢畫ਢ†††††††慶畬㵥晻牯⹭歳絵 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬歳㩵攠敶瑮琮牡敧⹴慶畬⁥⥽紩 ††††††瀠慬散潨摬牥∽릿›佔ⵐ〰∱ †††††⼠ਾ†††††⼼慬敢㹬 ††††㰠慬敢㹬 †††††묠쟳₰쳀Ꞹ †††††㰠湩異ੴ†††††††敲畱物摥 ††††††渠浡㵥渢浡≥ ††††††瘠污敵笽潦浲渮浡絥 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬慮敭›癥湥⹴慴杲瑥瘮污敵素⤩੽††††††㸯 ††††㰠氯扡汥ਾ†††††氼扡汥ਾ††††††냇뀠낡⃝뼨⧸ †††††㰠湩異ੴ†††††††敲畱物摥 ††††††琠灹㵥渢浵敢≲ ††††††洠湩∽∰ ††††††猠整㵰ㄢ∰ ††††††渠浡㵥瀢楲散ਢ†††††††慶畬㵥晻牯⹭牰捩絥 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬牰捩㩥攠敶瑮琮牡敧⹴慶畬⁥⥽紩 †††††⼠ਾ†††††⼼慬敢㹬 ††††㰠慬敢㹬 †††††뤠볨뫛⃱뼨⧸ †††††㰠湩異ੴ†††††††祴数∽畮扭牥ਢ†††††††業㵮〢ਢ†††††††瑳灥∽〵∰ ††††††渠浡㵥猢楨灰湩䙧敥ਢ†††††††慶畬㵥晻牯⹭桳灩楰杮敆絥 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬桳灩楰杮敆㩥攠敶瑮琮牡敧⹴慶畬⁥⥽紩 ††††††瀠慬散潨摬牥∽뮺뤠볨뫛⃱㔨〰될샜⦧ਢ††††††㸯 ††††㰠氯扡汥ਾ†††††氼扡汥ਾ††††††냇쐠얫냗룭મ††††††猼汥捥ੴ†††††††慮敭∽慣整潧祲ਢ†††††††慶畬㵥晻牯⹭慣整潧祲੽†††††††湯桃湡敧笽攨敶瑮 㸽猠瑥潆浲⠨牰癥 㸽⠠⁻⸮瀮敲ⱶ挠瑡来牯㩹攠敶瑮琮牡敧⹴慶畬⁥⥽紩 †††††㸠 ††††††笠牰摯捵䍴瑡来牯敩⹳慭⡰挨瑡来牯⥹㴠‾ਨ††††††††漼瑰潩⁮敫㵹捻瑡来牯⹹慶畬絥瘠污敵笽慣整潧祲瘮污敵㹽 ††††††††笠慣整潧祲氮扡汥੽††††††††⼼灯楴湯ਾ†††††††⤩੽††††††⼼敳敬瑣ਾ††††††猼慭汬挠慬獳慎敭∽畭整ⵤ整瑸㸢쌠₥뢺‬ꛁ뮺‬뿄몽틅선삦⃛궼몽⼼浳污㹬 ††††㰠氯扡汥ਾ††††⼼楤㹶ਊ††††搼癩挠慬獳慎敭∽潦浲札楲⁤楳杮敬挭汯浵≮ਾ†††††氼扡汥ਾ††††††냇밠뢳⃭뀨랣⦫ †††††㰠整瑸牡慥 ††††††渠浡㵥搢獥牣灩楴湯ਢ†††††††慶畬㵥晻牯⹭敤捳楲瑰潩絮 ††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬敤捳楲瑰潩㩮攠敶瑮琮牡敧⹴慶畬⁥⥽紩 ††††††瀠慬散潨摬牥∽냇묠볳₼뎼므쀠럔쟂쇘볖뾼⻤ਢ††††††㸯 ††††㰠氯扡汥ਾ††††⼼楤㹶ਊ††††搼癩挠慬獳慎敭∽牰摯捵⵴灯楴湯⵳慣摲㸢 ††††㰠楤⁶汣獡乳浡㵥挢牡ⵤ敨摡牥㸢 †††††㰠㑨묾쟳₰즿잼밠솳㲤栯㸴 †††††㰠畢瑴湯 ††††††琠灹㵥戢瑵潴≮ ††††††漠䍮楬正笽⤨㴠ਾ††††††††敳䙴牯⡭瀨敲⥶㴠‾笨 ††††††††⸠⸮牰癥ਬ†††††††††灯楴湯㩳嬠⸮⠮牰癥漮瑰潩獮簠⁼嵛Ⱙ笠渠浡㩥✠Ⱗ瘠污敵㩳嬠✧⁝嵽ਬ††††††††⥽਩†††††††੽††††††ਾ†††††††‫즿잼쌠냟ડ††††††⼼畢瑴湯ਾ†††††⼼楤㹶 ††††㰠⁰汣獡乳浡㵥洢瑵摥琭硥≴묾쟳₰뢱언봠⃃놼쏅틇밠⃶훀슴뼠볉샇₻뎼꓁헇쾴�‮뼨㪹딠샰샚⃎놼쏅‬딠⧮⼼㹰 ††††笠潦浲漮瑰潩獮⸿敬杮桴㼠⠠ †††††㰠楤⁶汣獡乳浡㵥漢瑰潩⵮楬瑳㸢 ††††††笠潦浲漮瑰潩獮洮灡⠨灯楴湯‬摩⥸㴠‾ਨ††††††††搼癩欠祥笽摩絸挠慬獳慎敭∽灯楴湯爭睯㸢 ††††††††㰠湩異ੴ††††††††††祴数∽整瑸ਢ††††††††††汰捡桥汯敤㵲뼢볉⃇쳀Ꞹਢ††††††††††慶畬㵥潻瑰潩⹮慮敭੽††††††††††湯桃湡敧笽攨敶瑮 㸽笠 ††††††††††挠湯瑳瘠污敵㴠攠敶瑮琮牡敧⹴慶畬㭥 ††††††††††猠瑥潆浲⠨牰癥 㸽⠠੻††††††††††††⸮瀮敲ⱶ †††††††††††漠瑰潩獮›牰癥漮瑰潩獮洮灡⠨Ɐ椠 㸽⠠⁩㴽‽摩⁸‿⁻⸮漮‬慮敭›慶畬⁥⁽›⥯Ⱙ ††††††††††素⤩਻††††††††††絽 ††††††††⼠ਾ†††††††††椼灮瑵 †††††††††琠灹㵥琢硥≴ †††††††††瀠慬散潨摬牥∽즿잼뀠떪샩₻�뚸캷넠몸쟐⃘퓀슷ਢ††††††††††慶畬㵥潻瑰潩⹮慶畬獥⸿潪湩✨‬⤧㼠‿✧੽††††††††††湯桃湡敧笽攨敶瑮 㸽笠 ††††††††††挠湯瑳瘠污敵⁳‽癥湥⹴慴杲瑥瘮污敵 †††††††††††⸠灳楬⡴Ⱗ⤧ †††††††††††⸠慭⡰瘨 㸽瘠琮楲⡭⤩ †††††††††††⸠楦瑬牥䈨潯敬湡㬩 ††††††††††猠瑥潆浲⠨牰癥 㸽⠠੻††††††††††††⸮瀮敲ⱶ †††††††††††漠瑰潩獮›牰癥漮瑰潩獮洮灡⠨Ɐ椠 㸽⠠⁩㴽‽摩⁸‿⁻⸮漮‬慶畬獥素㨠漠⤩ਬ†††††††††††⥽㬩 †††††††††素੽†††††††††㸯 ††††††††㰠畢瑴湯 †††††††††琠灹㵥戢瑵潴≮ †††††††††挠慬獳慎敭∽慤杮牥ਢ††††††††††湯汃捩㵫⡻ 㸽笠 ††††††††††猠瑥潆浲⠨牰癥 㸽⠠੻††††††††††††⸮瀮敲ⱶ †††††††††††漠瑰潩獮›牰癥漮瑰潩獮昮汩整⡲弨‬⥩㴠‾⁩㴡‽摩⥸ਬ†††††††††††⥽㬩 †††††††††素੽†††††††††ਾ††††††††††ꛁ ††††††††㰠戯瑵潴㹮 †††††††㰠搯癩ਾ†††††††⤩੽††††††⼼楤㹶 ††††⤠㨠⠠ †††††㰠⁰汣獡乳浡㵥洢瑵摥琭硥≴딾럮뗏⃈즿잼쳀븠뷸듀듏⻙⼼㹰 ††††⤠੽††††⼼楤㹶ਊ††††搼癩挠慬獳慎敭∽牰摯捵⵴浩条獥挭牡≤ਾ†††††搼癩挠慬獳慎敭∽慣摲栭慥敤≲ਾ††††††格㸴냇쀠만쇌㳶栯㸴 †††††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽湯灏湥灕潬摡楗杤瑥⁽楤慳汢摥笽眡摩敧剴慥祤㹽 ††††††쀠만쇌⃶캷 †††††㰠戯瑵潴㹮 ††††㰠搯癩ਾ†††††瀼挠慬獳慎敭∽畭整ⵤ整瑸㸢캷좵쀠만쇌냶₡얰ꪳ될쟫₥쳀첹ꚸ옠쟷쟔⃘훃튼유⃑딠럮쟏쇘볖뾼⻤⼼㹰 ††††笠楷杤瑥敍獳条⁥☦㰠⁰汣獡乳浡㵥洢瑵摥琭硥≴笾楷杤瑥敍獳条絥⼼㹰੽†††††搼癩挠慬獳慎敭∽牰摯捵⵴浩条獥札楲≤ਾ††††††晻牯⹭浩条獥氮湥瑧⁨‿ਨ†††††††潦浲椮慭敧⹳慭⡰椨慭敧‬摩⥸㴠‾ਨ††††††††搼癩欠祥笽浩条⹥異汢捩摉⁽汣獡乳浡㵥瀢潲畤瑣椭慭敧椭整≭ਾ†††††††††椼杭猠捲笽浩条⹥牵絬愠瑬笽뭠쟳₰쳀첹␠楻硤⬠ㄠ恽⁽㸯 ††††††††㰠楤⁶汣獡乳浡㵥椢慭敧愭瑣潩獮㸢 †††††††††㰠畢瑴湯 ††††††††††琠灹㵥戢瑵潴≮ ††††††††††漠䍮楬正笽⤨㴠‾湯敓側楲慭祲浉条⡥浩条⹥異汢捩摉紩 ††††††††††挠慬獳慎敭笽浩条⹥獩牐浩牡⁹‿瀧楲慭祲‧›✧੽††††††††††ਾ†††††††††††ꗇ쀠만쇌럶⃎뎼꓁ †††††††††㰠戯瑵潴㹮 †††††††††㰠畢瑴湯琠灹㵥戢瑵潴≮挠慬獳慎敭∽慤杮牥•湯汃捩㵫⡻ 㸽漠剮浥癯䥥慭敧椨慭敧瀮扵楬䥣⥤㹽 ††††††††††묠쇨દ††††††††††⼼畢瑴湯ਾ†††††††††⼼楤㹶 ††††††††笠浩条⹥獩牐浩牡⁹☦㰠灳湡挠慬獳慎敭∽慢杤≥됾쟫㲥猯慰㹮੽††††††††⼼楤㹶 ††††††⤠਩†††††† ›ਨ†††††††瀼挠慬獳慎敭∽畭整ⵤ整瑸㸢쾷좵쀠만쇌냶₡삽쾴�㰮瀯ਾ††††††紩 ††††㰠搯癩ਾ††††⼼楤㹶ਊ††††搼癩挠慬獳慎敭∽牰摯捵⵴敤慴汩戭潬正≳ਾ†††††搼癩挠慬獳慎敭∽慣摲栭慥敤≲ਾ††††††格㸴벼옠샤쇌⃶쾷옠쇭㳽栯㸴 †††††㰠楤⁶汣獡乳浡㵥搢瑥楡⵬汢捯⵫捡楴湯≳ਾ†††††††戼瑵潴੮††††††††祴数∽畢瑴湯ਢ††††††††湯汃捩㵫⡻ 㸽猠瑥潆浲⠨牰癥 㸽⠠⁻⸮瀮敲ⱶ搠瑥楡䉬潬正㩳嬠⸮瀮敲⹶敤慴汩求捯獫‬⁻祴数›琧硥❴‬潣瑮湥㩴✠‧嵽素⤩੽†††††††ਾ††††††††‫�몽껆 ††††††㰠戯瑵潴㹮 ††††††㰠畢瑴湯 †††††††琠灹㵥戢瑵潴≮ †††††††漠䍮楬正笽⤨㴠‾敳䙴牯⡭瀨敲⥶㴠‾笨⸠⸮牰癥‬敤慴汩求捯獫›⹛⸮牰癥搮瑥楡䉬潬正ⱳ笠琠灹㩥✠潮整Ⱗ挠湯整瑮›✧素⁝⥽紩 ††††††㸠 †††††††⬠선샖믇쟧૗†††††††⼼畢瑴湯ਾ†††††††戼瑵潴⁮祴数∽畢瑴湯•湯汃捩㵫潻䅮摤敄慴汩浉条絥搠獩扡敬㵤ⅻ楷杤瑥敒摡絹ਾ††††††††‫벼쀠만쇌⃶캷 ††††††㰠戯瑵潴㹮 †††††㰠搯癩ਾ†††††⼼楤㹶ਊ†††††搼癩挠慬獳慎敭∽敤慴汩戭潬正氭獩≴ਾ††††††晻牯⹭敤慴汩求捯獫氮湥瑧⁨‿ਨ†††††††潦浲搮瑥楡䉬潬正⹳慭⡰戨潬正‬摩⥸㴠‾ਨ††††††††搼癩欠祥笽摩絸挠慬獳慎敭∽敤慴汩戭潬正㸢 ††††††††笠汢捯⹫祴数㴠㴽✠整瑸‧☦⠠ †††††††††㰠整瑸牡慥 ††††††††††瀠慬散潨摬牥∽�몽껆먠럭⃏뮳ਢ†††††††††††慶畬㵥扻潬正挮湯整瑮㼠‿✧੽†††††††††††湯桃湡敧笽攨敶瑮 㸽笠 †††††††††††挠湯瑳挠湯整瑮㴠攠敶瑮琮牡敧⹴慶畬㭥 †††††††††††猠瑥潆浲⠨牰癥 㸽⠠੻†††††††††††††⸮瀮敲ⱶ ††††††††††††搠瑥楡䉬潬正㩳瀠敲⹶敤慴汩求捯獫洮灡⠨Ɫ椠 㸽⠠⁩㴽‽摩⁸‿⁻⸮戮‬潣瑮湥⁴⁽›⥢Ⱙ †††††††††††素⤩਻†††††††††††絽 †††††††††⼠ਾ†††††††††紩 ††††††††笠汢捯⹫祴数㴠㴽✠潮整‧☦⠠ †††††††††㰠整瑸牡慥 ††††††††††瀠慬散潨摬牥∽훁쟀퟇댠뾻⋫ ††††††††††瘠污敵笽汢捯⹫潣瑮湥⁴㼿✠紧 ††††††††††漠䍮慨杮㵥⡻癥湥⥴㴠‾੻††††††††††††潣獮⁴潣瑮湥⁴‽癥湥⹴慴杲瑥瘮污敵਻††††††††††††敳䙴牯⡭瀨敲⥶㴠‾笨 ††††††††††††⸠⸮牰癥ਬ†††††††††††††敤慴汩求捯獫›牰癥搮瑥楡䉬潬正⹳慭⡰戨‬⥩㴠‾椨㴠㴽椠硤㼠笠⸠⸮Ɫ挠湯整瑮素㨠戠⤩ਬ††††††††††††⥽㬩 ††††††††††素੽††††††††††㸯 ††††††††⤠੽†††††††††扻潬正琮灹⁥㴽‽椧慭敧‧☦⠠ †††††††††㰠楤⁶汣獡乳浡㵥搢瑥楡⵬浩条ⵥ瑩浥㸢 ††††††††††㰠浩⁧牳㵣扻潬正甮汲⁽污㵴恻벼쀠만쇌⃶笤摩⁸‫紱絠⼠ਾ†††††††††††戼瑵潴੮††††††††††††祴数∽畢瑴湯ਢ††††††††††††汣獡乳浡㵥搢湡敧≲ †††††††††††漠䍮楬正笽⤨㴠‾੻†††††††††††††敳䙴牯⡭瀨敲⥶㴠‾笨 †††††††††††††⸠⸮牰癥ਬ††††††††††††††敤慴汩求捯獫›牰癥搮瑥楡䉬潬正⹳楦瑬牥⠨ⱟ椠 㸽椠℠㴽椠硤Ⱙ ††††††††††††素⤩਻††††††††††††絽 ††††††††††㸠 †††††††††††묠쇨દ†††††††††††⼼畢瑴湯ਾ††††††††††⼼楤㹶 ††††††††⤠੽†††††††††搼癩挠慬獳慎敭∽敤慴汩戭潬正愭瑣潩獮㸢 †††††††††㰠畢瑴湯 ††††††††††琠灹㵥戢瑵潴≮ ††††††††††漠䍮楬正笽⤨㴠‾੻††††††††††††潣獮⁴敮瑸祔数㴠戠潬正琮灹⁥㴽‽琧硥❴㼠✠潮整‧›汢捯⹫祴数㴠㴽✠潮整‧‿椧慭敧‧›琧硥❴਻††††††††††††敳䙴牯⡭瀨敲⥶㴠‾笨 ††††††††††††⸠⸮牰癥ਬ†††††††††††††敤慴汩求捯獫›牰癥搮瑥楡䉬潬正⹳慭⡰戨‬⥩㴠‾椨㴠㴽椠硤㼠笠⸠⸮Ɫ琠灹㩥渠硥呴灹⁥⁽›⥢Ⱙ †††††††††††素⤩਻†††††††††††絽 †††††††††㸠 ††††††††††씠삸⃔꾺 †††††††††㰠戯瑵潴㹮 †††††††††㰠畢瑴湯 ††††††††††琠灹㵥戢瑵潴≮ ††††††††††挠慬獳慎敭∽慤杮牥ਢ†††††††††††湯汃捩㵫⡻ 㸽 †††††††††††猠瑥潆浲⠨牰癥 㸽⠠੻†††††††††††††⸮瀮敲ⱶ ††††††††††††搠瑥楡䉬潬正㩳瀠敲⹶敤慴汩求捯獫昮汩整⡲弨‬⥩㴠‾⁩㴡‽摩⥸ਬ††††††††††††⥽਩†††††††††††੽††††††††††ਾ†††††††††††쾷묠쇨દ††††††††††⼼畢瑴湯ਾ†††††††††⼼楤㹶 †††††††㰠搯癩ਾ†††††††⤩ †††††⤠㨠⠠ ††††††㰠⁰汣獡乳浡㵥洢瑵摥琭硥≴딾럮뗏⃈쾷쳀븠뷸듀듏⻙쀠₧냆룀캷먠럭샏₻�ꆰ쿇벼㰮瀯ਾ††††††紩 ††††㰠搯癩ਾ††††⼼楤㹶ਊ††††搼癩挠慬獳慎敭∽潦浲愭瑣潩獮㸢 ††††㰠畢瑴湯琠灹㵥猢扵業≴搠獩扡敬㵤楻即扵業瑴湩⁧籼℠潦浲椮慭敧⹳敬杮桴㹽 †††††笠獩畓浢瑩楴杮㼠✠變선⻟⸮‧›摥瑩湩偧潲畤瑣摉㼠✠냇밠쇶➤㨠✠냇딠럮⟏੽†††††⼼畢瑴湯ਾ†††††敻楤楴杮牐摯捵䥴⁤☦⠠ †††††㰠畢瑴湯琠灹㵥戢瑵潴≮漠䍮楬正笽敲敳䙴牯絭ਾ†††††††묠쟳₰쾷 †††††㰠戯瑵潴㹮 ††††⤠੽††††⼼楤㹶 ††㰠是牯㹭 †㰠猯捥楴湯ਾ†㬩紊ਊ牐摯捵䙴牯卭捥楴湯瀮潲呰灹獥㴠笠 瀠条呥瑩敬›牐灯祔数⹳瑳楲杮椮剳煥極敲Ɽ 映牯㩭倠潲呰灹獥漮橢捥⹴獩敒畱物摥ਬ†敳䙴牯㩭倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†湯畓浢瑩›牐灯祔数⹳畦据椮剳煥極敲Ɽ 椠即扵業瑴湩㩧倠潲呰灹獥戮潯⹬獩敒畱物摥ਬ†敲敳䙴牯㩭倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ†摥瑩湩偧潲畤瑣摉›牐灯祔数⹳瑳楲杮ਬ†牰摯捵䍴瑡来牯敩㩳倠潲呰灹獥愮牲祡椮剳煥極敲Ɽ 眠摩敧剴慥祤›牐灯祔数⹳潢汯椮剳煥極敲Ɽ 眠摩敧䵴獥慳敧›牐灯祔数⹳瑳楲杮ਬ†湯灏湥灕潬摡楗杤瑥›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠卮瑥牐浩牡䥹慭敧›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠剮浥癯䥥慭敧›牐灯祔数⹳畦据椮剳煥極敲Ɽ 漠䅮摤敄慴汩浉条㩥倠潲呰灹獥昮湵⹣獩敒畱物摥ਬ㭽ਊ硥潰瑲搠晥畡瑬倠潲畤瑣潆浲敓瑣潩㭮਍
+﻿import PropTypes from "prop-types";
+
+function ProductFormSection({
+  pageTitle,
+  form,
+  setForm,
+  onSubmit,
+  isSubmitting,
+  resetForm,
+  editingProductId,
+  productCategories,
+  widgetReady,
+  widgetMessage,
+  onOpenUploadWidget,
+  onSetPrimaryImage,
+  onRemoveImage,
+  onAddDetailImage,
+}) {
+  return (
+    <section className="product-form">
+      <h4>{pageTitle}</h4>
+      <form onSubmit={onSubmit} className="admin-form">
+        <div className="form-grid">
+          <label>
+            상품 ID (SKU)
+            <input
+              required
+              name="sku"
+              value={form.sku}
+              onChange={(event) => setForm((prev) => ({ ...prev, sku: event.target.value }))}
+              placeholder="예: TOP-001"
+            />
+          </label>
+          <label>
+            상품 이름
+            <input
+              required
+              name="name"
+              value={form.name}
+              onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
+            />
+          </label>
+          <label>
+            상품 가격 (원)
+            <input
+              required
+              type="number"
+              min="0"
+              step="10"
+              name="price"
+              value={form.price}
+              onChange={(event) => setForm((prev) => ({ ...prev, price: event.target.value }))}
+            />
+          </label>
+          <label>
+            배송비 (원)
+            <input
+              type="number"
+              min="0"
+              step="500"
+              name="shippingFee"
+              value={form.shippingFee}
+              onChange={(event) => setForm((prev) => ({ ...prev, shippingFee: event.target.value }))}
+              placeholder="기본 배송비 (500원 단위)"
+            />
+          </label>
+          <label>
+            상품 카테고리
+            <select
+              name="category"
+              value={form.category}
+              onChange={(event) => setForm((prev) => ({ ...prev, category: event.target.value }))}
+            >
+              {productCategories.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            <small className="muted-text">헌 책 보수, 제본, 커스텀 제작 서비스</small>
+          </label>
+        </div>
+
+        <div className="form-grid single-column">
+          <label>
+            상품 설명 (간략)
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={(event) => setForm((prev) => ({ ...prev, description: event.target.value }))}
+              placeholder="상품 상세 설명을 입력해주세요."
+            />
+          </label>
+        </div>
+
+        <div className="product-options-card">
+          <div className="card-header">
+            <h4>상품 옵션 설정</h4>
+            <button
+              type="button"
+              onClick={() =>
+                setForm((prev) => ({
+                  ...prev,
+                  options: [...(prev.options || []), { name: '', values: [''] }],
+                }))
+              }
+            >
+              + 옵션 추가
+            </button>
+          </div>
+          <p className="muted-text">상품 구매 시 선택할 수 있는 옵션을 설정합니다. (예: 디자인 선택, 색상 등)</p>
+          {form.options?.length ? (
+            <div className="option-list">
+              {form.options.map((option, idx) => (
+                <div key={idx} className="option-row">
+                  <input
+                    type="text"
+                    placeholder="옵션 이름"
+                    value={option.name}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setForm((prev) => ({
+                        ...prev,
+                        options: prev.options.map((o, i) => (i === idx ? { ...o, name: value } : o)),
+                      }));
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="옵션 값들을 콤마로 구분해 입력"
+                    value={option.values?.join(', ') ?? ''}
+                    onChange={(event) => {
+                      const values = event.target.value
+                        .split(',')
+                        .map((v) => v.trim())
+                        .filter(Boolean);
+                      setForm((prev) => ({
+                        ...prev,
+                        options: prev.options.map((o, i) => (i === idx ? { ...o, values } : o)),
+                      }));
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="danger"
+                    onClick={() => {
+                      setForm((prev) => ({
+                        ...prev,
+                        options: prev.options.filter((_, i) => i !== idx),
+                      }));
+                    }}
+                  >
+                    삭제
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="muted-text">등록된 옵션이 없습니다.</p>
+          )}
+        </div>
+
+        <div className="product-images-card">
+          <div className="card-header">
+            <h4>상품 이미지</h4>
+            <button type="button" onClick={onOpenUploadWidget} disabled={!widgetReady}>
+              이미지 업로드
+            </button>
+          </div>
+          <p className="muted-text">업로드된 이미지가 없거나 대표 이미지를 포함해 최소 한 장 등록해주세요.</p>
+          {widgetMessage && <p className="muted-text">{widgetMessage}</p>}
+          <div className="product-images-grid">
+            {form.images.length ? (
+              form.images.map((image, idx) => (
+                <div key={image.publicId} className="product-image-item">
+                  <img src={image.url} alt={`상품 이미지 ${idx + 1}`} />
+                  <div className="image-actions">
+                    <button
+                      type="button"
+                      onClick={() => onSetPrimaryImage(image.publicId)}
+                      className={image.isPrimary ? 'primary' : ''}
+                    >
+                      대표 이미지로 설정
+                    </button>
+                    <button type="button" className="danger" onClick={() => onRemoveImage(image.publicId)}>
+                      삭제
+                    </button>
+                  </div>
+                  {image.isPrimary && <span className="badge">대표</span>}
+                </div>
+              ))
+            ) : (
+              <p className="muted-text">등록된 이미지가 없습니다.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="product-detail-blocks">
+          <div className="card-header">
+            <h4>상세 페이지 블록 편집</h4>
+            <div className="detail-block-actions">
+              <button
+                type="button"
+                onClick={() => setForm((prev) => ({ ...prev, detailBlocks: [...prev.detailBlocks, { type: 'text', content: '' }] }))}
+              >
+                + 텍스트
+              </button>
+              <button
+                type="button"
+                onClick={() => setForm((prev) => ({ ...prev, detailBlocks: [...prev.detailBlocks, { type: 'note', content: '' }] }))}
+              >
+                + 주의사항
+              </button>
+              <button type="button" onClick={onAddDetailImage} disabled={!widgetReady}>
+                + 상세 이미지 업로드
+              </button>
+            </div>
+          </div>
+
+          <div className="detail-block-list">
+            {form.detailBlocks.length ? (
+              form.detailBlocks.map((block, idx) => (
+                <div key={idx} className="detail-block">
+                  {block.type === 'text' && (
+                    <textarea
+                      placeholder="텍스트 블록 내용"
+                      value={block.content ?? ''}
+                      onChange={(event) => {
+                        const content = event.target.value;
+                        setForm((prev) => ({
+                          ...prev,
+                          detailBlocks: prev.detailBlocks.map((b, i) => (i === idx ? { ...b, content } : b)),
+                        }));
+                      }}
+                    />
+                  )}
+                  {block.type === 'note' && (
+                    <textarea
+                      placeholder="주의사항 내용"
+                      value={block.content ?? ''}
+                      onChange={(event) => {
+                        const content = event.target.value;
+                        setForm((prev) => ({
+                          ...prev,
+                          detailBlocks: prev.detailBlocks.map((b, i) => (i === idx ? { ...b, content } : b)),
+                        }));
+                      }}
+                    />
+                  )}
+                  {block.type === 'image' && (
+                    <div className="detail-image-item">
+                      <img src={block.url} alt={`상세 이미지 ${idx + 1}`} />
+                      <button
+                        type="button"
+                        className="danger"
+                        onClick={() => {
+                          setForm((prev) => ({
+                            ...prev,
+                            detailBlocks: prev.detailBlocks.filter((_, i) => i !== idx),
+                          }));
+                        }}
+                      >
+                        삭제
+                      </button>
+                    </div>
+                  )}
+                  <div className="detail-block-actions">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const nextType = block.type === 'text' ? 'note' : block.type === 'note' ? 'image' : 'text';
+                        setForm((prev) => ({
+                          ...prev,
+                          detailBlocks: prev.detailBlocks.map((b, i) => (i === idx ? { ...b, type: nextType } : b)),
+                        }));
+                      }}
+                    >
+                      타입 변경
+                    </button>
+                    <button
+                      type="button"
+                      className="danger"
+                      onClick={() =>
+                        setForm((prev) => ({
+                          ...prev,
+                          detailBlocks: prev.detailBlocks.filter((_, i) => i !== idx),
+                        }))
+                      }
+                    >
+                      블록 삭제
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="muted-text">등록된 블록이 없습니다. 위 버튼으로 블록을 추가하세요.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="form-actions">
+          <button type="submit" disabled={isSubmitting || !form.images.length}>
+            {isSubmitting ? '저장 중...' : editingProductId ? '상품 수정' : '상품 등록'}
+          </button>
+          {editingProductId && (
+            <button type="button" onClick={resetForm}>
+              새 상품 등록
+            </button>
+          )}
+        </div>
+      </form>
+    </section>
+  );
+}
+
+ProductFormSection.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  form: PropTypes.object.isRequired,
+  setForm: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  editingProductId: PropTypes.string,
+  productCategories: PropTypes.array.isRequired,
+  widgetReady: PropTypes.bool.isRequired,
+  widgetMessage: PropTypes.string,
+  onOpenUploadWidget: PropTypes.func.isRequired,
+  onSetPrimaryImage: PropTypes.func.isRequired,
+  onRemoveImage: PropTypes.func.isRequired,
+  onAddDetailImage: PropTypes.func.isRequired,
+};
+
+export default ProductFormSection;
