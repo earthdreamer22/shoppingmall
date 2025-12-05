@@ -1,4 +1,5 @@
 ﻿import PropTypes from "prop-types";
+import { useState } from "react";
 
 function ProductFormSection({
   pageTitle,
@@ -16,6 +17,47 @@ function ProductFormSection({
   onRemoveImage,
   onAddDetailImage,
 }) {
+  const [optionInputs, setOptionInputs] = useState({});
+
+  const addOptionValue = (idx) => {
+    const raw = (optionInputs[idx] ?? "").trim();
+    if (!raw) return;
+
+    setForm((prev) => ({
+      ...prev,
+      options: prev.options.map((option, i) => {
+        if (i !== idx) return option;
+        const values = option.values ? [...option.values] : [];
+        if (!values.includes(raw)) {
+          values.push(raw);
+        }
+        return { ...option, values };
+      }),
+    }));
+
+    setOptionInputs((prev) => ({ ...prev, [idx]: "" }));
+  };
+
+  const removeOptionValue = (idx, value) => {
+    setForm((prev) => ({
+      ...prev,
+      options: prev.options.map((option, i) => {
+        if (i !== idx) return option;
+        return {
+          ...option,
+          values: (option.values || []).filter((v) => v !== value),
+        };
+      }),
+    }));
+  };
+
+  const handleOptionValueKey = (idx, event) => {
+    if (event.key === "Enter" || event.key === ",") {
+      event.preventDefault();
+      addOptionValue(idx);
+    }
+  };
+
   return (
     <section className="product-form">
       <h4>{pageTitle}</h4>
@@ -101,7 +143,7 @@ function ProductFormSection({
               onClick={() =>
                 setForm((prev) => ({
                   ...prev,
-                  options: [...(prev.options || []), { name: '', values: [''] }],
+                  options: [...(prev.options || []), { name: '', values: [] }],
                 }))
               }
             >
@@ -125,21 +167,39 @@ function ProductFormSection({
                       }));
                     }}
                   />
-                  <input
-                    type="text"
-                    placeholder="옵션 값들을 콤마로 구분해 입력"
-                    value={option.values?.join(', ') ?? ''}
-                    onChange={(event) => {
-                      const values = event.target.value
-                        .split(',')
-                        .map((v) => v.trim())
-                        .filter(Boolean);
-                      setForm((prev) => ({
-                        ...prev,
-                        options: prev.options.map((o, i) => (i === idx ? { ...o, values } : o)),
-                      }));
-                    }}
-                  />
+
+                  <div className="option-values">
+                    {(option.values || []).map((value) => (
+                      <span
+                        key={value}
+                        className="badge badge--muted"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                      >
+                        {value}
+                        <button
+                          type="button"
+                          className="danger"
+                          style={{ padding: '2px 6px', fontSize: '0.8em' }}
+                          onClick={() => removeOptionValue(idx, value)}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                  <div className="option-value-input">
+                    <input
+                      type="text"
+                      placeholder="값 입력 후 Enter"
+                      value={optionInputs[idx] ?? ''}
+                      onChange={(event) => setOptionInputs((prev) => ({ ...prev, [idx]: event.target.value }))}
+                      onKeyDown={(event) => handleOptionValueKey(idx, event)}
+                    />
+                    <button type="button" onClick={() => addOptionValue(idx)} style={{ marginLeft: 8 }}>
+                      추가
+                    </button>
+                  </div>
+
                   <button
                     type="button"
                     className="danger"
