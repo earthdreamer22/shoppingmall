@@ -1001,11 +1001,14 @@ section:hover {
   background: #e2e8f0;
   display: grid;
   place-items: center;
+  height: 200px;
+  padding: 12px;
 }
 
 .product-thumb img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .placeholder {
