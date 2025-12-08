@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
@@ -55,7 +55,7 @@ function OrderComplete() {
 
     const payload = loadStoredPayload();
     if (!payload) {
-      setError('결제 정보가 만료되었습니다. 다시 결제해 주세요.');
+      setError('결제 정보가 만료되었습니다. 다시 결제해주세요.');
       return;
     }
 
@@ -78,7 +78,7 @@ function OrderComplete() {
         setError('');
         clearStoredPayload();
       } catch (err) {
-        setError(err.message ?? '주문 생성에 실패했습니다.');
+        setError(err.message ?? '주문 생성 중 오류가 발생했습니다.');
       } finally {
         setStatus('');
       }
@@ -115,19 +115,19 @@ function OrderComplete() {
         <div className="checkout-summary">
           <div>
             <span>주문 금액</span>
-            <strong>₩{order.pricing?.subtotal?.toLocaleString?.() ?? '-'}</strong>
+            <strong>₩ {order.pricing?.subtotal?.toLocaleString?.() ?? '-'}</strong>
           </div>
           <div>
             <span>할인 금액</span>
-            <strong>- ₩{order.pricing?.discount?.toLocaleString?.() ?? '0'}</strong>
+            <strong>- ₩ {order.pricing?.discount?.toLocaleString?.() ?? '0'}</strong>
           </div>
           <div>
             <span>배송비</span>
-            <strong>+ ₩{order.pricing?.shippingFee?.toLocaleString?.() ?? '0'}</strong>
+            <strong>+ ₩ {order.pricing?.shippingFee?.toLocaleString?.() ?? '0'}</strong>
           </div>
           <div className="checkout-summary__total">
             <span>최종 결제 금액</span>
-            <strong>₩{order.pricing?.total?.toLocaleString?.() ?? '-'}</strong>
+            <strong>₩ {order.pricing?.total?.toLocaleString?.() ?? '-'}</strong>
           </div>
         </div>
       </section>
@@ -164,7 +164,7 @@ function OrderComplete() {
                 <span>SKU {item.sku}</span>
                 <span>수량 {item.quantity}개</span>
               </div>
-              <div className="checkout-item__price">₩{item.price?.toLocaleString?.()}</div>
+              <div className="checkout-item__price">₩ {item.price?.toLocaleString?.()}</div>
             </li>
           ))}
         </ul>
@@ -172,7 +172,7 @@ function OrderComplete() {
 
       <div className="checkout-actions">
         <button type="button" className="detail-primary" onClick={() => navigate('/')}>
-          쇼핑 계속하기
+          계속 쇼핑하기
         </button>
       </div>
     </div>

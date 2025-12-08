@@ -8,6 +8,7 @@ const DEFAULT_SHIPPING_FEE = 3000;
 const PORTONE_CUSTOMER_CODE = import.meta.env.VITE_PORTONE_CUSTOMER_CODE ?? '';
 const PG_PROVIDER = import.meta.env.VITE_PORTONE_PG ?? 'html5_inicis';
 const PORTONE_PG_MID = import.meta.env.VITE_PORTONE_PG_MID ?? 'INIpayTest';
+const CHECKOUT_STORAGE_KEY = 'checkout:payload';
 
 const PAY_METHOD_MAP = {
   card: 'card',
@@ -151,6 +152,31 @@ function Checkout() {
 
     const merchantUid = `order_${Date.now()}`;
     const payMethod = PAY_METHOD_MAP[paymentMethod] ?? 'card';
+    const redirectUrl = `${window.location.origin}/orders/complete`;
+
+    // 모바일 리디렉트 대비 주문 정보 저장
+    try {
+      window.sessionStorage.setItem(
+        CHECKOUT_STORAGE_KEY,
+        JSON.stringify({
+          shipping,
+          pricing: {
+            subtotal,
+            discount,
+            shippingFee,
+            total,
+          },
+          payment: {
+            method: paymentMethod,
+            pgProvider: PG_PROVIDER,
+            payMethod,
+            pgMid: PORTONE_PG_MID,
+          },
+        }),
+      );
+    } catch (_error) {
+      // storage 실패는 무시 (PC 콜백은 즉시 처리)
+    }
 
     window.IMP.request_pay(
       {
@@ -164,8 +190,10 @@ function Checkout() {
         buyer_tel: shipping.phone,
         buyer_addr: `${shipping.addressLine1} ${shipping.addressLine2 ?? ''}`.trim(),
         buyer_postcode: shipping.postalCode,
+        m_redirect_url: redirectUrl,
       },
       async (response) => {
+        // PC/일부 환경에서 콜백이 호출되는 경우 바로 주문 생성
         if (!response.success) {
           setSubmitting(false);
           setError(response.error_msg || '결제가 취소되었습니다.');
@@ -197,6 +225,11 @@ function Checkout() {
           });
 
           setCartCount(0);
+          try {
+            window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+          } catch (_error) {
+            // ignore
+          }
           navigate('/orders/complete', { replace: true, state: { order } });
         } catch (err) {
           setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
