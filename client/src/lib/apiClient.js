@@ -39,7 +39,7 @@ export async function apiRequest(path, options = {}) {
 
   if (!response.ok) {
     // Default fallback message for unexpected errors
-    let message = '¿äÃ» Ã³¸® Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.';
+    let message = 'ìš”ì²­ ì²˜ë¦¬ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.';
     const raw = await response.text();
     if (raw) {
       try {

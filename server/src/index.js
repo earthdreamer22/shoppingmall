@@ -14,10 +14,10 @@ async function bootstrap() {
 
     const server = http.createServer(app);
     server.listen(PORT, () => {
-      console.log(`¼­¹ö°¡ Æ÷Æ® ${PORT}¿¡¼­ ½ÇÇà ÁßÀÔ´Ï´Ù.`);
+      console.log(`ğŸš€ ì„œë²„ê°€ í¬íŠ¸ ${PORT}ì—ì„œ ì‹¤í–‰ ì¤‘ì…ë‹ˆë‹¤.`);
     });
   } catch (error) {
-    console.error('¼­¹ö ½ÃÀÛ¿¡ ½ÇÆĞÇß½À´Ï´Ù.', error.message);
+    console.error('ì„œë²„ ì‹œì‘ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.', error.message);
     process.exit(1);
   }
 }

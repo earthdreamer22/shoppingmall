@@ -12,29 +12,29 @@ const verifyWebhookSecret = (req) => {
 
 const handleWebhook = asyncHandler(async (req, res) => {
   if (!verifyWebhookSecret(req)) {
-    return res.status(403).json({ message: 'À¯È¿ÇÏÁö ¾ÊÀº À¥ÈÅ ½ÃÅ©¸´ÀÔ´Ï´Ù.' });
+    return res.status(403).json({ message: 'ìœ íš¨í•˜ì§€ ì•Šì€ ì›¹í›… ìš”ì²­ì…ë‹ˆë‹¤.' });
   }
 
   const { imp_uid: impUid, merchant_uid: merchantUid } = req.body ?? {};
   if (!impUid || !merchantUid) {
-    return res.status(400).json({ message: 'imp_uid¿Í merchant_uid°¡ ÇÊ¿äÇÕ´Ï´Ù.' });
+    return res.status(400).json({ message: 'imp_uidì™€ merchant_uidê°€ í•„ìš”í•©ë‹ˆë‹¤.' });
   }
 
   const payment = await getPaymentByImpUid(impUid);
 
   if (payment.merchant_uid !== merchantUid) {
-    return res.status(400).json({ message: '°áÁ¦ Á¤º¸°¡ ÁÖ¹® Á¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.' });
+    return res.status(400).json({ message: 'ê²°ì œ ì •ë³´ê°€ ì£¼ë¬¸ ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.' });
   }
 
   const order = await Order.findOne({ 'payment.merchantUid': merchantUid });
   if (!order) {
-    return res.status(404).json({ message: 'ÇØ´ç ÁÖ¹®À» Ã£À» ¼ö ¾ø½À´Ï´Ù.' });
+    return res.status(404).json({ message: 'í•´ë‹¹ ì£¼ë¬¸ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.' });
   }
 
   const paidAmount = Math.round(payment.amount ?? 0);
   const orderTotal = Math.round(order.pricing?.total ?? 0);
   if (paidAmount !== orderTotal) {
-    return res.status(400).json({ message: '°áÁ¦ ±İ¾×ÀÌ ÁÖ¹® ±İ¾×°ú ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.' });
+    return res.status(400).json({ message: 'ê²°ì œ ê¸ˆì•¡ì´ ì£¼ë¬¸ ê¸ˆì•¡ê³¼ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.' });
   }
 
   const paymentStatus = payment.status;
@@ -57,7 +57,7 @@ const handleWebhook = asyncHandler(async (req, res) => {
 
   order.history.push({
     status: order.status,
-    note: `Æ÷Æ®¿ø À¥ÈÅ Ã³¸®(${paymentStatus})`,
+    note: `í¬íŠ¸ì› ê²°ì œ ì²˜ë¦¬(${paymentStatus})`,
   });
 
   await order.save();

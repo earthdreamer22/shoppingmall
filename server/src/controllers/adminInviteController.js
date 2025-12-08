@@ -60,7 +60,7 @@ const revokeInvite = asyncHandler(async (req, res) => {
   const { inviteId } = req.params;
   const invite = await AdminInvite.findById(inviteId);
   if (!invite) {
-    return res.status(404).json({ message: 'ÃÊ´ë Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.' });
+    return res.status(404).json({ message: 'ì´ˆëŒ€ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.' });
   }
 
   invite.expiresAt = new Date(Date.now() - 1000);

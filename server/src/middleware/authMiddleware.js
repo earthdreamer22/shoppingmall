@@ -20,14 +20,14 @@ const authenticate = asyncHandler(async (req, res, next) => {
   const token = extractToken(req);
 
   if (!token) {
-    return res.status(401).json({ message: 'ÀÎÁõ Á¤º¸°¡ ¾ø½À´Ï´Ù.' });
+    return res.status(401).json({ message: 'ì¸ì¦ ì •ë³´ê°€ í•„ìš”í•©ë‹ˆë‹¤.' });
   }
 
   const secret = config.auth.jwtSecret;
 
   const invalidToken = await InvalidToken.findOne({ token }).lean();
   if (invalidToken) {
-    return res.status(401).json({ message: '¸¸·áµÇ¾ú°Å³ª Ãë¼ÒµÈ ÅäÅ«ÀÔ´Ï´Ù.' });
+    return res.status(401).json({ message: 'ë§Œë£Œë˜ì—ˆê±°ë‚˜ ì·¨ì†Œëœ í† í°ì…ë‹ˆë‹¤.' });
   }
 
   try {
@@ -42,18 +42,18 @@ const authenticate = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     console.error('[auth] Token verification failed', error.message);
-    return res.status(401).json({ message: 'À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ ÅäÅ«ÀÔ´Ï´Ù.' });
+    return res.status(401).json({ message: 'ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ í† í°ì…ë‹ˆë‹¤.' });
   }
 });
 
 function authorize(...allowedRoles) {
   return (req, res, next) => {
     if (!req.user) {
-      return res.status(401).json({ message: 'ÀÎÁõ Á¤º¸°¡ ¾ø½À´Ï´Ù.' });
+      return res.status(401).json({ message: 'ì¸ì¦ ì •ë³´ê°€ í•„ìš”í•©ë‹ˆë‹¤.' });
     }
 
     if (allowedRoles.length && !allowedRoles.includes(req.user.role)) {
-      return res.status(403).json({ message: 'Á¢±Ù ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.' });
+      return res.status(403).json({ message: 'ì ‘ê·¼ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.' });
     }
 
     next();

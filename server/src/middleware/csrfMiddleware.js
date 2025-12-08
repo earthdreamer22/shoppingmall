@@ -2,13 +2,13 @@ const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS'];
 const CSRF_COOKIE_NAME = 'csrfToken';
 const CSRF_HEADER_NAME = 'x-csrf-token';
 
-// Path/methodº° CSRF ¿¹¿Ü ±ÔÄ¢
+// Path/methodë³„ CSRF ì œì™¸ ê·œì¹™
 const EXCLUDED_RULES = [
   { prefix: '/api/auth/login', methods: ['POST'] },
   { prefix: '/api/auth/logout', methods: ['POST'] },
   { prefix: '/api/auth/csrf-token', methods: ['GET'] },
   { prefix: '/api/payments/webhook', methods: ['POST'] },
-  // È¸¿ø°¡ÀÔ¸¸ ¿¹¿Ü, ¼öÁ¤/»èÁ¦´Â º¸È£
+  // íšŒì›ê°€ì…ë§Œ ì œì™¸, ìˆ˜ì •/ì‚­ì œëŠ” ë³´í˜¸
   { prefix: '/api/users', methods: ['POST'] },
 ];
 
@@ -31,7 +31,7 @@ function csrfProtection(req, res, next) {
   if (!cookieToken || !headerToken || cookieToken !== headerToken) {
     return res
       .status(403)
-      .json({ message: 'CSRF ÅäÅ«ÀÌ ¾ø°Å³ª ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.' });
+      .json({ message: 'CSRF í† í°ì´ ì—†ê±°ë‚˜ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.' });
   }
 
   return next();

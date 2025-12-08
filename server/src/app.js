@@ -20,11 +20,11 @@ const { config } = require('./config/env');
 
 const app = express();
 
-// ½Å·Ú ÇÁ·Ï½Ã ¼³Á¤: X-Forwarded-For µîÀ» È°¿ëÇØ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ® IP »ç¿ë
+// ì‹ ë¢° í”„ë¡ì‹œ ì„¤ì •: X-Forwarded-For í—¤ë” í™œì„±í™” í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ IP ì¶”ì 
 app.set('trust proxy', 1);
 
 const allowedOrigins = config.cors.clientOrigins;
-const previewPattern = config.cors.previewPattern; // ¿¹: "-project.vercel.app"
+const previewPattern = config.cors.previewPattern; // ì˜ˆ: "-project.vercel.app"
 const appEnv = config.appEnv;
 
 const cspDirectives = {
@@ -34,7 +34,7 @@ const cspDirectives = {
   objectSrc: ["'none'"],
 };
 
-// Helmet ±âº» Çì´õ + CSP/Referrer Àû¿ë
+// Helmet ê¸°ë³¸ ì„¤ì • + CSP/Referrer ì •ì±…
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: 'cross-origin' },
@@ -43,7 +43,7 @@ app.use(
   })
 );
 
-// Permissions-Policy: ºÒÇÊ¿äÇÑ ±â±â ±ÇÇÑ Â÷´Ü
+// Permissions-Policy: ë¶ˆí•„ìš”í•œ ê¸°ëŠ¥ ì°¨ë‹¨ ì„¤ì •
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()');
   next();
@@ -88,13 +88,13 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/schedules', scheduleRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({ message: `${req.originalUrl} °æ·Î¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.` });
+  res.status(404).json({ message: `${req.originalUrl} ê²½ë¡œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.` });
 });
 
 app.use((error, _req, res, _next) => {
   console.error('[error]', error);
   const status = error.status || 500;
-  const message = error.message || '¼­¹ö ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.';
+  const message = error.message || 'ì„œë²„ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.';
   res.status(status).json({ message });
 });
 

@@ -58,7 +58,7 @@ function rateLimiter(req, res, next) {
   const count = increment(key, windowMs);
 
   if (count > max) {
-    return res.status(429).json({ message: '¿äÃ»ÀÌ ³Ê¹« ¸¹½À´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.' });
+    return res.status(429).json({ message: 'ìš”ì²­ì´ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.' });
   }
 
   return next();

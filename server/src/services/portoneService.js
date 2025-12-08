@@ -12,7 +12,7 @@ async function getAccessToken() {
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`Æ÷Æ®¿ø ¾×¼¼½º ÅäÅ« ¹ß±Ş ½ÇÆĞ: ${response.data.message}`);
+    throw new Error(`í¬íŠ¸ì› ì•¡ì„¸ìŠ¤ í† í° ë°œê¸‰ ì‹¤íŒ¨: ${response.data.message}`);
   }
 
   return response.data.response.access_token;
@@ -21,7 +21,7 @@ async function getAccessToken() {
 async function getPaymentByImpUid(impUid) {
   const accessToken = await getAccessToken();
 
-  // include_sandbox´Â Å×½ºÆ® ¸ğµå¿¡¼­¸¸ »ç¿ë
+  // include_sandboxëŠ” í…ŒìŠ¤íŠ¸ ëª¨ë“œì—ì„œë§Œ ì‚¬ìš©
   const params = config.portone.isTestMode ? { include_sandbox: true } : {};
 
   const response = await axios.get(`${PORTONE_API_BASE}/payments/${impUid}`, {
@@ -32,7 +32,7 @@ async function getPaymentByImpUid(impUid) {
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`Æ÷Æ®¿ø °áÁ¦ Á¶È¸ ½ÇÆĞ: ${response.data.message}`);
+    throw new Error(`í¬íŠ¸ì› ê²°ì œ ì¡°íšŒ ì‹¤íŒ¨: ${response.data.message}`);
   }
 
   return response.data.response;
@@ -43,7 +43,7 @@ async function cancelPayment(impUid, reason, amount = null) {
 
   const requestBody = {
     imp_uid: impUid,
-    reason: reason || '°ü¸®ÀÚ ÁÖ¹® Ãë¼Ò',
+    reason: reason || 'ì‚¬ìš©ì ì£¼ë¬¸ ì·¨ì†Œ',
   };
 
   if (amount) {
@@ -57,7 +57,7 @@ async function cancelPayment(impUid, reason, amount = null) {
   });
 
   if (response.data.code !== 0) {
-    throw new Error(`Æ÷Æ®¿ø °áÁ¦ Ãë¼Ò ½ÇÆĞ: ${response.data.message}`);
+    throw new Error(`í¬íŠ¸ì› ê²°ì œ ì·¨ì†Œ ì‹¤íŒ¨: ${response.data.message}`);
   }
 
   return response.data.response;

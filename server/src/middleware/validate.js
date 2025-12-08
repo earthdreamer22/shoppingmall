@@ -10,7 +10,7 @@ function validate(schema, target = 'body') {
     }
 
     const errors = result.error.issues.map((issue) => `${issue.path.join('.')} ${issue.message}`);
-    return res.status(400).json({ message: '¿äÃ» Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.', errors });
+    return res.status(400).json({ message: 'ìš”ì²­ ë°ì´í„°ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.', errors });
   };
 }
 
