@@ -38,13 +38,15 @@ export async function apiRequest(path, options = {}) {
   const response = await fetch(`${API_BASE_URL}${path}`, config);
 
   if (!response.ok) {
-    let message = 'ìš”ì²­ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.';
+    // Default fallback message for unexpected errors
+    let message = '¿äÃ» Ã³¸® Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.';
     const raw = await response.text();
     if (raw) {
       try {
         const data = JSON.parse(raw);
         message = data?.message ?? message;
       } catch (_error) {
+        // If the body is plain text, surface it as-is
         message = raw;
       }
     }
