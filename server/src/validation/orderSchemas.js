@@ -15,7 +15,8 @@ const orderItemSchema = z.object({
 });
 
 const createOrderSchema = z.object({
-  items: z.array(orderItemSchema).min(1),
+  // 주문 생성은 서버에서 장바구니 기준으로 아이템을 읽으므로, 클라이언트 요청에 items가 없어도 통과시키기 위해 optional 처리
+  items: z.array(orderItemSchema).optional().default([]),
   pricing: z.object({
     subtotal: z.number().nonnegative(),
     discount: z.number().nonnegative().optional().default(0),

@@ -36,7 +36,7 @@ function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [useDefaultAddress, setUseDefaultAddress] = useState(true);
   const [impReady, setImpReady] = useState(false);
-  const [moduleStatus, setModuleStatus] = useState('결제 모듈을 불러오는 중입니다...');
+  const [moduleStatus, setModuleStatus] = useState('결제 모듈??불러?�는 중입?�다...');
 
   useEffect(() => {
     if (!loading && !user) {
@@ -46,7 +46,7 @@ function Checkout() {
 
   useEffect(() => {
     if (!PORTONE_CUSTOMER_CODE) {
-      setModuleStatus('포트원 고객사 식별코드가 설정되지 않았습니다.');
+      setModuleStatus('?�트??고객???�별코드가 ?�정?��? ?�았?�니??');
       setImpReady(false);
       return;
     }
@@ -55,7 +55,7 @@ function Checkout() {
     if (existing) {
       existing.init(PORTONE_CUSTOMER_CODE);
       setImpReady(true);
-      setModuleStatus('결제 모듈이 준비되었습니다.');
+      setModuleStatus('결제 모듈??준비되?�습?�다.');
       return;
     }
 
@@ -66,12 +66,12 @@ function Checkout() {
       if (window.IMP) {
         window.IMP.init(PORTONE_CUSTOMER_CODE);
         setImpReady(true);
-        setModuleStatus('결제 모듈이 준비되었습니다.');
+        setModuleStatus('결제 모듈??준비되?�습?�다.');
       }
     };
     script.onerror = () => {
       setImpReady(false);
-      setModuleStatus('결제 모듈을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+      setModuleStatus('결제 모듈??불러?��? 못했?�니?? ?�시 ???�시 ?�도?�주?�요.');
     };
     document.body.appendChild(script);
 
@@ -99,7 +99,7 @@ function Checkout() {
           }));
         }
       } catch (err) {
-        setError(err.message ?? '주문 정보를 불러오지 못했습니다.');
+        setError(err.message ?? '주문 ?�보�?불러?��? 못했?�니??');
       } finally {
         setIsLoadingCart(false);
       }
@@ -133,17 +133,17 @@ function Checkout() {
     setError('');
 
     if (!cart.length) {
-      setError('장바구니가 비어 있습니다.');
+      setError('?�바구니가 비어 ?�습?�다.');
       return;
     }
 
     if (!shipping.recipientName || !shipping.phone || !shipping.postalCode || !shipping.addressLine1) {
-      setError('배송지 필수 정보를 입력해주세요.');
+      setError('배송지 ?�수 ?�보�??�력?�주?�요.');
       return;
     }
 
     if (!impReady || typeof window.IMP === 'undefined') {
-      setError('결제 모듈이 아직 준비 중입니다. 잠시 후 다시 시도해주세요.');
+      setError('결제 모듈???�직 준�?중입?�다. ?�시 ???�시 ?�도?�주?�요.');
       setSubmitting(false);
       return;
     }
@@ -172,7 +172,7 @@ function Checkout() {
     try {
       window.sessionStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutPayload));
     } catch (_error) {
-      // storage 실패 시에도 결제 진행은 계속한다.
+      // storage ?�패 ?�에??결제 진행?� 계속?�다.
     }
 
     const redirectUrl = `${window.location.origin}/orders/complete`;
@@ -182,7 +182,7 @@ function Checkout() {
         pg: `${PG_PROVIDER}.${PORTONE_PG_MID}`,
         pay_method: payMethod,
         merchant_uid: merchantUid,
-        name: `종이책 연구소 주문 (${cart.length}건)`,
+        name: `종이�??�구??주문 (${cart.length}�?`,
         amount: total,
         buyer_email: user?.email ?? '',
         buyer_name: shipping.recipientName,
@@ -194,7 +194,7 @@ function Checkout() {
       async (response) => {
         if (!response.success) {
           setSubmitting(false);
-          setError(response.error_msg || '결제가 취소되었습니다.');
+          setError(response.error_msg || '결제가 취소?�었?�니??');
           return;
         }
 
@@ -230,7 +230,7 @@ function Checkout() {
           }
           navigate('/orders/complete', { replace: true, state: { order } });
         } catch (err) {
-          setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
+          setError(err.message ?? '주문 ?�성 �?문제가 발생?�습?�다.');
         } finally {
           setSubmitting(false);
         }
@@ -243,7 +243,7 @@ function Checkout() {
   if (isLoadingCart || loading) {
     return (
       <div className="App checkout-page">
-        <div className="checkout-status">주문 정보를 불러오는 중입니다...</div>
+        <div className="checkout-status">주문 ?�보�?불러?�는 중입?�다...</div>
       </div>
     );
   }
@@ -251,10 +251,9 @@ function Checkout() {
   if (!cart.length) {
     return (
       <div className="App checkout-page">
-        <div className="checkout-status error">장바구니가 비어 있어 주문을 진행할 수 없습니다.</div>
+        <div className="checkout-status error">?�바구니가 비어 ?�어 주문??진행?????�습?�다.</div>
         <button type="button" className="detail-secondary" onClick={handleBackToCart}>
-          장바구니로 돌아가기
-        </button>
+          ?�바구니�??�아가�?        </button>
       </div>
     );
   }
@@ -263,18 +262,18 @@ function Checkout() {
     <div className="App checkout-page">
       <header className="checkout-header">
         <h1>주문 / 결제</h1>
-        <p>주문 정보를 확인하고 배송지를 입력해주세요.</p>
+        <p>주문 ?�보�??�인?�고 배송지�??�력?�주?�요.</p>
       </header>
 
       <form className="checkout-grid" onSubmit={handleSubmit}>
         <section className="checkout-section">
-          <h2>주문자 정보</h2>
+          <h2>주문???�보</h2>
           <div className="checkout-field">
-            <span className="label">주문자</span>
+            <span className="label">주문??/span>
             <span>{user?.name ?? user?.email}</span>
           </div>
           <div className="checkout-field">
-            <span className="label">이메일</span>
+            <span className="label">?�메??/span>
             <span>{user?.email}</span>
           </div>
         </section>
@@ -289,7 +288,7 @@ function Checkout() {
                 checked={useDefaultAddress}
                 onChange={() => setUseDefaultAddress(true)}
               />
-              최근 배송지 사용
+              최근 배송지 ?�용
             </label>
             <label>
               <input
@@ -298,27 +297,24 @@ function Checkout() {
                 checked={!useDefaultAddress}
                 onChange={() => setUseDefaultAddress(false)}
               />
-              새로운 배송지 입력
+              ?�로??배송지 ?�력
             </label>
           </div>
 
           <label className="checkout-input">
-            수령인
-            <input value={shipping.recipientName} onChange={updateShipping('recipientName')} required />
+            ?�령??            <input value={shipping.recipientName} onChange={updateShipping('recipientName')} required />
           </label>
           <label className="checkout-input">
-            연락처
-            <input value={shipping.phone} onChange={updateShipping('phone')} placeholder="010-0000-0000" required />
+            ?�락�?            <input value={shipping.phone} onChange={updateShipping('phone')} placeholder="010-0000-0000" required />
           </label>
 
           <div className="checkout-row">
             <label className="checkout-input">
-              우편번호
+              ?�편번호
               <input value={shipping.postalCode} onChange={updateShipping('postalCode')} required />
             </label>
             <button type="button" className="checkout-zipcode-btn" disabled>
-              검색
-            </button>
+              검??            </button>
           </div>
 
           <label className="checkout-input">
@@ -326,18 +322,18 @@ function Checkout() {
             <input value={shipping.addressLine1} onChange={updateShipping('addressLine1')} required />
           </label>
           <label className="checkout-input">
-            상세 주소
+            ?�세 주소
             <input value={shipping.addressLine2} onChange={updateShipping('addressLine2')} />
           </label>
 
           <label className="checkout-input">
             배송 메모
-            <textarea value={shipping.requestMessage} onChange={updateShipping('requestMessage')} placeholder="문 앞에 놓아주세요" />
+            <textarea value={shipping.requestMessage} onChange={updateShipping('requestMessage')} placeholder="�??�에 ?�아주세?? />
           </label>
         </section>
 
         <section className="checkout-section">
-          <h2>주문 상품</h2>
+          <h2>주문 ?�품</h2>
           <ul className="checkout-items">
             {cart.map((item) => (
               <li key={item.id} className="checkout-item">
@@ -345,49 +341,49 @@ function Checkout() {
                   {item.primaryImage?.url ? (
                     <img src={item.primaryImage.url} alt={item.name} />
                   ) : (
-                    <span className="placeholder">이미지 없음</span>
+                    <span className="placeholder">?��?지 ?�음</span>
                   )}
                 </div>
                 <div className="checkout-item__info">
                   <strong>{item.name}</strong>
-                  <span>수량 {item.quantity}개</span>
+                  <span>?�량 {item.quantity}�?/span>
                 </div>
-                <div className="checkout-item__price">₩ {item.price.toLocaleString()}</div>
+                <div className="checkout-item__price">??{item.price.toLocaleString()}</div>
               </li>
             ))}
           </ul>
         </section>
 
         <section className="checkout-section">
-          <h2>결제 요약</h2>
+          <h2>결제 ?�약</h2>
           <div className="checkout-summary">
             <div>
-              <span>상품금액</span>
-              <strong>₩ {subtotal.toLocaleString()}</strong>
+              <span>?�품금액</span>
+              <strong>??{subtotal.toLocaleString()}</strong>
             </div>
             <div>
-              <span>할인금액</span>
-              <strong>- ₩ {discount.toLocaleString()}</strong>
+              <span>?�인금액</span>
+              <strong>- ??{discount.toLocaleString()}</strong>
             </div>
             <div>
-              <span>배송비</span>
-              <strong>+ ₩ {shippingFee.toLocaleString()}</strong>
+              <span>배송�?/span>
+              <strong>+ ??{shippingFee.toLocaleString()}</strong>
             </div>
             <div className="checkout-summary__total">
               <span>최종 결제 금액</span>
-              <strong>₩ {total.toLocaleString()}</strong>
+              <strong>??{total.toLocaleString()}</strong>
             </div>
           </div>
         </section>
 
         <section className="checkout-section">
-          <h2>결제수단</h2>
+          <h2>결제?�단</h2>
           <div className="payment-options">
             {[
               { value: 'card', label: '카드 결제' },
-              { value: 'bank_transfer', label: '계좌이체' },
-              { value: 'virtual_account', label: '가상계좌' },
-              { value: 'mobile', label: '휴대폰 결제' },
+              { value: 'bank_transfer', label: '계좌?�체' },
+              { value: 'virtual_account', label: '가?�계�? },
+              { value: 'mobile', label: '?��???결제' },
             ].map((option) => (
               <label key={option.value} className={`payment-option ${paymentMethod === option.value ? 'is-selected' : ''}`}>
                 <input
@@ -404,7 +400,7 @@ function Checkout() {
 
           <label className="agreement">
             <input type="checkbox" required />
-            주문 내용을 확인했으며, 약관에 동의합니다.
+            주문 ?�용???�인?�으�? ?��????�의?�니??
           </label>
 
           {error && <div className="status error">{error}</div>}
@@ -412,10 +408,9 @@ function Checkout() {
 
           <div className="checkout-actions">
             <button type="button" className="detail-secondary" onClick={handleBackToCart}>
-              장바구니로 돌아가기
-            </button>
+              ?�바구니�??�아가�?            </button>
             <button type="submit" className="detail-primary" disabled={submitting || !impReady}>
-              {submitting ? '주문 처리 중...' : `₩ ${total.toLocaleString()} 결제하기`}
+              {submitting ? '주문 처리 �?..' : `??${total.toLocaleString()} 결제?�기`}
             </button>
           </div>
         </section>
