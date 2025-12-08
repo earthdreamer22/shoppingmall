@@ -8,7 +8,6 @@ const DEFAULT_SHIPPING_FEE = 3000;
 const PORTONE_CUSTOMER_CODE = import.meta.env.VITE_PORTONE_CUSTOMER_CODE ?? '';
 const PG_PROVIDER = import.meta.env.VITE_PORTONE_PG ?? 'html5_inicis';
 const PORTONE_PG_MID = import.meta.env.VITE_PORTONE_PG_MID ?? 'INIpayTest';
-const CHECKOUT_STORAGE_KEY = 'checkout:payload';
 
 const PAY_METHOD_MAP = {
   card: 'card',
@@ -153,30 +152,6 @@ function Checkout() {
     const merchantUid = `order_${Date.now()}`;
     const payMethod = PAY_METHOD_MAP[paymentMethod] ?? 'card';
 
-    const checkoutPayload = {
-      shipping,
-      pricing: {
-        subtotal,
-        discount,
-        shippingFee,
-        total,
-      },
-      payment: {
-        method: paymentMethod,
-        pgProvider: PG_PROVIDER,
-        payMethod,
-        pgMid: PORTONE_PG_MID,
-      },
-    };
-
-    try {
-      window.sessionStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutPayload));
-    } catch (_error) {
-      // storage ?�패 ?�에??결제 진행?� 계속?�다.
-    }
-
-    const redirectUrl = `${window.location.origin}/orders/complete`;
-
     window.IMP.request_pay(
       {
         pg: `${PG_PROVIDER}.${PORTONE_PG_MID}`,
@@ -189,7 +164,6 @@ function Checkout() {
         buyer_tel: shipping.phone,
         buyer_addr: `${shipping.addressLine1} ${shipping.addressLine2 ?? ''}`.trim(),
         buyer_postcode: shipping.postalCode,
-        m_redirect_url: redirectUrl,
       },
       async (response) => {
         if (!response.success) {
@@ -223,11 +197,6 @@ function Checkout() {
           });
 
           setCartCount(0);
-          try {
-            window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
-          } catch (_error) {
-            // ignore storage cleanup error
-          }
           navigate('/orders/complete', { replace: true, state: { order } });
         } catch (err) {
           setError(err.message ?? '주문 ?�성 �?문제가 발생?�습?�다.');
