@@ -16,6 +16,7 @@ import Terms from './pages/Terms.jsx';
 import Privacy from './pages/Privacy.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Layout from './components/layout/Layout.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
@@ -33,11 +34,32 @@ function App() {
             <Route path="/design" element={<Design />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/mypage"
+              element={
+                <ProtectedRoute>
+                  <MyPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/orders/complete" element={<OrderComplete />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
