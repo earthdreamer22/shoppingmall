@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import Button from '../components/common/Button.jsx';
 
 function Login() {
   const navigate = useNavigate();
@@ -58,9 +59,9 @@ function Login() {
 
         {error && <div className="status error">{error}</div>}
 
-        <button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} fullWidth>
           {isSubmitting ? '로그인 중...' : '로그인'}
-        </button>
+        </Button>
       </form>
 
       <p>
