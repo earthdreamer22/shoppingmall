@@ -14,6 +14,7 @@ import Checkout from './pages/Checkout.jsx';
 import OrderComplete from './pages/OrderComplete.jsx';
 import Terms from './pages/Terms.jsx';
 import Privacy from './pages/Privacy.jsx';
+import NotFound from './pages/NotFound.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/orders/complete" element={<OrderComplete />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
