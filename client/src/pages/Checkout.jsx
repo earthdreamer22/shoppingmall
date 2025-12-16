@@ -5,16 +5,15 @@ import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const DEFAULT_SHIPPING_FEE = 3000;
-const PORTONE_CUSTOMER_CODE = import.meta.env.VITE_PORTONE_CUSTOMER_CODE ?? '';
-const PG_PROVIDER = import.meta.env.VITE_PORTONE_PG ?? 'html5_inicis';
-const PORTONE_PG_MID = import.meta.env.VITE_PORTONE_PG_MID ?? 'INIpayTest';
+const PORTONE_STORE_ID = import.meta.env.VITE_PORTONE_STORE_ID ?? '';
+const PORTONE_CHANNEL_KEY = import.meta.env.VITE_PORTONE_CHANNEL_KEY ?? '';
 const CHECKOUT_STORAGE_KEY = 'checkout:payload';
 
 const PAY_METHOD_MAP = {
-  card: 'card',
-  bank_transfer: 'trans',
-  virtual_account: 'vbank',
-  mobile: 'phone',
+  card: 'CARD',
+  bank_transfer: 'TRANSFER',
+  virtual_account: 'VIRTUAL_ACCOUNT',
+  mobile: 'MOBILE',
 };
 
 function Checkout() {
@@ -35,7 +34,7 @@ function Checkout() {
   });
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [useDefaultAddress, setUseDefaultAddress] = useState(true);
-  const [impReady, setImpReady] = useState(false);
+  const [portoneReady, setPortoneReady] = useState(false);
   const [moduleStatus, setModuleStatus] = useState('결제 모듈을 불러오는 중입니다...');
 
   useEffect(() => {
@@ -45,38 +44,40 @@ function Checkout() {
   }, [loading, user, navigate]);
 
   useEffect(() => {
-    if (!PORTONE_CUSTOMER_CODE) {
-      setModuleStatus('포트원 고객사 식별코드가 설정되지 않았습니다.');
-      setImpReady(false);
+    if (!PORTONE_STORE_ID || !PORTONE_CHANNEL_KEY) {
+      setModuleStatus('포트원 설정이 올바르지 않습니다.');
+      setPortoneReady(false);
       return;
     }
 
-    const existing = window.IMP;
+    const existing = window.PortOne;
     if (existing) {
-      existing.init(PORTONE_CUSTOMER_CODE);
-      setImpReady(true);
+      setPortoneReady(true);
       setModuleStatus('결제 모듈이 준비되었습니다.');
       return;
     }
 
     const script = document.createElement('script');
-    script.src = 'https://cdn.iamport.kr/v1/iamport.js';
+    script.src = 'https://cdn.portone.io/v2/browser-sdk.js';
     script.async = true;
     script.onload = () => {
-      if (window.IMP) {
-        window.IMP.init(PORTONE_CUSTOMER_CODE);
-        setImpReady(true);
+      if (window.PortOne) {
+        setPortoneReady(true);
         setModuleStatus('결제 모듈이 준비되었습니다.');
       }
     };
     script.onerror = () => {
-      setImpReady(false);
+      setPortoneReady(false);
       setModuleStatus('결제 모듈을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
     };
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      try {
+        document.body.removeChild(script);
+      } catch (e) {
+        // 이미 제거됨
+      }
     };
   }, []);
 
@@ -142,7 +143,7 @@ function Checkout() {
       return;
     }
 
-    if (!impReady || typeof window.IMP === 'undefined') {
+    if (!portoneReady || typeof window.PortOne === 'undefined') {
       setError('결제 모듈이 아직 준비 중입니다. 잠시 후 다시 시도해주세요.');
       setSubmitting(false);
       return;
@@ -150,8 +151,8 @@ function Checkout() {
 
     setSubmitting(true);
 
-    const merchantUid = `order_${Date.now()}`;
-    const payMethod = PAY_METHOD_MAP[paymentMethod] ?? 'card';
+    const orderId = `order_${Date.now()}`;
+    const payMethodV2 = PAY_METHOD_MAP[paymentMethod] ?? 'CARD';
     const redirectUrl = `${window.location.origin}/orders/complete`;
 
     // 모바일 리디렉트 대비 주문 정보 저장
@@ -168,76 +169,74 @@ function Checkout() {
           },
           payment: {
             method: paymentMethod,
-            pgProvider: PG_PROVIDER,
-            payMethod,
-            pgMid: PORTONE_PG_MID,
           },
         }),
       );
     } catch (_error) {
-      // storage 실패는 무시 (PC 콜백은 즉시 처리)
+      // storage 실패는 무시
     }
 
-    window.IMP.request_pay(
-      {
-        pg: `${PG_PROVIDER}.${PORTONE_PG_MID}`,
-        pay_method: payMethod,
-        merchant_uid: merchantUid,
-        name: `종이책 연구소 주문 (${cart.length}건)`,
-        amount: total,
-        buyer_email: user?.email ?? '',
-        buyer_name: shipping.recipientName,
-        buyer_tel: shipping.phone,
-        buyer_addr: `${shipping.addressLine1} ${shipping.addressLine2 ?? ''}`.trim(),
-        buyer_postcode: shipping.postalCode,
-        m_redirect_url: redirectUrl,
-      },
-      async (response) => {
-        // PC/일부 환경에서 콜백이 호출되는 경우 바로 주문 생성
-        if (!response.success) {
-          setSubmitting(false);
-          setError(response.error_msg || '결제가 취소되었습니다.');
-          return;
-        }
+    try {
+      const response = await window.PortOne.requestPayment({
+        storeId: PORTONE_STORE_ID,
+        channelKey: PORTONE_CHANNEL_KEY,
+        paymentId: orderId,
+        orderName: `종이책 연구소 주문 (${cart.length}건)`,
+        totalAmount: total,
+        currency: 'KRW',
+        payMethod: payMethodV2,
+        customer: {
+          fullName: shipping.recipientName,
+          phoneNumber: shipping.phone,
+          email: user?.email,
+        },
+        redirectUrl,
+      });
 
+      if (response.code != null) {
+        // 오류 발생
+        setSubmitting(false);
+        setError(response.message || '결제가 취소되었습니다.');
+        return;
+      }
+
+      // 결제 성공 - 주문 생성
+      try {
+        const order = await apiRequest('/orders', {
+          method: 'POST',
+          body: JSON.stringify({
+            shipping,
+            payment: {
+              method: paymentMethod,
+              paymentId: response.paymentId,
+              transactionType: response.transactionType,
+              txId: response.txId,
+            },
+            pricing: {
+              subtotal,
+              discount,
+              shippingFee,
+              total,
+            },
+          }),
+        });
+
+        setCartCount(0);
         try {
-          const order = await apiRequest('/orders', {
-            method: 'POST',
-            body: JSON.stringify({
-              shipping,
-              payment: {
-                method: paymentMethod,
-                impUid: response.imp_uid,
-                merchantUid: response.merchant_uid,
-                pgProvider: response.pg_provider,
-                payMethod: response.pay_method,
-                pgTid: response.pg_tid,
-                cardName: response.card_name,
-                applyNum: response.apply_num,
-              },
-              pricing: {
-                subtotal,
-                discount,
-                shippingFee,
-                total,
-              },
-            }),
-          });
-
-          setCartCount(0);
-          try {
-            window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
-          } catch (_error) {
-            // ignore
-          }
-          navigate('/orders/complete', { replace: true, state: { order } });
-        } catch (err) {
-          setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
-        } finally {
-          setSubmitting(false);
+          window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+        } catch (_error) {
+          // ignore
         }
-      },
-    );
+        navigate('/orders/complete', { replace: true, state: { order } });
+      } catch (err) {
+        setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
+      } finally {
+        setSubmitting(false);
+      }
+    } catch (err) {
+      setSubmitting(false);
+      setError(err.message || '결제 중 오류가 발생했습니다.');
+    }
   };
 
   const handleBackToCart = () => navigate('/', { state: { focus: 'cart' } });
@@ -410,13 +409,13 @@ function Checkout() {
           </label>
 
           {error && <div className="status error">{error}</div>}
-          {!impReady && <div className="status">{moduleStatus}</div>}
+          {!portoneReady && <div className="status">{moduleStatus}</div>}
 
           <div className="checkout-actions">
             <button type="button" className="detail-secondary" onClick={handleBackToCart}>
               장바구니로 돌아가기
             </button>
-            <button type="submit" className="detail-primary" disabled={submitting || !impReady}>
+            <button type="submit" className="detail-primary" disabled={submitting || !portoneReady}>
               {submitting ? '주문 처리 중...' : `₩ ${total.toLocaleString()} 결제하기`}
             </button>
           </div>

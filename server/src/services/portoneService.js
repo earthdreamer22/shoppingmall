@@ -1,48 +1,29 @@
 const axios = require('axios');
 const { config } = require('../config/env');
 
-const PORTONE_API_BASE = 'https://api.iamport.kr';
+const PORTONE_API_BASE = 'https://api.portone.io';
 
-async function getAccessToken() {
-  const { impKey, impSecret } = config.portone;
+async function getPaymentByPaymentId(paymentId) {
+  const { storeId, apiSecret } = config.portone;
 
-  const response = await axios.post(`${PORTONE_API_BASE}/users/getToken`, {
-    imp_key: impKey,
-    imp_secret: impSecret,
-  });
-
-  if (response.data.code !== 0) {
-    throw new Error(`포트원 액세스 토큰 발급 실패: ${response.data.message}`);
-  }
-
-  return response.data.response.access_token;
-}
-
-async function getPaymentByImpUid(impUid) {
-  const accessToken = await getAccessToken();
-
-  // include_sandbox는 테스트 모드에서만 사용
-  const params = config.portone.isTestMode ? { include_sandbox: true } : {};
-
-  const response = await axios.get(`${PORTONE_API_BASE}/payments/${impUid}`, {
+  const response = await axios.get(`${PORTONE_API_BASE}/payments/${paymentId}`, {
     headers: {
-      Authorization: accessToken,
+      Authorization: `PortOne ${apiSecret}`,
     },
-    params,
   });
 
-  if (response.data.code !== 0) {
-    throw new Error(`포트원 결제 조회 실패: ${response.data.message}`);
+  if (response.status !== 200) {
+    throw new Error(`포트원 결제 조회 실패: ${response.data?.message || '알 수 없는 오류'}`);
   }
 
-  return response.data.response;
+  return response.data;
 }
 
-async function cancelPayment(impUid, reason, amount = null) {
-  const accessToken = await getAccessToken();
+async function cancelPayment(paymentId, reason, amount = null) {
+  const { storeId, apiSecret } = config.portone;
 
   const requestBody = {
-    imp_uid: impUid,
+    storeId,
     reason: reason || '사용자 주문 취소',
   };
 
@@ -50,21 +31,24 @@ async function cancelPayment(impUid, reason, amount = null) {
     requestBody.amount = amount;
   }
 
-  const response = await axios.post(`${PORTONE_API_BASE}/payments/cancel`, requestBody, {
-    headers: {
-      Authorization: accessToken,
+  const response = await axios.post(
+    `${PORTONE_API_BASE}/payments/${paymentId}/cancel`,
+    requestBody,
+    {
+      headers: {
+        Authorization: `PortOne ${apiSecret}`,
+      },
     },
-  });
+  );
 
-  if (response.data.code !== 0) {
-    throw new Error(`포트원 결제 취소 실패: ${response.data.message}`);
+  if (response.status !== 200) {
+    throw new Error(`포트원 결제 취소 실패: ${response.data?.message || '알 수 없는 오류'}`);
   }
 
-  return response.data.response;
+  return response.data;
 }
 
 module.exports = {
-  getAccessToken,
-  getPaymentByImpUid,
+  getPaymentByPaymentId,
   cancelPayment,
 };

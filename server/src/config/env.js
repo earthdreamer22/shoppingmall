@@ -1,4 +1,4 @@
-const REQUIRED_VARS = ['MONGODB_URI', 'JWT_SECRET'];
+const REQUIRED_VARS = ['MONGODB_URI', 'JWT_SECRET', 'PORTONE_STORE_ID', 'PORTONE_API_SECRET'];
 
 const requireEnv = (key) => {
   const value = process.env[key];
@@ -61,9 +61,12 @@ const config = {
     sensitiveMax: numberEnv('RATE_LIMIT_SENSITIVE_MAX', 50),
   },
   portone: {
-    impKey: requireEnv('PORTONE_IMP_KEY'),
-    impSecret: requireEnv('PORTONE_IMP_SECRET'),
+    storeId: requireEnv('PORTONE_STORE_ID'),
+    apiSecret: requireEnv('PORTONE_API_SECRET'),
     webhookSecret: process.env.PORTONE_WEBHOOK_SECRET || '',
+    // V1 호환성 유지 (제거 예정)
+    impKey: process.env.PORTONE_IMP_KEY || '',
+    impSecret: process.env.PORTONE_IMP_SECRET || '',
     isTestMode: process.env.NODE_ENV !== 'production',
   },
   adminInvite: {

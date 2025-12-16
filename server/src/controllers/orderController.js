@@ -2,7 +2,7 @@
 const Order = require('../models/Order');
 const { asyncHandler } = require('../utils/asyncHandler');
 const { resolveUserId } = require('../utils/userContext');
-const { getPaymentByImpUid, cancelPayment } = require('../services/portoneService');
+const { getPaymentByPaymentId, cancelPayment } = require('../services/portoneService');
 const { recordAuditLog } = require('../utils/auditLogger');
 
 function formatOrder(orderDoc) {
@@ -76,9 +76,9 @@ const createOrder = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: '배송지 정보를 모두 입력해주세요.' });
   }
 
-  const { impUid, merchantUid } = payment ?? {};
-  if (!impUid || !merchantUid) {
-    return res.status(400).json({ message: '결제 정보가 유효하지 않습니다. (impUid/merchantUid 누락)' });
+  const { paymentId } = payment ?? {};
+  if (!paymentId) {
+    return res.status(400).json({ message: '결제 정보가 유효하지 않습니다. (paymentId 누락)' });
   }
 
   const orderItems = cart.items.map((item) => {
@@ -105,30 +105,21 @@ const createOrder = asyncHandler(async (req, res) => {
   const shippingFee = Math.max(0, Number.isFinite(Number(pricing.shippingFee)) ? Number(pricing.shippingFee) : 0);
   const total = subtotal - discount + shippingFee;
 
-  const pgPayment = await getPaymentByImpUid(impUid);
+  const pgPayment = await getPaymentByPaymentId(paymentId);
 
-  if (pgPayment.merchant_uid !== merchantUid) {
-    return res.status(400).json({ message: '결제 정보가 주문 정보와 일치하지 않습니다. (merchant_uid mismatch)' });
-  }
-
-  if (!['paid', 'ready'].includes(pgPayment.status)) {
+  if (!['PAID', 'VIRTUAL_ACCOUNT_ISSUED'].includes(pgPayment.status)) {
     return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
   }
 
-  if (Number(pgPayment.amount) !== Math.max(0, total)) {
+  if (Number(pgPayment.amount?.total) !== Math.max(0, total)) {
     return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
   }
 
-  const orderStatus = pgPayment.status === 'paid' ? 'paid' : 'pending';
+  const orderStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
 
-  const existingPayment = await Order.findOne({ 'payment.impUid': impUid });
+  const existingPayment = await Order.findOne({ 'payment.paymentId': paymentId });
   if (existingPayment) {
     return res.status(409).json({ message: '이미 처리된 결제입니다.' });
-  }
-
-  const existingMerchant = await Order.findOne({ 'payment.merchantUid': merchantUid });
-  if (existingMerchant) {
-    return res.status(409).json({ message: '이미 처리 중인 주문입니다.' });
   }
 
   const order = await Order.create({
@@ -151,15 +142,14 @@ const createOrder = asyncHandler(async (req, res) => {
       requestMessage: shipping.requestMessage ?? '',
     },
     payment: {
-      method: payment.method ?? pgPayment.pay_method ?? 'card',
-      status: pgPayment.status === 'paid' ? 'paid' : 'pending',
-      transactionId: pgPayment.pg_tid ?? '',
-      paidAt: pgPayment.paid_at ? new Date(pgPayment.paid_at * 1000) : undefined,
-      merchantUid,
-      impUid,
-      pgProvider: payment.pgProvider ?? pgPayment.pg_provider ?? '',
-      cardName: payment.cardName ?? pgPayment.card_name ?? '',
-      applyNum: payment.applyNum ?? pgPayment.apply_num ?? '',
+      method: payment.method ?? pgPayment.method ?? 'card',
+      status: pgPayment.status === 'PAID' ? 'paid' : 'pending',
+      transactionId: payment.txId ?? pgPayment.pgTxId ?? '',
+      paidAt: pgPayment.paidAt ? new Date(pgPayment.paidAt) : undefined,
+      paymentId,
+      pgProvider: pgPayment.pgProvider ?? '',
+      cardName: pgPayment.card?.name ?? '',
+      applyNum: pgPayment.card?.approvalNumber ?? '',
     },
     metadata,
     history: [
@@ -177,7 +167,7 @@ const createOrder = asyncHandler(async (req, res) => {
     action: 'order.create',
     userId,
     ip: req.ip,
-    metadata: { orderId: order.id, merchantUid, amount: total },
+    metadata: { orderId: order.id, paymentId, amount: total },
   });
 
   res.status(201).json(formatOrder(order));
@@ -205,9 +195,9 @@ const cancelOrder = asyncHandler(async (req, res) => {
   }
 
   // 결제가 완료된 경우 포트원 결제 취소 API 호출
-  if (order.payment.status === 'paid' && order.payment.impUid) {
+  if (order.payment.status === 'paid' && order.payment.paymentId) {
     try {
-      await cancelPayment(order.payment.impUid, reason || '주문 취소');
+      await cancelPayment(order.payment.paymentId, reason || '주문 취소');
     } catch (error) {
       return res.status(500).json({
         message: `결제 취소 중 오류가 발생했습니다: ${error.message}`

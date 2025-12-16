@@ -37,18 +37,18 @@ function OrderComplete() {
     }
 
     const params = new URLSearchParams(location.search);
-    const impUid = params.get('imp_uid');
-    const merchantUid = params.get('merchant_uid');
-    const success = params.get('success');
-    const errorMsg = params.get('error_msg') || params.get('error_message');
+    const paymentId = params.get('paymentId');
+    const code = params.get('code');
+    const message = params.get('message');
 
-    if (!impUid || !merchantUid) {
+    if (!paymentId) {
       navigate('/', { replace: true });
       return;
     }
 
-    if (success === 'false') {
-      setError(errorMsg || '결제가 취소되었습니다.');
+    if (code) {
+      // 오류 발생
+      setError(message || '결제가 취소되었습니다.');
       clearStoredPayload();
       return;
     }
@@ -69,8 +69,7 @@ function OrderComplete() {
             pricing: payload.pricing,
             payment: {
               ...payload.payment,
-              impUid,
-              merchantUid,
+              paymentId,
             },
           }),
         });
