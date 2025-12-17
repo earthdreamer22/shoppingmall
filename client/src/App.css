@@ -914,9 +914,7 @@ body {
 }
 
 .App {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 32px 24px;
+  padding: 32px 0;
 }
 
 header {
@@ -959,6 +957,9 @@ header small {
 main {
   display: grid;
   gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 section {
@@ -1727,11 +1728,11 @@ textarea {
   }
 
   .App {
-    padding: 12px 24px;
+    padding: 12px 0;
   }
 
   section {
-    padding: 16px 0;
+    padding: 16px 24px;
   }
 
   .product-grid {
