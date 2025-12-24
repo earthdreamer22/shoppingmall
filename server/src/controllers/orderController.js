@@ -207,13 +207,17 @@ const cancelOrder = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: '이미 취소된 주문입니다.' });
   }
 
-  // 결제가 완료된 경우 포트원 결제 취소 API 호출
-  if (order.payment.status === 'paid' && order.payment.paymentId) {
+  // 결제가 완료된 경우 포트원(V2) 결제 취소 API 호출
+  if (order.payment.status === 'paid') {
+    if (!order.payment.paymentId) {
+      return res.status(400).json({ message: '결제 식별자가 없어 취소할 수 없습니다.' });
+    }
+
     try {
       await cancelPayment(order.payment.paymentId, reason || '주문 취소');
     } catch (error) {
       return res.status(500).json({
-        message: `결제 취소 중 오류가 발생했습니다: ${error.message}`
+        message: `결제 취소 중 오류가 발생했습니다: ${error.message}`,
       });
     }
   }

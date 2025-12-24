@@ -420,8 +420,6 @@ function Checkout() {
             {[
               { value: 'card', label: '카드 결제' },
               { value: 'bank_transfer', label: '계좌이체' },
-              { value: 'virtual_account', label: '가상계좌' },
-              { value: 'mobile', label: '휴대폰 결제' },
             ].map((option) => (
               <label key={option.value} className={`payment-option ${paymentMethod === option.value ? 'is-selected' : ''}`}>
                 <input
