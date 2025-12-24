@@ -177,6 +177,12 @@ function Checkout() {
     }
 
     try {
+      console.log('[Checkout] 결제 요청 시작:', {
+        orderId,
+        total,
+        paymentMethod: payMethodV2,
+      });
+
       const response = await window.PortOne.requestPayment({
         storeId: PORTONE_STORE_ID,
         channelKey: PORTONE_CHANNEL_KEY,
@@ -193,8 +199,11 @@ function Checkout() {
         redirectUrl,
       });
 
+      console.log('[Checkout] 결제 응답:', response);
+
       if (response.code != null) {
         // 오류 발생
+        console.error('[Checkout] 결제 오류:', response);
         setSubmitting(false);
         setError(response.message || '결제가 취소되었습니다.');
         return;
@@ -202,25 +211,30 @@ function Checkout() {
 
       // 결제 성공 - 주문 생성
       try {
+        const orderPayload = {
+          shipping,
+          payment: {
+            method: paymentMethod,
+            paymentId: response.paymentId,
+            transactionType: response.transactionType,
+            txId: response.txId,
+          },
+          pricing: {
+            subtotal,
+            discount,
+            shippingFee,
+            total,
+          },
+        };
+
+        console.log('[Checkout] 주문 생성 요청:', orderPayload);
+
         const order = await apiRequest('/orders', {
           method: 'POST',
-          body: JSON.stringify({
-            shipping,
-            payment: {
-              method: paymentMethod,
-              paymentId: response.paymentId,
-              transactionType: response.transactionType,
-              txId: response.txId,
-            },
-            pricing: {
-              subtotal,
-              discount,
-              shippingFee,
-              total,
-            },
-          }),
+          body: JSON.stringify(orderPayload),
         });
 
+        console.log('[Checkout] 주문 생성 성공:', order);
         setCartCount(0);
         try {
           window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
@@ -229,11 +243,13 @@ function Checkout() {
         }
         navigate('/orders/complete', { replace: true, state: { order } });
       } catch (err) {
+        console.error('[Checkout] 주문 생성 실패:', err);
         setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
       } finally {
         setSubmitting(false);
       }
     } catch (err) {
+      console.error('[Checkout] 결제 실패:', err);
       setSubmitting(false);
       setError(err.message || '결제 중 오류가 발생했습니다.');
     }

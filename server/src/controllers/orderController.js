@@ -61,6 +61,9 @@ const createOrder = asyncHandler(async (req, res) => {
   const userId = await resolveUserId(req);
   const cart = await Cart.findOne({ user: userId }).populate('items.product');
 
+  // 디버깅: 요청 본문 로깅
+  console.log('[createOrder] 요청 본문:', JSON.stringify(req.body, null, 2));
+
   if (!cart || cart.items.length === 0) {
     return res.status(400).json({ message: '장바구니가 비어 있습니다.' });
   }
@@ -72,12 +75,22 @@ const createOrder = asyncHandler(async (req, res) => {
     metadata = {},
   } = req.body ?? {};
 
+  console.log('[createOrder] 파싱된 데이터:', {
+    shipping,
+    pricing,
+    payment,
+    metadata,
+  });
+
   if (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode) {
     return res.status(400).json({ message: '배송지 정보를 모두 입력해주세요.' });
   }
 
   const { paymentId } = payment ?? {};
+  console.log('[createOrder] paymentId:', paymentId);
+
   if (!paymentId) {
+    console.error('[createOrder] paymentId 누락! payment 객체:', payment);
     return res.status(400).json({ message: '결제 정보가 유효하지 않습니다. (paymentId 누락)' });
   }
 

@@ -41,7 +41,17 @@ function OrderComplete() {
     const code = params.get('code');
     const message = params.get('message');
 
+    // 디버깅: URL 파라미터 확인
+    console.log('[OrderComplete] URL params:', {
+      paymentId,
+      code,
+      message,
+      fullURL: location.search,
+      allParams: Object.fromEntries(params.entries()),
+    });
+
     if (!paymentId) {
+      console.error('[OrderComplete] paymentId 누락');
       navigate('/', { replace: true });
       return;
     }
@@ -62,21 +72,28 @@ function OrderComplete() {
     const createOrder = async () => {
       setStatus('주문을 생성하는 중입니다...');
       try {
+        const orderPayload = {
+          shipping: payload.shipping,
+          pricing: payload.pricing,
+          payment: {
+            ...payload.payment,
+            paymentId,
+          },
+        };
+
+        console.log('[OrderComplete] 주문 생성 요청:', orderPayload);
+
         const created = await apiRequest('/orders', {
           method: 'POST',
-          body: JSON.stringify({
-            shipping: payload.shipping,
-            pricing: payload.pricing,
-            payment: {
-              ...payload.payment,
-              paymentId,
-            },
-          }),
+          body: JSON.stringify(orderPayload),
         });
+
+        console.log('[OrderComplete] 주문 생성 성공:', created);
         setOrder(created);
         setError('');
         clearStoredPayload();
       } catch (err) {
+        console.error('[OrderComplete] 주문 생성 실패:', err);
         setError(err.message ?? '주문 생성 중 오류가 발생했습니다.');
       } finally {
         setStatus('');
