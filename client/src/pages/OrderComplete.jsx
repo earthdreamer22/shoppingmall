@@ -119,6 +119,13 @@ function OrderComplete() {
         <header className="checkout-header">
           <h1>결제 처리 중</h1>
           <p>{error || status || '결제 정보를 확인하는 중입니다.'}</p>
+          {error && (
+            <div style={{ marginTop: '20px', padding: '10px', background: '#f0f0f0', fontSize: '12px', wordBreak: 'break-all' }}>
+              <strong>디버그 정보:</strong>
+              <div>현재 URL: {window.location.href}</div>
+              <div>Search params: {location.search}</div>
+            </div>
+          )}
         </header>
         <div className="checkout-actions">
           <button type="button" className="detail-secondary" onClick={() => navigate('/', { replace: true })}>
