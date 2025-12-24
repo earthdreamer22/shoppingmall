@@ -216,14 +216,23 @@ function Checkout() {
         console.log('[Checkout] paymentMethod 값:', paymentMethod);
         console.log('[Checkout] response 객체:', response);
 
+        // undefined 값 필터링
+        const paymentData = {
+          method: paymentMethod,
+          paymentId: orderId, // V2에서는 우리가 생성한 orderId를 paymentId로 사용
+        };
+
+        // transactionType과 txId가 있을 경우에만 추가
+        if (response.transactionType) {
+          paymentData.transactionType = response.transactionType;
+        }
+        if (response.txId) {
+          paymentData.txId = response.txId;
+        }
+
         const orderPayload = {
           shipping,
-          payment: {
-            method: paymentMethod,
-            paymentId: orderId, // V2에서는 우리가 생성한 orderId를 paymentId로 사용
-            transactionType: response.transactionType,
-            txId: response.txId,
-          },
+          payment: paymentData,
           pricing: {
             subtotal,
             discount,
@@ -234,6 +243,8 @@ function Checkout() {
 
         console.log('[Checkout] 주문 생성 요청 - 전체 payload:', JSON.stringify(orderPayload, null, 2));
         console.log('[Checkout] 주문 생성 요청 - payment 객체:', orderPayload.payment);
+        console.log('[Checkout] orderId 최종 확인:', orderId);
+        console.log('[Checkout] paymentId 최종 확인:', paymentData.paymentId);
 
         const order = await apiRequest('/orders', {
           method: 'POST',
