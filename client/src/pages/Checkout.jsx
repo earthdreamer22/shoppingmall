@@ -215,7 +215,7 @@ function Checkout() {
           shipping,
           payment: {
             method: paymentMethod,
-            paymentId: response.paymentId,
+            paymentId: orderId, // V2에서는 우리가 생성한 orderId를 paymentId로 사용
             transactionType: response.transactionType,
             txId: response.txId,
           },
