@@ -29,6 +29,7 @@ function OrderComplete() {
   const [order, setOrder] = useState(location.state?.order ?? null);
   const [status, setStatus] = useState(order ? '' : '결제 정보를 확인하는 중입니다.');
   const [error, setError] = useState('');
+  const [extractedPaymentId, setExtractedPaymentId] = useState(null);
 
   useEffect(() => {
     if (order) {
@@ -59,6 +60,9 @@ function OrderComplete() {
       return;
     }
 
+    // paymentId를 state로 저장
+    setExtractedPaymentId(paymentId);
+
     if (code) {
       // 오류 발생
       setError(message || '결제가 취소되었습니다.');
@@ -73,21 +77,20 @@ function OrderComplete() {
     }
 
     const createOrder = async () => {
+      // extractedPaymentId가 설정될 때까지 대기
+      if (!extractedPaymentId) {
+        console.log('[OrderComplete] extractedPaymentId 아직 설정 안됨, 대기 중...');
+        return;
+      }
+
       setStatus('주문을 생성하는 중입니다...');
       try {
-        // paymentId 유효성 재확인
-        if (!paymentId) {
-          console.error('[OrderComplete] createOrder 내부에서 paymentId 누락!');
-          setError('결제 정보가 유효하지 않습니다. 다시 시도해주세요.');
-          return;
-        }
-
         const orderPayload = {
           shipping: payload.shipping,
           pricing: payload.pricing,
           payment: {
             method: payload.payment?.method || 'card',
-            paymentId: paymentId, // 명시적으로 설정
+            paymentId: extractedPaymentId, // state에서 가져온 값 사용
           },
         };
 
@@ -111,7 +114,7 @@ function OrderComplete() {
     };
 
     createOrder();
-  }, [order, location.search, navigate]);
+  }, [order, location.search, navigate, payload, extractedPaymentId]);
 
   if (!order) {
     return (
