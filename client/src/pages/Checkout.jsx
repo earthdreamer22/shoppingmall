@@ -211,6 +211,11 @@ function Checkout() {
 
       // 결제 성공 - 주문 생성
       try {
+        // 디버깅: orderId 값 확인
+        console.log('[Checkout] orderId 값:', orderId);
+        console.log('[Checkout] paymentMethod 값:', paymentMethod);
+        console.log('[Checkout] response 객체:', response);
+
         const orderPayload = {
           shipping,
           payment: {
@@ -227,7 +232,8 @@ function Checkout() {
           },
         };
 
-        console.log('[Checkout] 주문 생성 요청:', orderPayload);
+        console.log('[Checkout] 주문 생성 요청 - 전체 payload:', JSON.stringify(orderPayload, null, 2));
+        console.log('[Checkout] 주문 생성 요청 - payment 객체:', orderPayload.payment);
 
         const order = await apiRequest('/orders', {
           method: 'POST',
