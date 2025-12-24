@@ -34,6 +34,9 @@ const createOrderSchema = z.object({
   }),
   payment: z.object({
     method: z.string().min(1),
+    paymentId: z.string().min(1), // PortOne v2 paymentId (프론트에서 생성한 주문/결제 식별자)
+    txId: z.string().optional(), // PG 거래 ID (PortOne v2 txId)
+    transactionType: z.string().optional(),
     impUid: z.string().optional(),
     merchantUid: z.string().optional(),
     pgProvider: z.string().optional(),
