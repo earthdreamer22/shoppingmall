@@ -52,7 +52,10 @@ function OrderComplete() {
 
     if (!paymentId) {
       console.error('[OrderComplete] paymentId 누락');
-      navigate('/', { replace: true });
+      const errorMsg = `결제 정보를 찾을 수 없습니다. URL: ${location.search}`;
+      setError(errorMsg);
+      setStatus('');
+      // navigate('/', { replace: true }); // 디버깅을 위해 리디렉트 비활성화
       return;
     }
 
@@ -72,12 +75,19 @@ function OrderComplete() {
     const createOrder = async () => {
       setStatus('주문을 생성하는 중입니다...');
       try {
+        // paymentId 유효성 재확인
+        if (!paymentId) {
+          console.error('[OrderComplete] createOrder 내부에서 paymentId 누락!');
+          setError('결제 정보가 유효하지 않습니다. 다시 시도해주세요.');
+          return;
+        }
+
         const orderPayload = {
           shipping: payload.shipping,
           pricing: payload.pricing,
           payment: {
-            ...payload.payment,
-            paymentId,
+            method: payload.payment?.method || 'card',
+            paymentId: paymentId, // 명시적으로 설정
           },
         };
 
