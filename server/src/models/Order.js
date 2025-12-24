@@ -74,7 +74,7 @@ const orderSchema = new Schema(
       transactionId: { type: String, default: '' },
       paidAt: { type: Date },
       merchantUid: { type: String, default: '' },
-      impUid: { type: String, default: '' },
+      impUid: { type: String, default: undefined }, // v1 전용. v2는 paymentId/txId를 사용하므로 비워둔다.
       pgProvider: { type: String, default: '' },
       cardName: { type: String, default: '' },
       applyNum: { type: String, default: '' },
@@ -104,6 +104,13 @@ const orderSchema = new Schema(
   },
 );
 
-orderSchema.index({ 'payment.impUid': 1 }, { unique: true, sparse: true });
+// impUid는 포트원 v1에서만 사용. 빈 문자열은 인덱싱하지 않도록 partial 필터로 중복 오류를 방지한다.
+orderSchema.index(
+  { 'payment.impUid': 1 },
+  {
+    unique: true,
+    partialFilterExpression: { 'payment.impUid': { $exists: true, $ne: '' } },
+  },
+);
 
 module.exports = model('Order', orderSchema);
