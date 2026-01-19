@@ -442,8 +442,37 @@ PORTONE_API_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ### Git 커밋
 ```
-<커밋 예정> Migrate from PortOne V1 to V2 payment system
+<마이그레이션 완료> Migrate from PortOne V1 to V2 payment system
 ```
+
+### 트러블슈팅 (2025-12-24)
+
+#### 문제: 실결제 성공하지만 주문 생성 실패
+**증상**:
+- PortOne 콘솔: 결제 완료 (PAID)
+- 프론트엔드: paymentId 포함하여 전송
+- 백엔드 로그: `payment: { method: 'card' }` - paymentId 누락
+- 에러: "결제 정보가 유효하지 않습니다. (paymentId 누락)"
+
+**원인**:
+1. **검증 스키마 누락**: `server/src/validation/orderSchemas.js`가 `paymentId`, `txId`, `transactionType` 필드를 허용하지 않아 검증 미들웨어에서 요청 거부
+2. **MongoDB 인덱스 충돌**: `payment.impUid` unique 인덱스가 V2 주문(impUid 없음)을 중복으로 인식
+
+**해결** (커밋 1738f10, 1d603d2, 0adb947):
+1. 검증 스키마에 PortOne V2 필드 추가
+2. `payment.impUid` 인덱스를 `partialFilterExpression`으로 변경 (값이 있을 때만 유니크 체크)
+3. 관리자 주문 취소 시 PortOne V2 취소 API 연동
+4. 결제수단을 KG이니시스 실가맹 기준으로 제한 (카드/계좌이체만)
+
+**결과**:
+- ✅ PC/모바일 실결제 정상 작동
+- ✅ 주문 생성 및 장바구니 자동 비움
+- ✅ 관리자 취소 시 실제 PG사 취소 처리
+
+**교훈**:
+- 400 에러 발생 시 **검증 스키마** 우선 확인
+- MongoDB **인덱스 제약조건** 검토 필수
+- 사용자 제안(몽고DB 문제 지적)을 초기에 경청할 것
 
 ---
 
@@ -551,4 +580,142 @@ PORTONE_API_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ## 작성자
 - 개발 기간: 2025-11 ~ 2025-12
-- 최종 업데이트: 2025-12-16 (PortOne V2 마이그레이션)
+- 최종 업데이트: 2025-12-24 (PortOne V2 실결제 완료 및 디버깅)
+
+---
+
+## 중요 디버깅 노트 (필독)
+
+### PortOne V2 결제 통합 시 체크리스트
+
+#### 백엔드 필수 확인 사항
+1. **검증 스키마** (`server/src/validation/orderSchemas.js`)
+   ```javascript
+   payment: Joi.object({
+     method: Joi.string().required(),
+     paymentId: Joi.string().required(),      // V2 필수
+     txId: Joi.string().optional(),           // V2 선택
+     transactionType: Joi.string().optional(), // V2 선택
+   })
+   ```
+
+2. **MongoDB Order 스키마** (`server/src/models/Order.js`)
+   ```javascript
+   // impUid는 V1 호환용, V2에서는 사용 안 함
+   impUid: {
+     type: String,
+     default: undefined,  // 중요: 빈 문자열 아님
+   }
+
+   // partialFilterExpression으로 V1/V2 호환
+   schema.index(
+     { 'payment.impUid': 1 },
+     {
+       unique: true,
+       partialFilterExpression: {
+         'payment.impUid': { $exists: true, $ne: null }
+       }
+     }
+   );
+   ```
+
+3. **MongoDB 기존 인덱스 드롭** (최초 1회)
+   ```javascript
+   // MongoDB Compass 또는 Shell에서 실행
+   db.orders.dropIndex('payment.impUid_1')
+   ```
+
+4. **포트원 서비스** (`server/src/services/portoneService.js`)
+   - V2 API Base: `https://api.portone.io`
+   - Authorization: `PortOne ${apiSecret}` (V1 토큰 방식 아님)
+   - 결제 조회: `/payments/{paymentId}`
+   - 결제 취소: `/payments/{paymentId}/cancel`
+
+#### 프론트엔드 필수 확인 사항
+1. **PortOne SDK 로드** (`client/src/pages/Checkout.jsx`)
+   ```javascript
+   // V2 SDK
+   script.src = 'https://cdn.portone.io/v2/browser-sdk.js';
+   // V1 SDK (사용 금지)
+   // script.src = 'https://cdn.iamport.kr/v1/iamport.js';
+   ```
+
+2. **결제 요청 파라미터**
+   ```javascript
+   const response = await window.PortOne.requestPayment({
+     storeId: PORTONE_STORE_ID,        // V2 필수
+     channelKey: PORTONE_CHANNEL_KEY,  // V2 필수
+     paymentId: orderId,               // 우리가 생성한 고유 ID
+     payMethod: 'CARD',                // V2: 대문자 (V1: 'card')
+     // ...
+   });
+   ```
+
+3. **주문 생성 payload**
+   ```javascript
+   const orderPayload = {
+     shipping: { /* ... */ },
+     pricing: { /* ... */ },
+     payment: {
+       method: paymentMethod,
+       paymentId: orderId,             // 필수
+       txId: response.txId,            // 있으면 추가
+       transactionType: response.transactionType, // 있으면 추가
+     },
+   };
+   ```
+
+#### 환경변수 체크리스트
+**Vercel (프론트엔드)**:
+```
+VITE_PORTONE_STORE_ID=store-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+VITE_PORTONE_CHANNEL_KEY=channel-key-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+
+**Render (백엔드)**:
+```
+PORTONE_STORE_ID=store-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+PORTONE_API_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+#### 400 에러 발생 시 디버깅 순서
+1. **검증 스키마 확인** - `server/src/validation/orderSchemas.js`
+2. **MongoDB 인덱스 확인** - Compass에서 Indexes 탭
+3. **백엔드 로그 확인** - Render 로그에서 `[createOrder]` 검색
+4. **프론트엔드 콘솔 확인** - `[Checkout]` 로그 필터
+5. **PortOne 콘솔 확인** - 실제 결제 상태 확인
+
+#### 자주 발생하는 실수
+❌ **하지 말아야 할 것**:
+- V1 SDK URL 사용 (`cdn.iamport.kr`)
+- V1 파라미터 사용 (`merchant_uid`, `imp_uid`)
+- 검증 스키마에 V2 필드 미등록
+- MongoDB 인덱스 드롭 누락
+- 환경변수를 V1 키로 설정
+
+✅ **반드시 해야 할 것**:
+- V2 SDK URL 사용 (`cdn.portone.io/v2/browser-sdk.js`)
+- V2 파라미터 사용 (`paymentId`, `storeId`, `channelKey`)
+- 검증 스키마에 `paymentId` 필수로 등록
+- 기존 `payment.impUid_1` 인덱스 드롭
+- 환경변수를 V2 키로 설정 및 배포
+
+### 디버깅 도구
+**Chrome DevTools**:
+- Network 탭 → POST /api/orders 요청 확인
+- Console 탭 → `[Checkout]`, `[OrderComplete]` 로그 필터
+
+**MongoDB Compass**:
+- Indexes 탭에서 인덱스 확인/드롭
+- Documents 탭에서 실제 저장된 주문 데이터 확인
+
+**Render 백엔드 로그**:
+```
+[createOrder] 요청 본문: { "payment": { "method": "card", "paymentId": "order_xxx" } }
+[createOrder] paymentId: order_xxx
+```
+
+**PortOne 콘솔**:
+- 결제 내역 → paymentId로 검색
+- 상태: PAID, VIRTUAL_ACCOUNT_ISSUED 확인
+- 금액: 프론트에서 전송한 totalAmount와 일치 확인

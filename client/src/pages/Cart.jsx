@@ -140,10 +140,31 @@ function Cart() {
                         >
                           -
                         </button>
-                        <span>{item.quantity}</span>
+                        <input
+                          type="number"
+                          min="1"
+                          max="999"
+                          value={item.quantity}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value, 10);
+                            if (!isNaN(val) && val >= 1 && val <= 999) {
+                              handleUpdateQuantity(item.id, val);
+                            }
+                          }}
+                          onBlur={(e) => {
+                            const val = parseInt(e.target.value, 10);
+                            if (isNaN(val) || val < 1) {
+                              handleUpdateQuantity(item.id, 1);
+                            } else if (val > 999) {
+                              handleUpdateQuantity(item.id, 999);
+                            }
+                          }}
+                          className="quantity-input"
+                        />
                         <button
                           type="button"
                           onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                          disabled={item.quantity >= 999}
                         >
                           +
                         </button>

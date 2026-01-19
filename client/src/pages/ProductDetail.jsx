@@ -23,6 +23,7 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -84,9 +85,9 @@ function ProductDetail() {
       const optionsArray = Object.entries(selectedOptions).map(([name, value]) => ({ name, value }));
       await apiRequest('/cart', {
         method: 'POST',
-        body: JSON.stringify({ productId: product.id, quantity: 1, selectedOptions: optionsArray }),
+        body: JSON.stringify({ productId: product.id, quantity, selectedOptions: optionsArray }),
       });
-      setStatus('장바구니에 상품이 담겼습니다.');
+      setStatus(`장바구니에 상품이 ${quantity}개 담겼습니다.`);
 
       try {
         const data = await apiRequest('/cart');
@@ -129,7 +130,7 @@ function ProductDetail() {
       const optionsArray = Object.entries(selectedOptions).map(([name, value]) => ({ name, value }));
       await apiRequest('/cart', {
         method: 'POST',
-        body: JSON.stringify({ productId: product.id, quantity: 1, selectedOptions: optionsArray }),
+        body: JSON.stringify({ productId: product.id, quantity, selectedOptions: optionsArray }),
       });
 
       try {
@@ -258,6 +259,52 @@ function ProductDetail() {
               ))}
             </div>
           )}
+
+          <div className="detail-quantity">
+            <label className="detail-option-label">수량</label>
+            <div className="quantity-controls">
+              <button
+                type="button"
+                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                disabled={quantity <= 1}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                min="1"
+                max="999"
+                value={quantity}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10);
+                  if (!isNaN(val) && val >= 1 && val <= 999) {
+                    setQuantity(val);
+                  }
+                }}
+                onBlur={(e) => {
+                  const val = parseInt(e.target.value, 10);
+                  if (isNaN(val) || val < 1) {
+                    setQuantity(1);
+                  } else if (val > 999) {
+                    setQuantity(999);
+                  }
+                }}
+                className="quantity-input"
+              />
+              <button
+                type="button"
+                onClick={() => setQuantity((prev) => Math.min(999, prev + 1))}
+                disabled={quantity >= 999}
+              >
+                +
+              </button>
+            </div>
+            {quantity > 1 && (
+              <div className="detail-total-price">
+                합계: {formatPrice(product.price * quantity)}
+              </div>
+            )}
+          </div>
 
           {status && <div className={`status ${status.startsWith('장바구니') ? '' : 'error'}`}>{status}</div>}
 

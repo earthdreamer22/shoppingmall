@@ -115,12 +115,13 @@ function Checkout() {
   );
 
   const discount = 0;
+  // 배송비: 모든 상품 중 최대 배송비 1개만 적용 (주문 1건당 1회만 청구)
   const shippingFee = useMemo(
-    () =>
-      cart.reduce(
-        (sum, item) => sum + ((item.shippingFee ?? DEFAULT_SHIPPING_FEE) * item.quantity),
-        0,
-      ),
+    () => {
+      if (cart.length === 0) return 0;
+      const maxFee = Math.max(...cart.map((item) => item.shippingFee ?? DEFAULT_SHIPPING_FEE));
+      return maxFee;
+    },
     [cart],
   );
   const total = subtotal - discount + shippingFee;

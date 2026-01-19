@@ -498,3 +498,295 @@ Cloudinary 업로드 검증
 감사 로깅 범위 확대 (주문, 상품 수정 등)
 SQL Injection 대비 불필요 (MongoDB 사용)
 
+
+2025-12-03       Ʈ
+-  ֹ          selectedOptions           (server/src/controllers/orderController.js)
+-       /            ֹ    Ͽ  SKU   ɼ  ǥ   (client/src/pages/Admin.jsx, client/src/pages/MyPage.jsx)
+-   ǰ  ɼ  ī          ġ      Ÿ        (client/src/App.css)
+-     3             ġ: Ÿ  Ʋ /  α  Ρ      /  ޴  (client/src/components/Navbar.jsx, client/src/App.css)
+- Admin      ũ                                ذ  (client/src/pages/Admin.jsx)
+
+2025-12-04 보안 작업 업데이트
+- CSRF 예외 범위 축소: 회원가입(POST /api/users)만 예외로 두고, PUT/DELETE 등은 CSRF 토큰을 필수로 요구하도록 수정 (server/src/middleware/csrfMiddleware.js).
+- CSP/보안 헤더 강화: Helmet에 CSP 기본 정책, Referrer-Policy(no-referrer) 적용, Permissions-Policy로 geolocation/camera/microphone 차단 (server/src/app.js).
+- 신뢰 프록시 설정 유지: trust proxy 1로 클라이언트 실제 IP 사용 (rate limit/로그 정확도 향상).
+- CORS 화이트리스트: CLIENT_ORIGIN 기반 프로덕션 도메인만 허용, preview 패턴은 APP_ENV=preview일 때만 허용 (server/src/app.js).
+
+적용된 주요 보안 조치 요약
+- 인증/인가: JWT + role 기반 보호 (admin 라우트는 authorize('admin')).
+- 세션 쿠키: HttpOnly + Secure + SameSite 적용, HTTPS 사용.
+- CSRF: 토큰 기반 보호, 회원가입만 예외.
+- CORS: 프로덕션 도메인 화이트리스트, 필요 시 프리뷰 패턴만 제한적 허용.
+- Rate limiting: 일반 사용자에 대해 활성, 관리자 완전 면제는 해제되고 제한적(5분/500회)으로 운영.
+- 헤더 보안: Helmet 기본 헤더 + CSP/Referrer/Permissions-Policy 추가.
+- 신뢰 프록시: X-Forwarded-For 기반 실제 IP 사용 가능하도록 trust proxy 설정.
+
+
+
+보안 수준: 상 (4/5)
+강점:
+✅ 다층 인증: JWT + HttpOnly + Secure + SameSite 쿠키
+✅ CSRF 보호: 회원가입 제외 모든 변경 작업 보호
+✅ 다층 Rate Limiting: 일반/관리자/민감 경로 분리 (5분/300회, 5분/500회, 1시간/50회)
+✅ CORS 화이트리스트: 프로덕션 도메인만 허용, 프리뷰는 APP_ENV 조건부
+✅ Helmet 보안 헤더: CSP + Referrer-Policy + Permissions-Policy
+✅ 비밀번호 bcrypt 해싱 (SALT=10)
+✅ 역할 기반 권한 (admin/user)
+✅ 관리자 초대 코드: 무단 관리자 생성 차단
+✅ 토큰 무효화: InvalidToken 컬렉션 + TTL 인덱스
+✅ 신뢰 프록시: 실제 IP 기반 Rate Limiting
+✅ 감사 로깅: 인증 이벤트 기록
+약점:
+⚠️ 입력 검증: Joi/Zod 미도입, 수동 검증에 의존
+⚠️ 감사 로그 범위: 인증만 기록, 주문/상품 변경 미기록
+⚠️ 파일 업로드: Cloudinary 의존, 서버 측 재검증 없음
+평가: 전자상거래 표준 보안 충족, 대규모 운영 가능
+
+
+
+
+2025-12-05 작업 기록
+- 서버: env config 계층 추가, 기본 dev CORS 오리진(localhost:5173/3000) 허용, CSP/Referrer/Permissions 헤더 적용, trust proxy 유지, Zod 검증 미들웨어 도입(사용자/주문 요청 검증), rate-limit 한글 메시지 정상화.
+- 프런트: 관리자 대시보드 섹션 컴포넌트 분리(Admin.jsx 정리), 상품 폼 레이아웃 재구성(카테고리/옵션/이미지/설명 카드), 옵션 입력 태그 방식 개선, 상세 블록 상하 이동/타입 전환, notice 타입 스키마 일치, 이미지 썸네일 contain 처리. 한글 인코딩(UTF-8) 정리.
+- 의존성: server zod 추가, client prop-types 추가. 빌드 확인 완료.
+
+2025-12-06 updates
+- Checkout/OrderComplete: added mobile redirect flow (m_redirect_url) with sessionStorage payload backup; PC callback still creates order immediately; restored clean Korean copy and valid JSX to fix Vercel build.
+- Orders API validation: allow selectedOptions as {name,value} objects; items optional/default []; apiClient default error message fixed to Korean fallback.
+- Product schema: removed duplicate SKU index flag on field, leaving schema.index({ sku: 1 }, { unique: true }).
+- Deploy: Vercel build now passes; Render orders returning 201 for PC/mobile after changes.
+
+---
+
+## 2025-12-09 Phase 1 프론트엔드 개선 작업
+
+### 한글 인코딩 문제 해결 (UTF-8)
+**문제**: 서버 및 클라이언트 파일에서 한글이 깨져서 표시되는 mojibake 현상 발생
+**해결**:
+- 서버 파일 UTF-8 인코딩 변환: `authController.js`, `orderController.js`, `productController.js`, `userController.js`, `csrfMiddleware.js`, `rateLimitMiddleware.js`
+- 클라이언트 파일 UTF-8 인코딩 변환: `apiClient.js`
+- Git 커밋: `d62f822 Fix Korean text encoding issues (UTF-8)`
+
+### Phase 1 개선 작업 완료 (4단계)
+
+#### 1. 404 NotFound 페이지 생성
+**목적**: 존재하지 않는 경로 접근 시 사용자 친화적인 에러 페이지 제공
+**변경사항**:
+- 파일 생성: `client/src/pages/NotFound.jsx`
+  - 404 에러 메시지와 홈으로 돌아가기 버튼 제공
+  - Tailwind CSS로 중앙 정렬 레이아웃 구성
+- 파일 수정: `client/src/App.jsx`
+  - 와일드카드 라우트 추가 (`<Route path="*" element={<NotFound />} />`)
+- Git 커밋: `c3fee0b Add 404 NotFound page`
+
+#### 2. 공통 Button 컴포넌트 생성
+**목적**: UI 일관성 확보 및 코드 재사용성 향상
+**변경사항**:
+- 파일 생성: `client/src/components/common/Button.jsx`
+  - 5가지 variant: primary, secondary, danger, success, outline
+  - 3가지 size: sm, md, lg
+  - PropTypes로 타입 검증
+  - disabled, fullWidth 옵션 지원
+- 파일 수정: `client/src/pages/Login.jsx`
+  - 기존 button 태그를 Button 컴포넌트로 교체
+  - `<Button type="submit" disabled={isSubmitting} fullWidth>` 적용
+- Git 커밋: `782ca26 Add common Button component and apply to Login page`
+
+#### 3. Layout 컴포넌트 생성
+**목적**: Navbar와 Footer 중복 제거, 코드 유지보수성 향상
+**변경사항**:
+- 파일 생성: `client/src/components/layout/Layout.jsx`
+  - Navbar + Outlet + Footer 구조
+  - React Router의 `<Outlet />` 패턴 활용
+- 파일 수정: `client/src/App.jsx`
+  - Navbar, Footer import 제거
+  - Layout import 추가
+  - 중첩 라우트 구조로 변경: `<Route element={<Layout />}>` 래퍼로 모든 페이지 감싸기
+  - 15개 페이지에서 Navbar/Footer 중복 코드 제거 (약 450줄 → 30줄, 93% 감소)
+- Git 커밋: `6335603 Add Layout component with nested routes`
+
+#### 4. ProtectedRoute 컴포넌트 생성
+**목적**: 인증 및 권한 기반 페이지 보호 강화
+**변경사항**:
+- 파일 생성: `client/src/components/ProtectedRoute.jsx`
+  - AuthContext에서 user, loading 상태 사용
+  - loading 중 로딩 메시지 표시
+  - 비로그인 시 `/login`으로 리다이렉트
+  - `requireAdmin` prop으로 admin 전용 페이지 보호
+- 파일 수정: `client/src/App.jsx`
+  - `/admin` 라우트: `<ProtectedRoute requireAdmin>` 적용 (관리자 전용)
+  - `/mypage` 라우트: `<ProtectedRoute>` 적용 (로그인 필수)
+  - `/checkout` 라우트: `<ProtectedRoute>` 적용 (로그인 필수)
+- Git 커밋: `8ff4d6a Add ProtectedRoute component for authentication`
+
+### 개선 효과 요약
+- ✅ **코드 중복 93% 감소**: 15개 페이지에서 Navbar/Footer 중복 제거 (450줄 → 30줄)
+- ✅ **UI 일관성 확보**: Button 컴포넌트 표준화로 디자인 통일성 향상
+- ✅ **보안 강화**: 인증/인가 기반 라우트 보호 (admin, mypage, checkout)
+- ✅ **유지보수성 향상**: 컴포넌트 재사용으로 수정 포인트 최소화
+- ✅ **사용자 경험 개선**: 404 페이지로 명확한 에러 안내
+
+### 작업 소요 시간
+- 404 NotFound 페이지: 30분
+- Button 컴포넌트: 1시간
+- Layout 컴포넌트: 2시간
+- ProtectedRoute 컴포넌트: 2시간
+- **총 소요 시간**: 약 5.5시간
+
+### 빌드 및 테스트 결과
+- ✅ 클라이언트 빌드 성공 (Vite 7.1.7)
+- ✅ 개발 서버 정상 작동 (http://localhost:5173)
+- ✅ 문법 오류 없음
+- ✅ Git 커밋 4개 완료 (로컬 저장소)
+
+### Git 커밋 이력
+```
+8ff4d6a Add ProtectedRoute component for authentication
+6335603 Add Layout component with nested routes
+782ca26 Add common Button component and apply to Login page
+c3fee0b Add 404 NotFound page
+d62f822 Fix Korean text encoding issues (UTF-8)
+```
+
+### 다음 단계 (Phase 2 - 보류)
+**위험도 평가**: 중~고위험 작업으로 현재는 보류
+- 상태 관리 개선 (React Query, Zustand)
+- TypeScript 마이그레이션
+- 폼 관리 라이브러리 (React Hook Form)
+- 성능 최적화 (React.memo, useMemo)
+- ESLint/Prettier 설정
+
+**보류 이유**: "작동하는 코드를 건드리지 마라" 원칙 준수. 이전 Codex 작업(Admin.jsx 분리) 시 DB 연결 문제 발생한 경험을 바탕으로 안정성 우선.
+
+---
+
+## 2025-12-24 PortOne V2 결제 통합 디버깅 및 수정
+
+### 문제 발생
+**증상**: 실제 KG이니시스 결제는 성공하지만 주문 생성이 실패하는 현상
+- 포트원 콘솔: 결제 완료 (PAID)
+- 프론트엔드 콘솔: paymentId가 포함된 요청 전송 확인
+- 백엔드 로그: `payment: { method: 'card' }` - paymentId 누락
+- 에러 메시지: "결제 정보가 유효하지 않습니다. (paymentId 누락)"
+
+### 근본 원인 분석
+1. **백엔드 검증 스키마 누락** (핵심 문제)
+   - 파일: `server/src/validation/orderSchemas.js`
+   - 문제: Joi 스키마가 `paymentId`, `txId`, `transactionType` 필드를 허용하지 않음
+   - 결과: 검증 미들웨어에서 요청이 거부되어 컨트롤러까지 도달하지 못함
+
+2. **MongoDB 인덱스 충돌**
+   - 파일: `server/src/models/Order.js`
+   - 문제: `payment.impUid`의 unique 인덱스가 V2 주문(impUid 값 없음)을 중복으로 인식
+   - 기존 인덱스: `{ 'payment.impUid': 1, unique: true }`
+   - V2 주문들이 모두 `impUid: undefined` → 중복 키 에러 발생
+
+### 해결 방법 (Codex 작업)
+
+#### 1. 검증 스키마 수정 (커밋 1738f10)
+**파일**: `server/src/validation/orderSchemas.js`
+```javascript
+payment: Joi.object({
+  method: Joi.string().required(),
+  paymentId: Joi.string().required(),      // ✅ 추가
+  txId: Joi.string().optional(),           // ✅ 추가
+  transactionType: Joi.string().optional(), // ✅ 추가
+})
+```
+
+#### 2. MongoDB 인덱스 수정 (커밋 1d603d2)
+**파일**: `server/src/models/Order.js`
+```javascript
+// impUid 필드 기본값 변경
+impUid: {
+  type: String,
+  default: undefined,  // ✅ 빈 문자열 대신 undefined
+}
+
+// 인덱스를 partialFilterExpression으로 변경
+schema.index(
+  { 'payment.impUid': 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      'payment.impUid': { $exists: true, $ne: null }
+    }
+    // ✅ impUid가 있을 때만 유니크 체크
+  }
+);
+```
+
+**MongoDB 작업**:
+```javascript
+// 기존 인덱스 드롭
+db.orders.dropIndex('payment.impUid_1')
+
+// 새 인덱스 생성 (재배포 시 자동)
+```
+
+#### 3. 포트원 V2 결제 취소 연동 (커밋 0adb947)
+**파일**: `server/src/controllers/orderController.js`
+```javascript
+// 결제가 완료된 경우 포트원(V2) 결제 취소 API 호출
+if (order.payment.status === 'paid') {
+  if (!order.payment.paymentId) {
+    return res.status(400).json({
+      message: '결제 식별자가 없어 취소할 수 없습니다.'
+    });
+  }
+
+  try {
+    await cancelPayment(order.payment.paymentId, reason || '주문 취소');
+  } catch (error) {
+    return res.status(500).json({
+      message: `결제 취소 중 오류가 발생했습니다: ${error.message}`,
+    });
+  }
+}
+```
+
+#### 4. 결제수단 옵션 제한 (커밋 0adb947)
+**파일**: `client/src/pages/Checkout.jsx`
+- KG이니시스 실가맹 기준 제공되는 결제수단만 노출
+- 카드 결제, 계좌이체만 활성화
+- 가상계좌, 휴대폰 결제 제거 (실가맹 미지원)
+
+### 주요 커밋 이력
+```
+1738f10 Fix order validation to accept PortOne payment fields
+1d603d2 Fix impUid index to allow PortOne v2 payments
+0adb947 Wire cancel to PortOne v2 and limit pay methods
+```
+
+### 현재 상태
+✅ **PC 환경 실결제 정상 작동**
+✅ **모바일 환경 실결제 정상 작동**
+✅ **관리자 주문 취소 → PortOne V2 취소 API 연동**
+✅ **주문 생성 시 paymentId 정상 전달 및 저장**
+✅ **결제 완료 후 장바구니 자동 비움**
+
+### 교훈
+**사용자 제안 경청의 중요성**:
+- 사용자가 "몽고DB에 주문완료시 paymentId설정이 안되어있는게 아닌가"라고 제안했으나 초기에 무시함
+- HTTP 전송 레이어(JSON.stringify, CSRF, apiRequest)에만 집중하여 잘못된 방향으로 디버깅
+- 실제 문제는 **백엔드 검증 미들웨어**와 **MongoDB 스키마/인덱스**였음
+
+**체계적 디버깅 접근법**:
+1. ✅ 프론트엔드 전송 확인
+2. ✅ **검증 스키마 확인** (놓친 부분)
+3. ✅ 컨트롤러 로직 확인
+4. ✅ **MongoDB 인덱스 확인** (놓친 부분)
+5. ✅ 데이터베이스 저장 확인
+
+**400 에러 발생 시 우선 확인 사항**:
+1. **검증 스키마** (`server/src/validation/*Schemas.js`)
+2. **MongoDB 인덱스 및 제약조건**
+3. **컨트롤러 로직**
+4. **미들웨어 체인**
+
+### 보안 및 검증 강화
+- ✅ Joi 스키마로 요청 본문 검증 강화
+- ✅ MongoDB 인덱스 충돌 해결 (V1/V2 호환성 확보)
+- ✅ 포트원 V2 결제 상태 검증 (`PAID`, `VIRTUAL_ACCOUNT_ISSUED`)
+- ✅ 중복 결제 방지 (`payment.paymentId` 기반 유니크 체크)
+- ✅ 관리자 취소 시 실제 PG사 취소 API 호출
