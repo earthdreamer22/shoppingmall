@@ -234,6 +234,9 @@ function ProductFormSection({
                 form.images.map((image, idx) => (
                   <div key={image.publicId} className="product-image-item">
                     <img src={image.url} alt={`상품 이미지 ${idx + 1}`} />
+                    <div className="product-image-name">
+                      {form.name?.trim() || '상품명 미입력'}
+                    </div>
                     <div className="image-actions">
                       <button
                         type="button"

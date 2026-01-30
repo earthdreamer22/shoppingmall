@@ -125,6 +125,7 @@ function Checkout() {
     [cart],
   );
   const total = subtotal - discount + shippingFee;
+  const needsShipping = shippingFee > 0;
 
   const updateShipping = (field) => (event) => {
     setShipping((prev) => ({ ...prev, [field]: event.target.value }));
@@ -139,7 +140,7 @@ function Checkout() {
       return;
     }
 
-    if (!shipping.recipientName || !shipping.phone || !shipping.postalCode || !shipping.addressLine1) {
+    if (needsShipping && (!shipping.recipientName || !shipping.phone || !shipping.postalCode || !shipping.addressLine1)) {
       setError('배송지 필수 정보를 입력해주세요.');
       return;
     }
@@ -316,6 +317,9 @@ function Checkout() {
 
         <section className="checkout-section">
           <h2>배송지</h2>
+          {!needsShipping && (
+            <p className="muted-text">배송비가 0원인 상품은 배송지가 필요하지 않습니다.</p>
+          )}
           <div className="address-toggle">
             <label>
               <input
@@ -323,6 +327,7 @@ function Checkout() {
                 name="address-mode"
                 checked={useDefaultAddress}
                 onChange={() => setUseDefaultAddress(true)}
+                disabled={!needsShipping}
               />
               최근 배송지 사용
             </label>
@@ -332,6 +337,7 @@ function Checkout() {
                 name="address-mode"
                 checked={!useDefaultAddress}
                 onChange={() => setUseDefaultAddress(false)}
+                disabled={!needsShipping}
               />
               새로운 배송지 입력
             </label>
@@ -339,17 +345,33 @@ function Checkout() {
 
           <label className="checkout-input">
             수령인
-            <input value={shipping.recipientName} onChange={updateShipping('recipientName')} required />
+            <input
+              value={shipping.recipientName}
+              onChange={updateShipping('recipientName')}
+              required={needsShipping}
+              disabled={!needsShipping}
+            />
           </label>
           <label className="checkout-input">
             연락처
-            <input value={shipping.phone} onChange={updateShipping('phone')} placeholder="010-0000-0000" required />
+            <input
+              value={shipping.phone}
+              onChange={updateShipping('phone')}
+              placeholder="010-0000-0000"
+              required={needsShipping}
+              disabled={!needsShipping}
+            />
           </label>
 
           <div className="checkout-row">
             <label className="checkout-input">
               우편번호
-              <input value={shipping.postalCode} onChange={updateShipping('postalCode')} required />
+              <input
+                value={shipping.postalCode}
+                onChange={updateShipping('postalCode')}
+                required={needsShipping}
+                disabled={!needsShipping}
+              />
             </label>
             <button type="button" className="checkout-zipcode-btn" disabled>
               검색
@@ -358,16 +380,30 @@ function Checkout() {
 
           <label className="checkout-input">
             기본 주소
-            <input value={shipping.addressLine1} onChange={updateShipping('addressLine1')} required />
+            <input
+              value={shipping.addressLine1}
+              onChange={updateShipping('addressLine1')}
+              required={needsShipping}
+              disabled={!needsShipping}
+            />
           </label>
           <label className="checkout-input">
             상세 주소
-            <input value={shipping.addressLine2} onChange={updateShipping('addressLine2')} />
+            <input
+              value={shipping.addressLine2}
+              onChange={updateShipping('addressLine2')}
+              disabled={!needsShipping}
+            />
           </label>
 
           <label className="checkout-input">
             배송 메모
-            <textarea value={shipping.requestMessage} onChange={updateShipping('requestMessage')} placeholder="문 앞에 놓아주세요" />
+            <textarea
+              value={shipping.requestMessage}
+              onChange={updateShipping('requestMessage')}
+              placeholder="문 앞에 놓아주세요"
+              disabled={!needsShipping}
+            />
           </label>
         </section>
 
