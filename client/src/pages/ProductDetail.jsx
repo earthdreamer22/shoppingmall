@@ -10,6 +10,20 @@ function formatPrice(value) {
   return `${Number(value).toLocaleString()}원`;
 }
 
+function linkifyText(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const isUrl = /^(https?:\/\/[^\s]+)$/;
+  return String(text).split(urlRegex).map((part, index) =>
+    isUrl.test(part)
+      ? (
+        <a key={`${part}-${index}`} href={part} target="_blank" rel="noopener noreferrer">
+          {part}
+        </a>
+      )
+      : part,
+  );
+}
+
 function ProductDetail() {
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -227,8 +241,10 @@ function ProductDetail() {
 
           {recombinedDescription.length ? (
             <div className="detail-description">
-              {recombinedDescription.map((line) => (
-                <p key={line}>{line}</p>
+              {recombinedDescription.map((line, index) => (
+                <p key={`${line}-${index}`}>
+                  {linkifyText(line)} {/* 상세 텍스트 내 URL을 링크로 변환 */}
+                </p>
               ))}
             </div>
           ) : (
@@ -326,7 +342,9 @@ function ProductDetail() {
               {block.type === 'text' && (
                 <div className="content-text">
                   {block.content.split('\n').map((line, i) => (
-                    <p key={i}>{line}</p>
+                    <p key={i}>
+                      {linkifyText(line)} {/* 상세 텍스트 내 URL을 링크로 변환 */}
+                    </p>
                   ))}
                 </div>
               )}
@@ -339,7 +357,9 @@ function ProductDetail() {
                 <div className="content-notice">
                   <h4>주의사항</h4>
                   {block.content.split('\n').map((line, i) => (
-                    <p key={i}>{line}</p>
+                    <p key={i}>
+                      {linkifyText(line)} {/* 상세 텍스트 내 URL을 링크로 변환 */}
+                    </p>
                   ))}
                 </div>
               )}
