@@ -4,6 +4,7 @@ const { asyncHandler } = require('../utils/asyncHandler');
 const { resolveUserId } = require('../utils/userContext');
 const { getPaymentByPaymentId, cancelPayment } = require('../services/portoneService');
 const { recordAuditLog } = require('../utils/auditLogger');
+const { sendOrderNotification } = require('../utils/emailService');
 
 function formatOrder(orderDoc) {
   if (!orderDoc) return null;
@@ -182,6 +183,13 @@ const createOrder = asyncHandler(async (req, res) => {
     ip: req.ip,
     metadata: { orderId: order.id, paymentId, amount: total },
   });
+
+  // 주문 생성은 성공으로 처리하고, 메일 실패는 별도로 로그만 남긴다.
+  try {
+    await sendOrderNotification(order);
+  } catch (error) {
+    console.error('[mailer] Failed to send order notification:', error.message);
+  }
 
   res.status(201).json(formatOrder(order));
 });
