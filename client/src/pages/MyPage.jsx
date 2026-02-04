@@ -146,7 +146,7 @@ function MyPage() {
                     </div>
                   )}
 
-                  {order.status !== 'cancelled' && (
+                  {order.status === 'pending' && (
                     <button
                       type="button"
                       className="order-item__cancel"
@@ -154,6 +154,11 @@ function MyPage() {
                     >
                       주문 취소
                     </button>
+                  )}
+                  {['paid', 'shipped', 'delivered'].includes(order.status) && (
+                    <p className="order-item__contact">
+                      주문 취소는 담당자에게 문의해주세요. TEL: 0507-1371-9981
+                    </p>
                   )}
                 </li>
               ))}

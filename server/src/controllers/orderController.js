@@ -229,6 +229,12 @@ const cancelOrder = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: '이미 취소된 주문입니다.' });
   }
 
+  // 결제 완료 이후 상태는 관리자만 취소 가능
+  const nonCancellableByUser = ['paid', 'shipped', 'delivered'];
+  if (requester.role !== 'admin' && nonCancellableByUser.includes(order.status)) {
+    return res.status(403).json({ message: '결제 완료된 주문은 담당자에게 문의하여 취소해주세요. TEL: 0507-1371-9981' });
+  }
+
   // 결제가 완료된 경우 포트원(V2) 결제 취소 API 호출
   if (order.payment.status === 'paid' && order.payment.paymentId) {
     try {
