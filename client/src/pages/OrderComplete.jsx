@@ -139,7 +139,7 @@ function OrderComplete() {
       <header className="checkout-header">
         <h1>{isBankTransfer ? '주문이 접수되었습니다.' : '주문이 완료되었습니다.'}</h1>
         <p>주문 번호: {order.id}</p>
-        {isBankTransfer && <p className="muted-text">입금 확인 후 상품이 발송됩니다.</p>}
+        {isBankTransfer && <p className="muted-text">입금 확인후 상품은 발송됩니다. 수업은 따로 상품이 발송되지 않습니다.</p>}
       </header>
 
       {isBankTransfer && (
@@ -154,7 +154,9 @@ function OrderComplete() {
             </div>
             <p className="bank-transfer-notice">
               입금자명은 주문자명과 동일하게 해주세요.<br />
-              입금 확인 후 발송 처리됩니다.
+              입금 확인후 상품은 발송됩니다. 수업은 따로 상품이 발송되지 않습니다.<br /><br />
+              계좌이체시 담당자에게 입금 확인 메세지나 전화를 통해서 입금확인 요청 부탁드립니다.<br />
+              TEL : 0507-1371-9981
             </p>
           </div>
         </section>
