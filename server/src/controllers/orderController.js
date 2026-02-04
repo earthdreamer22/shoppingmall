@@ -216,11 +216,7 @@ const cancelOrder = asyncHandler(async (req, res) => {
   }
 
   // 결제가 완료된 경우 포트원(V2) 결제 취소 API 호출
-  if (order.payment.status === 'paid') {
-    if (!order.payment.paymentId) {
-      return res.status(400).json({ message: '결제 식별자가 없어 취소할 수 없습니다.' });
-    }
-
+  if (order.payment.status === 'paid' && order.payment.paymentId) {
     try {
       await cancelPayment(order.payment.paymentId, reason || '주문 취소');
     } catch (error) {
