@@ -83,7 +83,9 @@ const createOrder = asyncHandler(async (req, res) => {
     metadata,
   });
 
-  if (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode) {
+  // 배송비가 있는 주문은 배송지 필수
+  const hasShippingFee = Number(pricing.shippingFee) > 0;
+  if (hasShippingFee && (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode)) {
     return res.status(400).json({ message: '배송지 정보를 모두 입력해주세요.' });
   }
 
@@ -94,6 +96,8 @@ const createOrder = asyncHandler(async (req, res) => {
     console.error('[createOrder] paymentId 누락! payment 객체:', payment);
     return res.status(400).json({ message: '결제 정보가 유효하지 않습니다. (paymentId 누락)' });
   }
+
+  const isBankTransfer = payment.method === 'bank_transfer';
 
   const orderItems = cart.items.map((item) => {
     if (!item.product || !item.product._id) {
@@ -119,21 +123,33 @@ const createOrder = asyncHandler(async (req, res) => {
   const shippingFee = Math.max(0, Number.isFinite(Number(pricing.shippingFee)) ? Number(pricing.shippingFee) : 0);
   const total = subtotal - discount + shippingFee;
 
-  const pgPayment = await getPaymentByPaymentId(paymentId);
-
-  if (!['PAID', 'VIRTUAL_ACCOUNT_ISSUED'].includes(pgPayment.status)) {
-    return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
-  }
-
-  if (Number(pgPayment.amount?.total) !== Math.max(0, total)) {
-    return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
-  }
-
-  const orderStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
-
   const existingPayment = await Order.findOne({ 'payment.paymentId': paymentId });
   if (existingPayment) {
     return res.status(409).json({ message: '이미 처리된 결제입니다.' });
+  }
+
+  let orderStatus;
+  let paymentStatus;
+  let pgPayment = null;
+
+  if (isBankTransfer) {
+    // 계좌이체: PortOne 검증 건너뛰고 입금 대기 상태로 생성
+    orderStatus = 'pending';
+    paymentStatus = 'pending';
+  } else {
+    // 카드 결제: PortOne 결제 검증
+    pgPayment = await getPaymentByPaymentId(paymentId);
+
+    if (!['PAID', 'VIRTUAL_ACCOUNT_ISSUED'].includes(pgPayment.status)) {
+      return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
+    }
+
+    if (Number(pgPayment.amount?.total) !== Math.max(0, total)) {
+      return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
+    }
+
+    orderStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
+    paymentStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
   }
 
   const order = await Order.create({
@@ -156,20 +172,20 @@ const createOrder = asyncHandler(async (req, res) => {
       requestMessage: shipping.requestMessage ?? '',
     },
     payment: {
-      method: payment.method ?? pgPayment.method ?? 'card',
-      status: pgPayment.status === 'PAID' ? 'paid' : 'pending',
-      transactionId: payment.txId ?? pgPayment.pgTxId ?? '',
-      paidAt: pgPayment.paidAt ? new Date(pgPayment.paidAt) : undefined,
+      method: payment.method ?? pgPayment?.method ?? 'card',
+      status: paymentStatus,
+      transactionId: payment.txId ?? pgPayment?.pgTxId ?? '',
+      paidAt: pgPayment?.paidAt ? new Date(pgPayment.paidAt) : undefined,
       paymentId,
-      pgProvider: pgPayment.pgProvider ?? '',
-      cardName: pgPayment.card?.name ?? '',
-      applyNum: pgPayment.card?.approvalNumber ?? '',
+      pgProvider: isBankTransfer ? '계좌이체(직접입금)' : (pgPayment?.pgProvider ?? ''),
+      cardName: pgPayment?.card?.name ?? '',
+      applyNum: pgPayment?.card?.approvalNumber ?? '',
     },
     metadata,
     history: [
       {
         status: orderStatus,
-        note: orderStatus === 'paid' ? '결제가 완료되었습니다.' : '결제 대기 중입니다.',
+        note: isBankTransfer ? '계좌이체 주문이 접수되었습니다. 입금 확인 후 발송됩니다.' : (orderStatus === 'paid' ? '결제가 완료되었습니다.' : '결제 대기 중입니다.'),
       },
     ],
   });

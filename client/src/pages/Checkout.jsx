@@ -131,6 +131,54 @@ function Checkout() {
     setShipping((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
+  // 주문 생성 공통 함수
+  const createOrder = async (paymentData) => {
+    const orderPayload = {
+      shipping,
+      payment: paymentData,
+      pricing: {
+        subtotal,
+        discount,
+        shippingFee,
+        total,
+      },
+    };
+
+    console.log('[Checkout] 주문 생성 요청:', JSON.stringify(orderPayload, null, 2));
+
+    const order = await apiRequest('/orders', {
+      method: 'POST',
+      body: JSON.stringify(orderPayload),
+    });
+
+    console.log('[Checkout] 주문 생성 성공:', order);
+    setCartCount(0);
+    try {
+      window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+    } catch (_error) {
+      // ignore
+    }
+    navigate('/orders/complete', { replace: true, state: { order } });
+  };
+
+  // 계좌이체 주문 처리
+  const handleBankTransfer = async () => {
+    setSubmitting(true);
+    setError('');
+    try {
+      const orderId = `bank_${Date.now()}`;
+      await createOrder({
+        method: 'bank_transfer',
+        paymentId: orderId,
+      });
+    } catch (err) {
+      console.error('[Checkout] 계좌이체 주문 생성 실패:', err);
+      setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
@@ -145,6 +193,13 @@ function Checkout() {
       return;
     }
 
+    // 계좌이체: PortOne 없이 바로 주문 생성
+    if (paymentMethod === 'bank_transfer') {
+      handleBankTransfer();
+      return;
+    }
+
+    // 카드 결제: PortOne 사용
     if (!portoneReady || typeof window.PortOne === 'undefined') {
       setError('결제 모듈이 아직 준비 중입니다. 잠시 후 다시 시도해주세요.');
       setSubmitting(false);
@@ -204,7 +259,6 @@ function Checkout() {
       console.log('[Checkout] 결제 응답:', response);
 
       if (response.code != null) {
-        // 오류 발생
         console.error('[Checkout] 결제 오류:', response);
         setSubmitting(false);
         setError(response.message || '결제가 취소되었습니다.');
@@ -213,54 +267,17 @@ function Checkout() {
 
       // 결제 성공 - 주문 생성
       try {
-        // 디버깅: orderId 값 확인
-        console.log('[Checkout] orderId 값:', orderId);
-        console.log('[Checkout] paymentMethod 값:', paymentMethod);
-        console.log('[Checkout] response 객체:', response);
-
-        // undefined 값 필터링
         const paymentData = {
           method: paymentMethod,
-          paymentId: orderId, // V2에서는 우리가 생성한 orderId를 paymentId로 사용
+          paymentId: orderId,
         };
-
-        // transactionType과 txId가 있을 경우에만 추가
         if (response.transactionType) {
           paymentData.transactionType = response.transactionType;
         }
         if (response.txId) {
           paymentData.txId = response.txId;
         }
-
-        const orderPayload = {
-          shipping,
-          payment: paymentData,
-          pricing: {
-            subtotal,
-            discount,
-            shippingFee,
-            total,
-          },
-        };
-
-        console.log('[Checkout] 주문 생성 요청 - 전체 payload:', JSON.stringify(orderPayload, null, 2));
-        console.log('[Checkout] 주문 생성 요청 - payment 객체:', orderPayload.payment);
-        console.log('[Checkout] orderId 최종 확인:', orderId);
-        console.log('[Checkout] paymentId 최종 확인:', paymentData.paymentId);
-
-        const order = await apiRequest('/orders', {
-          method: 'POST',
-          body: JSON.stringify(orderPayload),
-        });
-
-        console.log('[Checkout] 주문 생성 성공:', order);
-        setCartCount(0);
-        try {
-          window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
-        } catch (_error) {
-          // ignore
-        }
-        navigate('/orders/complete', { replace: true, state: { order } });
+        await createOrder(paymentData);
       } catch (err) {
         console.error('[Checkout] 주문 생성 실패:', err);
         setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
@@ -471,19 +488,34 @@ function Checkout() {
             ))}
           </div>
 
+          {paymentMethod === 'bank_transfer' && (
+            <div className="bank-transfer-info">
+              <h3>입금 계좌 안내</h3>
+              <div className="bank-transfer-detail">
+                <div><span className="label">은행</span><strong>카카오뱅크</strong></div>
+                <div><span className="label">계좌번호</span><strong>3333-03-3506699</strong></div>
+                <div><span className="label">예금주</span><strong>신윤재(종이책연구소)</strong></div>
+              </div>
+              <p className="bank-transfer-notice">
+                주문 후 위 계좌로 입금해주시면 확인 후 발송됩니다.
+                입금자명은 주문자명과 동일하게 해주세요.
+              </p>
+            </div>
+          )}
+
           <label className="agreement">
             <input type="checkbox" required />
             주문 내용을 확인했으며, 약관에 동의합니다.
           </label>
 
           {error && <div className="status error">{error}</div>}
-          {!portoneReady && <div className="status">{moduleStatus}</div>}
+          {paymentMethod !== 'bank_transfer' && !portoneReady && <div className="status">{moduleStatus}</div>}
 
           <div className="checkout-actions">
             <button type="button" className="detail-secondary" onClick={handleBackToCart}>
               장바구니로 돌아가기
             </button>
-            <button type="submit" className="detail-primary" disabled={submitting || !portoneReady}>
+            <button type="submit" className="detail-primary" disabled={submitting || (paymentMethod !== 'bank_transfer' && !portoneReady)}>
               {submitting ? '주문 처리 중...' : `₩ ${total.toLocaleString()} 결제하기`}
             </button>
           </div>
