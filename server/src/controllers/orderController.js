@@ -200,14 +200,12 @@ const createOrder = asyncHandler(async (req, res) => {
     metadata: { orderId: order.id, paymentId, amount: total },
   });
 
-  // 주문 생성은 성공으로 처리하고, 메일 실패는 별도로 로그만 남긴다.
-  try {
-    await sendOrderNotification(order);
-  } catch (error) {
-    console.error('[mailer] Failed to send order notification:', error.message);
-  }
-
+  // 응답을 먼저 보내고, 메일은 비동기로 전송 (메일 전송 지연이 주문 응답을 차단하지 않도록)
   res.status(201).json(formatOrder(order));
+
+  sendOrderNotification(order).catch((error) => {
+    console.error('[mailer] Failed to send order notification:', error.message);
+  });
 });
 
 const cancelOrder = asyncHandler(async (req, res) => {

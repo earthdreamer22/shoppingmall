@@ -73,6 +73,7 @@ const orderSchema = new Schema(
       },
       transactionId: { type: String, default: '' },
       paidAt: { type: Date },
+      paymentId: { type: String, default: '' }, // PortOne V2 결제 식별자 또는 계좌이체 주문 ID
       merchantUid: { type: String, default: '' },
       impUid: { type: String, default: undefined }, // v1 전용. v2는 paymentId/txId를 사용하므로 비워둔다.
       pgProvider: { type: String, default: '' },

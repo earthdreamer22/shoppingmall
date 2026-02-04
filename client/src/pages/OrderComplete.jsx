@@ -132,12 +132,33 @@ function OrderComplete() {
     );
   }
 
+  const isBankTransfer = order.payment?.method === 'bank_transfer';
+
   return (
     <div className="App checkout-page">
       <header className="checkout-header">
-        <h1>주문이 완료되었습니다.</h1>
+        <h1>{isBankTransfer ? '주문이 접수되었습니다.' : '주문이 완료되었습니다.'}</h1>
         <p>주문 번호: {order.id}</p>
+        {isBankTransfer && <p className="muted-text">입금 확인 후 상품이 발송됩니다.</p>}
       </header>
+
+      {isBankTransfer && (
+        <section className="checkout-section">
+          <div className="bank-transfer-info">
+            <h3>입금 안내</h3>
+            <div className="bank-transfer-detail">
+              <div><span className="label">은행</span><strong>카카오뱅크</strong></div>
+              <div><span className="label">계좌번호</span><strong>3333-03-3506699</strong></div>
+              <div><span className="label">예금주</span><strong>신윤재(종이책연구소)</strong></div>
+              <div><span className="label">입금 금액</span><strong>₩ {order.pricing?.total?.toLocaleString?.() ?? '-'}</strong></div>
+            </div>
+            <p className="bank-transfer-notice">
+              입금자명은 주문자명과 동일하게 해주세요.<br />
+              입금 확인 후 발송 처리됩니다.
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="checkout-section">
         <h2>결제 요약</h2>
