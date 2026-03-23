@@ -517,34 +517,30 @@ function Checkout() {
                     checked={cashReceipt.requested}
                     onChange={(e) => setCashReceipt((prev) => ({ ...prev, requested: e.target.checked }))}
                   />
-                  현금영수증 신청
+                  현금영수증을 신청하겠습니다
                 </label>
 
                 {cashReceipt.requested && (
                   <div className="cash-receipt-form">
                     <div className="cash-receipt-type">
-                      <label>
-                        <input
-                          type="radio"
-                          name="cashReceiptType"
-                          value="income_deduction"
-                          checked={cashReceipt.type === 'income_deduction'}
-                          onChange={() => setCashReceipt((prev) => ({ ...prev, type: 'income_deduction', number: '' }))}
-                        />
-                        소득공제용
+                      <label
+                        className={`cash-receipt-type-option ${cashReceipt.type === 'income_deduction' ? 'is-selected' : ''}`}
+                        onClick={() => setCashReceipt((prev) => ({ ...prev, type: 'income_deduction', number: '' }))}
+                      >
+                        <input type="radio" name="cashReceiptType" value="income_deduction" readOnly checked={cashReceipt.type === 'income_deduction'} />
+                        <span className="type-icon">👤</span>
+                        <span>소득공제용<br /><small style={{ fontWeight: 400, color: '#64748b' }}>휴대폰 번호</small></span>
                       </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="cashReceiptType"
-                          value="business_expense"
-                          checked={cashReceipt.type === 'business_expense'}
-                          onChange={() => setCashReceipt((prev) => ({ ...prev, type: 'business_expense', number: '' }))}
-                        />
-                        사업자지출증빙용
+                      <label
+                        className={`cash-receipt-type-option ${cashReceipt.type === 'business_expense' ? 'is-selected' : ''}`}
+                        onClick={() => setCashReceipt((prev) => ({ ...prev, type: 'business_expense', number: '' }))}
+                      >
+                        <input type="radio" name="cashReceiptType" value="business_expense" readOnly checked={cashReceipt.type === 'business_expense'} />
+                        <span className="type-icon">🏢</span>
+                        <span>사업자지출증빙<br /><small style={{ fontWeight: 400, color: '#64748b' }}>사업자 번호</small></span>
                       </label>
                     </div>
-                    <label className="checkout-input">
+                    <label className="cash-receipt-number-label">
                       {cashReceipt.type === 'income_deduction' ? '휴대폰 번호' : '사업자 등록번호'}
                       <input
                         type="text"
