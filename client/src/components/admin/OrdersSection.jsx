@@ -42,6 +42,7 @@ function OrdersSection({
                 <th>배송지</th>
                 <th>주문 상품</th>
                 <th>결제 금액</th>
+                <th>현금영수증</th>
                 <th>결제 상태</th>
                 <th>배송 상태</th>
                 <th>조치</th>
@@ -101,6 +102,18 @@ function OrdersSection({
                     </div>
                   </td>
                   <td>{formatCurrency(order.pricing?.total)}</td>
+                  <td>
+                    {order.cashReceipt?.requested ? (
+                      <div className="order-customer">
+                        <span className="badge">
+                          {order.cashReceipt.type === 'income_deduction' ? '소득공제용' : '사업자지출증빙'}
+                        </span>
+                        <span>{order.cashReceipt.number}</span>
+                      </div>
+                    ) : (
+                      <span className="muted-text">미신청</span>
+                    )}
+                  </td>
                   <td>
                     <div className="order-payment">
                       <span className={`order-badge status-${order.payment?.status ?? 'unknown'}`}>

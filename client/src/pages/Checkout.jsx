@@ -33,6 +33,11 @@ function Checkout() {
     requestMessage: '',
   });
   const [paymentMethod, setPaymentMethod] = useState('card');
+  const [cashReceipt, setCashReceipt] = useState({
+    requested: false,
+    type: 'income_deduction',
+    number: '',
+  });
   const [useDefaultAddress, setUseDefaultAddress] = useState(true);
   const [portoneReady, setPortoneReady] = useState(false);
   const [moduleStatus, setModuleStatus] = useState('결제 모듈을 불러오는 중입니다...');
@@ -142,6 +147,7 @@ function Checkout() {
         shippingFee,
         total,
       },
+      cashReceipt: paymentData.method === 'bank_transfer' ? cashReceipt : { requested: false },
     };
 
     console.log('[Checkout] 주문 생성 요청:', JSON.stringify(orderPayload, null, 2));
@@ -502,6 +508,55 @@ function Checkout() {
                 계좌이체시 담당자에게 입금 확인 메세지나 전화를 통해서 입금확인 요청 부탁드립니다.<br />
                 TEL : 0507-1371-9981
               </p>
+
+              <div className="cash-receipt-section">
+                <h3>현금영수증 신청</h3>
+                <label className="cash-receipt-toggle">
+                  <input
+                    type="checkbox"
+                    checked={cashReceipt.requested}
+                    onChange={(e) => setCashReceipt((prev) => ({ ...prev, requested: e.target.checked }))}
+                  />
+                  현금영수증 신청
+                </label>
+
+                {cashReceipt.requested && (
+                  <div className="cash-receipt-form">
+                    <div className="cash-receipt-type">
+                      <label>
+                        <input
+                          type="radio"
+                          name="cashReceiptType"
+                          value="income_deduction"
+                          checked={cashReceipt.type === 'income_deduction'}
+                          onChange={() => setCashReceipt((prev) => ({ ...prev, type: 'income_deduction', number: '' }))}
+                        />
+                        소득공제용
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="cashReceiptType"
+                          value="business_expense"
+                          checked={cashReceipt.type === 'business_expense'}
+                          onChange={() => setCashReceipt((prev) => ({ ...prev, type: 'business_expense', number: '' }))}
+                        />
+                        사업자지출증빙용
+                      </label>
+                    </div>
+                    <label className="checkout-input">
+                      {cashReceipt.type === 'income_deduction' ? '휴대폰 번호' : '사업자 등록번호'}
+                      <input
+                        type="text"
+                        value={cashReceipt.number}
+                        onChange={(e) => setCashReceipt((prev) => ({ ...prev, number: e.target.value }))}
+                        placeholder={cashReceipt.type === 'income_deduction' ? '010-0000-0000' : '000-00-00000'}
+                        required
+                      />
+                    </label>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 

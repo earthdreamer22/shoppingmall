@@ -88,6 +88,11 @@ const orderSchema = new Schema(
         operator: { type: Schema.Types.ObjectId, ref: 'User' },
       },
     ],
+    cashReceipt: {
+      requested: { type: Boolean, default: false },
+      type: { type: String, enum: ['income_deduction', 'business_expense', ''], default: '' },
+      number: { type: String, default: '' },
+    },
     metadata: {
       couponCode: { type: String, default: '' },
       cartSnapshotId: { type: Schema.Types.ObjectId },

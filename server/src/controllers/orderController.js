@@ -16,6 +16,7 @@ function formatOrder(orderDoc) {
     pricing: orderDoc.pricing,
     shipping: orderDoc.shipping,
     payment: orderDoc.payment,
+    cashReceipt: orderDoc.cashReceipt ?? null,
     items: orderDoc.items.map((item) => ({
       id: item._id.toString(),
       product: item.product?.toString?.() ?? null,
@@ -74,6 +75,7 @@ const createOrder = asyncHandler(async (req, res) => {
     pricing = {},
     payment = {},
     metadata = {},
+    cashReceipt = {},
   } = req.body ?? {};
 
   console.log('[createOrder] 파싱된 데이터:', {
@@ -180,6 +182,11 @@ const createOrder = asyncHandler(async (req, res) => {
       pgProvider: isBankTransfer ? '계좌이체(직접입금)' : (pgPayment?.pgProvider ?? ''),
       cardName: pgPayment?.card?.name ?? '',
       applyNum: pgPayment?.card?.approvalNumber ?? '',
+    },
+    cashReceipt: {
+      requested: Boolean(cashReceipt.requested),
+      type: cashReceipt.requested ? (cashReceipt.type ?? '') : '',
+      number: cashReceipt.requested ? (cashReceipt.number ?? '') : '',
     },
     metadata,
     history: [
