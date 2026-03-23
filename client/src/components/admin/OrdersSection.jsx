@@ -39,6 +39,7 @@ function OrdersSection({
                 <th>주문번호</th>
                 <th>주문일</th>
                 <th>고객</th>
+                <th>배송지</th>
                 <th>주문 상품</th>
                 <th>결제 금액</th>
                 <th>결제 상태</th>
@@ -56,10 +57,25 @@ function OrdersSection({
                       <div className="order-customer">
                         <strong>{order.customer.name}</strong>
                         <span>{order.customer.email}</span>
-                        <span>{order.customer.phone}</span>
+                        <span>{order.customer.phone || <span className="muted-text">-</span>}</span>
                       </div>
                     ) : (
                       <span className="muted-text">알 수 없음</span>
+                    )}
+                  </td>
+                  <td>
+                    {order.shipping?.addressLine1 ? (
+                      <div className="order-customer">
+                        <strong>{order.shipping.recipientName}</strong>
+                        <span>{order.shipping.phone}</span>
+                        <span>[{order.shipping.postalCode}] {order.shipping.addressLine1}</span>
+                        {order.shipping.addressLine2 && <span>{order.shipping.addressLine2}</span>}
+                        {order.shipping.requestMessage && (
+                          <span className="muted-text">요청: {order.shipping.requestMessage}</span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="muted-text">-</span>
                     )}
                   </td>
                   <td>
