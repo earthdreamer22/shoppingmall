@@ -41,6 +41,7 @@ function Checkout() {
   const [useDefaultAddress, setUseDefaultAddress] = useState(true);
   const [portoneReady, setPortoneReady] = useState(false);
   const [moduleStatus, setModuleStatus] = useState('결제 모듈을 불러오는 중입니다...');
+  const [postcodeReady, setPostcodeReady] = useState(Boolean(window.daum?.Postcode));
 
   useEffect(() => {
     if (!loading && !user) {
@@ -85,6 +86,46 @@ function Checkout() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (window.daum?.Postcode) {
+      setPostcodeReady(true);
+      return;
+    }
+
+    const scriptId = 'daum-postcode-script';
+    const existing = document.getElementById(scriptId);
+    if (existing) {
+      existing.addEventListener('load', () => setPostcodeReady(true), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    script.onload = () => setPostcodeReady(true);
+    document.body.appendChild(script);
+  }, []);
+
+  const handleAddressSearch = () => {
+    if (!window.daum?.Postcode) {
+      setError('주소 검색 도구를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+
+    new window.daum.Postcode({
+      oncomplete: (data) => {
+        const road = data.roadAddress?.trim();
+        const jibun = data.jibunAddress?.trim();
+        setShipping((prev) => ({
+          ...prev,
+          postalCode: data.zonecode ?? prev.postalCode,
+          addressLine1: road || jibun || prev.addressLine1,
+        }));
+      },
+    }).open();
+  };
 
   useEffect(() => {
     const bootstrap = async () => {
@@ -396,7 +437,12 @@ function Checkout() {
                 disabled={!needsShipping}
               />
             </label>
-            <button type="button" className="checkout-zipcode-btn" disabled>
+            <button
+              type="button"
+              className="checkout-zipcode-btn"
+              onClick={handleAddressSearch}
+              disabled={!needsShipping || !postcodeReady}
+            >
               검색
             </button>
           </div>
