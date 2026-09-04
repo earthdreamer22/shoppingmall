@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { apiRequest } from '../lib/apiClient.js';
+import { getGuestCartCount, GUEST_CART_EVENT } from '../lib/guestCart.js';
 
 const AuthContext = createContext({
   user: null,
@@ -22,7 +23,7 @@ export function AuthProvider({ children }) {
       setCartCount(0);
     } catch (_error) {
       setUser(null);
-      setCartCount(0);
+      setCartCount(getGuestCartCount());
     } finally {
       setLoading(false);
     }
@@ -31,6 +32,13 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     fetchCurrentUser();
   }, [fetchCurrentUser]);
+
+  // 비회원 장바구니 변경 시 배지 수량 동기화
+  useEffect(() => {
+    const handler = () => setCartCount(getGuestCartCount());
+    window.addEventListener(GUEST_CART_EVENT, handler);
+    return () => window.removeEventListener(GUEST_CART_EVENT, handler);
+  }, []);
 
   const login = useCallback(async ({ email, password }) => {
     const data = await apiRequest('/auth/login', {

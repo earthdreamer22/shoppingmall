@@ -4,6 +4,7 @@ import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { getCategoryLabel } from '../lib/productCategories.js';
+import { addGuestItem } from '../lib/guestCart.js';
 
 function formatPrice(value) {
   if (value == null) return '-';
@@ -75,14 +76,22 @@ function ProductDetail() {
     return product.description.split(/\n+/).map((line) => line.trim()).filter(Boolean);
   }, [product]);
 
+  const buildGuestItem = () => {
+    const optionsArray = Object.entries(selectedOptions).map(([name, value]) => ({ name, value }));
+    const primary = images.find((image) => image.isPrimary) ?? images[0] ?? null;
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity,
+      selectedOptions: optionsArray,
+      imageUrl: primary?.url ?? '',
+      shippingFee: product.shippingFee ?? 0,
+    };
+  };
+
   const handleAddToCart = async () => {
     if (!product) return;
-
-    if (!user) {
-      setStatus('로그인 후 장바구니를 이용할 수 있습니다.');
-      navigate('/login', { state: { from: location.pathname } });
-      return;
-    }
 
     // 필수 옵션 검증
     const requiredOptions = product.options?.filter((opt) => opt.required) ?? [];
@@ -91,6 +100,14 @@ function ProductDetail() {
         setStatus(`${opt.name}을(를) 선택해주세요.`);
         return;
       }
+    }
+
+    // 비회원: localStorage 장바구니에 담는다.
+    if (!user) {
+      const count = addGuestItem(buildGuestItem());
+      setCartCount(count);
+      setStatus(`장바구니에 상품이 ${quantity}개 담겼습니다.`);
+      return;
     }
 
     setWorking(true);
@@ -123,12 +140,6 @@ function ProductDetail() {
   const handlePurchase = async () => {
     if (!product) return;
 
-    if (!user) {
-      setStatus('로그인 후 구매하실 수 있습니다.');
-      navigate('/login', { state: { from: location.pathname } });
-      return;
-    }
-
     // 필수 옵션 검증
     const requiredOptions = product.options?.filter((opt) => opt.required) ?? [];
     for (const opt of requiredOptions) {
@@ -136,6 +147,14 @@ function ProductDetail() {
         setStatus(`${opt.name}을(를) 선택해주세요.`);
         return;
       }
+    }
+
+    // 비회원: localStorage 장바구니에 담고 장바구니로 이동한다.
+    if (!user) {
+      const count = addGuestItem(buildGuestItem());
+      setCartCount(count);
+      navigate('/cart');
+      return;
     }
 
     setWorking(true);

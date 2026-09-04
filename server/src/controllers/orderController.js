@@ -1,5 +1,6 @@
 ﻿const Cart = require('../models/Cart');
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 const { asyncHandler } = require('../utils/asyncHandler');
 const { resolveUserId } = require('../utils/userContext');
 const { getPaymentByPaymentId, cancelPayment } = require('../services/portoneService');
@@ -54,7 +55,14 @@ const listAllOrders = asyncHandler(async (_req, res) => {
             email: order.user.email,
             phone: order.user.phone,
           }
-        : null,
+        : (order.guest?.name || order.guest?.phone)
+          ? {
+              id: '',
+              name: `${order.guest.name} (비회원)`,
+              email: order.guest.email ?? '',
+              phone: order.guest.phone ?? '',
+            }
+          : null,
     })),
   );
 });
@@ -318,10 +326,168 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   res.json(formatOrder(order));
 });
 
+// 비회원(게스트) 주문 생성: 로그인 없이 클라이언트가 보낸 상품 목록으로 주문을 만든다.
+// 가격은 신뢰하지 않고 서버가 Product에서 다시 조회해 계산한다(위변조 방지).
+const createGuestOrder = asyncHandler(async (req, res) => {
+  const {
+    items = [],
+    shipping = {},
+    pricing = {},
+    payment = {},
+    guest = {},
+    cashReceipt = {},
+  } = req.body ?? {};
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ message: '주문할 상품이 없습니다.' });
+  }
+
+  if (!guest.name || !guest.phone) {
+    return res.status(400).json({ message: '주문자 이름과 연락처를 입력해주세요.' });
+  }
+
+  // 상품 정보를 서버에서 재조회하여 가격/이름/SKU를 신뢰 가능한 값으로 확정한다.
+  const productIds = [...new Set(items.map((item) => item.productId).filter(Boolean))];
+  const products = await Product.find({ _id: { $in: productIds } });
+  const productMap = new Map(products.map((product) => [product._id.toString(), product]));
+
+  const orderItems = items.map((item) => {
+    const product = productMap.get(String(item.productId));
+    if (!product) {
+      const error = new Error('존재하지 않는 상품이 포함되어 있습니다.');
+      error.status = 400;
+      throw error;
+    }
+
+    const quantity = Math.max(1, Math.min(999, Number(item.quantity) || 1));
+    const primaryImage = resolvePrimaryImage(product);
+
+    return {
+      product: product._id,
+      name: product.name,
+      sku: product.sku,
+      price: product.price,
+      quantity,
+      imageUrl: primaryImage?.url ?? '',
+      imagePublicId: primaryImage?.publicId ?? '',
+      selectedOptions: Array.isArray(item.selectedOptions) ? item.selectedOptions : [],
+    };
+  });
+
+  const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discount = 0;
+  // 배송비: 주문 상품 중 최대 배송비 1건만 적용 (회원 결제와 동일 규칙)
+  const shippingFee = orderItems.length
+    ? Math.max(...orderItems.map((item) => productMap.get(item.product.toString())?.shippingFee ?? 0))
+    : 0;
+  const total = subtotal - discount + shippingFee;
+
+  // 배송비가 있는 주문은 배송지 필수
+  if (shippingFee > 0 && (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode)) {
+    return res.status(400).json({ message: '배송지 정보를 모두 입력해주세요.' });
+  }
+
+  const { paymentId } = payment ?? {};
+  if (!paymentId) {
+    return res.status(400).json({ message: '결제 정보가 유효하지 않습니다. (paymentId 누락)' });
+  }
+
+  const existingPayment = await Order.findOne({ 'payment.paymentId': paymentId });
+  if (existingPayment) {
+    return res.status(409).json({ message: '이미 처리된 결제입니다.' });
+  }
+
+  const isBankTransfer = payment.method === 'bank_transfer';
+  let orderStatus;
+  let paymentStatus;
+  let pgPayment = null;
+
+  if (isBankTransfer) {
+    orderStatus = 'pending';
+    paymentStatus = 'pending';
+  } else {
+    pgPayment = await getPaymentByPaymentId(paymentId);
+
+    if (!['PAID', 'VIRTUAL_ACCOUNT_ISSUED'].includes(pgPayment.status)) {
+      return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
+    }
+
+    if (Number(pgPayment.amount?.total) !== Math.max(0, total)) {
+      return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
+    }
+
+    orderStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
+    paymentStatus = pgPayment.status === 'PAID' ? 'paid' : 'pending';
+  }
+
+  const order = await Order.create({
+    user: null,
+    guest: {
+      name: guest.name,
+      email: guest.email ?? '',
+      phone: guest.phone,
+    },
+    status: orderStatus,
+    items: orderItems,
+    pricing: {
+      subtotal,
+      discount: Math.max(0, discount),
+      shippingFee: Math.max(0, shippingFee),
+      total: Math.max(0, total),
+      currency: pricing.currency ?? 'KRW',
+    },
+    shipping: {
+      recipientName: shipping.recipientName || guest.name,
+      phone: shipping.phone || guest.phone,
+      addressLine1: shipping.addressLine1 || '-',
+      addressLine2: shipping.addressLine2 ?? '',
+      postalCode: shipping.postalCode || '-',
+      requestMessage: shipping.requestMessage ?? '',
+    },
+    payment: {
+      method: payment.method ?? pgPayment?.method ?? 'card',
+      status: paymentStatus,
+      transactionId: payment.txId ?? pgPayment?.pgTxId ?? '',
+      paidAt: pgPayment?.paidAt ? new Date(pgPayment.paidAt) : undefined,
+      paymentId,
+      pgProvider: isBankTransfer ? '계좌이체(직접입금)' : (pgPayment?.pgProvider ?? ''),
+      cardName: pgPayment?.card?.name ?? '',
+      applyNum: pgPayment?.card?.approvalNumber ?? '',
+    },
+    cashReceipt: {
+      requested: Boolean(cashReceipt.requested),
+      type: cashReceipt.requested ? (cashReceipt.type ?? '') : '',
+      number: cashReceipt.requested ? (cashReceipt.number ?? '') : '',
+    },
+    history: [
+      {
+        status: orderStatus,
+        note: isBankTransfer
+          ? '비회원 계좌이체 주문이 접수되었습니다. 입금 확인 후 발송됩니다.'
+          : (orderStatus === 'paid' ? '비회원 결제가 완료되었습니다.' : '결제 대기 중입니다.'),
+      },
+    ],
+  });
+
+  await recordAuditLog({
+    action: 'order.create.guest',
+    userId: null,
+    ip: req.ip,
+    metadata: { orderId: order.id, paymentId, amount: total, guestEmail: guest.email ?? '' },
+  });
+
+  res.status(201).json(formatOrder(order));
+
+  sendOrderNotification(order).catch((error) => {
+    console.error('[mailer] Failed to send guest order notification:', error.message);
+  });
+});
+
 module.exports = {
   listOrders,
   listAllOrders,
   createOrder,
+  createGuestOrder,
   cancelOrder,
   updateOrderStatus,
 };

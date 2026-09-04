@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
+import { getGuestCart, getGuestCartCount, updateGuestQuantity, removeGuestItem } from '../lib/guestCart.js';
 
 function Cart() {
   const { user, loading, setCartCount } = useAuth();
@@ -14,8 +15,10 @@ function Cart() {
 
   const fetchCart = useCallback(async () => {
     if (!user) {
-      setCart([]);
-      setCartCount(0);
+      // 비회원: localStorage 장바구니 사용
+      const items = getGuestCart();
+      setCart(items);
+      setCartCount(getGuestCartCount());
       setIsLoading(false);
       return;
     }
@@ -45,6 +48,12 @@ function Cart() {
   const handleUpdateQuantity = async (itemId, newQuantity) => {
     if (newQuantity <= 0) return;
 
+    if (!user) {
+      updateGuestQuantity(itemId, newQuantity);
+      await fetchCart();
+      return;
+    }
+
     try {
       await apiRequest(`/cart/${itemId}`, {
         method: 'PUT',
@@ -57,6 +66,13 @@ function Cart() {
   };
 
   const handleRemoveFromCart = async (itemId) => {
+    if (!user) {
+      removeGuestItem(itemId);
+      setStatusMessage('장바구니에서 제거했습니다.');
+      await fetchCart();
+      return;
+    }
+
     try {
       await apiRequest(`/cart/${itemId}`, { method: 'DELETE' });
       setStatusMessage('장바구니에서 제거했습니다.');
@@ -75,20 +91,6 @@ function Cart() {
     return (
       <div className="App">
         <div className="page-status">로딩 중...</div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="App">
-        <section className="empty-state">
-          <h2>장바구니</h2>
-          <p>장바구니를 보려면 로그인해주세요.</p>
-          <button type="button" onClick={() => navigate('/login')}>
-            로그인하기
-          </button>
-        </section>
       </div>
     );
   }

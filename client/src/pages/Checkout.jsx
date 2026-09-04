@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
+import { getGuestCart, clearGuestCart } from '../lib/guestCart.js';
 
 const DEFAULT_SHIPPING_FEE = 3000;
 const PORTONE_STORE_ID = import.meta.env.VITE_PORTONE_STORE_ID ?? '';
@@ -39,15 +40,12 @@ function Checkout() {
     number: '',
   });
   const [useDefaultAddress, setUseDefaultAddress] = useState(true);
+  const [guestInfo, setGuestInfo] = useState({ name: '', email: '', phone: '' });
   const [portoneReady, setPortoneReady] = useState(false);
   const [moduleStatus, setModuleStatus] = useState('결제 모듈을 불러오는 중입니다...');
   const [postcodeReady, setPostcodeReady] = useState(Boolean(window.daum?.Postcode));
 
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate('/login', { replace: true, state: { from: '/checkout' } });
-    }
-  }, [loading, user, navigate]);
+  // 비회원도 결제 가능하므로 로그인 강제 이동은 제거되었습니다.
 
   useEffect(() => {
     if (!PORTONE_STORE_ID || !PORTONE_CHANNEL_KEY) {
@@ -129,7 +127,15 @@ function Checkout() {
 
   useEffect(() => {
     const bootstrap = async () => {
-      if (!user) return;
+      if (loading) return;
+
+      // 비회원: localStorage 장바구니로 결제 진행
+      if (!user) {
+        setCart(getGuestCart());
+        setIsLoadingCart(false);
+        return;
+      }
+
       setIsLoadingCart(true);
       setError('');
       try {
@@ -153,7 +159,7 @@ function Checkout() {
     };
 
     bootstrap();
-  }, [user]);
+  }, [user, loading]);
 
   const subtotal = useMemo(
     () => cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
@@ -177,26 +183,43 @@ function Checkout() {
     setShipping((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  // 주문 생성 공통 함수
+  // 주문 생성 공통 함수 (회원 / 비회원 분기)
   const createOrder = async (paymentData) => {
-    const orderPayload = {
-      shipping,
-      payment: paymentData,
-      pricing: {
-        subtotal,
-        discount,
-        shippingFee,
-        total,
-      },
-      cashReceipt: paymentData.method === 'bank_transfer' ? cashReceipt : { requested: false },
-    };
+    const commonPricing = { subtotal, discount, shippingFee, total };
+    const receipt = paymentData.method === 'bank_transfer' ? cashReceipt : { requested: false };
 
-    console.log('[Checkout] 주문 생성 요청:', JSON.stringify(orderPayload, null, 2));
-
-    const order = await apiRequest('/orders', {
-      method: 'POST',
-      body: JSON.stringify(orderPayload),
-    });
+    let order;
+    if (!user) {
+      // 비회원: 상품 목록을 함께 전송 (서버가 가격 재계산)
+      const guestPayload = {
+        items: cart.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          selectedOptions: item.selectedOptions ?? [],
+        })),
+        guest: guestInfo,
+        shipping,
+        payment: paymentData,
+        pricing: commonPricing,
+        cashReceipt: receipt,
+      };
+      order = await apiRequest('/orders/guest', {
+        method: 'POST',
+        body: JSON.stringify(guestPayload),
+      });
+      clearGuestCart();
+    } else {
+      const orderPayload = {
+        shipping,
+        payment: paymentData,
+        pricing: commonPricing,
+        cashReceipt: receipt,
+      };
+      order = await apiRequest('/orders', {
+        method: 'POST',
+        body: JSON.stringify(orderPayload),
+      });
+    }
 
     console.log('[Checkout] 주문 생성 성공:', order);
     setCartCount(0);
@@ -232,6 +255,11 @@ function Checkout() {
 
     if (!cart.length) {
       setError('장바구니가 비어 있습니다.');
+      return;
+    }
+
+    if (!user && (!guestInfo.name || !guestInfo.phone)) {
+      setError('주문자 이름과 연락처를 입력해주세요.');
       return;
     }
 
@@ -296,9 +324,9 @@ function Checkout() {
         currency: 'KRW',
         payMethod: payMethodV2,
         customer: {
-          fullName: shipping.recipientName,
-          phoneNumber: shipping.phone,
-          email: user?.email,
+          fullName: shipping.recipientName || guestInfo.name,
+          phoneNumber: shipping.phone || guestInfo.phone,
+          email: user?.email ?? guestInfo.email,
         },
         redirectUrl,
       });
@@ -369,14 +397,49 @@ function Checkout() {
       <form className="checkout-grid" onSubmit={handleSubmit}>
         <section className="checkout-section">
           <h2>주문자 정보</h2>
-          <div className="checkout-field">
-            <span className="label">주문자</span>
-            <span>{user?.name ?? user?.email}</span>
-          </div>
-          <div className="checkout-field">
-            <span className="label">이메일</span>
-            <span>{user?.email}</span>
-          </div>
+          {user ? (
+            <>
+              <div className="checkout-field">
+                <span className="label">주문자</span>
+                <span>{user?.name ?? user?.email}</span>
+              </div>
+              <div className="checkout-field">
+                <span className="label">이메일</span>
+                <span>{user?.email}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="muted-text">비회원으로 주문합니다. 주문 확인을 위해 정보를 입력해주세요.</p>
+              <label className="checkout-input">
+                주문자 이름
+                <input
+                  value={guestInfo.name}
+                  onChange={(event) => setGuestInfo((prev) => ({ ...prev, name: event.target.value }))}
+                  placeholder="이름"
+                  required
+                />
+              </label>
+              <label className="checkout-input">
+                이메일
+                <input
+                  type="email"
+                  value={guestInfo.email}
+                  onChange={(event) => setGuestInfo((prev) => ({ ...prev, email: event.target.value }))}
+                  placeholder="주문 확인용 이메일 (선택)"
+                />
+              </label>
+              <label className="checkout-input">
+                연락처
+                <input
+                  value={guestInfo.phone}
+                  onChange={(event) => setGuestInfo((prev) => ({ ...prev, phone: event.target.value }))}
+                  placeholder="010-0000-0000"
+                  required
+                />
+              </label>
+            </>
+          )}
         </section>
 
         <section className="checkout-section">

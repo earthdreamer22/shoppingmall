@@ -32,7 +32,12 @@ const orderItemSchema = new Schema(
 
 const orderSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+    guest: {
+      name: { type: String, default: '' },
+      email: { type: String, default: '' },
+      phone: { type: String, default: '' },
+    },
     status: {
       type: String,
       enum: ['pending', 'paid', 'shipped', 'delivered', 'cancelled'],

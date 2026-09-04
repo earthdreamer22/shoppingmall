@@ -18,7 +18,17 @@ const registerLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// 비회원 주문 제한: 1시간당 20회 (남용 방지)
+const guestOrderLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1시간
+  max: 20,
+  message: '너무 많은 주문 시도가 있었습니다. 잠시 후 다시 시도해주세요.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 module.exports = {
   loginLimiter,
   registerLimiter,
+  guestOrderLimiter,
 };

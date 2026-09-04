@@ -10,6 +10,8 @@ const EXCLUDED_RULES = [
   { prefix: '/api/payments/webhook', methods: ['POST'] },
   // 회원가입만 제외, 수정/삭제는 보호
   { prefix: '/api/users', methods: ['POST'] },
+  // 비회원 주문 생성 (로그인/CSRF 쿠키가 없는 게스트 결제)
+  { prefix: '/api/orders/guest', methods: ['POST'] },
 ];
 
 function isExcluded(req) {
