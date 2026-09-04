@@ -2,6 +2,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const CHECKOUT_STORAGE_KEY = 'checkout:payload';
 
@@ -26,6 +27,7 @@ function loadStoredPayload() {
 function OrderComplete() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [order, setOrder] = useState(location.state?.order ?? null);
   const [status, setStatus] = useState(order ? '' : '결제 정보를 확인하는 중입니다.');
   const [error, setError] = useState('');
@@ -141,6 +143,25 @@ function OrderComplete() {
         <p>주문 번호: {order.id}</p>
         {isBankTransfer && <p className="muted-text">입금 확인후 상품은 발송됩니다. 수업은 따로 상품이 발송되지 않습니다.</p>}
       </header>
+
+      {!user && (
+        <section className="checkout-section" style={{ border: '2px solid #ef4444', background: '#fef2f2' }}>
+          <h2 style={{ color: '#b91c1c' }}>⚠️ 주문번호를 꼭 메모해주세요</h2>
+          <p style={{ fontSize: '20px', fontWeight: 700, wordBreak: 'break-all' }}>{order.id}</p>
+          <p className="muted-text">
+            비회원 주문은 이 주문번호와 주문자 연락처로만 조회할 수 있습니다.
+            주문번호를 저장해두셔야 이후 주문 상태를 확인하실 수 있습니다.
+          </p>
+          <button
+            type="button"
+            className="detail-secondary"
+            style={{ marginTop: '8px' }}
+            onClick={() => navigate('/orders/lookup')}
+          >
+            비회원 주문조회 하러가기
+          </button>
+        </section>
+      )}
 
       {isBankTransfer && (
         <section className="checkout-section">

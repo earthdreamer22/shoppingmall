@@ -483,11 +483,42 @@ const createGuestOrder = asyncHandler(async (req, res) => {
   });
 });
 
+// 비회원 주문조회: 주문번호 + 연락처가 일치할 때만 조회를 허용한다(본인확인).
+const lookupGuestOrder = asyncHandler(async (req, res) => {
+  const { orderId, phone } = req.body ?? {};
+
+  if (!orderId || !phone) {
+    return res.status(400).json({ message: '주문번호와 연락처를 모두 입력해주세요.' });
+  }
+
+  // 잘못된 형식의 주문번호는 조회 실패로 처리 (CastError 방지)
+  if (!/^[a-fA-F0-9]{24}$/.test(String(orderId).trim())) {
+    return res.status(404).json({ message: '일치하는 주문을 찾을 수 없습니다.' });
+  }
+
+  const normalize = (value) => String(value ?? '').replace(/[^0-9]/g, '');
+  const inputPhone = normalize(phone);
+
+  const order = await Order.findById(String(orderId).trim());
+
+  // 주문이 없거나, 연락처(주문자 또는 배송지)가 일치하지 않으면 동일한 실패 메시지로 응답한다.
+  const matches = order
+    && (normalize(order.guest?.phone) === inputPhone || normalize(order.shipping?.phone) === inputPhone)
+    && inputPhone.length > 0;
+
+  if (!matches) {
+    return res.status(404).json({ message: '일치하는 주문을 찾을 수 없습니다.' });
+  }
+
+  res.json(formatOrder(order));
+});
+
 module.exports = {
   listOrders,
   listAllOrders,
   createOrder,
   createGuestOrder,
+  lookupGuestOrder,
   cancelOrder,
   updateOrderStatus,
 };

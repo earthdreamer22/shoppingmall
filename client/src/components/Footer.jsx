@@ -29,6 +29,7 @@ function Footer() {
         <div className="footer-section">
           <h3>고객지원</h3>
           <ul className="footer-links">
+            <li><Link to="/orders/lookup">비회원 주문조회</Link></li>
             <li><Link to="/terms">이용약관</Link></li>
             <li><Link to="/privacy">개인정보처리방침</Link></li>
           </ul>

@@ -12,6 +12,7 @@ import Cart from './pages/Cart.jsx';
 import MyPage from './pages/MyPage.jsx';
 import Checkout from './pages/Checkout.jsx';
 import OrderComplete from './pages/OrderComplete.jsx';
+import GuestOrderLookup from './pages/GuestOrderLookup.jsx';
 import Terms from './pages/Terms.jsx';
 import Privacy from './pages/Privacy.jsx';
 import NotFound from './pages/NotFound.jsx';
@@ -52,15 +53,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/checkout"
-              element={
-                <ProtectedRoute>
-                  <Checkout />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/orders/complete" element={<OrderComplete />} />
+            <Route path="/orders/lookup" element={<GuestOrderLookup />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
