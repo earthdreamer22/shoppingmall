@@ -15,17 +15,18 @@
   --font-sans: 'Pretendard', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --font-serif: 'Noto Serif KR', 'Crimson Text', Georgia, serif;
 
-  --color-ink: #2b2824;          /* 딥 차콜(네이비 대체) */
-  --color-ink-soft: #6b645b;     /* 보조 텍스트 */
-  --color-surface: #faf7f2;      /* 크림/아이보리 배경 */
-  --color-card: #ffffff;         /* 카드 표면 */
-  --color-header: #faf7f2;       /* 헤더 바 */
+  --color-ink: #26231f;          /* 딥 차콜(순백 위 대비 강화) */
+  --color-ink-soft: #6f685e;     /* 보조 텍스트 */
+  --color-surface: #ffffff;      /* 순백 배경 */
+  --color-card: #ffffff;         /* 카드 표면(보더/그림자로 구분) */
+  --color-header: #ffffff;       /* 헤더 바 */
   --color-primary: #b5553d;      /* 테라코타(포인트) */
   --color-primary-strong: #9a4631;
   --color-accent: #b5553d;
-  --color-border: #e7e1d8;       /* 웜 그레이 보더 */
-  --shadow-sm: 0 1px 2px rgba(43, 40, 36, 0.05);
-  --shadow-md: 0 8px 24px rgba(43, 40, 36, 0.08);
+  --color-border: #ece7df;       /* 따뜻한 연회색 보더(순백 위에서 은은하게) */
+  --color-muted-bg: #f7f4ef;     /* 썸네일·입력창 등 미묘한 배경 */
+  --shadow-sm: 0 1px 3px rgba(38, 35, 31, 0.06);
+  --shadow-md: 0 10px 30px rgba(38, 35, 31, 0.10);
   --radius: 16px;
   --space-2: 8px;
   --space-3: 12px;
@@ -1181,7 +1182,7 @@ section {
 }
 
 .product-thumb {
-  background: #f3ede4;
+  background: var(--color-muted-bg);
   display: grid;
   place-items: center;
   height: 230px;
