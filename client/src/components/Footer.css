@@ -1,6 +1,6 @@
 .site-footer {
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
   padding: 0;
   margin-top: 3rem;
 }
@@ -11,13 +11,13 @@
   justify-content: center;
   gap: 24px;
   padding: 20px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e9ecef;
+  background-color: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
 .footer-nav__item {
-  color: #0f172a;
+  color: var(--color-ink);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -26,7 +26,7 @@
 }
 
 .footer-nav__item:hover {
-  color: #3b82f6;
+  color: var(--color-primary);
 }
 
 .footer-content {
@@ -45,10 +45,11 @@
 }
 
 .footer-section h3 {
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-ink);
 }
 
 .business-info {
@@ -59,13 +60,13 @@
 
 .business-info li {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--color-ink-soft);
   margin-bottom: 0.5rem;
   line-height: 1.5;
 }
 
 .business-info a {
-  color: #4a90d9;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -85,12 +86,12 @@
 
 .footer-links a {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-ink-soft);
   text-decoration: none;
 }
 
 .footer-links a:hover {
-  color: #4a90d9;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
@@ -98,7 +99,7 @@
   max-width: 1200px;
   margin: 2rem auto 0;
   padding-top: 1rem;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid var(--color-border);
   text-align: center;
 }
 
