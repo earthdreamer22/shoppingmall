@@ -541,11 +541,245 @@ const lookupGuestOrder = asyncHandler(async (req, res) => {
   res.json(formatOrder(order));
 });
 
+// ===================== 선주문(결제 전 저장) =====================
+// 카드 결제는 결제창을 띄우기 '전에' 주문을 pending 상태로 저장해 둔다.
+// 결제 도중 브라우저가 닫히거나 오류가 나도 주문·배송지·상품 정보가 남는다.
+// 결제 승인 후 confirmOrderPayment 로 paid 확정한다.
+
+function assertShippingWhenNeeded(shippingFee, shipping) {
+  if (
+    shippingFee > 0 &&
+    (!shipping.recipientName || !shipping.phone || !shipping.addressLine1 || !shipping.postalCode)
+  ) {
+    const error = new Error('배송지 정보를 모두 입력해주세요.');
+    error.status = 400;
+    throw error;
+  }
+}
+
+function buildDraftDoc({ userId, guest, orderItems, shippingFee, shipping, payment, cashReceipt }) {
+  const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = subtotal + shippingFee;
+
+  return {
+    user: userId ?? null,
+    guest: guest ?? { name: '', email: '', phone: '' },
+    status: 'pending',
+    items: orderItems,
+    pricing: { subtotal, discount: 0, shippingFee, total, currency: 'KRW' },
+    shipping: {
+      recipientName: shipping.recipientName || guest?.name || '',
+      phone: shipping.phone || guest?.phone || '',
+      addressLine1: shipping.addressLine1 || '-',
+      addressLine2: shipping.addressLine2 ?? '',
+      postalCode: shipping.postalCode || '-',
+      requestMessage: shipping.requestMessage ?? '',
+    },
+    payment: {
+      method: payment.method ?? 'card',
+      status: 'pending',
+      paymentId: payment.paymentId,
+    },
+    cashReceipt: {
+      requested: Boolean(cashReceipt?.requested),
+      type: cashReceipt?.requested ? (cashReceipt.type ?? '') : '',
+      number: cashReceipt?.requested ? (cashReceipt.number ?? '') : '',
+    },
+    history: [{ status: 'pending', note: '주문이 접수되었습니다. 결제 진행 중입니다.' }],
+  };
+}
+
+// 회원: 서버 장바구니로 선주문 생성
+const createOrderDraft = asyncHandler(async (req, res) => {
+  const userId = await resolveUserId(req);
+  const { shipping = {}, payment = {}, cashReceipt = {} } = req.body ?? {};
+
+  if (!payment.paymentId) {
+    return res.status(400).json({ message: '결제 식별자(paymentId)가 필요합니다.' });
+  }
+
+  const existing = await Order.findOne({ 'payment.paymentId': payment.paymentId });
+  if (existing) {
+    return res.status(409).json({ message: '이미 생성된 주문입니다.' });
+  }
+
+  const cart = await Cart.findOne({ user: userId }).populate('items.product');
+  if (!cart || cart.items.length === 0) {
+    return res.status(400).json({ message: '장바구니가 비어 있습니다.' });
+  }
+
+  const orderItems = cart.items.map((item) => {
+    if (!item.product || !item.product._id) {
+      throw new Error('상품 정보를 찾을 수 없습니다.');
+    }
+    const primaryImage = resolvePrimaryImage(item.product);
+    return {
+      product: item.product._id,
+      name: item.product.name,
+      sku: item.product.sku,
+      price: item.product.price,
+      quantity: item.quantity,
+      imageUrl: primaryImage?.url ?? '',
+      imagePublicId: primaryImage?.publicId ?? '',
+      selectedOptions: item.selectedOptions ?? [],
+    };
+  });
+
+  // 배송비는 서버에서 계산(주문 상품 중 최대 배송비 1건)해 금액 위변조를 막는다.
+  const shippingFee = Math.max(0, ...cart.items.map((item) => item.product.shippingFee ?? 0));
+  assertShippingWhenNeeded(shippingFee, shipping);
+
+  const order = await Order.create(
+    buildDraftDoc({ userId, guest: null, orderItems, shippingFee, shipping, payment, cashReceipt }),
+  );
+
+  res.status(201).json(formatOrder(order));
+});
+
+// 비회원: 클라이언트가 보낸 상품 목록으로 선주문 생성(가격은 서버에서 재조회)
+const createGuestOrderDraft = asyncHandler(async (req, res) => {
+  const { items = [], shipping = {}, payment = {}, guest = {}, cashReceipt = {} } = req.body ?? {};
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ message: '주문할 상품이 없습니다.' });
+  }
+  if (!guest.name || !guest.phone) {
+    return res.status(400).json({ message: '주문자 이름과 연락처를 입력해주세요.' });
+  }
+  if (!payment.paymentId) {
+    return res.status(400).json({ message: '결제 식별자(paymentId)가 필요합니다.' });
+  }
+
+  const existing = await Order.findOne({ 'payment.paymentId': payment.paymentId });
+  if (existing) {
+    return res.status(409).json({ message: '이미 생성된 주문입니다.' });
+  }
+
+  const productIds = [...new Set(items.map((item) => item.productId).filter(Boolean))];
+  const products = await Product.find({ _id: { $in: productIds } });
+  const productMap = new Map(products.map((product) => [product._id.toString(), product]));
+
+  const orderItems = items.map((item) => {
+    const product = productMap.get(String(item.productId));
+    if (!product) {
+      const error = new Error('존재하지 않는 상품이 포함되어 있습니다.');
+      error.status = 400;
+      throw error;
+    }
+    const quantity = Math.max(1, Math.min(999, Number(item.quantity) || 1));
+    const primaryImage = resolvePrimaryImage(product);
+    return {
+      product: product._id,
+      name: product.name,
+      sku: product.sku,
+      price: product.price,
+      quantity,
+      imageUrl: primaryImage?.url ?? '',
+      imagePublicId: primaryImage?.publicId ?? '',
+      selectedOptions: Array.isArray(item.selectedOptions) ? item.selectedOptions : [],
+    };
+  });
+
+  const shippingFee = Math.max(
+    0,
+    ...orderItems.map((item) => productMap.get(item.product.toString())?.shippingFee ?? 0),
+  );
+  assertShippingWhenNeeded(shippingFee, shipping);
+
+  const order = await Order.create(
+    buildDraftDoc({
+      userId: null,
+      guest: { name: guest.name, email: guest.email ?? '', phone: guest.phone },
+      orderItems,
+      shippingFee,
+      shipping,
+      payment,
+      cashReceipt,
+    }),
+  );
+
+  res.status(201).json(formatOrder(order));
+});
+
+// 결제 승인 후 선주문을 확정한다. 중복 호출에 안전(멱등).
+const confirmOrderPayment = asyncHandler(async (req, res) => {
+  const { orderId, paymentId } = req.body ?? {};
+
+  if (!orderId || !paymentId) {
+    return res.status(400).json({ message: '주문번호와 결제 식별자가 필요합니다.' });
+  }
+  if (!/^[a-fA-F0-9]{24}$/.test(String(orderId).trim())) {
+    return res.status(404).json({ message: '주문을 찾을 수 없습니다.' });
+  }
+
+  const order = await Order.findById(String(orderId).trim());
+  if (!order) {
+    return res.status(404).json({ message: '주문을 찾을 수 없습니다.' });
+  }
+  if (order.payment?.paymentId !== paymentId) {
+    return res.status(400).json({ message: '결제 정보가 주문과 일치하지 않습니다.' });
+  }
+
+  // 이미 확정된 주문이면 그대로 반환(새로고침/중복 호출 대비)
+  if (order.payment.status === 'paid') {
+    return res.json(formatOrder(order));
+  }
+
+  const pgPayment = await getPaymentByPaymentId(paymentId);
+
+  if (!['PAID', 'VIRTUAL_ACCOUNT_ISSUED'].includes(pgPayment.status)) {
+    return res.status(400).json({ message: `결제 상태가 완료되지 않았습니다. (status: ${pgPayment.status})` });
+  }
+  if (Number(pgPayment.amount?.total) !== Math.max(0, order.pricing?.total ?? 0)) {
+    return res.status(400).json({ message: '결제 금액이 주문 금액과 일치하지 않습니다.' });
+  }
+
+  const paid = pgPayment.status === 'PAID';
+  order.status = paid ? 'paid' : 'pending';
+  order.payment.status = paid ? 'paid' : 'pending';
+  order.payment.transactionId = pgPayment.pgTxId ?? order.payment.transactionId;
+  order.payment.paidAt = pgPayment.paidAt ? new Date(pgPayment.paidAt) : new Date();
+  order.payment.pgProvider = pgPayment.pgProvider ?? order.payment.pgProvider;
+  order.payment.cardName = pgPayment.card?.name ?? '';
+  order.payment.applyNum = pgPayment.card?.approvalNumber ?? '';
+  order.history.push({
+    status: order.status,
+    note: paid ? '결제가 완료되었습니다.' : '가상계좌가 발급되었습니다.',
+  });
+
+  await order.save();
+
+  // 회원 주문이면 장바구니를 비운다.
+  if (order.user) {
+    const cart = await Cart.findOne({ user: order.user });
+    if (cart) {
+      cart.items = [];
+      await cart.save();
+    }
+  }
+
+  await recordAuditLog({
+    action: 'order.confirm',
+    userId: order.user,
+    ip: req.ip,
+    metadata: { orderId: order.id, paymentId, amount: order.pricing?.total },
+  });
+
+  res.json(formatOrder(order));
+
+  sendOrderNotification(order).catch((error) => {
+    console.error('[mailer] Failed to send order notification:', error.message);
+  });
+});
+
 module.exports = {
   listOrders,
   listAllOrders,
   createOrder,
   createGuestOrder,
+  createOrderDraft,
+  createGuestOrderDraft,
+  confirmOrderPayment,
   lookupGuestOrder,
   cancelOrder,
   updateOrderStatus,

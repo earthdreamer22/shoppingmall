@@ -75,61 +75,40 @@ function OrderComplete() {
       return;
     }
 
-    // 주문 생성 함수 - paymentId를 직접 사용
-    const createOrder = async () => {
-      setStatus('주문을 생성하는 중입니다...');
+    // 주문은 결제 전에 이미 저장(선주문)되어 있다. 여기서는 결제 승인을 확인해 확정만 한다.
+    const confirmOrder = async () => {
+      setStatus('결제를 확인하는 중입니다...');
       try {
         // 체크아웃 시점에 저장한 플래그를 우선 사용(로그인 상태 로딩 타이밍 영향 방지)
         const isGuest = payload.isGuest ?? !user;
-        let created;
+        const confirmPath = isGuest ? '/orders/guest/confirm' : '/orders/confirm';
 
-        if (isGuest) {
-          // 비회원: 상품 목록·주문자 정보를 함께 보내 /orders/guest 로 생성
-          const guestPayload = {
-            items: payload.items ?? [],
-            guest: payload.guest ?? {},
-            shipping: payload.shipping,
-            pricing: payload.pricing,
-            payment: {
-              method: payload.payment?.method || 'card',
-              paymentId,
-            },
-          };
-          console.log('[OrderComplete] 비회원 주문 생성 요청:', guestPayload);
-          created = await apiRequest('/orders/guest', {
-            method: 'POST',
-            body: JSON.stringify(guestPayload),
-          });
-          clearGuestCart();
-        } else {
-          const orderPayload = {
-            shipping: payload.shipping,
-            pricing: payload.pricing,
-            payment: {
-              method: payload.payment?.method || 'card',
-              paymentId, // URL에서 추출한 paymentId 직접 사용
-            },
-          };
-          console.log('[OrderComplete] 주문 생성 요청:', orderPayload);
-          created = await apiRequest('/orders', {
-            method: 'POST',
-            body: JSON.stringify(orderPayload),
-          });
-        }
+        const confirmed = await apiRequest(confirmPath, {
+          method: 'POST',
+          body: JSON.stringify({ orderId: payload.orderId, paymentId }),
+        });
 
-        console.log('[OrderComplete] 주문 생성 성공:', created);
-        setOrder(created);
+        console.log('[OrderComplete] 주문 확정 성공:', confirmed.id);
+        if (isGuest) clearGuestCart();
+        setOrder(confirmed);
         setError('');
         clearStoredPayload();
       } catch (err) {
-        console.error('[OrderComplete] 주문 생성 실패:', err);
-        setError(err.message ?? '주문 생성 중 오류가 발생했습니다.');
+        console.error('[OrderComplete] 주문 확정 실패:', err);
+        setError(
+          `${err.message ?? '주문 확정 중 오류가 발생했습니다.'} 결제가 완료되었다면 주문이 접수되어 있으니 담당자에게 문의해주세요. (TEL: 0507-1371-9981)`,
+        );
       } finally {
         setStatus('');
       }
     };
 
-    createOrder();
+    if (!payload.orderId) {
+      setError('주문 정보가 만료되었습니다. 결제가 완료되었다면 담당자에게 문의해주세요. (TEL: 0507-1371-9981)');
+      return;
+    }
+
+    confirmOrder();
   }, [order, location.search, navigate]);
 
   if (!order) {

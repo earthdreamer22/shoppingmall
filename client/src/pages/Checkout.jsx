@@ -283,55 +283,54 @@ function Checkout() {
 
     setSubmitting(true);
 
-    const orderId = `order_${Date.now()}`;
+    const paymentId = `order_${Date.now()}`;
     const payMethodV2 = PAY_METHOD_MAP[paymentMethod] ?? 'CARD';
     const redirectUrl = `${window.location.origin}/orders/complete`;
 
-    // 모바일 리디렉트 대비 주문 정보 저장
-    // 비회원은 서버 장바구니가 없으므로 상품 목록·주문자 정보를 함께 저장해야
-    // OrderComplete가 /orders/guest 로 올바르게 주문을 생성할 수 있다.
     try {
-      window.sessionStorage.setItem(
-        CHECKOUT_STORAGE_KEY,
-        JSON.stringify({
-          isGuest: !user,
-          guest: !user ? guestInfo : null,
-          items: !user
-            ? cart.map((item) => ({
+      // 1) 결제창을 띄우기 전에 주문을 먼저 저장한다(상태: 결제대기).
+      //    결제 도중 창이 닫히거나 오류가 나도 주문·배송지·상품이 유실되지 않는다.
+      const draftPath = user ? '/orders/draft' : '/orders/guest/draft';
+      const draftBody = {
+        shipping,
+        payment: { method: paymentMethod, paymentId },
+        cashReceipt: { requested: false },
+        ...(user
+          ? {}
+          : {
+              guest: guestInfo,
+              items: cart.map((item) => ({
                 productId: item.productId,
                 quantity: item.quantity,
                 selectedOptions: item.selectedOptions ?? [],
-              }))
-            : undefined,
-          shipping,
-          pricing: {
-            subtotal,
-            discount,
-            shippingFee,
-            total,
-          },
-          payment: {
-            method: paymentMethod,
-          },
-        }),
-      );
-    } catch (_error) {
-      // storage 실패는 무시
-    }
+              })),
+            }),
+      };
 
-    try {
-      console.log('[Checkout] 결제 요청 시작:', {
-        orderId,
-        total,
-        paymentMethod: payMethodV2,
+      const draft = await apiRequest(draftPath, {
+        method: 'POST',
+        body: JSON.stringify(draftBody),
       });
 
+      console.log('[Checkout] 선주문 생성 완료:', draft.id);
+
+      // 2) 모바일 리디렉트 대비: 확정에 필요한 최소 정보만 저장
+      try {
+        window.sessionStorage.setItem(
+          CHECKOUT_STORAGE_KEY,
+          JSON.stringify({ isGuest: !user, orderId: draft.id, paymentId }),
+        );
+      } catch (_error) {
+        // storage 실패는 무시
+      }
+
+      // 3) 결제 요청 (금액은 서버가 계산한 값을 사용해 불일치를 방지)
       const response = await window.PortOne.requestPayment({
         storeId: PORTONE_STORE_ID,
         channelKey: PORTONE_CHANNEL_KEY,
-        paymentId: orderId,
+        paymentId,
         orderName: `종이책 연구소 주문 (${cart.length}건)`,
-        totalAmount: total,
+        totalAmount: draft.pricing?.total ?? total,
         currency: 'KRW',
         payMethod: payMethodV2,
         customer: {
@@ -345,33 +344,32 @@ function Checkout() {
       console.log('[Checkout] 결제 응답:', response);
 
       if (response.code != null) {
+        // 결제 실패/취소: 선주문은 '결제대기'로 남아 관리자가 확인할 수 있다.
         console.error('[Checkout] 결제 오류:', response);
         setSubmitting(false);
         setError(response.message || '결제가 취소되었습니다.');
         return;
       }
 
-      // 결제 성공 - 주문 생성
+      // 4) 결제 승인 확인 후 주문 확정
+      const confirmPath = user ? '/orders/confirm' : '/orders/guest/confirm';
+      const confirmed = await apiRequest(confirmPath, {
+        method: 'POST',
+        body: JSON.stringify({ orderId: draft.id, paymentId }),
+      });
+
+      console.log('[Checkout] 주문 확정 완료:', confirmed.id);
+
+      if (!user) clearGuestCart();
+      setCartCount(0);
       try {
-        const paymentData = {
-          method: paymentMethod,
-          paymentId: orderId,
-        };
-        if (response.transactionType) {
-          paymentData.transactionType = response.transactionType;
-        }
-        if (response.txId) {
-          paymentData.txId = response.txId;
-        }
-        await createOrder(paymentData);
-      } catch (err) {
-        console.error('[Checkout] 주문 생성 실패:', err);
-        setError(err.message ?? '주문 생성 중 문제가 발생했습니다.');
-      } finally {
-        setSubmitting(false);
+        window.sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+      } catch (_error) {
+        // ignore
       }
+      navigate('/orders/complete', { replace: true, state: { order: confirmed } });
     } catch (err) {
-      console.error('[Checkout] 결제 실패:', err);
+      console.error('[Checkout] 결제 처리 실패:', err);
       setSubmitting(false);
       setError(err.message || '결제 중 오류가 발생했습니다.');
     }

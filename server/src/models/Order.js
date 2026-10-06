@@ -124,4 +124,14 @@ orderSchema.index(
   },
 );
 
+// 같은 결제건으로 주문이 두 번 생성되는 것을 DB 차원에서 차단한다.
+// 빈 문자열(결제 식별자가 아직 없는 주문)은 인덱스 대상에서 제외한다.
+orderSchema.index(
+  { 'payment.paymentId': 1 },
+  {
+    unique: true,
+    partialFilterExpression: { 'payment.paymentId': { $exists: true, $ne: '' } },
+  },
+);
+
 module.exports = model('Order', orderSchema);
