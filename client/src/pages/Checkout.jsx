@@ -288,10 +288,21 @@ function Checkout() {
     const redirectUrl = `${window.location.origin}/orders/complete`;
 
     // 모바일 리디렉트 대비 주문 정보 저장
+    // 비회원은 서버 장바구니가 없으므로 상품 목록·주문자 정보를 함께 저장해야
+    // OrderComplete가 /orders/guest 로 올바르게 주문을 생성할 수 있다.
     try {
       window.sessionStorage.setItem(
         CHECKOUT_STORAGE_KEY,
         JSON.stringify({
+          isGuest: !user,
+          guest: !user ? guestInfo : null,
+          items: !user
+            ? cart.map((item) => ({
+                productId: item.productId,
+                quantity: item.quantity,
+                selectedOptions: item.selectedOptions ?? [],
+              }))
+            : undefined,
           shipping,
           pricing: {
             subtotal,

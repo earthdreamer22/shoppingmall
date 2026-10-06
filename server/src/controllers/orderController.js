@@ -43,26 +43,54 @@ const listOrders = asyncHandler(async (req, res) => {
   res.json(orders.map(formatOrder));
 });
 
+// 데모 계정(인증 없이 생성된 주문이 귀속될 수 있음)은 실제 회원으로 보지 않는다.
+function isDemoUser(user) {
+  if (!user) return false;
+  const demoEmail = process.env.DEMO_USER_EMAIL ?? 'demo@shoppingmall.local';
+  const demoName = process.env.DEMO_USER_NAME ?? '데모 사용자';
+  return user.email === demoEmail || user.name === demoName;
+}
+
+// 주문의 "결제자(고객)"를 회원 → 비회원 정보 → 배송지 정보 순으로 해석한다.
+// 비회원 카드결제가 배송지만 남기고 주문자 정보가 비어 있어도 실제 구매자를 표시한다.
+function resolveCustomer(order) {
+  if (order.user && !isDemoUser(order.user)) {
+    return {
+      id: order.user._id?.toString?.() ?? order.user.id ?? '',
+      name: order.user.name,
+      email: order.user.email,
+      phone: order.user.phone,
+    };
+  }
+
+  if (order.guest?.name || order.guest?.phone) {
+    return {
+      id: '',
+      name: `${order.guest.name || '비회원'} (비회원)`,
+      email: order.guest.email ?? '',
+      phone: order.guest.phone ?? '',
+    };
+  }
+
+  // 주문자 정보가 비어 있으면 배송지의 수령인/연락처로 대체 표시
+  if (order.shipping?.recipientName || order.shipping?.phone) {
+    return {
+      id: '',
+      name: `${order.shipping.recipientName || '비회원'} (비회원)`,
+      email: '',
+      phone: order.shipping.phone ?? '',
+    };
+  }
+
+  return null;
+}
+
 const listAllOrders = asyncHandler(async (_req, res) => {
   const orders = await Order.find().sort({ createdAt: -1 }).populate('user', 'name email phone');
   res.json(
     orders.map((order) => ({
       ...formatOrder(order),
-      customer: order.user
-        ? {
-            id: order.user._id?.toString?.() ?? order.user.id ?? '',
-            name: order.user.name,
-            email: order.user.email,
-            phone: order.user.phone,
-          }
-        : (order.guest?.name || order.guest?.phone)
-          ? {
-              id: '',
-              name: `${order.guest.name} (비회원)`,
-              email: order.guest.email ?? '',
-              phone: order.guest.phone ?? '',
-            }
-          : null,
+      customer: resolveCustomer(order),
     })),
   );
 });

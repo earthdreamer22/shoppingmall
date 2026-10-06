@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 import { apiRequest } from '../lib/apiClient.js';
 import { useAuth } from '../context/AuthContext.jsx';
+import { clearGuestCart } from '../lib/guestCart.js';
 
 const CHECKOUT_STORAGE_KEY = 'checkout:payload';
 
@@ -78,23 +79,43 @@ function OrderComplete() {
     const createOrder = async () => {
       setStatus('주문을 생성하는 중입니다...');
       try {
-        const orderPayload = {
-          shipping: payload.shipping,
-          pricing: payload.pricing,
-          payment: {
-            method: payload.payment?.method || 'card',
-            paymentId: paymentId, // URL에서 추출한 paymentId 직접 사용
-          },
-        };
+        // 체크아웃 시점에 저장한 플래그를 우선 사용(로그인 상태 로딩 타이밍 영향 방지)
+        const isGuest = payload.isGuest ?? !user;
+        let created;
 
-        console.log('[OrderComplete] 주문 생성 요청:', orderPayload);
-        console.log('[OrderComplete] paymentId 값:', paymentId);
-        console.log('[OrderComplete] 전체 payload:', JSON.stringify(orderPayload, null, 2));
-
-        const created = await apiRequest('/orders', {
-          method: 'POST',
-          body: JSON.stringify(orderPayload),
-        });
+        if (isGuest) {
+          // 비회원: 상품 목록·주문자 정보를 함께 보내 /orders/guest 로 생성
+          const guestPayload = {
+            items: payload.items ?? [],
+            guest: payload.guest ?? {},
+            shipping: payload.shipping,
+            pricing: payload.pricing,
+            payment: {
+              method: payload.payment?.method || 'card',
+              paymentId,
+            },
+          };
+          console.log('[OrderComplete] 비회원 주문 생성 요청:', guestPayload);
+          created = await apiRequest('/orders/guest', {
+            method: 'POST',
+            body: JSON.stringify(guestPayload),
+          });
+          clearGuestCart();
+        } else {
+          const orderPayload = {
+            shipping: payload.shipping,
+            pricing: payload.pricing,
+            payment: {
+              method: payload.payment?.method || 'card',
+              paymentId, // URL에서 추출한 paymentId 직접 사용
+            },
+          };
+          console.log('[OrderComplete] 주문 생성 요청:', orderPayload);
+          created = await apiRequest('/orders', {
+            method: 'POST',
+            body: JSON.stringify(orderPayload),
+          });
+        }
 
         console.log('[OrderComplete] 주문 생성 성공:', created);
         setOrder(created);
